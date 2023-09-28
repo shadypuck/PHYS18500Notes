@@ -2,8 +2,11 @@
 \usepackage{csquotes}
 \usepackage{fancyhdr}
 \usepackage{marginnote}
+\usepackage{scrextend}
+\usepackage[bottom]{footmisc}
 \usepackage{enumitem}
 \usepackage{amsmath,amssymb}
+\usepackage{physics}
 \usepackage[hidelinks]{hyperref}
 \usepackage{subfiles}
 
@@ -20,6 +23,13 @@
     \renewcommand{\headrulewidth}{0pt}
 }
 
+\deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
+\deffootnote[1.8em]{0em}{0em}{\textsuperscript{\thefootnote}}
+
 \setitemize[3]{label={\scriptsize$\blacksquare$}}
 
 \reversemarginpar
+
+\newcommand{\ihat}{\hat{\imath}}
+\newcommand{\jhat}{\hat{\jmath}}
+\newcommand{\khat}{\hat{k}}

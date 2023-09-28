@@ -11,7 +11,157 @@
 \chapter{Introduction}
 \section{Introduction; Principle of Relativity; Newton's Laws}
 \begin{itemize}
-    \item \marginnote{9/27:}
+    \item \marginnote{9/27:}Course logistics to start.
+    \begin{itemize}
+        \item Prof: Elizabeth Jerison, GCIS E231, OH M 4-5:30, (ejerison@uchicago.edu).
+        \item Discussion sections start \emph{next week} on W 4:30-5:20; we'll receive additional information.
+        \item Problem session by TAs: Th 4-7pm, location TBA.
+        \item HW due Fridays at 11:30am on Canvas.
+        \begin{itemize}
+            \item Write names of anyone you work with at the bottom of the page.
+            \item Optional makeup PSet at the end of the quarter to drop lowest grade.
+        \end{itemize}
+        \item Solutions posted Monday.
+        \begin{itemize}
+            \item Thus, late assignments accepted up until Monday.
+        \end{itemize}
+        \item Midterm: 11/1/23, 4:30-5:15 \emph{or} 4:30-6:00.
+        \begin{itemize}
+            \item She dislikes 45 minute exams, so there is the option to take a longer exam.
+            \item 45 min exam will be \emph{half} the 90 minute exam and scored for full credit.
+            \item There may be conflict makeup times, too.
+        \end{itemize}
+        \item More syllabus stuff on Canvas; we can email or stop at OH if we have questions.
+    \end{itemize}
+    \item Course material overview.
+    \begin{itemize}
+        \item Review Newtonian mechanics.
+        \item Lagrangian mechanics.
+        \begin{itemize}
+            \item Same laws of physics, but easier to generalize to a broader class of problems, which makes it more powerful in a broader class of problems.
+            \item An equivalent formulation.
+        \end{itemize}
+        \item Hamiltonian mechanics.
+        \begin{itemize}
+            \item Symmetries of the Hamiltonian give rise to previous courses' conservation laws.
+        \end{itemize}
+        \item Post-Thanksgiving break: Intro to dynamical systems, nonlinear systems.
+        \begin{itemize}
+            \item No closed-form analytical solutions, but you can still put a lot of constraints on behavior from a geometric perspective.
+        \end{itemize}
+        \item Introduce Lagrangian pretty quickly; do it more formally in November.
+    \end{itemize}
+    \item Brief note about "Physics."
+    \item \textbf{Physics}: Extract math to govern matter.
+    \item Three stages.
+    \begin{enumerate}
+        \item Make observations; see quantitative patterns.
+        \item Formulate hypotheses (mathematical models).
+        \item Test + iterate.
+    \end{enumerate}
+    \item \textbf{Law}: A well-tested hypothesis. \emph{Also known as} \textbf{principle}.
+    \item By necessity, the very confusing and engaging process of creating this knowledge is often given short shrift, and we are only presented in class with the very successful hypotheses.
+    \item The subject of mechanics.
+    \begin{itemize}
+        \item We have $N$ particles with positions $\vec{r}_1,\dots,\vec{r}_N$ at $t=t_0$, and we want to predict their positions at all future times.
+        \item The exploration of this problem is fundamental to mechanics and, in many cases, all physics.
+    \end{itemize}
+    \item Notation.
+    \begin{itemize}
+        \item Tries to stick with the textbook.
+        \item Cartesian unit vectors: $\ihat=(1,0,0)$, $\jhat=(0,1,0)$, and $\khat=(0,0,1)$.
+        \item Position: $\vec{r}=x\ihat+y\jhat+z\khat$.
+        \item Velocity: $\dot{\vec{r}}=\dv*{r}{t}=\dot{x}\ihat+\dot{y}\jhat+\dot{z}\khat$.
+        \item Velocity: $\ddot{\vec{r}}=\dv*[2]{r}{t}=\ddot{x}\ihat+\ddot{y}\jhat+\ddot{z}\khat$.
+        \item Momentum: $\vec{p}=m\vec{v}$.
+    \end{itemize}
+    \item Principle of relativity.
+    \item Galileo's relativity principle.
+    \begin{itemize}
+        \item Updated by Einstein via special relativity, but that's outside the scope of this course.
+        \item Relies on the principle that space is \textbf{homogeneous} and \textbf{isotropic}.\footnote{I.e., affine.} Additionally, time is homogeneous.
+        \item There are \textbf{inertial reference frames}, which move at a constant velocity relative to one another.
+        \item All accelerations and particle interactions are the same in any inertial reference frame, i.e., $\vec{r}=\vec{r}{\,}'+\vec{v}t$ and $t=t'$; this is a \textbf{Galilean transformation}.
+        \item Note 1: It could be different!
+        \begin{itemize}
+            \item Aristotle thought that there was an absolute center to the universe (in the center of the Earth) and that the laws of physics varied with distance from that point. However, we have no empirical evidence to support this claim.
+        \end{itemize}
+        \item Note 2: This breaks down as $\norm{\vec{v}}\to c$.
+        \begin{itemize}
+            \item However, we can use Lorentz transformation to recover laws of mechanics, but this is special relativity.
+        \end{itemize}
+        \item Note 3: Conservation laws arise directly from relativity.
+    \end{itemize}
+    \item \textbf{Homogeneous}: No special direction.
+    \item \textbf{Isotropic}: No absolute position.
+    \item Newtonian mechanics.
+    \begin{itemize}
+        \item If we know what to call the force $\vec{V}_i$ on particle $i$, then we know the future positions via $\vec{F}_i=m_i\vec{a}_i$ (Newton's second law).
+        \item The fact that forces and acceleration are only related through a scalar mass is quite nontrivial!
+        \item This law gives us equations of motion (EOM), which allow us to solve for what's going to happen to our particle.
+        \item EOMs:
+        \begin{equation*}
+            \ddot{\vec{r}} = \frac{\vec{F}_i(\vec{r}_1,\dots,\vec{r}_N,\dot{\vec{r}}_1,\dots,\dot{\vec{r}}_N,t)}{m}
+        \end{equation*}
+        \begin{itemize}
+            \item This is a series of 2nd order ODEs for position of $i$, $\vec{r}_i(t)$.
+            \item Solvable if we have 2 initial conditions: $\vec{r}(t=0)$ and $\dot{\vec{r}}(t=0)$.
+        \end{itemize}
+        \item Newton's third law:
+        \begin{equation*}
+            \vec{F}_i = \sum_{j=1}^N\vec{F}_{ij}
+        \end{equation*}
+        where $\vec{F}_{ij}$ is the force on $i$ due to $j$.
+        \begin{itemize}
+            \item $\vec{F}_{ij}$ depends on $\vec{r}_i$, $\vec{r}_j$, $\vec{v}_i$, and $\vec{v}_j$.
+            \item In fact, it depends on $(\vec{r}_i-\vec{r}_j)$ and $(\vec{v}_i-\vec{v}_j)$.
+            \item Also, $\vec{F}_{ij}=-\vec{F}_{ji}$.
+            \item Again, it could have been different; it's just that no one has ever found a force that depends on three bodies.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Force}: Something that generates an acceleration.
+    \item Physical phenomena that aren't mechanical?
+    \begin{itemize}
+        \item Most people would say that there are constraints, e.g., electricity, speed of light.
+    \end{itemize}
+    \item Consequence \#1 of Newton's Laws: Conservation of momentum.
+    \begin{itemize}
+        \item Suppose we have 2 bodies.
+        \item From the third then second law,
+        \begin{align*}
+            \vec{F}_i &= -\vec{F}_j\\
+            m_1\vec{a}_1 &= -m_2\vec{a}_2
+        \end{align*}
+        \item It follows by adding $m_2\vec{a}_2$ to both sides and integrating that the total momentum in the system is constant.
+    \end{itemize}
+    \item Consequence \#2 of Newton's Laws: Mass is additive.
+    \begin{itemize}
+        \item Suppose we have 3 bodies.
+        \item From consecutive applications of the third law,
+        \begin{align*}
+            m_1\vec{a}_1 &= \vec{F}_{12}+\vec{F}_{13}\\
+            m_2\vec{a}_2 &= \vec{F}_{21}+\vec{F}_{23}\\
+            m_3\vec{a}_3 &= \vec{F}_{31}+\vec{F}_{32}
+        \end{align*}
+        \item Since $\vec{F}_{ij}=-\vec{F}_{ji}$, adding the three equations above causes the right side to cancel, yielding
+        \begin{equation*}
+            m_1\vec{a}_1+m_2\vec{a}_2+m_3\vec{a}_3 = 0
+        \end{equation*}
+        \item If we stick 2 \& 3 together to create a composite particle 4 with $\vec{a}_4:=\vec{a}_2=\vec{a}_3$, then
+        \begin{align*}
+            m_1\vec{a}_1+(m_2+m_3)\vec{a}_4 &= 0\\
+            m_1\vec{a}_1+m_4\vec{a}_4 &= 0
+        \end{align*}
+        \item Thus, by setting the two equations above equal to each other and simplifying, we obtain
+        \begin{equation*}
+            m_4 = m_2+m_3
+        \end{equation*}
+        \item This is summarized as the \textbf{principle of mass additivity}.
+    \end{itemize}
+    \item \textbf{Principle of mass additivity}: The mass of a composite object is the sum of the masses of its elementary components.
+    \begin{itemize}
+        \item Another very simple but very fundamental concept.
+    \end{itemize}
 \end{itemize}
 
 
