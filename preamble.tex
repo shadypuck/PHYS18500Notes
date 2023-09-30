@@ -5,6 +5,8 @@
 \usepackage{scrextend}
 \usepackage[bottom]{footmisc}
 \usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{subcaption,float}
 \usepackage{amsmath,amssymb}
 \usepackage{physics}
 \usepackage[hidelinks]{hyperref}
@@ -28,8 +30,15 @@
 
 \setitemize[3]{label={\scriptsize$\blacksquare$}}
 
+\colorlet{blx}{blue!90!green!80}
+\colorlet{rex}{red!80!black!90!orange!80}
+
 \reversemarginpar
+
+\DeclareMathOperator{\re}{Re}
 
 \newcommand{\ihat}{\hat{\imath}}
 \newcommand{\jhat}{\hat{\jmath}}
 \newcommand{\khat}{\hat{k}}
+
+\newcommand{\e}[1][]{\text{e}^{#1}}

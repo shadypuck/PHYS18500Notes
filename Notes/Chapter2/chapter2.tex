@@ -1,0 +1,249 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\stepcounter{chapter}
+
+\begin{document}
+
+
+
+
+\chapter{Linear Motion}
+\section{1D Motion; Simple Harmonic Oscillator; Motion About an Equilibrium}
+\begin{itemize}
+    \item \marginnote{9/29:}Today: Begin Chapter 2: Linear Motion via conservation of energy, simple harmonic oscillator.
+    \item Jerison reviews the EOMs and Newton's laws from last class.
+    \item Question: Is isotropy a thing? I.e., do we only care about $\norm{\vec{r}_i-\vec{r}_j},\norm{\vec{v}_i-\vec{v}_j}$?
+    \begin{itemize}
+        \item Suppose no. Let's look at an anisotropic universe.
+        \item Consider two particles connected by a spring that stiffens if we orient it along the God-vector $\ihat$. Mathematically, $\vec{F}=-k\vec{r}\cdot\ihat\hat{r}$. Obviously, this is not the case in our universe.
+        \item In our isotropic universe, internal mechanics are \textbf{invariant} under rotation.
+    \end{itemize}
+    \item \textbf{Invariant} (internal mechanics): Those such that if we perform a rotation, the EOMs remain the same.
+    \item Rest of today: 1 particle\dots in 1 dimension\dots subject to an external force.
+    \begin{itemize}
+        \item Particles can be subject to a force $F(x,\dot{x},t)$.
+        \item Goal: Under what conditions is energy conserved, i.e., do we have a law of conservation of energy?
+    \end{itemize}
+    \item If force depends only on position, we can define something called the energy of the system, which is constant.
+    \begin{itemize}
+        \item To see this, we define kinetic energy $T=m\dot{x}^2/2$.
+        \item It follows that
+        \begin{align*}
+            \dot{T} &= m\dot{x}\ddot{x}\\
+            &= \dot{x}F(x)\\
+            T &= \int\dot{x}F(x)\dd{t}\\
+            &= \int\dv{x}{t}F(x)\dd{t}\\
+            &= \int F(x)\dd{x}
+        \end{align*}
+        \item Thus, we can define the \textbf{energy} via
+        \begin{equation*}
+            E = T-\int_{x_0}^xF(x')\dd{x'}
+        \end{equation*}
+        which is constant in time! The latter term is a constant of integration.
+        \item The other part is \textbf{potential energy}, which is a function of position via $V(x)=-\int_{x_0}^xF(x')\dd{x'}$.
+        \item Thus, $E=T+V$.
+        \item Moreover, it follows that $F(x)=-\dv*{V}{x}$.
+    \end{itemize}
+    \item Jerison: An aside about reading the kinetic energy (speed of a particle) off of a potential energy well.
+    \item For the rest of lecture, we focus on motion close to an equilibrium point, i.e., simple harmonic oscillation.
+    \item Parabolic well or hump derivation.
+    \begin{itemize}
+        \item Suppose WLOG $V(x)$ has a minimum at $x=0$\footnote{Technically, we assume $V(x)$ is $C^\infty$, i.e., smooth. Jerison isn't super well versed in theoretical math.}.
+        \item Also suppose WLOG that $V(0)=0$.
+        \item Let's Taylor expand $V(x)$ to get
+        \begin{equation*}
+            V(x) = V(0)+V'(0)x+\frac{1}{2}V''(0)x^2+\frac{1}{3!}V'''(0)x^3+\cdots
+        \end{equation*}
+        \item Since $V(0)=0$ by assumption and $V'(0)=0$ because we're at a minimum, we can simplify the above to a quadratic potential plus higher order terms:
+        \begin{equation*}
+            V(x) = \frac{1}{2}V''(0)x^2+\cdots
+        \end{equation*}
+        \item Defining $k:=V''(0)$, we get the familiar $V(x)=kx^2/2$ and $F(x)=-\dv*{V}{x}=-kx$.
+        \item This describes to lowest order the equilibrium of any potential we might want to talk about.
+    \end{itemize}
+    \item We always say we want $x$ small, but small compared to what?
+    \begin{itemize}
+        \item For validity (for the SHM approximation to be valid), we want
+        \begin{align*}
+            \frac{1}{3!}V'''(0)x^3 &\ll \frac{1}{2}V''(0)x^2\\
+            x &\ll \frac{V''(0)}{V'''(0)}
+        \end{align*}
+        \item Thus, as long as we're within this range, the approximation is good.
+    \end{itemize}
+    \item Suppose we have a quadratic potential with either a minimum or a maximum at $x=0$.
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw
+                    (-1.5,0) -- (1.5,0)
+                    (0,-0.5) -- (0,1.5)
+                ;
+                \draw
+                    (-1,0.1) -- ++(0,-0.2) node[below]{$-a$}
+                    (1,0.1)  -- ++(0,-0.2) node[below]{$a$}
+                ;
+    
+                \draw [semithick,dashed] (-1.5,1) node[left]{\textcolor{white}{$E$}} -- (1.5,1) node[right]{$E$};
+    
+                \draw [blx,thick] plot[domain=-1.23:1.23,smooth] (\x,{\x*\x});
+            \end{tikzpicture}
+            \caption{Minimum ($k>0$).}
+            \label{fig:SHOpotentiala}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw
+                    (-1.5,0) -- (1.5,0)
+                    (0,-1.5) -- (0,0.5)
+                ;
+                \draw
+                    (1,0.1)   -- ++(0,-0.2) node[below]{$b$}
+                    (-1,0.1)  -- ++(0,-0.2) node[below]{$-b$}
+                ;
+    
+                \draw [semithick,dashed] (-1.5,0.3) -- (1.5,0.3) node[right]{$E$};
+                \draw [semithick,dotted]
+                    (-1.5,-1) node[left]{$E$} -- (-1,-1)
+                    (1.5,-1)                  -- (1,-1)
+                ;
+    
+                \draw [blx,thick] plot[domain=-1.23:1.23,smooth] (\x,{-\x*\x});
+            \end{tikzpicture}
+            \caption{Maximum ($k<0$).}
+            \label{fig:SHOpotentialb}
+        \end{subfigure}
+        \caption{SHO potentials.}
+        \label{fig:SHOpotential}
+    \end{figure}
+    \begin{itemize}
+        \item If we have a min (Figure \ref{fig:SHOpotentiala}) and plot the energy of the system $E$ along the graph, we get special turn around points $\pm a$.
+        \begin{itemize}
+            \item It follows that $ka^2/2=E$ and $a=\sqrt{2E/k}$.
+        \end{itemize}
+        \item Two types of trajectories with the max (Figure \ref{fig:SHOpotentialb}).
+        \begin{itemize}
+            \item If $E<0$, the particle will come in and bounce off once its energy equals $E$.
+            \item If $E>0$, the particle will slow down as it passes 0 and then accelerate and continue on.
+        \end{itemize}
+    \end{itemize}
+    \item Solution of SHO equations of motion.
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.35\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw
+                    (0,-1.5) -- (0,1.5) node[above]{$x(t)$}
+                    (0,0)    -- (4,0)   node[right]{$t$}
+                ;
+                \draw
+                    (0.1,1)   -- ++(-0.2,0) node[left] {$a$}
+                    (0.1,-1)  -- ++(-0.2,0) node[left] {$-a$}
+                    (0.5,0.1) -- ++(0,-0.2) node[below]{$\frac{\theta}{\omega}$}
+                ;
+    
+                \draw [rex,thick] plot[domain=0:4,smooth] (\x,{cos(180/pi*(2*pi*\x/3-2*pi/6))});
+    
+                \draw [|-|] (0.5,1.2) -- node[above]{$\tau$} (3.5,1.2);
+            \end{tikzpicture}
+            \caption{Minimum ($k>0$).}
+            \label{fig:SHOtrajectorya}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.35\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw
+                    (0,-1.5) -- (0,1.5) node[above]{$x(t)$}
+                    (-2,0)   -- (2,0)   node[right]{$t$}
+                ;
+                \draw
+                    (0.1,0.5)  -- ++(-0.2,0) node[below left=-1pt]{$b$}
+                    (0.1,-0.5) -- ++(-0.2,0) node[above left=-1pt]{$-b$}
+                ;
+    
+                \draw [rex,thick,densely dotted]
+                    plot[domain=-1.76:1.76,smooth] (\x,{(e^\x+e^(-\x))/4})
+                    plot[domain=-1.76:1.76,smooth] (\x,{-(e^\x+e^(-\x))/4})
+                ;
+                \draw [rex,thick] plot[domain=-1.81:1.81,smooth] (\x,{(e^\x-e^(-\x))/4});
+            \end{tikzpicture}
+            \caption{Maximum ($k<0$).}
+            \label{fig:SHOtrajectoryb}
+        \end{subfigure}
+        \caption{SHO trajectories.}
+        \label{fig:SHOtrajectory}
+    \end{figure}
+    \begin{itemize}
+        \item We have $F(x)=m\ddot{x}=-kx$.
+        \item Thus, our EOM is
+        \begin{equation*}
+            m\ddot{x}+kx = 0
+        \end{equation*}
+        \item Two important characteristics of this equation.
+        \begin{itemize}
+            \item It is \textbf{linear} (no $x^2$, $\ln x$, etc.).
+            \item It is a 2nd order ODE.
+        \end{itemize}
+        \item \textbf{Superposition principle}: If we have some solution $x_1(t)$ to this equation (i.e., $x_1(t)$ satisfies $m\ddot{x}_1(t)+kx_1(t)=0$) and another solution $x_2(t)$, then $x(t)=Ax_1(t)+Bx_2(t)$ is also a solution. If $x_1(t)$ and $x_2(t)$ are \textbf{linearly independent}, then $x(t)$ is the general solution.
+        \item Solving the case where $k<0$.
+        \begin{itemize}
+            \item Rewrite the equation $\ddot{x}-p^2x=0$ where $p=\sqrt{-k/m}$.
+            \item Ansatz: $x=\e[pt]$.
+            \begin{equation*}
+                p^2\e[pt]-(p^2)\e[pt] \stackrel{\checkmark}{=} 0
+            \end{equation*}
+            \item Ansatz: $x=\e[-pt]$. Same thing.
+            \item Thus, the general solution is
+            \begin{equation*}
+                x(t) = \frac{1}{2}A\e[pt]+\frac{1}{2}B\e[-pt]
+            \end{equation*}
+            \item This describes the upside-down parabola case!
+            \item Naturally, it blows up very quickly, but that also means it's not long before we're outside the range of validity of this equation.
+            \item Additionally, if $E<0$, we get the dotted path in Figure \ref{fig:SHOtrajectoryb}, wherein the particle turns around at a finite distance from the origin and accelerates away. If $E>0$, we get the solid path in Figure \ref{fig:SHOtrajectoryb}, wherein the particle slows down and then accelerates again.
+        \end{itemize}
+        \item Solving the case where $k>0$, the SHO.
+        \begin{itemize}
+            \item $\ddot{x}+\omega^2x=0$ where $\omega=\sqrt{k/m}$.
+            \item The solutions are either $x(t)=\sin(\omega t)$ or $x(t)=\cos(\omega t)$.
+            \item Thus, the general solution is
+            \begin{equation*}
+                x(t) = C\cos(\omega t)+D\sin(\omega t)
+            \end{equation*}
+            \item Plugging in $x_0=x(0)=C$ and $v_0=\dot{x}(0)$ so that $D=v_0/\omega$ will yield the desired result.
+            \item Alternative: $x(t)=a\cos(\omega t-\theta)$ where $a$ is the \textbf{amplitude} and $\theta$ is the \textbf{phase}.
+            \item Last variables: The \textbf{angular frequency} $\omega=2\pi/t$ so that the \textbf{period} $\tau=2\pi/\omega$. Then the \textbf{frequency} is $f=1/\tau$.
+        \end{itemize}
+    \end{itemize}
+    \item For any potential $V(x)$ with minimum at $x=0$, the particle will oscillate with $\omega=\sqrt{V''(0)/m}$.
+    \item Complex representation: A more convenient (mathematically speaking) way to solve such equations instead of using sines and cosines involves complex numbers (convenient because exponentials are super easy to integrate).
+    \begin{itemize}
+        \item Recall that $\e[i\theta]=\cos\theta+i\sin\theta$.
+        \item Restart with $\ddot{x}-p^2x=0$ where $p=\sqrt{-k/m}$, but now instead of requiring $p$ to be real, we'll allow it to be complex.
+        \item Solution:
+        \begin{equation*}
+            x(t) = \frac{1}{2}A\e[pt]+\frac{1}{2}B\e[-pt]
+        \end{equation*}
+        again.
+        \item If $k>0$, then $p:=i\omega$ and
+        \begin{equation*}
+            x(t) = \frac{1}{2}A\e[i\omega t]+\frac{1}{2}B\e[-i\omega t]
+        \end{equation*}
+    \end{itemize}
+    \item Note: If $z=x+iy$ is a general complex number and it satisfies $m\ddot{z}+kz=0$, then the real and imaginary parts of $z$ each satisfy this equation independently, i.e., we have both $m\ddot{x}+kx=0$ and $m\ddot{y}+ky=0$.
+    \item Thus, we can have $x(t)=\re(A\e[i\omega t])$ with $A=a\e[-i\theta]$.
+    \item Final notes: If $z(t)=A\e[i\omega t]$, $x(t)$ is the projection of this onto the $x$-axis. Also involved is the fact that $\omega=\dv*{\theta}{t}$.
+\end{itemize}
+
+
+
+
+\end{document}
