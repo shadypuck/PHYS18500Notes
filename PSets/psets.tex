@@ -2,6 +2,11 @@
 
 \input{../preamble.tex}
 
+\setenumerate[1]{label={\textbf{\arabic*.}}}
+\setenumerate[2]{label={\Alph*)}}
+
+\renewcommand{\proofname}{Answer}
+
 \title{PHYS 18500 (Intermediate Mechanics) Problem Sets}
 \author{Steven Labalme}
 
@@ -24,6 +29,10 @@
 \pagestyle{main}
 \renewcommand{\leftmark}{Problem Set \thesection}
 \subfile{PSet1/pset1.tex}
+\newpage
+
+\renewcommand{\leftmark}{References}
+\printbibliography[heading=bibintoc]
 
 
 

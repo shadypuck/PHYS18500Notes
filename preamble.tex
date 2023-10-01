@@ -4,10 +4,11 @@
 \usepackage{marginnote}
 \usepackage{scrextend}
 \usepackage[bottom]{footmisc}
+\usepackage[style=apa]{biblatex}
 \usepackage{enumitem}
 \usepackage{tikz}
 \usepackage{subcaption,float}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage{physics}
 \usepackage[hidelinks]{hyperref}
 \usepackage{subfiles}
@@ -27,6 +28,9 @@
 
 \deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
 \deffootnote[1.8em]{0em}{0em}{\textsuperscript{\thefootnote}}
+
+\addbibresource{\subfix{../main.bib}}
+\DefineBibliographyStrings{english}{bibliography={References}}
 
 \setitemize[3]{label={\scriptsize$\blacksquare$}}
 

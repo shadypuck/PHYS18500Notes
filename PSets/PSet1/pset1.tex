@@ -8,9 +8,56 @@
 
 
 
-\section{???}
+\section{Linear Motion}
 \begin{enumerate}
-    \item \marginnote{10/6:}
+    \item \marginnote{10/6:}One particle of mass $m$ is subject to force
+    \begin{equation*}
+        F =
+        \begin{cases}
+            -b & x>0\\
+            b & x<0
+        \end{cases}
+    \end{equation*}
+    A second particle is subject to force $F=-kx$.
+    \begin{enumerate}
+        \item Find the potential energy functions for each force. (1 pt)
+        \item Find the trajectory $x(t)$ for each particle during the first period, assuming it is released at the origin at $t=0$ at velocity $v>0$. Describe the motion of each particle, and sketch each trajectory $x(t)$. Solve for the period and the points $x^*$ where each particle is stationary. (6 pts)
+        \item Solve for $v$ such that the trajectories have the same period. Which particle travels further? Given this $v$, how many times do the two particles' trajectories cross during one period? (3 pts)
+    \end{enumerate}
+    \item The potential energy of a particle of mass $m$ is
+    \begin{equation*}
+        V(x) = E((\mu_1x+a)(\mu_2x-b))^2
+    \end{equation*}
+    where $E>0$ is a constant with units of energy, and $\mu_1,\mu_2,a,b>0$.
+    \begin{enumerate}
+        \item Sketch the potential energy function. Identify and label the locations of any minima. (3 pts)
+        \item Write expressions for the potential energy a distance $\delta x$ from each minimum, up to second order in $\delta x$. (2 pts)
+        \item For each minimum, what condition should $\delta x$ fulfill for this approximation to be valid? (i.e., $\delta x$ should be small compared to what length scale?) (3 pts)
+        \item For each minimum, use your approximate potential energy function to specify the trajectory $x(t)$ of a particle of mass $m$ released from rest a distance $\delta x$ away from the minimum. (2 pts)
+    \end{enumerate}
+    \item \textcite{bib:KibbleBerkshire}, Q2.13. A particle falling under gravity is subject to a retarding force proportional to its velocity.
+    \begin{enumerate}
+        \item Find its position as a function of time, if it starts from rest. (7 pts)
+        \item Show that it will eventually reach a terminal velocity, and solve for this velocity. (3 pts)
+    \end{enumerate}
+    \item Suppose we have an oscillator with negative damping described by
+    \begin{equation*}
+        m\ddot{x}+\lambda\dot{x}+kx = 0
+    \end{equation*}
+    where $\lambda<0$ and $k>0$.
+    \begin{enumerate}
+        \item Solve for $x(t)$ for the particle, if it begins at velocity $v$ at the origin. (4 pts)
+        \item Describe the behavior of the particle. Under what conditions does it oscillate? Sketch the possible trajectories. (4 pts)
+        \item In which case does the particle gain energy the fastest for large times? Explain. (2 pts)
+    \end{enumerate}
+    \item \textcite{bib:KibbleBerkshire}, Q2.25. For an oscillator under periodic force $F(t)=F_1\cos(\omega_1t)$\dots
+    \begin{enumerate}
+        \item Calculate the \textbf{power} (defined as the rate at which the force does work). (4 pts)
+        \item Show that the \textbf{average power} (defined as the time average over a complete cycle) is $P=m\omega_1^2a_1^2/\gamma$, and hence verify that it is equal to the average rate at which energy is dissipated against the resistive force. (3 pts)
+        \item Show that the power $P$ --- as a function of $\omega_1$ --- is at a maximum at $\omega_1=\omega_0$. Also find the values of $\omega_1$ for which it has half its maximum value. (3 pts)
+    \end{enumerate}
+    \item \textcite{bib:KibbleBerkshire}, Q2.32. Find the Green's function of an oscillator in the case $\gamma>\omega_0$. Use it to solve the problem of an oscillator that is initially in equilibrium, and is subjected from $t=0$ to a force increasing linearly with time via $F=ct$.
+    \item How long did you spend on this problem set?
 \end{enumerate}
 
 
