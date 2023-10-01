@@ -71,9 +71,13 @@
         \item Tries to stick with the textbook.
         \item Cartesian unit vectors: $\ihat=(1,0,0)$, $\jhat=(0,1,0)$, and $\khat=(0,0,1)$.
         \item Position: $\vec{r}=x\ihat+y\jhat+z\khat$.
-        \item Velocity: $\dot{\vec{r}}=\dv*{r}{t}=\dot{x}\ihat+\dot{y}\jhat+\dot{z}\khat$.
-        \item Velocity: $\ddot{\vec{r}}=\dv*[2]{r}{t}=\ddot{x}\ihat+\ddot{y}\jhat+\ddot{z}\khat$.
+        \item Velocity: $\dot{\vec{r}}=\dv*{\vec{r}}{t}=\dot{x}\ihat+\dot{y}\jhat+\dot{z}\khat$.
+        \begin{itemize}
+            \item Dots always denote \emph{time}-derivatives.
+        \end{itemize}
+        \item Velocity: $\ddot{\vec{r}}=\dv*[2]{\vec{r}}{t}=\ddot{x}\ihat+\ddot{y}\jhat+\ddot{z}\khat$.
         \item Momentum: $\vec{p}=m\vec{v}$.
+        \item Unit vector in the direction of $\vec{r}$: $\hat{r}$.
     \end{itemize}
     \item Principle of relativity.
     \item Galileo's relativity principle.
@@ -96,9 +100,9 @@
     \item \textbf{Isotropic}: No absolute position.
     \item Newtonian mechanics.
     \begin{itemize}
-        \item If we know what to call the force $\vec{V}_i$ on particle $i$, then we know the future positions via $\vec{F}_i=m_i\vec{a}_i$ (Newton's second law).
+        \item If we know what to call the \textbf{force} $\vec{F}_i$ on particle $i$, then we know the future positions via $\vec{F}_i=m_i\vec{a}_i$ (\textbf{Newton's second law}).
         \item The fact that forces and acceleration are only related through a scalar mass is quite nontrivial!
-        \item This law gives us equations of motion (EOM), which allow us to solve for what's going to happen to our particle.
+        \item This law gives us \textbf{equations of motion} (EOM), which allow us to solve for what's going to happen to our particle.
         \item EOMs:
         \begin{equation*}
             \ddot{\vec{r}} = \frac{\vec{F}_i(\vec{r}_1,\dots,\vec{r}_N,\dot{\vec{r}}_1,\dots,\dot{\vec{r}}_N,t)}{m}
@@ -114,12 +118,20 @@
         where $\vec{F}_{ij}$ is the force on $i$ due to $j$.
         \begin{itemize}
             \item $\vec{F}_{ij}$ depends on $\vec{r}_i$, $\vec{r}_j$, $\vec{v}_i$, and $\vec{v}_j$.
-            \item In fact, it depends on $(\vec{r}_i-\vec{r}_j)$ and $(\vec{v}_i-\vec{v}_j)$.
+            \item In fact, the \textbf{relativity principle} implies that $\vec{F}_{ij}$ depends on only the objects' \textbf{relative position} and \textbf{relative velocity}.
             \item Also, $\vec{F}_{ij}=-\vec{F}_{ji}$.
             \item Again, it could have been different; it's just that no one has ever found a force that depends on three bodies.
         \end{itemize}
     \end{itemize}
     \item \textbf{Force}: Something that generates an acceleration.
+    \item \textbf{Relative position}: The vector describing the position of object $i$ \emph{relative} to that of object $j$, that is, if object $j$ is assumed to lie at the origin. \emph{Denoted by} $\bm{\vec{r}_{ij}}$. \emph{Given by}
+    \begin{equation*}
+        \vec{r}_{ij} = \vec{r}_i-\vec{r}_j
+    \end{equation*}
+    \item \textbf{Relative velocity}: The vector describing the velocity of object $i$ \emph{relative} to that of object $j$, that is, if object $j$ is assumed to be motionless. \emph{Denoted by} $\bm{\vec{v}_{ij}}$. \emph{Given by}
+    \begin{equation*}
+        \vec{v}_{ij} = \vec{v}_i-\vec{v}_j
+    \end{equation*}
     \item Physical phenomena that aren't mechanical?
     \begin{itemize}
         \item Most people would say that there are constraints, e.g., electricity, speed of light.
@@ -162,6 +174,181 @@
     \begin{itemize}
         \item Another very simple but very fundamental concept.
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 1: Introduction}
+\emph{From \textcite{bib:KibbleBerkshire}.}
+\begin{itemize}
+    \item \marginnote{10/1:}This chapter: Critically examining fundamental concepts and principles of mechanics, esp. those that may have come to be regarded as more obvious than they really are.
+    \item Some wise words on scientific hypotheses and the limits of classical mechanics, much like Bilak's first day of class.
+\end{itemize}
+
+
+\subsection*{Space and Time}
+\begin{itemize}
+    \item Fundamental assumptions of physics.
+    \begin{itemize}
+        \item Space and time are continuous.
+        \item There are universal standards of length and time: "observers in different places at different times can make meaningful comparisons of their measurements" \parencite[2]{bib:KibbleBerkshire}.
+        \item These assumptions are common to all physics; while they're being challenged, there is not yet definitive proof that we've reached the end of their validity.
+    \end{itemize}
+    \item Fundamental assumptions of \emph{classical} physics.
+    \begin{itemize}
+        \item There is a universal time scale; "two observers who have synchronized their clocks will always agree about the time of any event" \parencite[2]{bib:KibbleBerkshire}.
+        \item The geometry of space is Euclidean.
+        \item There is no limit --- in principle --- to the accuracy with which we can measure all positions and velocities.
+        \item These get modified in QMech and relativity, but we'll take them for granted here.
+    \end{itemize}
+    \item Aristotle had his own thoughts on gravity! Newton just figured out the real reason.
+    \item \textbf{Principle of relativity}: Given two bodies moving with constant relative velocity, it is impossible --- in principle --- to decide which of them is at rest and which of them is moving.
+    \begin{itemize}
+        \item In \emph{classical} mechanics, acceleration retains an absolute meaning.
+        \begin{itemize}
+            \item Think of how you can feel a plane accelerating during takeoff but you can't feel the difference between smooth flying in the air and sitting at rest on the ground without looking out the window.
+        \end{itemize}
+        \item Note: Relativity makes even acceleration marginally relative.
+        \item Takeaway: The relativity principle asserts that all unaccelerated observers are equivalent, i.e., you may get a different experimental result in an accelerating car vs. one moving with constant velocity, but you won't get a different result in two different cars moving at different speeds.
+    \end{itemize}
+    \item \textbf{Frame of reference}: A choice of a zero of time, an origin in space, and a set of three Cartesian coordinate axes.
+    \begin{itemize}
+        \item Allows us to specify the position and time of any event via $(x,y,z,t)$.
+    \end{itemize}
+    \item Note that choosing a point on Earth's surface as the origin is risky because the Earth is \emph{not quite} unaccelerated!
+    \item \textbf{Inertial} (frame of reference): A frame of reference used by an unaccelerated observer.
+    \begin{itemize}
+        \item Formal definition: A frame of reference with respect to which any isolated body, far removed from all other matter, would move with uniform velocity.
+        \item Practical definition: A frame of reference possessing an orientation that is fixed relative to the 'fixed' stars, and in which the center of mass of the solar system moves with uniform velocity.
+    \end{itemize}
+    \item Relativity: The laws of physics in two \emph{inertial} frames $(x,y,z,t),(x',y',z',t')$ must be equivalent, but the laws in an inertial and an accelerated frame may well differ.
+    \item \textbf{Newton's first law}: Inertial frames of reference exist.
+    \begin{itemize}
+        \item Notice how functionally, this is a rewording of the classic statement as "a body acted on by no forces moves with uniform velocity in a straight line."
+    \end{itemize}
+    \item \textbf{Non-inertial} frames of reference (e.g., rotating frames) can still be useful!
+    \item Definitions of \textbf{vector}, \textbf{position vector}, and \textbf{scalar}, as well as a primer on notation.
+    \begin{itemize}
+        \item More details for the unfamiliar in Appendix A.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Newton's Laws}
+\begin{itemize}
+    \item \textbf{Classical hydrodynamics}: The study of how fluids of any size, shape, and internal structure move, and how their positions change with time.
+    \item To begin, we will work with bodies that can be effectively approximated as point particles.
+    \begin{itemize}
+        \item We get to large, extended bodies (e.g., planets) in Chapter 8.
+    \end{itemize}
+    \item \textbf{Isolated} (system): A system for which all other bodies are sufficiently remote to have a negligible influence on it.
+    \item Alternate form of \textbf{Newton's second law}:
+    \begin{equation*}
+        \vec{F}_i = m_i\vec{a}_i = \dot{\vec{p}}_i
+    \end{equation*}
+    \item $\vec{F}_{ij}$ is a function of the positions and velocities \emph{and internal structure} of the $i^\text{th}$ and $j^\text{th}$ bodies.
+    \item For now, we implicitly assume perfect knowledge and infinite precision of calculation of future trajectories. In Chapters 13-14, we discuss the case where this assumption is false.
+    \item \textbf{Central conservative} (force): A force that depends only on the relative positions of two bodies. \emph{Given by}
+    \begin{equation*}
+        \vec{F}_{ij} = \hat{r}_{ij}f(r_{ij})
+    \end{equation*}
+    for some scalar function $f$.
+    \item \textbf{Repulsive} (central conservative force): A central conservative force for which $f>0$.
+    \item \textbf{Attractive} (central conservative force): A central conservative force for which $f<0$.
+    \begin{itemize}
+        \item Example: \textbf{Newton's law of universal gravitation}, given by $f(r_{ij})=-Gm_im_j/r_{ij}^2$.
+    \end{itemize}
+    \item Example: Coulomb's law can describe either repulsive or attractive forces (depending on the signs of the charges involved), but they are always central conservative!
+    \item Bodies with internal structure can give rise to \textbf{conservative} forces that aren't \textbf{central}.
+    \begin{itemize}
+        \item Example: Two bodies containing uneven distributions of electric charge.
+    \end{itemize}
+    \item \textbf{Conservative} (force): A force that is independent of velocity and satisfies some further conditions.
+    \begin{itemize}
+        \item See Sections 3.1 and A.6.
+        \item Distinguishing feature: The existence of a quantity which is \textbf{conserved}, namely energy
+    \end{itemize}
+    \item \textbf{Central} (force): A force that is directed along the line joining the two bodies.
+    \item \textbf{Conserved} (quantity): A quantity whose total value never changes.
+    \item Chapter 2 introduces some non-conservative, velocity-dependent forces.
+    \item Examples.
+    \begin{enumerate}
+        \item Friction.
+        \begin{itemize}
+            \item "Many restive and frictional forces can be understood as macroscopic effects of forces which are really conservative on a small scale" \parencite[9]{bib:KibbleBerkshire}.
+            \item Thus, friction can appear non-conservative because it dissipates energy through the internal molecular structure of an object, even though it really is conservative all things accounted for.
+        \end{itemize}
+        \item Electromagnetism.
+        \begin{itemize}
+            \item In reality, the force is neither central nor conservative.
+            \item This is because propagation in the electromagnetic field occurs at the finite speed of light and depends on a particle's past history in addition to its instantaneous position.
+            \item Supposing the field can carry energy and momentum, we can reinstate the conservation laws, though.
+            \item However, we still get a contradiction with the principle of relativity, removed only through Special Relativity.
+            \item Takeaway: "Classical electromagnetic theory and classical mechanics can be incorporated into a single self-consistent theory, but only by ignoring the relativity principle and sticking to one 'preferred' inertial frame" \parencite[10]{bib:KibbleBerkshire}.
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}
+
+
+\subsection*{The Concepts of Mass and Force}
+\begin{itemize}
+    \item General guideline in physics: Don't introduce into the theory any quantity that cannot --- in principle --- be measured.
+    \item Implication: We must prove that mass and force are measurable quantities.
+    \begin{itemize}
+        \item Not trivial to do! Recall the principle of mass additivity from lecture.
+        \item In particular, this is not trivial because experiments that measure mass and force require Newton's laws to be interpreted. Thus, the practical definitions of mass and force must be derived from Newton's laws, themselves.
+    \end{itemize}
+    \item \textbf{Inertial} vs. \textbf{gravitational} masses (e.g., mass vs. weight).
+    \begin{itemize}
+        \item The two are related via an \textbf{equivalence principle} derived from experimental observation (in particular, Galileo's observations).
+        \item We can't compare the \emph{inertial} masses of two objects with a balance, only the \emph{gravitational} masses.
+    \end{itemize}
+    \item So how do we compare inertial masses?
+    \begin{itemize}
+        \item Subject them to the same force and measure their relative accelerations.
+        \item How do we know the forces will be equal? Use the collision force, a mutually induced acceleration large enough to drown out any other forces so that the system can be considered \emph{isolated}\dots AND a force that is described by Newton's third law via $m_1\vec{a}_1=-m_2\vec{a}_2$.
+        \item How do we measure accelerations? Measure velocities before and after collision. Then these accelerations give us information on the mass ratio.
+        \item To separate the concept of "mass" from the context of a collision, adopt Axiom 1 below.
+        \item We may assign the mass of the first body a conventional unit mass, e.g., $m_1=\SI{1}{\kilo\gram}$. We may then assign the mass of consecutive bodies in terms of this standard mass via $m_2=k_{21}\,\si{\kilo\gram}$. To compare the mass of more bodies, adopt Axiom 2 below. It follows that for any two bodies, $k_{32}$ is the mass ratio $k_{32}=m_3/m_2$.
+        \item We deal with the presence of multiple bodies with Axiom 3 below.
+    \end{itemize}
+    \item The three axioms alluded to above are actually alternate statements of Newton's three laws! They are listed as follows.
+    \begin{enumerate}
+        \item In an isolated two-body system, the accelerations always satisfy the relation $\vec{a}_1=-k_{21}\vec{a}_2$, where the scalar $k_{21}$ is, for two given bodies, a constant independent of their positions, velocities, and internal states.
+        \item For any three bodies, the constants $k_{ij}$ satisfy $k_{31}=k_{32}k_{21}$.
+        \item The acceleration induced in one body by another is some definite function of their positions, velocities, and internal structure, and is unaffected by the presence of other bodies. In a many-body system, the acceleration of any given body is equal to the sum of the accelerations induced in it by each of the other bodies individually.
+    \end{enumerate}
+    \item Therefore, we have proven that mass is measurable \emph{in principle} via direct construction of a measurement methodology!
+    \item To define \emph{force} (which the reader may notice was never mentioned above, thus avoiding circular logic), we may simply define it via Newton's second law, $\vec{F}_i:=m_i\vec{a}_i$. This is allowed because we have already proven that $m,\vec{a}$ are measurable, so thus $\vec{F}(m,\vec{a})$ must be, too.
+    \item But if we \emph{can} define everything without forces, why bother defining forces at all?
+    \begin{itemize}
+        \item We define them because forces satisfy Newton's third law, an incredibly simple, symmetric, and intuitive statement, in contrast to the more complicated proportionality ($m_1\vec{a}_1=-m_2\vec{a}_2$) satisfied by accelerations, alone.
+    \end{itemize}
+    \item \textcite{bib:KibbleBerkshire} repeats Jerison's proof of the principle of mass additivity.
+\end{itemize}
+
+
+\subsection*{External Forces}
+\begin{itemize}
+    \item The fundamental problem of mechanics (finding the motions of various bodies in a dynamical system) requires us to solve two interrelated problems.
+    \begin{enumerate}
+        \item Given the positions and velocities at an instant in time, find the forces acting on each body.
+        \item Given said forces, compute the new positions and velocities after a short interval of time has elapsed.
+    \end{enumerate}
+    \item Simplification: If we are only concerned with the motion of one or a few \emph{small} bodies, we can neglect their effects on other bodies and focus only on Problem 2.
+    \begin{itemize}
+        \item Example: In calculating orbits about Earth, we can neglect the force of the satellite on Earth and other satellites on each other.
+    \end{itemize}
+    \item Up through Chapter 6, we will concentrate our attention on such small parts of dynamical systems that are only subject to such idealized \textbf{external forces}.
+    \item Later, we will investigate systems that cannot be taken to be merely a single particle.
+\end{itemize}
+
+
+\subsection*{Summary}
+\begin{itemize}
+    \item The overarching principle of this chapter is that \emph{the selection of first principles is a choice}, and whereas we have taken many things for granted previously, this time we take a comparably fewer number.
+    \item In particular, this time around, we take only position and time as basic; it follows that Newton's laws must contain \emph{definitions} in addition to their typical physical laws.
+    \item That being said, once we've built up the foundational definitions and laws as we have herein, we can use their equations to determine the motion of any dynamical system.
 \end{itemize}
 
 
