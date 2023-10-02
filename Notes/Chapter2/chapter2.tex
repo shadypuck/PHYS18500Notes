@@ -245,5 +245,206 @@
 
 
 
+\section{Damped and Forced Oscillator}
+\begin{itemize}
+    \item \marginnote{10/2:}Today: Recap + dimensional analysis, damped SHO, forced SHO.
+    \item Jerison plugs \textcite{bib:ThorntonMarion}.
+    \begin{itemize}
+        \item Quite similar; longer, more didactic feel, more examples.
+    \end{itemize}
+    \item Jerison also plugs \textcite{bib:LandauLifshitz}.
+    \begin{itemize}
+        \item Just more theoretical.
+    \end{itemize}
+    \item Plan of the course: Get through HW material due Friday by the end of Monday in general.
+    \begin{itemize}
+        \item This week, though, it'll take us through Wednesday to get to Green's functions.
+    \end{itemize}
+    \item Recap from last time.
+    \begin{itemize}
+        \item Conservative force: A force dependent only on a particle's position, not velocity or time.
+        \item For conservative forces, we can write down the potential energy $V(x)=-\int_{x_0}^xF(x')\dd{x'}$.
+        \item If we have a potential, we can find the force by differentiating via $F(x)=-\dv*{V}{x}$.
+        \item For any potential, if we're near its minimum at WLOG $x=0$, the potential is well-approximated by a quadratic potential $V(x)=kx^2/2$ where we recognize that $k=V''(0)$.
+        \item The EOM for this SHO potential is $m\ddot{x}+kx=0$.
+        \item The solutions are oscillating via $x(t)=a\cos(\omega t-\theta)$ where $\omega=\sqrt{k/m}$ and $a,\theta$ depend on the initial conditions.
+        \item An alternative form of the solutions is $x(t)=\re(A\e[i\omega t])$, where $A=a\e[-i\theta]$.
+    \end{itemize}
+    \item Before we get to the main topic, an aside on \emph{units} and \emph{dimensional analysis}.
+    \begin{itemize}
+        \item Basic message: These tools are our friends.
+        \item Rules to make sure things are going well when we are solving problems:
+        \begin{enumerate}
+            \item It is illegal to add or subtract terms with different meanings/units.
+            \item Units in calculus: $\dd{x}$ has units of length and $\dd{t}$ has units of time. Example, acceleration is $\dv*[2]{x}{t}$ and has 1 $x$ over 2 $t$'s, so the units are \si[per-mode=symbol]{\meter\per\second\squared}.
+            \item Arguments of nonlinear functions must be dimensionless.
+            \begin{itemize}
+                \item Example: $\e[\lambda t]$? $\lambda$ better have units of reciprocal time.
+                \item Example: $\ln(\alpha x)$? $\alpha$ better have units of reciprocal length.
+            \end{itemize}
+        \end{enumerate}
+    \end{itemize}
+    \item Forced damped oscillator: $m\ddot{x}+\lambda\dot{x}+kx=F_1\cos(\omega_1t)$.
+    \begin{itemize}
+        \item All terms have units of force; thus, $\lambda$ has units of mass per time, and $k$ has units of mass per time squared.
+        \item The units of $\lambda$ are a bit unintuitive, so we tend to define $\gamma=\lambda/2m$ when solving, which has the nicer units of reciprocal time ($\gamma$ describes a damping rate).
+    \end{itemize}
+    \item A special feature of the quadratic potential: The period $\tau$ is completely independent of the initial conditions, depending only on $\omega$, hence only on $k,m$.
+    \begin{itemize}
+        \item If the potential is quartic, for instance, we need to involve $v_0$ or $x_0$ to cancel out the appropriate units in $k$.
+        \item There is a whole course taught at UChicago on dimensional analysis!
+    \end{itemize}
+    \item Takeaway: Make sure we do not violate rules 1-3 as we go! This is a great way to find algebra mistakes.
+    \item Before we talk about the damped oscillator, let's talk briefly about \textbf{work}.
+    \item \textbf{Work}: Putting energy into and taking it out of systems.
+    \item If we have a force $F$, then
+    \begin{equation*}
+        \dv{T}{t} = \dv{t}(\frac{1}{2}m\dot{x}^2)
+        = F\dv{x}{t}
+    \end{equation*}
+    \begin{itemize}
+        \item Thus, in time $\dd{t}$, we've done $\dd{w}=F\dd{x}=\dd{T}$ of work.
+        \item We can now define the \textbf{power}.
+    \end{itemize}
+    \item \textbf{Power}: The rate of doing work. \emph{Denoted by} $\bm{P}$. \emph{Given by}
+    \begin{equation*}
+        P = \dot{T} = F\dot{x}
+    \end{equation*}
+    \item Damped oscillator: The simplest case where we're taking energy out of the system, e.g., through friction.
+    \begin{itemize}
+        \item This is the lowest-order equation with energy loss.
+        \item The linear term is a decent approximation for a friction force.
+        \item EOM:
+        \begin{equation*}
+            m\ddot{x}+\lambda\dot{x}+kx = 0
+        \end{equation*}
+        \item As mentioned above, it's convenient to rewrite this as
+        \begin{equation*}
+            \ddot{x}+2\gamma\dot{x}+\omega_0^2x = 0
+        \end{equation*}
+        where $\gamma=\lambda/2m$ and $\omega_0=\sqrt{k/m}$.
+        \item We solve this equation by substituting in solutions of the form $x=\e[pt]$ where we allow $p$ to be complex.
+        \item Substituting, we get
+        \begin{align*}
+            0 &= p^2\e[pt]+2\gamma p\e[pt]+\omega_0^2\e[pt]\\
+            &= p^2+2\gamma p+\omega_0^2\\
+            p &= -\gamma\pm\sqrt{\gamma^2-\omega_0^2}
+        \end{align*}
+        \item It follows that there are 3 important cases: $\gamma^2-\omega_0^2>0$ (real, decaying solutions; the \textbf{overdamped case}), $\gamma^2-\omega_0^2<0$ (decaying real oscillatory solutions; \textbf{underdamped case}), $\gamma^2-\omega_0^2=0$ (\textbf{critically damped case}).
+    \end{itemize}
+    \item We now investigate the three aforementioned cases.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw
+                    (0,-1.5) -- (0,1.5) node[above]{$x$}
+                    (0,0) -- (4,0) node[right]{$t$}
+                ;
+    
+                \draw [rex,thick] plot[domain=0:4,samples=100,smooth] (\x,{(e^(-10*\x)+e^(-\x))/2});
+            \end{tikzpicture}
+            \caption{Overdamping.}
+            \label{fig:dampedOscillatora}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw
+                    (0,-1.5) -- (0,1.5) node[above]{$x$}
+                    (0,0) -- (4,0) node[right]{$t$}
+                ;
+    
+                \draw [rex,thick] plot[domain=0:4,samples=100,smooth] (\x,{e^(-0.6*\x)*cos(1.6*pi*\x r)});
+                \draw [rex,thick,loosely dashed] plot[domain=0:4,smooth] (\x,{e^(-0.6*\x)});
+                \draw [rex,thick,loosely dashed] plot[domain=0:4,smooth] (\x,{-e^(-0.6*\x)});
+            \end{tikzpicture}
+            \caption{Underdamping.}
+            \label{fig:dampedOscillatorb}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw
+                    (0,-1.5) -- (0,1.5) node[above]{$x$}
+                    (0,0) -- (4,0) node[right]{$t$}
+                ;
+    
+                \draw [rex,thick] plot[domain=0:4,samples=100,smooth] (\x,{(1+\x)*e^(-5.5*\x)});
+            \end{tikzpicture}
+            \caption{Critical damping.}
+            \label{fig:dampedOscillatorc}
+        \end{subfigure}
+        \caption{Damped oscillator trajectories.}
+        \label{fig:dampedOscillator}
+    \end{figure}
+    \item Case 1: Overdamped case.
+    \begin{itemize}
+        \item $\gamma>\omega_0$.
+        \item We have two real roots that are both negative real numbers by the form of $p$.
+        \item We will call these roots $-\gamma_\pm$, i.e.,
+        \begin{equation*}
+            \gamma_\pm = \gamma\pm\sqrt{\gamma^2-\omega_0^2}
+        \end{equation*}
+        \item Then, we can write the solution as
+        \begin{equation*}
+            x(t) = \frac{1}{2}A\e[-\gamma_+t]+\frac{1}{2}\e[-\gamma_-t]
+        \end{equation*}
+        \item This solution just decays toward zero as $t\to\infty$.
+        \item $1/\gamma_+$ and $1/\gamma_-$ both have units of time; the latter is longer, so in the long run, this term dominates. Thus, the graph is basically exponential decay with rate $\gamma_-$.
+        \begin{itemize}
+            \item In Figure \ref{fig:dampedOscillatora}, the sharp downturn at the beginning is when $\gamma_+$ dominates, and the remaining gradual decay is when $\gamma_-$ dominates.
+        \end{itemize}
+    \end{itemize}
+    \item Case 2: Underdamped case.
+    \begin{itemize}
+        \item $\gamma<\omega_0$.
+        \item Write $p=-\gamma\pm i\omega$, where we define $\omega=\sqrt{\omega_0^2-\gamma^2}\neq\omega_0$.
+        \item The solutions are
+        \begin{align*}
+            x(t) &= \frac{1}{2}A\e[i\omega t-\gamma t]+\frac{1}{2}B\e[-i\omega t-\gamma t]\\
+            &= \re(A\e[i\omega t-\gamma t])\\
+            &= a\e[-\gamma t]\cos(\omega t-\theta)
+        \end{align*}
+        where $A=a\e[-i\theta]$ and $B=a\e[i\theta]$.
+        \item Oscillation that decays in an exponential envelope.
+    \end{itemize}
+    \item Case 3: Critically damped case.
+    \begin{itemize}
+        \item $\gamma=\omega_0$.
+        \item We now only have \emph{one} linearly independent function, so we need another one.
+        \item We can check that in this case, the function $x(t)=t\e[-pt]$ satisfies the EOM.
+        \item Thus, the general solution is
+        \begin{equation*}
+            x(t) = (a+bt)\e[-\gamma t]
+        \end{equation*}
+        \item Decays the fastest of them all.
+        \begin{itemize}
+            \item Faster than underdamped because $\gamma$ is relatively small here; it is $<\omega_0$.
+            \item Faster than overdamped because $\gamma_-<\omega_0$ and $\gamma_-<\gamma_\text{critical}=\omega_0$.
+        \end{itemize}
+    \end{itemize}
+    \item Thus, if you want to kill the oscillations as fast as possible, you should try to critically damp the system.
+    \item Intro to the forced oscillator.
+    \begin{itemize}
+        \item We have the EOM
+        \begin{equation*}
+            m\ddot{x}+\lambda\dot{x}+kx = F(t)
+        \end{equation*}
+        \item We'll investigate the case $F(t)=F_1\cos(\omega_1t)$.
+        \item We're interested in periodic forcing functions because there are interesting interactions between $\omega_1$ and $\omega$ leading to phenomena like \textbf{resonance}. Also, we can find solutions for arbitrary forces by arbitrarily composing and summing up these periodic forces via Fourier series or Fourier integral methods.
+        \item Most of next time will be this and also a different method of solving for arbitrary forces called the \textbf{Green's function method}.
+        \item This EOM is an \textbf{inhomogeneous} ODE.
+        \item We solve inhomogeneous equations as follows: Say we have an $x_1(t)$ that satisfies the whole equation (i.e., a \textbf{particular solution}), then $x(t)=x_1(t)+x_0(t)$ is the general solution where $x_0(t)$ is a solution to the \textbf{homogeneous} equation, $m\ddot{x}+\lambda\dot{x}+kx=0$.
+    \end{itemize}
+    \item \textbf{Inhomogeneous} (ODE): An ODE containing a term that doesn't have an $x$ in it.
+\end{itemize}
+
+
+
 
 \end{document}
