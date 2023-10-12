@@ -413,5 +413,197 @@
 
 
 
+\section{Introduction to the Lagrangian: Examples and the Free Particle}
+\begin{itemize}
+    \item \marginnote{10/11:}Now that we have the Lagrangian, pretty soon, we will be able to prove why the kinetic energy has the form $mv^2/2$.
+    \begin{itemize}
+        \item We won't be required to reproduce this derivation, though.
+    \end{itemize}
+    \item Announcements.
+    \begin{itemize}
+        \item Midterm will be on a Wednesday during our section.
+        \item No pset due Friday of midterm week; a smaller one will be due the following Monday.
+        \item There will be another small one due that Friday.
+        \item Some textbook chapters have been posted on Canvas with more background on the Lagrangian; they contain info that may be helpful for our homework.
+    \end{itemize}
+    \item Today: Pendulum and generalized coordinates.
+    \item Next time: Lagrange multipliers and constraints; start central, conservative forces.
+    \item Recap.
+    \begin{itemize}
+        \item $L=T-V=T(\{q_i\})-V(\{q_i\})$.
+        \begin{itemize}
+            \item We use $q$ instead of $x$ because these coordinates don't have to be positions!
+        \end{itemize}
+        \item Lagrange's equations of motion:
+        \begin{equation*}
+            \dv{t}(\pdv{L}{\dot{q}_i}) = \pdv{L}{q_i}
+        \end{equation*}
+        for $i=1,2,3$ for an unconstrained particle.
+        \item Why use Lagrangian mechanics?
+        \begin{enumerate}
+            \item Constraints are easy to incorporate, e.g., bead on a quadratic wire.
+            \item We can choose any generalized coordinates in which to express $T,V$.
+            \item Symmetries are often more transparent.
+        \end{enumerate}
+        \item We talked about 1 last time; we'll talk about 2-3 today.
+    \end{itemize}
+    \item Generalized coordinates.
+    \item Example (use of different coordinates): Simple pendulum.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw [dashed]
+                (0,2.5) -- (0,-1) coordinate (A)
+                (-1.5,2) -- (1.5,2)
+            ;
+    
+            \draw [->] (1,0) -- ++(270:0.8) node[above left]{$mg$};
+            \draw [->] (1,0) -- ++(300:0.6) node[below right=-1pt]{$\hat{r}$};
+            \draw [->] (1,0) -- ++(30:0.6) node[above right=-1pt]{$\hat{\theta}$};
+    
+            \draw [gry,thick] (0,2) coordinate (B) node[circle,fill,black,inner sep=1pt,label={[above right=-1pt,black]$(0,0)$}]{} -- node[above right=-1pt,black]{$\ell$} (1,0) coordinate (C) node[circle,fill,grx,inner sep=2pt,label={[below right=1pt,black]m}]{} pic [draw,black,thin,angle radius=7mm,angle eccentricity=1.2,pic text={$\theta$}] {angle=A--B--C};
+        \end{tikzpicture}
+        \caption{Simple pendulum.}
+        \label{fig:simplePendulum}
+    \end{figure}
+    \begin{itemize}
+        \item A rigid, massless rod of length $\ell$ pinned at the top and connected to a bob of mass $m$ that makes angle $\theta$ with the vertical.
+        \item EOM with Newton's laws.
+        \begin{itemize}
+            \item $\vec{F}=m\ddot{\vec{r}}$.
+            \item This system has a plane polar symmetry, so we want an expression in plane polar coordinates.
+            \item In particular, in these coordinates, $\ddot{\vec{r}}=(\ddot{r}-r\dot{\theta}^2)\hat{r}+(r\ddot{\theta}+2\dot{r}\dot{\theta})\hat{\theta}$.
+            \item Using this acceleration vector, the EOMs are as follows:
+            \begin{align*}
+                F_{T,\text{rod}}+mg\cos\theta &= F_r = m(\ddot{r}-r\dot{\theta}^2)&
+                -mg\sin\theta &= F_\theta = m(r\ddot{\theta}+2\dot{r}\dot{\theta})
+            \end{align*}
+            \item We know by inspection of Figure \ref{fig:simplePendulum} that $\ddot{r}=\dot{r}=0$ and $r=\ell$, so the above becomes
+            \begin{align*}
+                F_r &= -m\ell\dot{\theta}^2&
+                F_\theta &= m\ell\ddot{\theta}
+            \end{align*}
+            \item Since the radial forces are balanced, we only need to worry about the angular ones going forward. In particular, by transitivity, the final EOM is
+            \begin{align*}
+                m\ell\ddot{\theta} &= -mg\sin\theta\\
+                \ddot{\theta} &= -\frac{g}{\ell}\sin\theta
+            \end{align*}
+            as desired.
+        \end{itemize}
+        \item EOM with the Lagrangian.
+        \begin{itemize}
+            \item $L=T-V$, where
+            \begin{align*}
+                T &= \frac{1}{2}m(v_r^2+v_\theta^2)
+                    = \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)
+                    = \frac{1}{2}m\ell^2\dot{\theta}^2&
+                V &= -mg\ell\cos\theta
+            \end{align*}
+            \item Note that we can define the potential energy function as such instead of as $mg(\ell-\ell\cos\theta)$ since we may choose the zero of potential energy to be $mg\ell$!
+            \item Thus, the complete Lagrangian is
+            \begin{equation*}
+                L = \frac{1}{2}m\ell^2\dot{\theta}^2+mg\ell\cos\theta
+            \end{equation*}
+            \item With only one of the two coordinates remaining (that is, $\theta$ not $r$), we only need an Euler-Lagrange equation in this one component to find the complete EOM:
+            \begin{align*}
+                \dv{t}(\pdv{L}{\dot{\theta}}) &= \pdv{L}{\theta}\\
+                \dv{t}(m\ell^2\dot{\theta}) &= -mg\ell\sin\theta\\
+                m\ell^2\ddot{\theta} &= -mg\ell\sin\theta\\
+                \ddot{\theta} &= -\frac{g}{\ell}\sin\theta
+            \end{align*}
+        \end{itemize}
+        \item Thus, we got the same result without having to derive the complicated transformation between Cartesian and polar coordinates!
+    \end{itemize}
+    \item The $\theta$ above is the first example we've seen thus far of a \textbf{generalized coordinate} (we'll see further examples later).
+    \item $\pdv*{L}{\dot{q}_i}$ is often referred to as a \textbf{generalized momentum} and $\pdv*{L}{q_i}$ is often referred to as a \textbf{generalized force}.
+    \begin{itemize}
+        \item If we're in Cartesian coordinates, these things are \emph{actual} momenta and forces since\dots
+        \begin{align*}
+            \pdv{L}{\dot{x}_i} &= m\dot{x}_i
+                = p_i&
+            \pdv{L}{x_i} &= -\dv{V}{x_i}
+                = F_i
+        \end{align*}
+        \item In the case of the pendulum, recall that we have
+        \begin{align*}
+            \pdv{L}{\dot{\theta}} &= m\ell^2\dot{\theta}&
+            \pdv{L}{\theta} &= -mg\ell\sin\theta
+        \end{align*}
+        \begin{itemize}
+            \item The left one can be recognized as the angular momentum $\vec{r}\times\vec{p}$.
+            \item The right one can be recognized as the torque $\vec{r}\times\vec{F}$.
+        \end{itemize}
+        \item If $L$ is independent of $q_i$ for some $q_i$, then $\pdv*{L}{\dot{q}_i}$ is constant in time and hence we have a conserved force (in some sense).
+        \begin{itemize}
+            \item In particular, if $L$ is independent of some $q_i$, then $0=\pdv*{L}{q_i}=\dv*{t}(\pdv*{L}{\dot{q}_i})$, so $\pdv*{L}{\dot{q}_i}$ is constant in time.
+        \end{itemize}
+    \end{itemize}
+    \item One last thing to keep in mind about coordinate systems.
+    \item Cylindrical and spherical coordinates.
+    \begin{itemize}
+        \item Cylindrical:
+        \begin{align*}
+            x &= r\cos\phi&
+            y &= r\sin\phi&
+            z &= z
+        \end{align*}
+        \item Spherical:
+        \begin{align*}
+            x &= r\sin\theta\cos\phi&
+            y &= r\sin\theta\sin\phi&
+            z &= r\cos\theta
+        \end{align*}
+        \begin{itemize}
+            \item In this case, $\theta$ comes down from the vertical, and $\phi$ sweeps around the $xy$-plane.
+            \item Thus, $\theta=[0,\pi]$ and $\phi=[0,2\pi]$.
+        \end{itemize}
+    \end{itemize}
+    \item Moving on: Symmetries.
+    \item Why is $T=mv^2/2$? Let's look at the Lagrangian of a \textbf{free particle}.
+    \begin{itemize}
+        \item No external forces means that $V=0$ and thus $L=T-0=T$.
+        \item If we believe Galileo's relativity principle, then the EOMs must be the same in any inertial reference frame.
+        \item This is \emph{almost} the same as saying that the Lagrangian must be the same in any inertial reference frame, but not quite!
+        \item In particular, if $L'=L+\dv*{t}f(q_i,t)$, then $L'$ and $L$ give the same EOMs, that is, they are equivalent.
+        \begin{itemize}
+            \item Note: We have just defined a notion of \emph{equivalence} for Lagrangians!
+        \end{itemize}
+        \item To see that they do give the same EOMs, start by expanding the definition of $L'$ above.
+        \begin{equation*}
+            L' = L+\sum_i\pdv{f}{q_i}\dot{q}_i+\pdv{f}{t}
+        \end{equation*}
+        \item Next, observe that
+        \begin{align*}
+            \pdv{L'}{\dot{q}_i} &= \pdv{L}{\dot{q}_i}+\pdv{f}{q_i}&
+            \pdv{L'}{q_i} &= \pdv{L}{q_i}+\dv{t}(\pdv{f}{q_i})
+        \end{align*}
+        \begin{itemize}
+            \item For the left equation above, we use the facts that $L$ may have a $\dot{q}_i$ term, $\pdv*{f}{q_i}\dot{q_i}$ does have a $\dot{q}_i$, and every other term does not contain a $\dot{q}_i$. This allows us to compute the partial derivative as written.
+            \item For the right equation above, note that the partial and total derivatives $\pdv*{q_i}$ and $\dv*{t}$ do not commute in general. However, in this case, we know that
+            \begin{equation*}
+                \pdv{q_i}(\sum_j\pdv{f}{q_j}\dot{q}_j+\pdv{f}{t}) = \sum_i\dot{q}_j\cdot\pdv{j}\pdv{f}{q_i}+\pdv{t}\pdv{f}{q_i}
+                = \dd{t}(\pdv{f}{q_i})
+            \end{equation*}
+            But how come $\pdv{q_i}\pdv{f}{q_j}\dot{q}_j=\dot{q}_j\cdot\pdv{j}\pdv{f}{q_i}$?? How do we know that $\dot{q}_j$ does not depend on $q_i$?
+        \end{itemize}
+        \item Last, it follows that the EOMs from $L'$ are
+        \begin{align*}
+            \dv{t}(\pdv{L}{\dot{q}_i}+\pdv{f}{q_i}) &= \pdv{L}{q_i}+\dv{t}\pdv{f}{q_i}\\
+            \dv{t}(\pdv{L}{\dot{q}_i}) &= \pdv{L}{q_i}
+        \end{align*}
+        i.e., are the same as those from $L$, as desired.
+    \end{itemize}
+    \item \textbf{Free particle}: A particle moving with some velocity $v$ in a reference frame $K$ under the influence of no external forces.
+    \item A teaser for next time.
+    \begin{itemize}
+        \item Suppose we have a free particle moving with velocity $\vec{v}$ so that $L=T$.
+        \item What form can this take such that $L$ either doesn't change or changes by $\dv*{t}f(q_i,t)$ when we perform a Galilean transformation (that is, go to a new inertial reference frame)?
+        \item What we'll see next time is that this constrains $T$ to be $\propto v^2$.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
