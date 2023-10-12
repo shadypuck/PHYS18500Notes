@@ -985,6 +985,123 @@
 \end{itemize}
 
 
+\subsection*{Section 2.7: General Periodic Force}
+\begin{itemize}
+    \item \marginnote{10/10:}Skipped in class.
+\end{itemize}
+
+
+\subsection*{Section 2.8: Impulsive Forces; The Green's Function Method}
+\begin{itemize}
+    \item Herein, we derive a method to obtain a solution to the damped driven harmonic oscillator equation
+    \begin{equation*}
+        m\ddot{x}+\lambda\dot{x}+kx = F(t)
+    \end{equation*}
+    for an arbitrary force function $F(t)$.
+    \begin{itemize}
+        \item Essentially, we will treat $F(t)$ as if it is impacting on the oscillator as an infinite sum of infinitesimally small \textbf{impulses}.
+        \item This is where we're going.
+    \end{itemize}
+    \item \textbf{Impulse}: The change in momentum of a particle during the time at which a large force momentarily acts on it. \emph{Denoted by} $\bm{I}$. \emph{Given by}
+    \begin{equation*}
+        I = \Delta p
+        = p(t+\Delta t)-p(t)
+        = \int_t^{t+\Delta t}F\dd{t}
+    \end{equation*}
+    \item A good approximation of a collision: Let the momentum of the particle change discontinuously under an impulse $I$ delivered "instaneously," that is, with $F\to\infty$ and $\Delta t\to 0$.
+    \begin{itemize}
+        \item Of course, this is not physically accurate, but it is a good approximation.
+    \end{itemize}
+    \item The effect of an impulse $I$ delivered at time $t=0$ to an underdamped harmonic oscillator at rest at the equilibrium position.
+    \begin{itemize}
+        \item The trajectory for this situation is
+        \begin{equation*}
+            x(t) =
+            \begin{cases}
+                0 & t<0\\
+                \frac{v_0}{\omega}\e[-\gamma t]\sin(\omega t) & t>0
+            \end{cases}
+        \end{equation*}
+        \begin{itemize}
+            \item We can learn that $a=v_0/\omega$ by taking the derivative of the general solution and solving for $\dot{x}(0)$.
+            \item We use $\sin$ instead of $\cos$ to encapsulate the phase shift that has us starting at the origin at $t=0$. $\sin$ is the only phase shift that keeps $x(t)$ continuous.
+        \end{itemize}
+        \item Calculate the velocity $v_0$ of the oscillator after the impulse.
+        \begin{itemize}
+            \item We have that
+            \begin{equation*}
+                I = \Delta p = p-0 = p = mv_0
+            \end{equation*}
+            so that
+            \begin{equation*}
+                v_0 = \frac{I}{m}
+            \end{equation*}
+        \end{itemize}
+        \item Thus, the complete trajectory is
+        \begin{equation*}
+            x(t) =
+            \begin{cases}
+                0 & t<0\\
+                \frac{I}{m\omega}\e[-\gamma t]\sin(\omega t) & t>0
+            \end{cases}
+        \end{equation*}
+        \item It will look like Figure \ref{fig:dampedOscillatorb} but phase shifted right by $\pi/2$.
+    \end{itemize}
+    \item What if while the oscillator is recovering from a blow, it receives another one?
+    \begin{itemize}
+        \item Suppose this second impulse $I_2$ occurs at time $t_2$.
+        \item Naturally, the oscillator will have some velocity $v_1$ at time $t_2$ due to the initial impulse $I_1$. Likewise, its momentum will be $p_1=mv_1$.
+        \item Impulse $I_2$ changes $p_1$ to $p_1+\Delta p=p_1+I_2$. In particular, it changes the velocity from $v_1$ to $v_2=v_1+\Delta v$ where $I_2=m\Delta v$.
+        \item Thus, a second impulse essentially resets the velocity to yet another value, from which point we continue decaying oscillation with this new "initial" velocity. However, mathematically, this is equivalent to superimposing the motion of the particle from rest at equilibrium subject to $I_2$ on top of the existing result of subjection to $I_1$ at $t=0$. This is key.
+    \end{itemize}
+    \item Generalizing to the case where the oscillator is subjected to a series of blows $I_1,\dots,I_n$.
+    \begin{itemize}
+        \item Invoking the superposition principle mentioned above, we have
+        \begin{equation*}
+            x(t) = \sum_rG(t-t_r)I_r+\text{transient}
+        \end{equation*}
+        where
+        \begin{equation*}
+            G(t-t_r) =
+            \begin{cases}
+                0 & t<t_r\\
+                \frac{1}{m\omega}\e[-\gamma(t-t_r)]\sin\omega(t-t_r) & t>t_r
+            \end{cases}
+        \end{equation*}
+        for all $r=1,\dots,n$.
+    \end{itemize}
+    \item Recall that the 2-variable function $G(t,t_r)=G(t-t_r)$ described above is the \textbf{Green's function} of the oscillator.
+    \begin{itemize}
+        \item Meaning: Represents the response to a blow of unit impulse at time $t_r$.
+    \end{itemize}
+    \item Solving the original equation.
+    \begin{itemize}
+        \item Partition $F(t)$ into intervals of impulses $F(t)\Delta t$.
+        \item Taking the limit as $\Delta t\to 0$ and summing as above, we arrive at
+        \begin{equation*}
+            x(t) = \int_{t_0}^tG(t-t')F(t')\dd{t'}+\text{transient}
+        \end{equation*}
+    \end{itemize}
+    \item \textcite{bib:KibbleBerkshire} goes through an example.
+\end{itemize}
+
+
+\subsection*{Section 2.9: Collision Problems}
+\begin{itemize}
+    \item Skipped in class.
+\end{itemize}
+
+
+\subsection*{Section 2.10: Summary}
+\begin{itemize}
+    \item Some good ideas.
+    \item Note: Resonance can occur in any system subjected to periodic forces, including ones that are not harmonic!
+    \begin{itemize}
+        \item The true characteristic of resonance is when the forcing frequency is approximately the natural frequency.
+    \end{itemize}
+\end{itemize}
+
+
 
 
 \end{document}
