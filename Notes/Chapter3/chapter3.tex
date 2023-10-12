@@ -605,5 +605,277 @@
 
 
 
+\section{Chapter 3: Energy and Angular Momentum}
+\emph{From \textcite{bib:KibbleBerkshire}.}
+\begin{itemize}
+    \item \marginnote{10/11:}Focus of this chapter: Generalize Chapter 2 to 2-3 dimensions.
+    \item We will investigate the problem of a particle moving under known external force $\vec{F}$. 
+\end{itemize}
+
+
+\subsection*{Section 3.1: Energy; Conservative Forces}
+\begin{itemize}
+    \item \textbf{Kinetic energy} (of a particle of mass $m$ moving in three dimensions): The following expression. \emph{Denoted by} $\bm{T}$. \emph{Given by}
+    \begin{equation*}
+        T = \frac{1}{2}m\dot{\vec{r}}^2
+        = \frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{z}^2)
+    \end{equation*}
+    \item Rate of change of the kinetic energy:
+    \begin{equation*}
+        \dot{T} = m(\dot{x}\ddot{x}+\dot{y}\ddot{y}+\dot{z}\ddot{z})
+        = m\dot{\vec{r}}\cdot\ddot{\vec{r}}
+        = \dot{\vec{r}}\cdot\vec{F}
+    \end{equation*}
+    \item \textbf{Work} (in 3D): The following expression. \emph{Denoted by} $\bm{\textbf{d}\,W}$. \emph{Given by}
+    \begin{equation*}
+        \dd{W} = \vec{F}\cdot\dd{\vec{r}}
+        = F_x\dd{x}+F_y\dd{y}+F_z\dd{z}
+    \end{equation*}
+    \item Rate of change of the potential energy.
+    \begin{equation*}
+        \dot{V} = \pdv{V}{x}\dot{x}+\pdv{V}{y}\dot{y}+\pdv{V}{z}\dot{z}
+        = \dot{r}\cdot\vec{\nabla}V
+    \end{equation*}
+    \item A condition for $\vec{F}(\vec{r},\dot{\vec{r}},t)$ to be conservative.
+    \begin{itemize}
+        \item First off, we must have $\vec{F}(\vec{r},\dot{\vec{r}},t)=\vec{F}(\vec{r})$, analogous to before.
+        \item However, this time, we need more.
+        \item In particular, we want $T+V=E=\text{constant}$. Differentiating, we obtain the following constraint.
+        \begin{align*}
+            \dot{T}+\dot{V} &= 0\\
+            \vec{r}\cdot\vec{F}+\dot{r}\cdot\vec{\nabla}V &= 0\\
+            \vec{r}\cdot(\vec{F}+\vec{\nabla}V) &= 0
+        \end{align*}
+        \item But since the above must hold for any $\vec{r}$, the zero product property implies that we must have
+        \begin{align*}
+            \vec{F}+\vec{\nabla}V &= 0\\
+            \vec{F} &= -\vec{\nabla}V\\
+            (F_x,F_y,F_z) &= \left( -\pdv{V}{x},-\pdv{V}{y},-\pdv{V}{z} \right)
+        \end{align*}
+    \end{itemize}
+    \item How can we express this constraint purely in terms of properties of $\vec{F}$?
+    \item A \emph{necessary} condition for $\vec{F}(\vec{r})$ to be conservative.
+    \begin{itemize}
+        \item Since the curl of a gradient field is zero (that is, $\vec{\nabla}\times\vec{\nabla}\phi=0$), it follows that if $\vec{F}=-\vec{\nabla}V$, then we must have
+        \begin{equation*}
+            \vec{\nabla}\times\vec{F} = 0
+        \end{equation*}
+        That is to say, the curl of $\vec{F}$ must necessarily vanishes.
+        \item Componentwise, this constraint means that
+        \begin{equation*}
+            \left( \pdv{F_z}{y}-\pdv{F_y}{z},\pdv{F_x}{z}-\pdv{F_z}{x},\pdv{F_y}{x}-\pdv{F_x}{y} \right) = (0,0,0)
+        \end{equation*}
+        \item Sanity check: If $\vec{F}=-\vec{\nabla}V$, does the curl vanish in, for example, the $z$-direction? Yes:
+        \begin{align*}
+            \pdv{F_y}{x}-\pdv{F_x}{y} &= \pdv{x}(-\pdv{V}{y})-\pdv{y}(-\pdv{V}{x})\\
+            &= -\pdv{V}{x}{y}+\pdv{V}{y}{x}\\
+            &= -\pdv{V}{x}{y}+\pdv{V}{x}{y}\\
+            &= 0
+        \end{align*}
+    \end{itemize}
+    \item Demonstrating that $\vec{\nabla}\times\vec{F}=0$ is \emph{sufficient} to prove that $\vec{F}=-\vec{\nabla}V$.
+    \begin{itemize}
+        \item See class notes.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 3.2: Projectiles}
+\begin{itemize}
+    \item The case of a projectile with no drag (review from AP Physics).
+    \item The case of a projectile with drag (new, but not covered in class).
+\end{itemize}
+
+
+\subsection*{Section 3.3: Moments; Angular Momentum}
+\begin{itemize}
+    \item \textbf{Moment about the origin} (of $\vec{F}$ acting on a particle at position $\vec{r}$): The vector product defined as follows. \emph{Denoted by} $\bm{\vec{G}}$. \emph{Given by}
+    \begin{equation*}
+        \vec{G} = \vec{r}\times\vec{F}
+    \end{equation*}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            z={(0,1)},
+            x={(0.85,-0.4)},
+            y={(0.8,0.7)}
+        ]
+            \footnotesize
+            \draw [thick,->] (0,0,0) -- (0,0,2) node[below right]{$\vec{G}$};
+            \draw [thick,->] (0,0,0) -- node[above]{$\vec{r}$} (1.9,1,0);
+            \draw [thick,->] (2,1.1,0) -- node[above]{$\vec{F}$} (2,3,0);
+            \fill (2,1,0) circle (1mm);
+    
+            \draw (0,0,0) -- node[below]{$b$} (2,0,0);
+            \draw (2,1,0) -- (2,-0.5,0);
+    
+            \draw
+                (0,0,0.3) -- (0.3,0.15,0.3) -- (0.3,0.15,0)
+                (0,0,0.3) -- (0.3,0,0.3) -- (0.3,0,0)
+                (1.7,0,0) -- (1.7,-0.3,0) -- (2,-0.3,0)
+            ;
+    
+            \draw [white,line width=4pt] plot [domain=290:320] ([yshift=1.3cm]\x:0.3);
+            \draw [->] plot [domain=150:470] ([yshift=1.3cm]\x:0.3);
+            \draw plot[domain=200:270] ([xshift=2.38cm,yshift=-0.42cm]\x:0.3);
+            \node [left,yshift=-1pt] at ([xshift=2.38cm,yshift=-0.42cm]240:0.3) {$\theta$};
+        \end{tikzpicture}
+        \caption{Moments.}
+        \label{fig:moments}
+    \end{figure}
+    \begin{itemize}
+        \item $\vec{G}$ points in the direction of the axis about which the force tends to rotate the particle, i.e., normal to the plane formed by $\vec{r}$ and $\vec{F}$.
+        \item The magnitude of $\vec{G}$:
+        \begin{equation*}
+            |\vec{G}| = G
+            = rF\sin\theta
+            = bF
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Moment about the $\bm{x}$-axis}: The following quantity. \emph{Denoted by} $\bm{G_x}$. \emph{Given by}
+    \begin{equation*}
+        G_x = yF_z-zF_y
+    \end{equation*}
+    \item \textbf{Moment about the $\bm{y}$-axis}: The following quantity. \emph{Denoted by} $\bm{G_y}$. \emph{Given by}
+    \begin{equation*}
+        G_y = zF_x-xF_z
+    \end{equation*}
+    \item \textbf{Moment about the $\bm{z}$-axis}: The following quantity. \emph{Denoted by} $\bm{G_z}$. \emph{Given by}
+    \begin{equation*}
+        G_z = xF_y-yF_x
+    \end{equation*}
+    \item Moments play an important role in rigid body dynamics (see Chapters 8-9).
+    \item \textbf{Angular momentum about the origin} (of a particle at position $\vec{r}$ with momentum $\vec{p}$): The vector product defined as follows. \emph{Also known as} \textbf{moment of momentum about the origin} \emph{Denoted by} $\bm{\vec{J}}$. \emph{Given by}
+    \begin{equation*}
+        \vec{J} = \vec{r}\times\vec{p}
+    \end{equation*}
+    \begin{itemize}
+        \item Alternate form:
+        \begin{equation*}
+            \vec{J} = m\vec{r}\times\dot{\vec{r}}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Angular momentum about the $\bm{x}$-axis}: The following quantity. \emph{Denoted by} $\bm{J_x}$. \emph{Given by}
+    \begin{equation*}
+        J_x = m(y\dot{z}-z\dot{y})
+    \end{equation*}
+    \item \textbf{Angular momentum about the $\bm{y}$-axis}: The following quantity. \emph{Denoted by} $\bm{J_y}$. \emph{Given by}
+    \begin{equation*}
+        J_y = m(z\dot{x}-x\dot{z})
+    \end{equation*}
+    \item \textbf{Angular momentum about the $\bm{z}$-axis}: The following quantity. \emph{Denoted by} $\bm{J_z}$. \emph{Given by}
+    \begin{equation*}
+        J_z = m(x\dot{y}-y\dot{x})
+    \end{equation*}
+    \item \textbf{Momentum}: A quantitative measure of the motion of a moving body. \emph{Also known as} \textbf{linear momentum}. \emph{Denoted by} $\bm{\vec{p}}$. \emph{Given by}
+    \begin{equation*}
+        \vec{p} = m\vec{v}
+    \end{equation*}
+    \item The rate of change of the angular momentum is equal to the moment of the applied force:
+    \begin{equation*}
+        \dot{\vec{J}} = m(\dot{\vec{r}}\times\dot{\vec{r}}+\vec{r}\times\ddot{\vec{r}})
+        = 0+\vec{r}\times m\ddot{\vec{r}}
+        = \vec{r}\times\vec{F}
+        = \vec{G}
+    \end{equation*}
+    \begin{itemize}
+        \item This is analogous to the result that
+        \begin{equation*}
+            \dot{\vec{p}} = \vec{F}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Axial} (vector): A vector whose direction depends on the choice of a right-hand screw convention.
+    \item \textbf{Polar} (vector): A vector whose direction does not depend on the choice of a right-hand screw convention.
+\end{itemize}
+
+
+\subsection*{Section 3.4: Central Forces; Conservation of Angular Momentum}
+\begin{itemize}
+    \item \textbf{Central} (external force): An external force that is always directed toward or away from a fixed point.
+    \item \textbf{Center of force}: The fixed point toward or away from which a central force is always pointed.
+    \item Whenever possible, we pick the origin as our center of force.
+    \begin{itemize}
+        \item In this case, $\vec{r}\parallel\vec{F}$, so
+        \begin{equation*}
+            \vec{G} = \vec{r}\times\vec{F} = 0
+        \end{equation*}
+        \item The above is a good condition for $\vec{F}$ to be central.
+        \item Consequence: Since $0=\vec{G}=\dot{\vec{J}}$ for a central force, $\vec{J}$ is constant under central forces! This observation can be formalized as follows.
+    \end{itemize}
+    \item \textbf{Law of conservtion of angular momentum}: As long as a particle is subject only to central forces, its angular momentum does not change.
+    \begin{itemize}
+        \item Note that this implies that both the \emph{direction} and \emph{magnitude} of the angular momentum are conserved in such a situation!
+    \end{itemize}
+    \item Implications of the conservation of the \emph{direction} of $\vec{J}$.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            z={(0,1)},
+            x={(0.85,-0.4)},
+            y={(0.8,0.7)}
+        ]
+            \footnotesize
+            \draw (-1,-2,0) -- (3,-2,0) -- (3,4,0) -- (-1,4,0) -- cycle;
+    
+            \draw [rex,thick] plot [domain=0:110] (\x:{5^0.5});
+            \draw [white,line width=4pt] (0,0,0) -- (0,0,2);
+            \draw [thick,->] (0,0,0) -- node[near end,below left]{$\vec{J}$} (0,0,2);
+            \draw [thick,->] (0,0,0) -- node[above]{$\vec{r}$} (1.9,1,0);
+            \draw [thick,->] (2,1.1,0) -- node[right]{$\vec{v}$} ++(-1,2,0);
+            \fill (2,1,0) circle (1mm);
+    
+            \draw (0,0,0.3) -- (0.3,0.15,0.3) -- (0.3,0.15,0);
+        \end{tikzpicture}
+        \caption{The law of conservation of angular momentum.}
+        \label{fig:conservAngMtum}
+    \end{figure}
+    \begin{itemize}
+        \item The motion is always confined to a plane, i.e., the plane to which $\vec{J}$ is normal and in which $\vec{r},\vec{p}$ lie.
+        \item This is obvious physically (see Figure \ref{fig:conservAngMtum}).
+    \end{itemize}
+    \item Implications of the conservation of the \emph{magnitude} of $\vec{J}$.
+    \begin{itemize}
+        \item Since $v_r=\dot{r}$, $v_\theta=r\dot{\theta}$, and $J=mrv_\theta$,\footnote{Why is $v_r$ not included here??} we have that
+        \begin{equation*}
+            J = mr^2\dot{\theta}
+        \end{equation*}
+        \item That is, as the radius shrinks, the angular velocity increases and vice versa.
+    \end{itemize}
+    \item A note on \textbf{Kepler's second law} and sweeping out equal areas during similar time intervals.
+\end{itemize}
+
+
+\subsection*{Section 3.5: Polar Coordinates}
+\begin{itemize}
+    \item Works out a lot of relevant formulas.
+    \item A better way to work all these out is with Lagrangian mechanics!
+    \item \textbf{Variational principle}: A principle which states that some quantity has a minimum value or, more generally, a stationary value.
+\end{itemize}
+
+
+\subsection*{Section 3.6: The Calculus of Variations}
+\begin{itemize}
+    \item Goes through the shortest distance example.
+\end{itemize}
+
+
+\subsection*{Section 3.7: Hamilton's Principle; Lagrange's Equations}
+\begin{itemize}
+    \item \textbf{Hamilton's principle}: The action integral $I$ is stationary under arbitrary variations $\var{x},\var{y},\var{z}$ which vanish at the limits of integration $t_0,t_1$.
+    \item \textbf{Lagrange's equations}: The equations given as follows for $i=1,\dots,n$. \emph{Given by}
+    \begin{equation*}
+        \dv{t}(\pdv{L}{\dot{q}_i}) = \pdv{L}{q_i}
+    \end{equation*}
+    \item Conversion factors to other coordinate systems given, e.g., $\pdv*{T}{\dot{\rho}}$ from cylindrical.
+\end{itemize}
+
+
+\subsection*{Section 3.8: Summary}
+\begin{itemize}
+    \item Some good ideas.
+\end{itemize}
+
+
+
 
 \end{document}
