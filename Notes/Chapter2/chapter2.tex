@@ -573,5 +573,103 @@
 
 
 
+\section{Discussion Section}
+\begin{itemize}
+    \item TA is Matt Baldwin.
+    \begin{itemize}
+        \item Contact him at (mjbaldwin@uchicago.edu).
+    \end{itemize}
+    \item Attendance isn't taken, so we're never required to be here.
+    \item Today's topics: Green's functions and integrating factors.
+    \item A different approach to Green's functions.
+    \begin{itemize}
+        \item Let $L$ be an \textbf{operator} such that any Green's function $G(t,t')$ satisfies
+        \begin{equation*}
+            LG(t,t') = \delta(t-t')
+        \end{equation*}
+        where $\delta$ refers to the \textbf{Dirac delta function}.
+        \begin{itemize}
+            \item Essentially, $L$ takes a trajectory to the force that caused it.
+        \end{itemize}
+        \item Additional example: $Lx(t)=F(t)$.
+        \item But what is $L$? It could be the following!
+        \begin{equation*}
+            L = m\dv[2]{t}+\lambda\dv{t}+k
+        \end{equation*}
+        \item Why $L$ is useful: For example, we can take
+        \begin{equation*}
+            \int LG(t,t')F(t')\dd{t'} = \int\delta(t-t')F(t')\dd{t}
+            = F(t)
+        \end{equation*}
+        \item Claim: The solution $x(t)$ to $Lx(t)=F(t)$ is
+        \begin{equation*}
+            x(t) = \int G(t,t')F(t')\dd{t'}
+        \end{equation*}
+        \item So then in the specific case of the harmonic oscillator, the problem becomes one of finding $G(t,t')$.
+        \item Checking our work with plug and chug:
+        \begin{align*}
+            Lx(t) &= L\int G(t,t')F(t')\dd{t'}\\
+            &= \int LG(t,t')F(t')\dd{t'}\\
+            &= \int\delta(t-t')F(t')\dd{t'}\\
+            &= F(t)
+        \end{align*}
+        \begin{itemize}
+            \item We get to bring $L$ into the integral because its derivatives are in $t$ as opposed to the variable of integration, $t'$.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Operator}: Some function of things that operate on $x$, the trajectory.
+    \item Now let's do an example; something physical and useful.
+    \begin{itemize}
+        \item We have
+        \begin{equation*}
+            Lx(t) = m\ddot{x}+\lambda\dot{x}+kx = F(t)
+        \end{equation*}
+        \item We want to find $G$.
+        \begin{itemize}
+            \item In particular, we want a $G$ that satisfies $m\ddot{G}+\lambda\dot{G}+kG=\delta(t-t')$.
+        \end{itemize}
+        \item Choose to solve this equation for when $t\neq t'$, because in this case, $\delta(t-t')=0$.
+        \item So now we just have to solve $m\ddot{G}+\lambda\dot{G}+kG=0$, which we can solve from Monday's lecture.
+        \item In particular, we can solve for $G$ now using those strategies and then plug it into the result from the claim.
+    \end{itemize}
+    \item The impulse on a block is the change $\Delta p$ in momentum. Thus, we define $I=\Delta p=F\Delta t$. Moreover, we let $F\to\infty$ as $\Delta t\to 0$, keeping $I$ fixed.
+    \item We have, at $t=0$, that $v=I/m=\Delta p/m=\Delta v$.
+    \item For $G$, $\dot{G}(t=0,t')=1/m$.
+    \item $x(0)=0$ must imply that $G(0,t')=0$
+    \item The above 2 initial conditions and the ODE allow us to solve for the Green's function just like a harmonic oscillator.
+    \item A practice textbook problem, probably harder than the HW problem.
+    \begin{itemize}
+        \item Ex. 2.24:
+        \begin{equation*}
+            F(t) =
+            \begin{cases}
+                0 & t<0\\
+                F_1\cos(\omega_1t) & t>0
+            \end{cases}
+        \end{equation*}
+        This is the case $\gamma<\omega_2$. So we have a dying-out oscillation that at time $t=0$, we begin driving.
+        \item Look through Textbook Section 2.6, which walks you through this without Green's functions.
+        \item We want to solve for the trajectory for $t\geq 0$, i.e., after driving begins.
+        \item We know from the $\gamma<\omega_0$ condition that $\eval{x(t)}_{t\to 0}=\frac{I}{m\omega}\e[-\gamma t]\sin(\omega t)$.
+        \item Now we have $G(t,0)=\frac{1}{m\omega}\e[-\gamma t]\sin(\omega t)$.
+        \item It follows that $G(t,t')=\frac{1}{m\omega}\e[-\gamma(t-t')]\sin(\omega(t-t'))$.
+        \item For $t>0$, we have
+        \begin{align*}
+            x(t) ={}& \int G(t,t')F(t')\dd{t'}\\
+            ={}& \frac{F_1}{m\omega}\int\e[-\gamma(t-t')]\sin(\omega(t-t'))\cos(\omega_1t')\dd{t'}\\
+            ={}& \frac{F_1}{m\omega}\int\e[-\gamma(t-t')]\cdot\frac{\e[\omega(t-t')/2]-\e[-\omega(t-t')/2]}{2i}\cdot\frac{\e[i\omega_1t]+\e[-i\omega_1t]}{2}\dd{t'}\\
+            \begin{split}
+                ={}& \frac{F_1}{2m\omega}\left( \gamma\left( \frac{1}{\gamma_-^2}-\frac{1}{\gamma_+^2} \right)\sin(\omega_1t)+\left( \frac{\omega-\omega_1}{\gamma_-^2}+\frac{\omega+\omega_1}{\gamma_+^2} \right)\cos(\omega_1t) \right)\\
+                & -\frac{F_1\e[-\gamma t]}{2m\omega}\left( \gamma\left( \frac{1}{\gamma_-^2}-\frac{1}{\gamma_+^2} \right)\sin(\omega_1t)+\left( \frac{\omega-\omega_1}{\gamma_-^2}+\frac{\omega+\omega_1}{\gamma_+^2} \right)\cos(\omega_1t) \right)
+            \end{split}\\
+            ={}& \cdots
+        \end{align*}
+        where $\gamma_\pm^2=\frac{1}{\gamma^2+(\omega\pm\omega_1)^2}$.
+        \item Takeaway: The above should give us the same answer as if we used Green's functions, but the calculations are much more arduous.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
