@@ -671,5 +671,320 @@
 
 
 
+\section{Chapter 2: Linear Motion}
+\emph{From \textcite{bib:KibbleBerkshire}.}
+\begin{itemize}
+    \item \marginnote{10/9:}Focus of this chapter: Motion of a body that is free to move only in one dimension.
+    \item The techniques discussed here wil be applicable to three-dimensional motion; that's where we're heading.
+    \item Much of the content of this chapter is duplicated from class, so many of the sections have very few notes.
+\end{itemize}
+
+
+\subsection*{Section 2.1: Conservative Forces; Conservation of Energy}
+\begin{itemize}
+    \item \textbf{Kinetic energy}: Energy of motion. \emph{Denoted by} $\bm{T}$. \emph{Given by}
+    \begin{equation*}
+        T = \frac{1}{2}m\dot{x}^2
+    \end{equation*}
+    \item \textbf{Potential energy}: Stored energy that depends on the relative positions of parts of a system. \emph{Denoted by} $\bm{V}$. \emph{Given by}
+    \begin{equation*}
+        V(x) = -\int_{x_0}^xF(x')\dd{x'}
+    \end{equation*}
+    \item \textbf{Total energy}: The sum of the energy that a given system possesses. \emph{Denoted by} $\bm{E}$. \emph{Given by}
+    \begin{equation*}
+        E = T+V
+    \end{equation*}
+    \begin{itemize}
+        \item Recall that energy is not defined in absolute units but is defined relative to some arbitrarily chosen zero. This arbitration is reflected in the math by the arbitrary choice of the constant $x_0$ in the definition of $V$.
+    \end{itemize}
+    \item \textbf{Law of conservation of energy}: The equation defining total energy, interpreted as saying while energy can be transferred between $T$ and $V$, $E$ is constant.
+    \item Definition of \textbf{conservative} force.
+    \item Knowing a particle's initial position, velocity, and $F(x)$ function allows us to calculate $E$.
+    \item Example: A simple pendulum on a rod of negligible mass.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \small
+            \draw [-stealth] (-2.5,0) -- (2.5,0) node[right]{$\theta$};
+            \draw [-stealth] (0,0) -- (0,3) node[above]{$V$};
+    
+            \footnotesize
+            \draw (-2,0.1) -- ++(0,-0.2) node[below]{$-\pi$};
+            \draw (2,0.1) -- ++(0,-0.2) node[below]{$\pi$};
+    
+            \draw [blx,thick] (-2,2) cos (-1,1) sin (0,0) cos (1,1) sin (2,2);
+            \draw [densely dashed,decoration={markings,mark=at position 0.37 with \arrow{<},mark=at position 0.6 with \arrow{>}},postaction={decorate}] ({-2/3},-0.1) node[below]{$-\theta_0$}
+                -- ({-2/3},0.5)
+                -- node[above left]{$E_{(1)}$} ({2/3},0.5)
+                -- ({2/3},-0.1) node[below]{$\theta_0$}
+            ;
+            \draw [densely dashed,decoration={markings,mark=at position 0.4 with \arrow{>},mark=at position 0.6 with \arrow{>}},postaction={decorate}] (-2.3,2.5) -- node[below left]{$E_{(2)}$} (2.3,2.5);
+            \draw [<->,shorten <=1pt,shorten >=1pt] (2,2) -- node[left]{$\frac{1}{2}mv_2^2$} (2,2.5);
+        \end{tikzpicture}
+        \caption{Motion of a rotating pendulum with different internal energies.}
+        \label{fig:pendulumEnergy}
+    \end{figure}
+    \begin{itemize}
+        \item Depending on $E$, it can either oscillate or rotate continuously.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 2.2: Motion Near Equilibrium; The Harmonic Oscillator}
+\begin{itemize}
+    \item We invest so much energy in analyzing the SHO because it well-approximates motion near almost any point of equilibrium.
+    \begin{itemize}
+        \item Indeed, this remarkably ubiquitous equation plays an important role in both classical and quantum mechanics.
+    \end{itemize}
+    \item Turnaround points as those at which $V(x)=E$.
+    \item An alternate method of solving the SHO equation.
+    \begin{itemize}
+        \item Proceed from
+        \begin{align*}
+            \frac{1}{2}m\dot{x}^2 &= E-V(x)\\
+            \frac{1}{2}m\dot{x}^2 &= E-\frac{1}{2}kx^2\\
+            \left( \dv{x}{t} \right)^2 &= \frac{2E}{m}-\frac{k}{m}x^2\\
+            \int\frac{1}{\sqrt{2E/m-kx^2/m}}\dd{x} &= \int\dd{t}
+        \end{align*}
+        \item Note that although we are only integrating once here, there are still two degrees of freedom/constants of integration involved for the linearly independent solutions: the constant of integration \emph{and} the total energy $E$.
+    \end{itemize}
+    \item Intuition for choosing $x=\e[pt]$ as an ansatz in the case that $k<0$ (i.e., $V(0)$ is a maximum): A small displacement from equilibrium should lead to an exponential increase of $x$ with time.
+    \item Example: A charge $q$ in the middle of two other charges of magnitude $q$.
+    \begin{itemize}
+        \item A slight displacement will cause the particle to oscillate harmonically!
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 2.3: Complex Representation}
+\begin{itemize}
+    \item Convert $x=\frac{1}{2}A\e[i\omega t]+\frac{1}{2}B\e[-i\omega t]$ to $x=c\cos(\omega t)+d\sin(\omega t)$ via
+    \begin{align*}
+        A &= c-id&
+        \e[i\omega t] &= \cos(\omega t)+i\sin(\omega t)&
+        B &= c+id
+    \end{align*}
+    \item Convert $x=\frac{1}{2}A\e[i\omega t]+\frac{1}{2}B\e[-i\omega t]$ to $x=a\cos(\omega t-\theta)$ via
+    \begin{align*}
+        A &= a\e[-i\theta]&
+        \e[i\omega t] &= \cos(\omega t)+i\sin(\omega t)&
+        B &= a\e[i\theta]
+    \end{align*}
+    \begin{itemize}
+        \item This is why we have the $1/2$ coefficients!
+    \end{itemize}
+    \item Formally, $A$ is a \textbf{complex amplitude}, the absolute value $a$ of which gives the amplitude of the real oscillation and the phase $\theta$ of which defines the initial direction of the vector from the origin to $z(0)$.
+\end{itemize}
+
+
+\subsection*{Section 2.4: The Law of Conservation of Energy}
+\begin{itemize}
+    \item The law of conservation of energy was originally a consequence of Newton's laws of mechanics.
+    \begin{itemize}
+        \item Now, it has applications to heat, chemical, electromagnetic, and more forms of energy and is widely recognized as one of the most fundamental of all physical laws.
+    \end{itemize}
+    \item Conservation of energy, momentum, and angular momentum are closely related (see Chapter 12) to the relativity principle.
+    \item \textbf{Work}: The increase in kinetic energy in a time interval $\dd{t}$ during which the particle moves a distance $\dd{x}$. \emph{Denoted by} $\bm{\textbf{d}{W}}$. \emph{Given by}
+    \begin{equation*}
+        \dd{W} = \dd{T} = F\dd{x}
+    \end{equation*}
+\end{itemize}
+
+
+\subsection*{Section 2.5: The Damped Oscillator}
+\begin{itemize}
+    \item If there is energy loss, there may be $x^2$, $x\dot{x}$, and $\dot{x}^2$ terms, but if $x,\dot{x}$ are small, we can neglect them.
+    \item Allusion to LRC circuits.
+    \item Power loss.
+    \begin{itemize}
+        \item "The rate at which work is done by the force $-\lambda\dot{x}$ is $-\lambda\dot{x}^2$" \parencite[27]{bib:KibbleBerkshire}.
+        \item Recall that $m\ddot{x}=\sum F$, so since $\sum F=F_r+F_d$ (\underline{r}estoring + \underline{d}rag) in this case, we can perfectly well talk about $-\lambda\dot{x}$ as a force!
+    \end{itemize}
+    \item \textbf{Relaxation time}: The time in which the amplitude is reduced by a factor of $1/\e$.
+    \begin{itemize}
+        \item In the case of underdamping, the relaxation time is $1/\gamma$.
+    \end{itemize}
+    \item \textbf{Quality factor}: The dimensionless number defined as follows. \emph{Denoted by} $\bm{Q}$. \emph{Given by}
+    \begin{equation*}
+        Q = \frac{m\omega_0}{\lambda}
+        = \frac{\omega_0}{2\gamma}
+    \end{equation*}
+    \begin{itemize}
+        \item Motivation: In a single oscillation period of an underdamped oscillator, the amplitude is reduced by a factor of $\e[-2\pi\gamma/\omega]\approx\e[-\pi/Q]$. The approximation is good if damping $\gamma$ is small (as we have in an underdamped oscillator) and thus $\omega=\sqrt{\omega_0^2-\gamma^2}\approx\omega_0$.
+        \item Consequence: Small damping $\Longleftrightarrow$ large $Q$.
+        \item Consequence: The number of periods in a relaxation time is approximately $Q/\pi$.
+        \item It follows that a "high quality" oscillation has little damping, i.e., is relatively smooth, i.e., must be on a "high quality" surface with a "high quality" spring.
+    \end{itemize}
+    \item Figure 2.6 in \textcite{bib:KibbleBerkshire}??
+\end{itemize}
+
+
+\subsection*{Section 2.6: Oscillator Under Simple Periodic Force}
+\begin{itemize}
+    \item Main idea: $\omega_0$ and $\omega_1$ determine lots of properties of $a_1$ and $\theta_1$.
+    \item \textbf{Resonant} (oscillator): A driven harmonic oscillator for which $\omega_0=\omega_1$.
+    \item Optimizing the amplitude of a periodically driven, damped harmonic oscillator based on the pairs $(\omega_0,\omega_1)$.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.24\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \small
+                \draw [stealth-stealth] (0,2.1) node[above]{$a_1$} -- (0,0) -- (2.2,0) node[right]{$\omega_0$};
+    
+                \footnotesize
+                \draw [dashed] (1,0) node[below]{$\omega_1$} -- (1,2);
+    
+                \draw [grx,thick] plot[domain=0:2,smooth] (\x,{1/((\x*\x-1)^2+1/4)^0.5});
+            \end{tikzpicture}
+            \caption{Fix $\omega_1$; vary $\omega_0$.}
+            \label{fig:resAmpa}
+        \end{subfigure}\\[1em]
+        \begin{subfigure}[b]{0.45\linewidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{../ExtFiles/resAmpb.png}
+            \caption{Fixing $\omega_0$ vs. $\omega_1$.}
+            \label{fig:resAmpb}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{../ExtFiles/resAmpc.png}
+            \caption{$a_1(\omega_0,\omega_1)$.}
+            \label{fig:resAmpc}
+        \end{subfigure}\\[1em]
+        \begin{subfigure}[b]{0.24\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \small
+                \draw [stealth-stealth] (0,2.1) node[above]{$a_1$} -- (0,0) node[left]{${\color{white}\omega_1}$} -- (2.2,0) node[right]{${\color{grx}\omega_0}$ ${\color{orx}\omega_1}$};
+    
+                \draw [grx,thick] plot[domain=0:2,smooth] (\x,{1/((\x*\x-1)^2+1/4)^0.5});
+                \draw [orx,thick] plot[domain=0:2,smooth] (\x,{1/((1-\x*\x)^2+\x*\x/4)^0.5});
+            \end{tikzpicture}
+            \caption{$\omega_1$ vs. $\omega_0$ profiles.}
+            \label{fig:resAmpd}
+        \end{subfigure}
+        \caption{Oscillator resonance amplitude optimization.}
+        \label{fig:resAmp}
+    \end{figure}
+    \begin{itemize}
+        \item Note that for the entirety of what follows, we are in the underdamped case, so we \emph{always} have $\gamma<\omega_0$.
+        \item Fix $\omega_1$. Varying $\omega_0$, we can see from Figure \ref{fig:resAmpa} that $a_1(\omega_0)$ is maximized when $\omega_0=\omega_1$.
+        \begin{itemize}
+            \item This \emph{resonance amplitude} is given by
+            \begin{equation*}
+                a_1(\omega_1,\omega_1) = \frac{F_1}{2m\gamma\omega_1}
+                = \frac{F_1}{\lambda\omega_1}
+            \end{equation*}
+            \item Notice that the resonance amplitude grows as the damping $\lambda$ shrinks.
+        \end{itemize}
+        \item However, $a_1$ is a function of both $\omega_0$ \emph{and} $\omega_1$.
+        \begin{itemize}
+            \item Thus, it turns out that while $a_1(\omega_1,\omega_1)$ is a maximum when $\omega_1$ is fixed, it is \emph{not} a maximum when $\omega_0$ is fixed.
+            \item This can be observed from the boxed area of Figure \ref{fig:resAmpb}; notice how the line going from left to right peaks where it crosses the line going into the page, but the line going into the page continues rising for a little bit before it peaks at the top of the blue manifold. Another perspective of the manifold is available in Figure \ref{fig:resAmpc}.
+        \end{itemize}
+        \item Indeed, $a_1$ reaches a \emph{true} maximum when we fix $\omega_0$ and shrink $\omega_1$ down to
+        \begin{equation*}
+            \omega_1 = \sqrt{\omega_0^2-2\gamma^2}
+        \end{equation*}
+        \begin{itemize}
+            \item This can also be seen from Figures \ref{fig:resAmpb}-\ref{fig:resAmpc}. Notice how $\omega_1$ has to go a bit further into the page (i.e., has to \emph{shrink}) to reach the true maximum.
+            \item We can also see this in Figure \ref{fig:resAmpd}, where it is observable that the orange line ($\omega_0$ fixed; $\omega_1$ varied) has a higher peak at a smaller value than the green line ($\omega_1$ fixed; $\omega_0$ varied).
+            \item While the difference between $\omega_0$ and $\sqrt{\omega_0^2-2\gamma^2}$ is small (esp. for $\gamma$ small), it is still significant enough to merit a mention.
+            \item Note that the \textbf{natural frequency} lies between $\omega_0$ and $\omega_1$ for such a maximum-amplitude driven-damped oscillator. Explicitly,
+            \begin{equation*}
+                \underbrace{\sqrt{\omega_0^2-0\gamma^2}}_{\omega_0} > \underbrace{\sqrt{\omega_0^2-\gamma^2}}_\omega
+                > \underbrace{\sqrt{\omega_0^2-2\gamma^2}}_{\omega_1}
+            \end{equation*}
+            \item We have
+            \begin{equation*}
+                a_1(\omega_0,\sqrt{\omega_0^2-2\gamma^2}) = \frac{F_1}{2m\gamma\omega}
+                = \frac{F_1}{\lambda\omega}
+            \end{equation*}
+            where $\omega$ is the natural frequency. Note that $a_1(\omega_0,\sqrt{\omega_0^2-2\gamma^2})>a_1(\omega_1,\omega_1)$ from above even though $\omega_1<\omega$ because $\omega_1$ was defined differently at the top.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Natural frequency} (of a harmonic oscillator): The frequency at which the oscillator oscillates when it is not being driven. \emph{Denoted by} $\bm{\omega}$. \emph{Given by}
+    \begin{equation*}
+        \omega = \sqrt{\omega_0^2-\gamma^2}
+    \end{equation*}
+    \begin{itemize}
+        \item For an underdamped, driven oscillator, this is the frequency at which the transient term oscillates.
+    \end{itemize}
+    \item The amplitude and phase of the induced oscillation more generally.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.4\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=2]
+                \small
+                \draw [stealth-stealth] (0,2.1) node[above]{$a_1$} -- (0,0) -- (2.2,0) node[right]{$\omega_1$};
+    
+                \footnotesize
+                \draw [dashed] (0.935,0) node[below]{$\sqrt{\omega_0^2-2\gamma^2}$} -- (0.935,2.066);
+                \draw [<->,shorten <=1pt,shorten >=1pt] (0.935,1.461) -- node[below]{$\gamma$} (1.166,1.461);
+                \node [left] at (0,1) {$\dfrac{F_1}{m\omega_0^2}$};
+                \node [above right] at (1.08,1.77) {large $Q$};
+                \node [below] at (0.4675,1.02) {small $Q$};
+                
+                \draw [ory,thick] plot[domain=0:2,samples=100,smooth] (\x,{1/((1-\x*\x)^2+\x*\x)^0.5});
+                \draw [orx,thick] plot[domain=0:2,samples=100,smooth] (\x,{1/((1-\x*\x)^2+\x*\x/4)^0.5});
+            \end{tikzpicture}
+            \caption{Amplitude.}
+            \label{fig:resa}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=2]
+                \small
+                \draw [stealth-stealth] (0,2.1) node[above]{$\theta_1$} -- (0,0) -- node[white,below]{$\sqrt{\omega_0^2-2\gamma^2}$} (2.2,0) node[right]{$\omega_1$};
+    
+                \footnotesize
+                \draw [dashed] (0,1.8) node[left]{$\pi$} -- (2.1,1.8);
+                \draw [dashed] (0,0.9) node[left]{$\dfrac{\pi}{2}$} -- (1,0.9) -- (1,0) node[below]{$\omega_0$};
+                \node [left] at (1.05,1.5) {large $Q$};
+                \node [below right=3pt] at (1.33,1.5) {small $Q$};
+                
+                \draw [ory,thick] plot[domain=0:2,samples=100,smooth] (\x,{0.9*(1+atan(3*(\x-1))/90)});
+                \draw [orx,thick] plot[domain=0:2,samples=100,smooth] (\x,{0.9*(1+atan(20*(\x-1))/90)});
+            \end{tikzpicture}
+            \caption{Phase.}
+            \label{fig:resb}
+        \end{subfigure}
+        \caption{Oscillator resonance amplitude and phase.}
+        \label{fig:res}
+    \end{figure}
+    \begin{itemize}
+        \item We can define the \textbf{width} and \textbf{half-width} of the oscillation.
+        \item The quality factor is relevant here again, as well.
+        \begin{itemize}
+            \item Quantitative measure of the sharpness of the resonance peak.
+            \item $Q=\omega_0/2\gamma$ also equals the ratio of the amplitude at resonance $F_1/2m\gamma\omega_0$ to the amplitude at $\omega_1=0$ $F_1/m\omega_0^2$.
+        \end{itemize}
+        \item The driving force creates the largest possible amplitude when it pulls on the particle with maximum strength slightly after the particle has passed the halfway point.
+        \item Small forces can set up large resonances; allusion to the Millennium Bridge.
+        \item On the phase.
+        \begin{itemize}
+            \item If the force is slowly oscillating, $\omega_1$ is small and $\theta_1\approx 0$ so that the induced oscillations are in phase with the force.
+            \item Vice versa for very fast oscillations. Note that in this case, $a_1$ is very small. Additionally, the oscillations roughly correspond to those of a free particle under the applied oscillatory force; indeed, the half-period offset means that as soon as the particle crosses 0, the force is drawing it back toward zero!
+            \item Right in the middle for resonance, that is, $\theta_1=\pi/2$. In this case, the induced oscillations lag behind the force by a quarter period.
+        \end{itemize}
+        \item Last note: $\gamma$ and $\lambda$ are only important in the region near resonance.
+    \end{itemize}
+    \item \textbf{Width} (of a resonance): The range of frequencies over which $a_1$ is large.
+    \item \textbf{Half-width} (of a resonance): The offset of $\omega_1$ from $\omega_0$ at which the amplitude is reduced to $1/\sqrt{2}$ of its peak value. \emph{Given by} $\gamma$.
+    \begin{itemize}
+        \item If you approximate $\omega\approx\omega_0\pm\gamma$, then we can calculate that
+        \begin{equation*}
+            \frac{a_1(\omega_0,\omega_0\pm\gamma)}{a_1(\omega_0,\sqrt{\omega_0^2-2\gamma^2})} = \frac{\frac{F_1/m}{\sqrt{(\omega_0^2-(\omega_0+\gamma)^2)^2+4\gamma^2(\omega_0+\gamma)^2}}}{\frac{F_1/m}{\sqrt{\left( \omega_0^2-\sqrt{\omega_0^2-2\gamma^2}^2 \right)^2+4\gamma^2\sqrt{\omega_0^2-2\gamma^2}^2}}}
+            % = \frac{\sqrt{4\gamma^4+4\gamma^2(\omega_0^2-2\gamma^2)}}{\sqrt{(-2\gamma\omega_0-\gamma^2)^2+4\gamma^2(\omega_0^2+2\gamma\omega_0+\gamma^2)}}
+            = \frac{1}{\sqrt{2}}
+        \end{equation*}
+        \item Additionally, note that $\omega_1=\omega_0\pm\gamma$ makes the two terms in the denominator of $a_1$ equal each other.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
