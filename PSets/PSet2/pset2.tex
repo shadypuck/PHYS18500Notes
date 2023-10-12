@@ -1,0 +1,49 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\stepcounter{section}
+
+\begin{document}
+
+
+
+
+\section{Energy and Angular Momentum}
+\begin{enumerate}
+    \item \marginnote{10/13:}Which of the following forces are conservative? If conservative, find the potential energy $V(\vec{r})$.
+    \begin{enumerate}
+        \item $F_x=ayz+bx+c$, $F_y=axz+bz$, $F_z=axy+by$.
+        \item $F_x=-z\e[-x]$, $F_y=\ln z$, $F_z=\e[-x]+y/z$.
+        \item $\vec{F}=\hat{r}\cdot a/r$.
+    \end{enumerate}
+    \item A projectile is fired with a velocity $v_0$ such that it passes through two points both a distance $h$ above the horizontal. Show that if the gun is adjusted for maximum range, the separation of the points is
+    \begin{equation*}
+        d = \frac{v_0}{g}\sqrt{v_0^2-4gh}
+    \end{equation*}
+    \item Show directly that the time rate of change of the angular momentum about the origin for a projectile fired from the origin (constant $g$) is equal to the moment of force (or torque) about the origin.
+    \item A bead is confined to move on a smooth wire of shape $y=a\e[-\lambda x]$ under the force of gravity, which acts in the $-\jhat$ direction.
+    \begin{enumerate}
+        \item Determine the Lagrangian for the bead.
+        \item Determine the equation(s) of motion.
+        % (You can't solve this in closed form, but even complicated equations of motion are useful. They can be integrated numerically for particular initial conditions, and their behavior can be analyzed via methods of dynamical systems that we will touch on at the end of the quarter.)
+    \end{enumerate}
+    \item A bead of mass $m$ is confined to move on a smooth circular wire of radius $R$, located in the $xz$-plane, under the influence of gravity (which acts in the $-\khat$ direction).
+    \begin{enumerate}
+        \item Determine the Lagrangian for the bead.
+        \item Determine the equation(s) of motion.
+        \item Comment on the relationship between this bead and the bob of a simple pendulum of mass $m$ and length $R$. What is the relationship between the force exerted by the pendulum rod, and the force exerted by the wire?
+    \end{enumerate}
+    \item The circular wire from the previous question is now rotated at a constant rate $\omega$ about the $\khat$ axis through its center.
+    \begin{enumerate}
+        \item Determine the Lagrangian for the particle.
+        \item Determine the equation(s) of motion.
+        \item Make the approximation that the angular deviation from the bottom of the wire is small. What is the equation of motion? What is the frequency of the oscillations?
+        \item (Bonus) Returning to the full equation, determine a critical value of $\omega$ where the behavior of the system changes. What types of trajectories are possible for $\omega>\omega_c$?
+    \end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}
