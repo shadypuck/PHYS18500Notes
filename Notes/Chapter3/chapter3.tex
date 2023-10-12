@@ -199,5 +199,212 @@
 
 
 
+\section{Introduction to Variational Calculus and the Lagrangian}
+\begin{itemize}
+    \item \marginnote{10/9:}Recap points from last time, then variational calculus (different form of mechanics that is more powerful than Newton's laws, called Lagrangian mechanics).
+    \item One particle feeling external conservative forces.
+    \item We'll revisit this later when we learn Hamiltonian mechanics.
+    \item Suppose we have one particle in three dimensions.
+    \begin{itemize}
+        \item Newton tells us that we can get EOM by figuring out all the forces on each particle and setting the net force equal to the mass times acceleration.
+        \item This is often written componentwise.
+        \item For the special case of a conservative force (requirement is that the curl vanishes, $\vec{\nabla}\times\vec{F}=0$), we can find a scalar potential energy function $V$ such that $\vec{F}=-\vec{\nabla}V$.
+        \item Each
+        \begin{equation*}
+            -\pdv{V}{x_i} = F_i = m\vec{\ddot{r}}_i = \dot{p}_i
+        \end{equation*}
+    \end{itemize}
+    \item Intro to variational calculus.
+    \begin{itemize}
+        \item We're not responsible for doing variational calculations, themselves, but we will use the results.
+    \end{itemize}
+    \item The variational problem.
+    \begin{itemize}
+        \item Define a family of curves in the space $t\oplus x$ connecting two points $(t_0,x_0)$ and $(t_1,x_1)$.
+        \item We have a \textbf{functional}
+        \begin{equation*}
+            \Phi = \int_{t_0}^{t_1}f(x(t),\dot{x}(t),t)\dd{t}
+        \end{equation*}
+        \item The problem: Find the path $x(t)$ that makes $\Phi$ into an extremum (i.e., minimum or maximum).
+        \item Example: Find the curve that minimizes the distance between the two points.
+    \end{itemize}
+    \item \textbf{Functional}: A function of curves (as opposed to points or values).
+    \item Solving such problems.
+    \begin{itemize}
+        \item We want to find a way to differentiate functionals like $\Phi$ with respect to curves.
+        \item Let $x(t)$ be the curve for which $\Phi$ is minimal or maximal (aka extremal or \textbf{stationary}).
+        \item Let $\eta(t)$ be any smooth function with $\eta(t_0)=\eta(t_1)=0$.
+        \item Define $x(t,0)=x(t)$ and $x(t,\alpha)=x(t,0)+\alpha\eta(t)$.
+        \item Now, we can write $\Phi$ as a function of $\alpha$!
+        \begin{equation*}
+            \Phi(\alpha) = \int_{t_0}^{t_1}f(x(t,\alpha),\dot{x}(t,\alpha),t)\dd{t}
+        \end{equation*}
+        \item For $x(t)$ to be an extremum, we need
+        \begin{equation*}
+            \eval{\pdv{\Phi}{\alpha}}_{\alpha=0} = 0
+        \end{equation*}
+        for all $\eta(t)$.
+        \item Now we take
+        \begin{align*}
+            \pdv{\Phi}{\alpha} &= \pdv{\alpha}\int_{t_0}^{t_1}f(x,\dot{x},t)\dd{t}\\
+            &= \int_{t_0}^{t_1}\pdv{f}{\alpha}(x,\dot{x},t)\dd{t}\\
+            &= \int_{t_0}^{t_1}\left( \pdv{f}{x}\pdv{x}{\alpha}+\pdv{f}{\dot{x}}\pdv{\dot{x}}{\alpha} \right)\dd{t}
+        \end{align*}
+        \item But we have that
+        \begin{align*}
+            x(t,\alpha) &= x(t)+\alpha\eta(t)&
+            \dot{x}(t,\alpha) &= \dot{x}(t)+\alpha\dot{\eta}(t)
+        \end{align*}
+        so
+        \begin{align*}
+            \pdv{x}{\alpha} &= \eta(t)&
+            \pdv{\dot{x}}{\alpha} &= \dot{\eta}(t)
+        \end{align*}
+        \item Thus, continuing from the above,
+        \begin{equation*}
+            \pdv{\Phi}{\alpha} = \int_{t_0}^{t_1}\left( \pdv{f}{x}\eta(t)+\pdv{f}{\dot{x}}\pdv{\eta}{t} \right)\dd{t}
+        \end{equation*}
+        \item We now integrate by parts.
+        \begin{equation*}
+            \int_{t_0}^{t_1}\pdv{f}{\dot{x}}\dv{\eta}{t}\dd{t} = \pdv{f}{\dot{x}}[\eta(t_1)-\eta(t_0)]-\int_{t_0}^{t_1}\dv{t}(\pdv{f}{\dot{x}})\eta(t)\dd{t}
+        \end{equation*}
+        \item The first term after the equals sign goes to zero by the definition of $\eta$.
+        \item Thus, continuing from the above,
+        \begin{align*}
+            \pdv{\Phi}{\alpha} &= \int_{t_0}^{t_1}\left( \pdv{f}{x}\eta(t)-\dv{t}(\pdv{f}{\dot{x}})\eta(t) \right)\dd{t}\\
+            &= \int_{t_0}^{t_1}\left( \pdv{f}{x}-\dv{t}(\pdv{f}{\dot{x}}) \right)\eta(t)\dd{t}
+        \end{align*}
+        \item Thus, since we want $\pdv*{\Phi}{\alpha}|_{\alpha=0}=0$, our condition that $f$ must satisfy is
+        \begin{equation*}
+            \int_{t_0}^{t_1}\left( \pdv{f}{x}-\dv{t}(\pdv{f}{\dot{x}}) \right)\eta(t)\dd{t} = 0
+        \end{equation*}
+        for any $\eta(t)$.
+        \item In particular, if this is to be zero for all $\eta(t)$, then we must have
+        \begin{equation*}
+            \pdv{f}{x}-\dv{t}(\pdv{f}{\dot{x}}) = 0
+        \end{equation*}
+        \item This is called an \textbf{Euler Equation} within mathematics, and an \textbf{Euler-Lagrange Equation} within physics.
+    \end{itemize}
+    \item Variational example: What shape of curve minimizes the distance between two points.
+    \begin{itemize}
+        \item In the plane, we all know that this is a straight line, and we will prove this now.
+        \begin{itemize}
+            \item Aside: The problem is more interesting when applied to curved surfaces, such as geodesics or the sphere (great circle routes).
+        \end{itemize}
+        \item Recall that $\dd{\ell}=\sqrt{\dd{t}^2+\dd{x}^2}=\dd{t}\sqrt{1+\dot{x}^2}$.
+        \item We want to minimize the sum of these distances along the curve (arc length), i.e., we want to minimize
+        \begin{equation*}
+            \Phi = \int_{t_0}^{t_1}\dd{t}\sqrt{1+\dot{x}^2}
+        \end{equation*}
+        \item From here, we may define
+        \begin{equation*}
+            f(x,\dot{x},t) = \sqrt{1+\dot{x}^2}
+        \end{equation*}
+        for substitution into the Euler-Lagrange equation.
+        \item Substituting, we obtain
+        \begin{align*}
+            \dv{t}(\pdv{f}{\dot{x}}) &= \pdv{f}{x}\\
+            \dv{t}(\frac{1}{2}(1+\dot{x}^2)^{-1/2}(2\dot{x})) &= 0\\
+            \dv{t}(\frac{\dot{x}}{\sqrt{1+\dot{x}^2}}) &= 0\\
+            \frac{\dot{x}}{\sqrt{1+\dot{x}^2}} &= C
+        \end{align*}
+        \item If the whole final expression is constant, then it must be that $\dot{x}$ is constant. From here, we can recover $x(t)=ct+b$.
+        \item Note that we have not proven that this is the minimum (it could be a maximum of $\Phi$!). But \emph{if} there is a minimum, it is this.
+    \end{itemize}
+    \item In 3D, we can consider an equation of the form $f(x_1,x_2,x_3,\dot{x}_1,\dot{x}_2,\dot{x}_3,t)$.
+    \begin{itemize}
+        \item Running this back through the procedure, we get an Euler-Lagrange equation for each component.
+        \begin{equation*}
+            \pdv{f}{x_i}-\dv{t}(\pdv{f}{\dot{x}_i}) = 0
+        \end{equation*}
+    \end{itemize}
+    \item We want a variational form of Newton's laws.
+    \begin{itemize}
+        \item Compare the Euler-Lagrange equation and an analogous form of Newton's law.
+        \begin{align*}
+            \dv{t}(\pdv{f}{\dot{x}_i}) &= \pdv{f}{x_i}&
+            \dv{t}(m\dot{x}_i) &= -\pdv{V}{x_i}
+        \end{align*}
+        \item Let
+        \begin{equation*}
+            f = T-V
+            = \sum_i\frac{1}{2}m\dot{x}_i^2-V(\{x_i\})
+        \end{equation*}
+        where $V(\{x_i\})$ denotes $V(x_1,x_2,x_3)$.
+    \end{itemize}
+    \item \textbf{Lagrangian function}: The function defined as follows. \emph{Denoted by} $\bm{L}$. \emph{Given by}
+    \begin{equation*}
+        L = T-V
+    \end{equation*}
+    \item \textbf{Action}: The following integral. \emph{Also known as} \textbf{action integral}. \emph{Denoted by} $\bm{S}$, $\bm{I}$. \emph{Given by}
+    \begin{equation*}
+        S = \int_{t_0}^{t_1}L(x_i,\dot{x}_i,t)\dd{t}
+    \end{equation*}
+    \item \textbf{Least action principle}: Particle trajectories are those for which $S$ is extremal.
+    \begin{itemize}
+        \item Not always needed or necessary.
+    \end{itemize}
+    \item Procedure for finding equations of motion.
+    \begin{enumerate}
+        \item Write down your Lagrangian for the system.
+        \item Use the componentwise Euler-Lagrange equations to find the EOMs.
+    \end{enumerate}
+    \item Why do this?
+    \begin{enumerate}
+        \item We can use any coordinate system to define $L$.
+        \begin{itemize}
+            \item It's often easier to change coordinates at the stage of scalar functions rather than later when you're dealing with multiple derivatives, vectors, etc.
+        \end{itemize}
+        \item Much easier to specify constraints.
+        \begin{itemize}
+            \item We can also use this formalism (as we'll see next time) to go backwards and see what the original forces are.
+        \end{itemize}
+        \item Symmetries and conservation laws are often more transparent in this formulation.
+    \end{enumerate}
+    \item Example.
+    \begin{itemize}
+        \item Suppose we have a bead that is constrained to move under gravity along a parabolic wire.
+        \item Let the equation of the wire be $z=ax^2$.
+        \item The wire exerts normal forces; it's hard to figure out what these are because the curvature of the wire is constantly changing.
+        \item Write
+        \begin{align*}
+            T &= \frac{1}{2}m(\dot{x}^2+\dot{z}^2)&
+            V &= mgz
+        \end{align*}
+        \item We also need $\dot{z}=2ax\dot{x}$.
+        \item Thus,
+        \begin{align*}
+            L &= T-V\\
+            &= \frac{1}{2}m(\dot{x}^2+(2ax\dot{x})^2)-mgax^2\\
+            &= \frac{1}{2}m(\dot{x}^2+4a^2x^2\dot{x}^2)-mgax^2
+        \end{align*}
+        \item We can now find the equations of motion with the Euler-Lagrange equation.
+        \begin{align*}
+            \dv{t}(\pdv{L}{\dot{x}}) &= \pdv{L}{x}\\
+            \dv{t}(m\dot{x}+4ma^2x^2\dot{x}) &= 4ma^2x\dot{x}^2-2mgax\\
+            m\ddot{x}+8ma^2x\dot{x}^2+4ma^2x^2\ddot{x} &= 4ma^2x\dot{x}^2-2mgax\\
+            % \ddot{x}+4a^2(x\dot{x}^2+x^2\ddot{x})+2gax &= 0\\
+            \ddot{x}(1+4a^2x^2)+\dot{x}^2(4a^2x)+2gax &= 0
+        \end{align*}
+        \item This final expression is pretty complicated! It would have been very complicated (perhaps prohibitively so) to arrive here with kinematics.
+    \end{itemize}
+    \item Imagine now that this wire is rotating at constant angular velocity $\omega$.
+    \begin{itemize}
+        \item We can solve this in rotating coordinates just as easily!
+        \item This time, take
+        \begin{equation*}
+            T = \frac{1}{2}m(v_r^2+v_\theta^2+v_z^2)
+        \end{equation*}
+        where
+        \begin{align*}
+            v_r &= \dot{r}&
+            v_\theta &= r\dot{\theta} = r\omega&
+            v_z &= \dot{z}
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
