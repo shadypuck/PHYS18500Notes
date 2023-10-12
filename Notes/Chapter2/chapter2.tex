@@ -219,7 +219,7 @@
                 x(t) = C\cos(\omega t)+D\sin(\omega t)
             \end{equation*}
             \item Plugging in $x_0=x(0)=C$ and $v_0=\dot{x}(0)$ so that $D=v_0/\omega$ will yield the desired result.
-            \item Alternative: $x(t)=a\cos(\omega t-\theta)$ where $a$ is the \textbf{amplitude} and $\theta$ is the \textbf{phase}.
+            \item Alternative: $x(t)=a\cos(\omega t-\theta)$ where $a$ is the \textbf{amplitude} and $\theta$ is the \textbf{phase}. In particular, $c=a\cos\theta$ and $d=a\sin\theta$.
             \item Last variables: The \textbf{angular frequency} $\omega=2\pi/t$ so that the \textbf{period} $\tau=2\pi/\omega$. Then the \textbf{frequency} is $f=1/\tau$.
         \end{itemize}
     \end{itemize}
@@ -240,7 +240,7 @@
     \end{itemize}
     \item Note: If $z=x+iy$ is a general complex number and it satisfies $m\ddot{z}+kz=0$, then the real and imaginary parts of $z$ each satisfy this equation independently, i.e., we have both $m\ddot{x}+kx=0$ and $m\ddot{y}+ky=0$.
     \item Thus, we can have $x(t)=\re(A\e[i\omega t])$ with $A=a\e[-i\theta]$.
-    \item Final notes: If $z(t)=A\e[i\omega t]$, $x(t)$ is the projection of this onto the $x$-axis. Also involved is the fact that $\omega=\dv*{\theta}{t}$.
+    \item Final notes: If $z(t)=A\e[i\omega t]$, then it rotates in a circle around the origin of the complex plane with angular velocity $\omega=\dv*{\theta}{t}$. It follows that $x(t)$ is the projection of this onto the $x$-axis.
 \end{itemize}
 
 
@@ -359,8 +359,8 @@
                 ;
     
                 \draw [rex,thick] plot[domain=0:4,samples=100,smooth] (\x,{e^(-0.6*\x)*cos(1.6*pi*\x r)});
-                \draw [rex,thick,loosely dashed] plot[domain=0:4,smooth] (\x,{e^(-0.6*\x)});
-                \draw [rex,thick,loosely dashed] plot[domain=0:4,smooth] (\x,{-e^(-0.6*\x)});
+                \draw [rex,semithick,loosely dashed] plot[domain=0:4,smooth] (\x,{e^(-0.6*\x)});
+                \draw [rex,semithick,loosely dashed] plot[domain=0:4,smooth] (\x,{-e^(-0.6*\x)});
             \end{tikzpicture}
             \caption{Underdamping.}
             \label{fig:dampedOscillatorb}
@@ -392,7 +392,7 @@
         \end{equation*}
         \item Then, we can write the solution as
         \begin{equation*}
-            x(t) = \frac{1}{2}A\e[-\gamma_+t]+\frac{1}{2}\e[-\gamma_-t]
+            x(t) = \frac{1}{2}A\e[-\gamma_+t]+\frac{1}{2}B\e[-\gamma_-t]
         \end{equation*}
         \item This solution just decays toward zero as $t\to\infty$.
         \item $1/\gamma_+$ and $1/\gamma_-$ both have units of time; the latter is longer, so in the long run, this term dominates. Thus, the graph is basically exponential decay with rate $\gamma_-$.
@@ -442,6 +442,133 @@
         \item We solve inhomogeneous equations as follows: Say we have an $x_1(t)$ that satisfies the whole equation (i.e., a \textbf{particular solution}), then $x(t)=x_1(t)+x_0(t)$ is the general solution where $x_0(t)$ is a solution to the \textbf{homogeneous} equation, $m\ddot{x}+\lambda\dot{x}+kx=0$.
     \end{itemize}
     \item \textbf{Inhomogeneous} (ODE): An ODE containing a term that doesn't have an $x$ in it.
+\end{itemize}
+
+
+
+\section{Fourier Series, Impulses, and Green's Functions}
+\begin{itemize}
+    \item \marginnote{10/4:}Fourier series are touched on in the book, but Jerison will skip it in class because of time constraints.
+    \item Recap: Damped harmonic oscillator.
+    \item Today: Pumping the system in some particular way.
+    \item First problem: A simple periodic forcing function.
+    \begin{itemize}
+        \item We want to solve
+        \begin{equation*}
+            \ddot{x}+2\gamma\dot{x}+\omega_0^2x = \frac{F_1}{m}\cos(\omega_1t)
+        \end{equation*}
+        where $\omega_1$ is the \textbf{forcing frequency}.
+    \end{itemize}
+    \item Recall that if $x_1(t)$ is a \emph{particular solution} that satisfies the above EOM and $x_0(t)$ is a solution to the damped SHO that contains 2 undetermined constants and that satisfies the homogeneous equation, then the general solution is $x(t)=x_1(t)+x_0(t)$.
+    \item How do we find $x_1(t)$?
+    \begin{itemize}
+        \item Try
+        \begin{equation*}
+            x_1(t) = \re(\underbrace{A\e[i\omega_1t]}_z)
+        \end{equation*}
+        where $A=a_1\e[-i\theta_1]$ is still an undetermined amplitude constant.
+        \item As before, we'll plug this ansatz into the ODE to solve for its constants. To start,
+        \begin{align*}
+            \ddot{z}+2\gamma\dot{z}+\omega_0^2z &= \frac{F_1}{m}\e[i\omega_1t]\\
+            -\omega_1^2A\e[i\omega_1t]+2\gamma i\omega_1A\e[i\omega_1t]+\omega_0^2A\e[i\omega_1t] &= \frac{F_1}{m}\e[i\omega_1t]\\
+            A(\omega_0^2-\omega_1^2+2\gamma i\omega_1) &= \frac{F_1}{m}\\
+            a_1(\omega_0^2-\omega_1^2+2\gamma i\omega_1) &= \frac{F_1}{m}\e[i\theta_1]\\
+            &= \frac{F_1}{m}(\cos\theta_1+i\sin\theta_1)
+        \end{align*}
+        \item We now set the complex and real components equal to each other.
+        \begin{align*}
+            a_1(\omega_0^2-\omega_1^2) &= \frac{F_1}{m}\cos\theta_1&
+            a_1\cdot 2\gamma\omega_1 &= \frac{F_1}{m}\sin\theta_1
+        \end{align*}
+        \item To solve for $\theta_1$, cancel out the $a_1$'s above by taking the quotient of the right equation by the left equation:
+        \begin{equation*}
+            \tan\theta_1 = \frac{2\gamma\omega_1}{\omega_0^2-\omega_1^2}
+        \end{equation*}
+        \item To solve for $a_1$, cancel out the $\theta_1$'s above by squaring both equations, adding them, and employing the trig identity $\cos^2x+\sin^2x=1$:
+        \begin{align*}
+            a_1^2((\omega_0^2-\omega_1^2)^2+4\gamma^2\omega_1^2) &= \left( \frac{F_1}{m} \right)^2\\
+            a_1 &= \frac{F_1/m}{\sqrt{(\omega_0^2-\omega_1^2)^2+4\gamma^2\omega_1^2}}
+        \end{align*}
+        \item Now we have both $a_1$ and $\theta_1$, as desired.
+        \item We can evaluate $x_1(t)$ as follows.
+        \begin{align*}
+            x_1(t) &= \re(A\e[i\omega_1t])\\
+            % &= \re(a_1\e[-i\theta_1]\e[i\omega_1t])\\
+            &= a_1\re(\e[i(\omega_1t-\theta_1)])\\
+            &= a_1\re[\cos(\omega_1t-\theta_1)+i\sin(\omega_1t-\theta_1)]\\
+            &= a_1\cos(\omega_1t-\theta_1)
+        \end{align*}
+        \item Thus, the general solution is
+        \begin{equation*}
+            x(t) = a_1\cos(\omega_1t-\theta_1)+x_0(t)
+        \end{equation*}
+    \end{itemize}
+    \item Example: The general solution for an underdamped oscillator driven as above.
+    \begin{equation*}
+        x(t) = a_1\cos(\omega_1t-\theta_1)+\underbrace{a\e[-\gamma t]\cos(\omega t-\theta)}_\text{transient}
+    \end{equation*}
+    \begin{itemize}
+        \item We call the second term the \textbf{transient} term because it decays in the long run, leaving the oscillator oscillating at the frequency of the driving force (but not necessarily in the same phase!).
+        \item Recall that $\omega=\sqrt{\omega_0^2-\gamma^2}$ and $\theta$ is also defined as in the last lecture.
+    \end{itemize}
+    \item Resonance.
+    \begin{itemize}
+        \item Garbled; see \textcite{bib:KibbleBerkshire} Chapter 2 notes.
+        \item Here are a few points though.
+        \begin{itemize}
+            \item The maximum amplitude $a_{1,max}$ occurs at $\omega_\text{res}=\sqrt{\omega_0^2-2\gamma^2}\approx\omega_0$.
+            \item We can define the \textbf{quality factor} $Q=\frac{a_{1,max}}{a_1(\omega_1=0)}=\omega_0/2\gamma$.
+            \item $\gamma$ represents the characteristic \textbf{width} of the peak as well; proving why is left as an exercise.
+        \end{itemize}
+        \item Important observation: The phase always lags behind the driving frequency.
+    \end{itemize}
+    \item Solving the driven oscillator for a general $F(t)$.
+    \begin{itemize}
+        \item Possible when the equation is linear in $x$.
+        \item We can build up basically any function using a series of tiny \textbf{impulses}.
+    \end{itemize}
+    \item \textbf{Impulse}: $I=\Delta p=p(t+\Delta t)-p(t)$.
+    \begin{itemize}
+        \item For our idealized impulses, let $\Delta t\to 0$, $F\to\infty$, $I$ fixed.
+        \item What these do is instantaneously reset the velocity.
+        \begin{itemize}
+            \item Example: If we're starting from velocity 0, an impulse can instantaneously change it to a value $v_0=I/m$.
+            \item The position is unchanged during this impulse, however.
+        \end{itemize}
+        \item The beauty is that after the brief reset, the system just behaves like a normal damped oscillator.
+    \end{itemize}
+    \item We'll now solve for an impulse at time 0 and add them all together.
+    \begin{itemize}
+        \item For $t>0$, look at the underdamped case ($\gamma<\omega_0$), which is $x(t)=a\e[-\gamma t]\cos(\omega t-\theta)$.
+        \item We also let the initial conditions be $x(0)=0$ and $\dot{x}(0)=I/m$.
+        \item Trajectory: Until time 0, the particle is at rest. Then it starts off with this velocity $\dot{x}(0)$ and will decay back to closer to rest eventually.
+    \end{itemize}
+    \item Now, we can define \textbf{Green's functions} based on the particle's response to this isolated impulse.
+    \item \textbf{Green's function}: Take the formula for the trajectory of the particle and substitute $t$ with $t-t'$ to get
+    \begin{equation*}
+        G(t-t') = \frac{1}{m\omega}\e[-\gamma(t-t')]\sin(\omega(t-t'))
+    \end{equation*}
+    \begin{itemize}
+        \item This is what will have happened to the particle some time $t$ after an impulse at $t'$.
+    \end{itemize}
+    \item We essentially divide the force function $F(t)$ up into calculus-style blocks.
+    \begin{itemize}
+        \item The solution to the series is basically just the sum over a bunch of little trajectories $x_r$.
+        \item We get
+        \begin{align*}
+            x(t) &= \sum_{r=1}^nx_r(t)\\
+            &= \sum_{r=1}^nF_r\Delta tG(t-t_r)
+        \end{align*}
+    \end{itemize}
+    \item Now, we make them infinitesimally small.
+    \begin{itemize}
+        \item $\lim\Delta t\to 0$ eventually gets us to
+        \begin{equation*}
+            x(t) = \int_0^tF(t')G(t-t')\dd{t'}
+        \end{equation*}
+        \item $G(t-t')$ is the response of the particle at $t=t'$ due to the force at $t'$.
+    \end{itemize}
+    \item We have different equations for underdamped, overdamped, and critically damped; we will do a different example in our HW!
 \end{itemize}
 
 
