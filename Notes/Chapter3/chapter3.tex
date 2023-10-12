@@ -1,0 +1,203 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{2}
+
+\begin{document}
+
+
+
+
+\chapter{Energy and Angular Momentum}
+\section{Energy and Conservative Forces in 3D; Angular Momentum}
+\begin{itemize}
+    \item \marginnote{10/6:}Recap.
+    \begin{itemize}
+        \item If $F(x,\dot{x},t)=F(x)$, then we can define $V(x)$.
+        \item A bit more on kinetic, potential, and total energy in 1D.
+    \end{itemize}
+    \item Question: Is $\vec{F}(\vec{r},\dot{\vec{r}},t)=F(\vec{r})$ sufficient for the force to be conservative?
+    \begin{itemize}
+        \item Answer: No, it is not.
+    \end{itemize}
+    \item What \emph{is} a necessary and sufficient condition, then?
+    \begin{itemize}
+        \item If $T+V=E$, a constant, then we should have $\dv*{t}(T+V)=0$.
+        \item Since
+        \begin{align*}
+            \dot{T} &= m(\dot{x}\ddot{x}+\dot{y}\ddot{y}+\dot{z}\ddot{z})
+                = m\dot{\vec{r}}\cdot\ddot{\vec{r}}
+                = \dot{\vec{r}}\cdot\vec{F}&
+            \dot{V} &= \pdv{V}{x}\dot{x}+\pdv{V}{y}\dot{y}+\pdv{V}{z}\dot{z}
+            = \dot{r}\cdot\vec{\nabla}V
+        \end{align*}
+        stating that $\dot{T}+\dot{V}=\dv*{t}(T+V)=0$ is equivalent to stating that
+        \begin{equation*}
+            \dot{\vec{r}}\cdot(\vec{F}+\vec{\nabla}V)
+        \end{equation*}
+        \item But from here, it follows that we must have $\vec{F}=-\vec{\nabla}V$.
+        \item Takeaway: Conservative forces depend on $\vec{r}$ and can be written as $-\vec{\nabla}V$ for some scalar function $V$.
+    \end{itemize}
+    \item Can we express this condition more nicely? Yes!
+    \begin{itemize}
+        \item Claim: $\text{curl}\,(\vec{F})=\vec{\nabla}\times\vec{F}=0$ iff $\vec{F}=-\vec{\nabla}V$ for some scalar function $V$.
+        \item Suppose $F=-\vec{\nabla}V$ for some scalar function $V$.
+        \begin{itemize}
+            \item Then since the curl of a gradient field is zero,
+            \begin{equation*}
+                \vec{\nabla}\times\vec{F} = \vec{\nabla}\times\vec{\nabla}V = 0
+            \end{equation*}
+        \end{itemize}
+        \item Suppose $\vec{\nabla}\times\vec{F}=0$.
+        \begin{itemize}
+            \item To prove that $\vec{F}=-\vec{\nabla}V$ for some $V$, it will suffice to show that
+            \begin{equation*}
+                V(\vec{r}) = -\int_{\vec{r}_0}^{\vec{r}}\vec{F}\cdot\dd\vec{r'}
+            \end{equation*}
+            \item In particular, it will suffice to show that the function above is well defined. To do so, we will need to prove that the line integral on the right-hand side above is \textbf{path-independent}.
+            \item But then by the equivalent path independence condition below, we need
+            \begin{equation*}
+                \oint_C\vec{F}\cdot\dd\vec{r} = 0
+            \end{equation*}
+            for all $C$.
+            \item Applying \textbf{Stokes' theorem}, we obtain the equivalent condition
+            \begin{equation*}
+                \oint_C\vec{F}\cdot\dd\vec{r} = \iint_S(\vec{\nabla}\times\vec{F})\cdot\dd{\vec{S}} = \iint_S0\cdot\dd{\vec{S}} = 0
+            \end{equation*}
+            as desired.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Path-independent} (line integral): A line integral $\int_{\vec{r}_0}^{\vec{r}_1}\vec{A}\cdot\dd\vec{r}$ over some vector field $\vec{A}$ such that if $C_1,C_2$ are any two curves connecting $\vec{r}_0$ and $\vec{r}_1$, then
+    \begin{equation*}
+        \int_{C_1}\vec{A}\cdot\dd\vec{r} = \int_{C_2}\vec{A}\cdot\dd\vec{r}
+    \end{equation*}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw [stealth-stealth] (0,3) -- (0,0) -- (3.5,0);
+    
+            \draw [help lines, ->] (0.5,0.8) -- ++(0.3,0.3);
+            \draw [help lines, ->] (0.2,2.2) -- ++(0.3,0.3);
+            \draw [help lines, ->] (1,0.3) -- ++(0.3,0.3);
+            \draw [help lines, ->] (0.8,2) -- ++(0.3,0.3);
+            \draw [help lines, ->] (1.4,1.5) -- ++(0.3,0.3);
+            \draw [help lines, ->] (1.2,2.5) -- ++(0.3,0.3);
+            \draw [help lines, ->] (1.8,1.2) -- ++(0.3,0.3);
+            \draw [help lines, ->] (2.3,0.4) -- ++(0.3,0.3);
+            \draw [help lines, ->] (2.4,2.2) -- ++(0.3,0.3);
+            \draw [help lines, ->] (2.5,1) -- ++(0.3,0.3);
+    
+            \draw [pux,thick]
+                (0.9,0.8) .. controls (3,0.5) and (2,2) .. node[near start,below=2pt]{$C_1$} (2.4,2.7)
+                (0.9,0.8) .. controls (0.8,3) and (2,2) .. node[near end,above=2pt]{$C_2$} (2.4,2.7)
+            ;
+    
+            \fill (0.9,0.8) circle (2pt) node[below left]{$\vec{r}_0$};
+            \fill (2.4,2.7) circle (2pt) node[above right]{$\vec{r}_1$};
+        \end{tikzpicture}
+        \caption{Path independent line integral.}
+        \label{fig:pathIndependent}
+    \end{figure}
+    \begin{itemize}
+        \item An equivalent path independence condition may be obtained via inspection of Figure \ref{fig:pathIndependent}.
+        \item Indeed, saying that the path integral along $C_1$ (from $\vec{r}_0$ to $\vec{r}_1$) equals that along $C_2$ (from $\vec{r}_0$ to $\vec{r}_1$) is equivalent to saying that the difference of the path integrals is equal to zero. Equivalently, the path integral along $C_1$ (from $\vec{r}_0$ to $\vec{r}_1$) plus the path integral along $C_2$ (from $\vec{r}_1$ to $\vec{r}_0$) equals zero. But this sum of path integrals is just the closed loop integral $\oint_C$ around the oriented curve $C=C_1-C_2$.
+        \item Thus, equivalently,
+        \begin{equation*}
+            \int_C\vec{A}\cdot\dd\vec{r} = 0
+        \end{equation*}
+        for all $C$ containing $\vec{r}_0$ and $\vec{r}_1$.
+        \item Lastly, note that we do not need to constrain the curves to $\vec{r}_0$ and $\vec{r}_1$ but can let them freely range over the whole space. Thus, we can check the closed loop integral over all loops $C$ in the space.
+    \end{itemize}
+    \item \textbf{Stokes' theorem}: The following integral equality, where $C$ is a closed curve bounding the curved surface $S$ and $\vec{A}$ is a vector field. \emph{Given by}
+    \begin{equation*}
+        \oint_C\vec{F}\cdot\dd\vec{r} = \iint_S(\vec{\nabla}\times\vec{A})\cdot\dd{\vec{S}}
+    \end{equation*}
+    \item How do we find $V$ from $F$?
+    \begin{itemize}
+        \item First, we need an integral theorem.
+        \item Theorem: For all scalar functions $\phi:\mathbb{R}^3\to\mathbb{R}$ defining conservative forces and all points $\vec{r}_0,\vec{r}_1\in\mathbb{R}^3$, the \textbf{line integral}
+        \begin{equation*}
+            \int_{\vec{r}_0}^{\vec{r}_1}\vec{\nabla}\phi\cdot\dd\vec{r} = \phi(\vec{r}_1)-\phi(\vec{r}_0)
+        \end{equation*}
+        \item It follows that if $F=-\nabla V$, then
+        \begin{equation*}
+            V(\vec{r}_1)-V(\vec{r}_0) = -\int_{\vec{r}_0}^{\vec{r}_1}\vec{\nabla}V\cdot\dd\vec{r}
+        \end{equation*}
+    \end{itemize}
+    \item We now move onto rotation.
+    \begin{itemize}
+        \item We describe rotation in polar coordinates.
+        \item Let $\ell_r$ be the length in the radial direction, and let $\ell_\theta$ be the length in the angular direction.
+        \item Then
+        \begin{align*}
+            \dd\ell_r &= \dd{r}&
+            \dd\ell_\theta &= r\dd\theta
+        \end{align*}
+        where
+        \begin{align*}
+            \hat{r} &= \ihat\cos\theta+\jhat\sin\theta&
+            \hat{\theta} &= -\ihat\sin\theta+\jhat\cos\theta
+        \end{align*}
+        \item Coordinate-wise, we have
+        \begin{align*}
+            x &= r\cos\theta&
+            y &= r\sin\theta
+        \end{align*}
+        \item Velocity-wise, we have $\vec{v}=v_x\ihat+v_y\jhat$ where
+        \begin{align*}
+            v_x &= \dot{r}\cos\theta-r\dot{\theta}\sin\theta&
+                v_y &= \dot{r}\sin\theta+r\dot{\theta}\cos\theta\\
+            v_r &= \vec{v}\cdot\hat{r} = \dot{r} = \dv{\ell_r}{t}&
+                v_\theta &= \vec{v}\cdot\hat{\theta} = r\dot{\theta} = \dv{\ell_\theta}{t}
+        \end{align*}
+    \end{itemize}
+    \item The analogy of force under rotation is \textbf{torque}.
+    \item \textbf{Torque}: A twisting force that tends to cause rotation, quantified as follows. \emph{Also known as} \textbf{moment of force}. \emph{Denoted by} $\bm{\vec{g}}$. \emph{Given by}
+    \begin{equation*}
+        \vec{G} = \vec{r}\times\vec{F}
+    \end{equation*}
+    \begin{itemize}
+        \item Componentwise, we have
+        \begin{align*}
+            G_x &= yF_z-zF_y&
+            G_y &= zF_x-xF_z&
+            G_z &= xF_y-yF_x
+        \end{align*}
+        \item We also have $\norm{\vec{G}}=rF\sin\theta$.
+    \end{itemize}
+    \item Momentum under rotation: Angular momentum.
+    \item \textbf{Angular momentum}: The quantity of rotation of a body, quantified as follows. \emph{Denoted by} $\bm{\vec{J}}$. \emph{Given by}
+    \begin{equation*}
+        \vec{J} = \vec{r}\times\vec{p}
+        = m\vec{r}\times\vec{r}
+    \end{equation*}
+    \begin{itemize}
+        \item Derivative:
+        \begin{equation*}
+            \dot{\vec{J}} = \vec{G}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Central force}: A force that flows toward or away from the origin, i.e., is in the $\hat{r}$ direction.
+    \begin{itemize}
+        \item Identify with $\vec{r}\times\vec{F}=0$.
+    \end{itemize}
+    \item Under central forces, angular momentum is conserved.
+    \begin{itemize}
+        \item We have
+        \begin{equation*}
+            \vec{J} = mr^2\dot{\theta}\hat{z}
+        \end{equation*}
+        \item Sweeping out equal areas (Kepler's 2nd law): We have
+        \begin{align*}
+            \dd{A} &= \frac{1}{2}r^2\dd{\theta} = \pi r^2\frac{\dd{\theta}}{2\pi}\\
+            \dv{A}{t} &= \frac{1}{2}r^2\dot{\theta}
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
