@@ -605,6 +605,45 @@
 
 
 
+\section{Problem Session}
+\begin{itemize}
+    \item \marginnote{10/12:}An integral of the form $\int_{\vec{r}_1}^{\vec{r}_2}\vec{F}\cdot\dd\vec{r}$ is still a \emph{path} integral, and thus although it \emph{can} be evaluated componentwise, special care is needed.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw [->] (0,0,-1) -- (0,0,1) node[below left=-1pt]{$x$};
+            \draw [->] (-1,0,0) -- (1,0,0) node[right]{$y$};
+            \draw [->] (0,-1,0) -- (0,1,0) node[above]{$z$};
+    
+            \draw [rex,thick] (0,0.3,0) node[circle,fill,inner sep=1pt,label={[left,black]$(0,0,1)$}]{} -- (0,0.3,0.5) -- (0.5,0.3,0.5) -- (0.5,0.8,0.5) node[circle,fill,inner sep=1pt,label={[right,black]$(x,y,z)$}]{};
+        \end{tikzpicture}
+        \caption{Componentwise evaluation of a path integral.}
+        \label{fig:pathIntComponent}
+    \end{figure}
+    \begin{itemize}
+        \item In particular, if we integrate componentwise, we can integrate along the $x$-axis, then the $y$-axis, then the $z$-axis. Importantly, however, we need to integrate along the path
+        \begin{equation*}
+            (x_1,y_1,z_1) \to (x_2,y_1,z_1) \to (x_2,y_2,z_1) \to (x_2,y_2,z_2)
+        \end{equation*}
+        \item This means that, for instance, it is not enough to plug the $x$-component of $\vec{F}$ into $\int_{x_1}^{x_2}F_x\dd{x}$; rather, we must plug in the $x$-component \emph{evaluated at all $F(x',y_1,z_1)$ along the path}.
+        \item Thus, with some modification of the components, we \emph{can} use definite integrals to evaluate a path integral.
+    \end{itemize}
+    \item An alternative method of evaluating path integrals.
+    \begin{itemize}
+        \item From Hugh; they did this in the 10/11 discussion section.
+        \item See p. 70-71 of CAAGThomasNotes.
+        \item Essentially, we take an indefinite integral in one dimension, then differentiate in another to solve for the function-esque constant of integration.
+    \end{itemize}
+    \item Be sure to check my work with sanity checks.
+    \begin{itemize}
+        \item For example, I should take the negative gradient of my potential functions to confirm that their equal to the force components.
+    \end{itemize}
+    \item I checked my answers with Ian, Hugh, Zach, and Enoch today.
+\end{itemize}
+
+
+
 \section{Chapter 3: Energy and Angular Momentum}
 \emph{From \textcite{bib:KibbleBerkshire}.}
 \begin{itemize}
