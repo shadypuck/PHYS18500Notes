@@ -14,32 +14,323 @@
     \item \marginnote{10/13:}Which of the following forces are conservative? If conservative, find the potential energy $V(\vec{r})$.
     \begin{enumerate}
         \item $F_x=ayz+bx+c$, $F_y=axz+bz$, $F_z=axy+by$.
+        \begin{proof}
+            Check whether the components of the curl vanish. Computing, we obtain
+            \begin{align*}
+                \pdv{F_z}{y}-\pdv{F_y}{z} &= \pdv{y}(axy+by)-\pdv{z}(axz+bz)\\
+                &= (ax+b)-(ax+b)\\
+                &= 0
+            \end{align*}
+            \begin{align*}
+                \pdv{F_x}{z}-\pdv{F_z}{x} &= \pdv{z}(ayz+bx+c)-\pdv{x}(axy+by)\\
+                &= (ay)-(ay)\\
+                &= 0
+            \end{align*}
+            \begin{align*}
+                \pdv{F_y}{x}-\pdv{F_x}{y} &= \pdv{x}(axz+bz)-\pdv{y}(ayz+bx+c)\\
+                &= (az)-(az)\\
+                &= 0
+            \end{align*}
+            Since the curl vanishes, the force \fbox{is conservative.}\par
+            Thus, we can calculate the potential energy $V(\vec{r})$ as follows.
+            \begin{align*}
+                V(\vec{r}) &= -\int_0^{\vec{r}}\vec{F}\cdot\dd\vec{r}'\\
+                &= -\int_0^xF_x(x',0,0)\dd{x'}-\int_0^yF_y(x,y',0)\dd{y'}-\int_0^zF_z(x,y,z')\dd{z'}\\
+                &= -\int_0^x(bx'+c)\dd{x'}-\int_0^y(0)\dd{y'}-\int_0^z(axy+by)\dd{z'}\\
+                &= -\left( \frac{1}{2}bx^2+cx \right)-(0)-(axyz+byz)\\
+                \Aboxed{V(\vec{r}) &= -\frac{1}{2}bx^2-cx-byz-axyz}
+            \end{align*}
+        \end{proof}
         \item $F_x=-z\e[-x]$, $F_y=\ln z$, $F_z=\e[-x]+y/z$.
+        \begin{proof}
+            Check whether the components of the curl vanish. Computing, we obtain
+            \begin{equation*}
+                \pdv{y}(\e[-x]+\frac{y}{z})-\pdv{z}(\ln z) = \left( \frac{1}{z} \right)-\left( \frac{1}{z} \right)
+                = 0
+            \end{equation*}
+            \begin{equation*}
+                \pdv{z}(-z\e[-x])-\pdv{x}(\e[-x]+\frac{y}{z}) = (-\e[-x])-(-\e[-x])
+                = 0
+            \end{equation*}
+            \begin{equation*}
+                \pdv{x}(\ln z)-\pdv{y}(-z\e[-x]) = (0)-(0)
+                = 0
+            \end{equation*}
+            Since the curl vanishes, the force \fbox{is conservative.}\par
+            Thus, we can calculate the potential energy $V(\vec{r})$ as follows.
+            \begin{align*}
+                V(\vec{r}) &= -\int_0^xF_x(x',0,1)\dd{x'}-\int_0^yF_y(x,y',1)\dd{y'}-\int_0^zF_z(x,y,z')\dd{z'}\\
+                &= -\int_0^x(-\e[-x'])\dd{x'}-\int_0^y(0)\dd{y'}-\int_1^z\left( \e[-x]+\frac{y}{z'} \right)\dd{z'}\\
+                &= -\left[ \e[-x'] \right]_{x'=0}^x-\left[ 0 \right]_{y'=0}^y-\left[ z'\e[-x]+y\ln z' \right]_{z'=1}^z\\
+                &= -(\e[-x]-1)-(0)-(z\e[-x]+y\ln z-\e[-x])\\
+                \Aboxed{V(\vec{r}) &= 1-z\e[-x]-y\ln z}
+            \end{align*}
+        \end{proof}
         \item $\vec{F}=\hat{r}\cdot a/r$.
+        \begin{proof}
+            Check whether the components of the curl vanish. In spherically symmetric coordinates, we have
+            \begin{equation*}
+                \nabla = \pdv{r}\hat{r}
+            \end{equation*}
+            so that
+            \begin{equation*}
+                \nabla\times\vec{F} = \pdv{r}(\frac{a}{r})\hat{r}\times\hat{r}
+                = \pdv{r}(\frac{a}{r})0
+                = 0
+            \end{equation*}
+            Since the curl vanishes, the force \fbox{is conservative.}\par
+            Thus, we can calculate the potential energy $V(\vec{r})$ as follows.
+            \begin{align*}
+                V(\vec{r}) &= -\int_1^{\vec{r}}\vec{F}\cdot\dd\vec{r}'\\
+                &= -\int_1^{|\vec{r}|}\frac{a}{r'}\dd{r'}\\
+                \Aboxed{V(\vec{r}) &= -a\ln(|\vec{r}|)}
+            \end{align*}
+        \end{proof}
     \end{enumerate}
     \item A projectile is fired with a velocity $v_0$ such that it passes through two points both a distance $h$ above the horizontal. Show that if the gun is adjusted for maximum range, the separation of the points is
     \begin{equation*}
         d = \frac{v_0}{g}\sqrt{v_0^2-4gh}
     \end{equation*}
+    \begin{proof}
+        % Additionally, choose $t=0$ to be the time at which the projectile reaches its maximum height $y_0$ and crosses the $y$-axis. It follows from kinematics that the $y$-trajectory of the projectile is
+        % \begin{equation*}
+        %     y(t) = -\frac{1}{2}gt^2+y_0
+        % \end{equation*}
+        % To calculate $y_0$, first note that the projectile is moving with velocity $v_0$ when it is fired. Moreover, since it is fired at an angle of $\alpha=\pi/4$ from the horizontal, the $y$-component of the projectile's velocity when it is fired is $v_0/\sqrt{2}$. Mathematically, we are saying that
+        % \begin{equation*}
+        %     \eval{\dv{y}{t}}_{t=t_\text{firing}} = \frac{v_0}{\sqrt{2}}
+        % \end{equation*}
+        % It follows that
+        % \begin{align*}
+        %     -gt_\text{firing} &= \frac{v_0}{\sqrt{2}}\\
+        %     t_\text{firing} &= -\frac{v_0}{g\sqrt{2}}\\
+        % \end{align*}
+        % Thus,
+        % \begin{align*}
+        %     y\left( -\frac{v_0}{g\sqrt{2}} \right) &= 0\\
+        %     -\frac{1}{2}g\left( -\frac{v_0}{g\sqrt{2}} \right)^2+y_0 &= 0\\
+        %     y_0 &= \frac{v_0^2}{4g}
+        % \end{align*}
+        % We are now ready to return to the original problem. To begin, solving $y(t)=h$ will give us the times at which the particle is at a distance $h$ above the horizontal on both the way up and the way down.
+        % \begin{align*}
+        %     h &= -\frac{1}{2}gt^2+\frac{v_0^2}{4g}\\
+        %     gt^2 &= \frac{v_0^2}{2g}-2h\\
+        %     t &= \pm\sqrt{\frac{v_0^2}{2g^2}-\frac{2h}{g}}\\
+        %     &= \pm\frac{1}{g}\sqrt{\frac{v_0^2}{2}-2gh}
+        % \end{align*}
+        % Call the negative solution $t_1$ and the positive solution $t_2$. Knowing that
+        % \begin{equation*}
+        %     x(t) = \frac{v_0}{\sqrt{2}}t
+        % \end{equation*}
+        % is the $x$-trajectory, it follows that
+        % \begin{align*}
+        %     d &= x(t_2)-x(t_1)\\
+        %     &= 2x(t_2)\\
+        %     &= v_0\sqrt{2}t_2\\
+        %     &= v_0\sqrt{2}\frac{1}{g}\sqrt{\frac{v_0^2}{2}-2gh}\\
+        %     &= \frac{v_0}{g}\sqrt{v_0^2-4gh}
+        % \end{align*}
+        % as desired.
+
+        For the purpose of analyzing this system, choose $y=0$ to lie at the horizontal from which the projectile is fired and $x=0$ to lie at the point where the projectile reaches its maximum height. Thus, the setup may be visualized as follows.
+        \begin{center}
+            \begin{tikzpicture}[scale=3]
+                \footnotesize
+                \draw [-stealth] ({-7/6},0) -- ({7/6},0) node[right]{$x$};
+                \draw [-stealth] (0,0) -- (0,{2/3}) node[above]{$y$};
+        
+                \draw [->] (-1,0) coordinate (B) -- node[above left=-1pt]{$v_0^{}$} ++(0.3,0.3) coordinate (C);
+                \draw [dashed] (-0.7,0.3) -- (-0.7,0) coordinate (A);
+                \pic [draw,angle radius=3mm,angle eccentricity=1.85,pic text={$45^\circ$}] {angle=A--B--C};
+                \draw [dashed,name path=h] (-{7/6},0.35) -- ({7/6},0.35) node[right]{$h$};
+                \draw [|-|] (-1,-0.1) -- node[below]{$v_0^2/g$} (1,-0.1);
+        
+                \draw [rex,thick,name path=par] (-1,0) parabola bend (0,0.5) (1,0);
+        
+                \fill (0,0.5) circle (0.5pt) node[above right]{$(0,y_0)$};
+                \fill [name intersections={of=par and h}] (intersection-1) circle (0.5pt) node[above left]{$(-x_h,h)$};
+                \fill (intersection-2) circle (0.5pt) node[above right]{$(x_h,h)$};
+                \draw [white,line width=4pt] (-0.1,0.25) -- (0.1,0.25);
+                \draw [|-|] ([yshift=-1mm]intersection-1) -- node[below,fill=white,inner sep=2pt]{$d$} ([yshift=-1mm]intersection-2);
+            \end{tikzpicture}
+        \end{center}
+        We know from kinematics that the $x$- and $y$-trajectories of the projectile are
+        \begin{align*}
+            x(t) &= \frac{v_0}{\sqrt{2}}t&
+            y(t) &= -\frac{1}{2}gt^2+y_0
+        \end{align*}
+        We can eliminate the parameterization to find the complete trajectory of the projectile in the $xy$-plane.
+        \begin{align*}
+            y(x) &= -\frac{1}{2}g\left( \frac{x\sqrt{2}}{v_0} \right)^2+y_0\\
+            &= -\frac{g}{v_0^2}x^2+y_0
+        \end{align*}
+        To calculate $y_0$, we will use the fact that the maximum range of a fired projectile is $v_0^2/g$ \parencite[52]{bib:KibbleBerkshire}. This fact implies that the parabolic trajectory's two $x$-intercepts are $x=\pm v_0^2/2g$. Thus,
+        \begin{align*}
+            y\left( \frac{v_0^2}{2g} \right) &= 0\\
+            -\frac{g}{v_0^2}\left( \frac{v_0^2}{2g} \right)^2+y_0 &= 0\\
+            y_0 &= \frac{v_0^2}{4g}
+        \end{align*}
+        We are now ready to return to the original problem. To begin, solving $y(x_h)=h$ will give us the points at which the particle is at a distance $h$ above the horizontal on both the way up and the way down.
+        \begin{align*}
+            h &= -\frac{g}{v_0^2}x_h^2+\frac{v_0^2}{4g}\\
+            x_h^2 &= \frac{v_0^4}{4g^2}-\frac{v_0^2h}{g}\\
+            &= \frac{v_0^2}{4g^2}\left( v_0^2-4gh \right)\\
+            x_h &= \pm\frac{v_0}{2g}\sqrt{v_0^2-4gh}
+        \end{align*}
+        It follows that
+        \begin{equation*}
+            d = 2x_h = \frac{v_0}{g}\sqrt{v_0^2-4gh}
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item Show directly that the time rate of change of the angular momentum about the origin for a projectile fired from the origin (constant $g$) is equal to the moment of force (or torque) about the origin.
+    \begin{proof}
+        For this particle fired from the origin, pick axes such that the motion is contained to the $xy$-plane and $\vec{F}=-mg\jhat$. Additionally, suppose it is fired with velocity $v=v_x\ihat+v_y\jhat$. Then using kinematics, we can give its position $\vec{r}$ as a function of time:
+        \begin{equation*}
+            \vec{r} = (v_xt)\ihat+(-\tfrac{1}{2}gt^2+v_yt)\jhat
+        \end{equation*}
+        From this vector, we can calculate that
+        \begin{equation*}
+            \vec{p} = m\dot{\vec{r}}
+            = (mv_x)\ihat+(-mgt+mv_y)\jhat
+        \end{equation*}
+        It follows that
+        \begin{equation*}
+            \vec{J} = \vec{r}\times\vec{p}
+            = [(v_xt)\cdot(-mgt+mv_y)-(-\tfrac{1}{2}gt^2+v_yt)\cdot(mv_x)]\khat
+            = -\frac{1}{2}mgv_xt^2\khat
+        \end{equation*}
+        Thus, we have that
+        \begin{align*}
+            \dot{\vec{J}} &= -mgv_xt\khat&
+            \vec{G} &= \vec{r}\times\vec{F}
+                = -mgv_xt\khat
+        \end{align*}
+        Therefore, by transitivity, we have the desired equality.
+    \end{proof}
     \item A bead is confined to move on a smooth wire of shape $y=a\e[-\lambda x]$ under the force of gravity, which acts in the $-\jhat$ direction.
     \begin{enumerate}
         \item Determine the Lagrangian for the bead.
+        \begin{proof}
+            Analogous to the in-class example from 10/9, we have
+            \begin{align*}
+                T &= \frac{1}{2}m(\dot{x}^2+\dot{y}^2)&
+                V &= mgy
+            \end{align*}
+            Additionally, we have the relations
+            \begin{align*}
+                y &= a\e[-\lambda x]&
+                \dot{y} &= -a\lambda\dot{x}\e[-\lambda x]
+            \end{align*}
+            Therefore, we have that
+            \begin{align*}
+                L &= T-V\\
+                &= \frac{1}{2}m(\dot{x}^2+(-a\lambda\dot{x}\e[-\lambda x])^2)-mga\e[-\lambda x]\\
+                \Aboxed{L &= \frac{1}{2}m(\dot{x}^2+a^2\lambda^2\dot{x}^2\e[-2\lambda x])-agm\e[-\lambda x]}
+            \end{align*}
+        \end{proof}
         \item Determine the equation(s) of motion.
+        \begin{proof}
+            Apply the Euler-Lagrange equation.
+            \begin{align*}
+                \dv{t}(\pdv{L}{\dot{x}}) &= \pdv{L}{x}\\
+                \dv{t}(m\dot{x}+ma^2\lambda^2\dot{x}\e[-2\lambda x]) &= agm\lambda\e[-\lambda x]-ma^2\lambda^3\dot{x}^2\e[-2\lambda x]\\
+                m\ddot{x}+ma^2\lambda^2\ddot{x}\e[-2\lambda x]-2ma^2\lambda^3\dot{x}^2\e[-2\lambda x] &= agm\lambda\e[-\lambda x]-ma^2\lambda^3\dot{x}^2\e[-2\lambda x]\\
+                \Aboxed{\ddot{x}(m+ma^2\lambda^2\e[-2\lambda x])-\dot{x}^2(ma^2\lambda^3\e[-2\lambda x])-agm\lambda\e[-\lambda x] &= 0}
+            \end{align*}
+        \end{proof}
         % (You can't solve this in closed form, but even complicated equations of motion are useful. They can be integrated numerically for particular initial conditions, and their behavior can be analyzed via methods of dynamical systems that we will touch on at the end of the quarter.)
     \end{enumerate}
     \item A bead of mass $m$ is confined to move on a smooth circular wire of radius $R$, located in the $xz$-plane, under the influence of gravity (which acts in the $-\khat$ direction).
     \begin{enumerate}
         \item Determine the Lagrangian for the bead.
+        \begin{proof}
+            Analogous to the in-class example from 10/11, we have
+            \begin{align*}
+                T &= \frac{1}{2}mR^2\dot{\theta}^2&
+                V &= -mgR\cos\theta
+            \end{align*}
+            Therefore, we have that
+            \begin{equation*}
+                \boxed{L = \frac{1}{2}mR^2\dot{\theta}^2+mgR\cos\theta}
+            \end{equation*}
+        \end{proof}
         \item Determine the equation(s) of motion.
+        \begin{proof}
+            Apply the Euler-Lagrange equation.
+            \begin{align*}
+                \dv{t}(\pdv{L}{\dot{\theta}}) &= \pdv{L}{\theta}\\
+                \dv{t}(mR^2\dot{\theta}) &= -mgR\sin\theta\\
+                mR^2\ddot{\theta} &= -mgR\sin\theta\\
+                \Aboxed{\ddot{\theta} &= -\frac{g}{R}\sin\theta}
+            \end{align*}
+        \end{proof}
         \item Comment on the relationship between this bead and the bob of a simple pendulum of mass $m$ and length $R$. What is the relationship between the force exerted by the pendulum rod, and the force exerted by the wire?
+        \begin{proof}
+            Both the bead and the bob are constrained to the same region of space (a circle of fixed radius) and subjected to the same external forces. Indeed, the two systems are mathematically and physically identical; the variation between them comes solely from the conceptual setup. Perhaps a good way to describe these two systems would be \emph{unequal but isomorphic}.\par
+            The force exerted by the pendulum rod is a tension force, and the force exerted by the wire is a normal force. However, both force vectors align in terms of their direction \emph{and} magnitude!
+        \end{proof}
     \end{enumerate}
     \item The circular wire from the previous question is now rotated at a constant rate $\omega$ about the $\khat$ axis through its center.
     \begin{enumerate}
         \item Determine the Lagrangian for the particle.
+        \begin{proof}
+            First, we recognize the spherical symmetry of the problem. Thus, we choose $r,\theta,\phi$ as our generalized coordinates. In this case, we have
+            \begin{align*}
+                v_r &= \dot{r}&
+                v_\theta &= r\dot{\theta}&
+                v_\phi &= r\dot{\phi}\sin\theta
+            \end{align*}
+            Additionally, we know from the problem setup that
+            \begin{align*}
+                r &= R&
+                \dot{r} &= 0&
+                \dot{\phi} &= \omega
+            \end{align*}
+            It follows that
+            \begin{align*}
+                T &= \frac{1}{2}m(v_r^2+v_\theta^2+v_z^2)&
+                V &= mgz
+            \end{align*}
+            Therefore, we have that
+            \begin{equation*}
+                \boxed{L = \frac{1}{2}m(R^2\dot{\theta}^2+R^2\omega^2\sin^2\theta)+mgR\cos\theta}
+            \end{equation*}
+        \end{proof}
         \item Determine the equation(s) of motion.
+        \begin{proof}
+            Apply the Euler-Lagrange equation.
+            \begin{align*}
+                \dv{t}(\pdv{L}{\dot{\theta}}) &= \pdv{L}{\theta}\\
+                \dv{t}(mR^2\dot{\theta}) &= mR^2\omega^2\sin\theta\cos\theta-mgR\sin\theta\\
+                mR^2\ddot{\theta} &= mR^2\omega^2\sin\theta\cos\theta-mgR\sin\theta\\
+                \Aboxed{\ddot{\theta} &= \left( \omega^2\cos\theta-\frac{g}{R} \right)\sin\theta}
+            \end{align*}
+        \end{proof}
         \item Make the approximation that the angular deviation from the bottom of the wire is small. What is the equation of motion? What is the frequency of the oscillations?
+        \begin{proof}
+            When $\theta$ is small, $\cos\theta\approx 1$ and $\sin\theta\approx\theta$. Plugging these approximations into the EOM from part (b) yields
+            \begin{equation*}
+                \boxed{\ddot{\theta} = -\left( \frac{g}{R}-\omega^2 \right)\theta}
+            \end{equation*}
+            We may observe that this EOM has an analogous structure to the 1D SHO EOM, obtained by pairing $k/m$ there with $g/R-\omega^2$ here. Thus, assuming that $g/R-\omega^2>0$, the system will oscillate with angular frequency
+            \begin{equation*}
+                \tilde{\omega} = \sqrt{\frac{g}{R}-\omega^2}
+            \end{equation*}
+            Therefore, since the angular frequency equals $2\pi$ times the frequency, the frequency of the oscillations will be
+            \begin{equation*}
+                \boxed{f = \frac{1}{2\pi}\sqrt{\frac{g}{R}-\omega^2}}
+            \end{equation*}
+        \end{proof}
         \item (Bonus) Returning to the full equation, determine a critical value of $\omega$ where the behavior of the system changes. What types of trajectories are possible for $\omega>\omega_c$?
+        \begin{proof}
+            Analogously to how the 1D SHO critically changes when $k/m$ goes from positive to negative, this system should change critically when $g/R-\omega^2\cos\theta$ goes from positive to negative. That is
+            \begin{align*}
+                0 &= \frac{g}{R}-\omega_c^2\cos\theta\\
+                \Aboxed{\omega_c &= \sqrt{\frac{g}{R\cos\theta}}}
+            \end{align*}
+            If $\omega>\omega_c$ so that $g/R-\omega^2\cos\theta<0$, the bead can rotate around the circular wire clockwise or counterclockwise indefinitely without ever changing direction (though its velocity at different points along the wire certainly will change).
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
