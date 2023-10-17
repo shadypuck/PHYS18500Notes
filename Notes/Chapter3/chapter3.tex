@@ -644,6 +644,221 @@
 
 
 
+\section{Lagrange Multipliers and Forces of Constraint}
+\begin{itemize}
+    \item \marginnote{10/13:}Today.
+    \begin{itemize}
+        \item Why is $T=mv^2/2$?
+        \item Forces of constraint.
+        \item Lagrange multipliers.
+    \end{itemize}
+    \item Recap.
+    \begin{itemize}
+        \item The Lagrangian is $L=T-V$.
+        \begin{itemize}
+            \item It allows us to write all forces, other than constraints, in terms of a potential energy function $V$.
+        \end{itemize}
+        \item We can obtain from it Lagrange's EOMs, which are the Euler-Lagrange equations across generalized coordinates.
+        \item $L$ is only defined up to a total time derivative of any function we choose of the coordinates and time, i.e., the following two Lagrangians give the same EOMs.
+        \begin{align*}
+            L' &= L(x_i,\dot{x}_i,t)+\dv{t}f(x_i,t)&
+            &L(x_i,\dot{x}_i,t)
+        \end{align*}
+    \end{itemize}
+    \item Question: What is kinetic energy?
+    \begin{itemize}
+        \item Consider a free particle moving with constant velocity $\vec{v}=\dot{\vec{r}}$ in direction $\vec{r}$ in reference frame $K$.
+        \begin{itemize}
+            \item Since the particle is free, $V=0$ and $L=T-V=T-0=T$.
+        \end{itemize}
+        \item What forms can $L$ take?
+        \begin{itemize}
+            \item Because of the homogeneity of time, $L$ must be independent of time.
+            \item Because of the homogeneity of space, $L$ must be independent of $\vec{r}$. That is, we should be able to shift the origin and get the same EOM (under translated coordinates).
+            \item Because of the isotropy of space, $L$ must be independent of the direction of $\vec{v}$. In particular, it can only depend on $\vec{v}\cdot\vec{v}=v^2$. Note that we could put our dependence on $v$, we're just choosing $v^2$ as \emph{some} function of $v$ right now.
+            \item Thus, the Lagrangian can only depend on $v^2$ in this scenario. Does it depend on $v^2$, though?
+        \end{itemize}
+        \item Now that we have come constraints on the Lagrangian, let's see what other information we can pull out.
+        \item Since $L$ is independent of $x_i$,
+        \begin{equation*}
+            \dv{t}(\pdv{L}{\dot{x}_i}) = \pdv{L}{x_i} = 0
+        \end{equation*}
+        \begin{itemize}
+            \item This implies that $\dot{x}_i$ is constant in time, and we recover Newton's first law (the law of inertia). How??
+        \end{itemize}
+        \item What happens if the velocity changes slightly?
+        \begin{itemize}
+            \item Consider the motion of our particle in a new reference frame $K'$. Let $K'$ move with velocity $-\vec{\varepsilon}$ with respect to $K$.
+            \item It follows that the velocity of the particle in $K'$ is $\vec{v}'=\vec{v}+\vec{\varepsilon}$.
+            \item Moreover, the Lagrangian in frame $K'$ is
+            \begin{align*}
+                L((\vec{v}+\vec{\varepsilon})^2) &= L(v^2+2\vec{v}\cdot\vec{\varepsilon}+\varepsilon^2)\\
+                &= L(v^2)+\pdv{L}{(v^2)}2\vec{v}\cdot\vec{\varepsilon}+\mathcal{O}(\varepsilon^2)\\
+                &= L(v^2)+\pdv{L}{(v^2)}\sum_i2\varepsilon_i\dot{x}_i\\
+                &= L(v^2)+\sum_i2\varepsilon_i\pdv{L}{(v^2)}\dot{x}_i
+            \end{align*}
+            \item Note that the second line Taylor expands $L$ about $v^2$ to first order.
+        \end{itemize}
+        \item Now, recall that
+        \begin{equation*}
+            \dv{t}f(x_i,t) = \sum_i\pdv{f}{x_i}\dot{x}_i+\pdv{f}{t}
+        \end{equation*}
+        \begin{itemize}
+            \item Identifying this with the above, we see that the identification is only possible if $\pdv*{L}{(v^2)}$ is a constant, which we'll suggestively call $m/2$, and $\pdv*{f}{t}=0$.
+            \item It follows by integrating both sides of $\pdv*{L}{(v^2)}=m/2$ that
+            \begin{equation*}
+                L(v^2) = \frac{1}{2}mv^2
+            \end{equation*}
+        \end{itemize}
+        \item Implication: For an infinitesimal change in velocity, we get a suggestive Lagrangian.
+        \begin{itemize}
+            \item Thus, if we have a finite velocity boost from $\vec{v}_1$ to $\vec{v}_2$, we have
+            \begin{align*}
+                L' &= \frac{1}{2}m{v'}^2\\
+                &= \frac{1}{2}m(\vec{v}_1+\vec{v}_2)^2\\
+                &= \frac{1}{2}m(v_1^2+2\vec{v}_1\cdot\vec{v}_2+v_2^2)\\
+                &= L+\dv{t}\underbrace{\left( m\vec{r}\cdot\vec{v_2}+\frac{1}{2}m{\vec{v}_2}^2t \right)}_{f(\vec{r},t)}
+            \end{align*}
+        \end{itemize}
+    \end{itemize}
+    \item We now move onto one application of Lagrange undetermined multipliers.
+    \item Example to start.
+    \begin{itemize}
+        \item Consider a particle of mass $m$ that is confined to slide down the top of a smooth half-cylinder of radius $R$. Define the angle $\theta$ with respect to the main vertical. Let gravity point in the $-\jhat$ direction.
+        \item As before, we can write $L=T-V$.
+        \begin{itemize}
+            \item Also as before, we can switch to polar coordinates for $T,V$:
+            \begin{align*}
+                T &= \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)&
+                V &= mgr\cos\theta
+            \end{align*}
+        \end{itemize}
+        \item Equation of constraint: $r-R=0$.
+        \item We now have an option.
+        \begin{itemize}
+            \item We could solve this problem as in our homework.
+            \item But we'll do something different today: Use the method of lagrange undetermined multipliers. This different approach can be useful.
+            \item Here's how it works:
+        \end{itemize}
+    \end{itemize}
+    \item Theorem: For $L(x_i,\dot{x}_i,t)$ with constraints $f_j(x_i,t)=0$, the Euler-Lagrange equations are
+    \begin{equation*}
+        \begin{cases}
+            \pdv{L}{x_i}-\dv{t}(\pdv{L}{\dot{x}_i})+\underbrace{\sum_{j=1}^n\lambda_j(t)\pdv{f_j}{x_i}}_{Q_i} = 0\\
+            f_j(x_i,t) = 0
+        \end{cases}
+    \end{equation*}
+    \begin{itemize}
+        \item $\lambda_j(t)$ is a \textbf{lagrange undetermined multiplier}.
+        \item There are $n$ \textbf{holonomic constraints} $f_j(x_i,t)=0$, labeled by the index $j$.
+        \item We may have seen Lagrange multipliers in the domain of functional optimization (in my case, see CAAGThomasNotes p. 66-67).
+        \item The derivation is in the extra textbook chapters posted on Canvas, but will not be discussed in class.
+    \end{itemize}
+    \item Why this method is useful: The $Q_i$ term is a \textbf{generalized force of constraint}.
+    \item Back to our example:
+    \begin{itemize}
+        \item We seek to drive the Euler-Lagrange equations for this new method. There will be three of them: 2 for the two variables ($\theta,r$), and 1 constraint. Let's begin.
+        \item We start with
+        \begin{align*}
+            L &= \frac{m}{2}(\dot{r}^2+r^2\dot{\theta}^2)-mgr\cos\theta&
+            f &= r-R = 0
+        \end{align*}
+        \item E-L eqn number 1:
+        \begin{itemize}
+            \item We know that
+            \begin{align*}
+                \pdv{L}{\theta} &= mgr\sin\theta&
+                \pdv{L}{\dot{\theta}} &= mr^2\dot{\theta}&
+                \pdv{f}{\theta} &= 0
+            \end{align*}
+            \item Thus, the first Euler-Lagrange equation is
+            \begin{equation*}
+                mgr\sin\theta-2mr\dot{r}\dot{\theta}-mr^2\ddot{\theta} = 0
+            \end{equation*}
+        \end{itemize}
+        \item E-L eqn number 2:
+        \begin{itemize}
+            \item We know that
+            \begin{align*}
+                \pdv{L}{r} &= mr\dot{\theta}^2-mg\cos\theta&
+                \pdv{L}{\dot{r}} &= m\dot{r}&
+                \pdv{f}{r} &= 1
+            \end{align*}
+            \item Thus, the second Euler-Lagrange equation is
+            \begin{equation*}
+                mr\dot{\theta}^2-mg\cos\theta-m\ddot{r}+\lambda(t) = 0
+            \end{equation*}
+        \end{itemize}
+        \item E-L eqn number 3:
+        \begin{itemize}
+            \item The third and final Euler-Lagrange equation is the constraint equation
+            \begin{equation*}
+                r-R = 0
+            \end{equation*}
+        \end{itemize}
+        \item This system of three equations has three unknowns: $r,\theta,\lambda$. We now go about solving it.
+        \item Start by plugging $r=R$ (and its consequences $\dot{r}=\ddot{r}=0$) into the other two equations and simplifying. The first two equations then become
+        \begin{align*}
+            gR\sin\theta-R^2\ddot{\theta} &= 0&
+            mR\dot{\theta}^2-mg\cos\theta+\lambda(t) &= 0
+        \end{align*}
+        \item The left equation further becomes
+        \begin{equation*}
+            \ddot{\theta} = \frac{g}{R}\sin\theta
+        \end{equation*}
+        \item The right can be rewritten in the slightly more suggestive form
+        \begin{equation*}
+            -mg\cos\theta+\lambda(t) = -mR\dot{\theta}^2
+        \end{equation*}
+        \begin{itemize}
+            \item This is a Newtonian force balance.
+            \item The leftmost term the $\hat{r}$ component of gravity (see geometric diagram in class notes).
+            \item The middle term is the force of constraint/normal force from the block.
+            \item The third term is the net force for circular motion (notice that substituting $\dot{\theta}=v/R$, we recover $-mv^2/R$!).
+        \end{itemize}
+        \item We now work to substitute the $\ddot{\theta}$ equation into the Newtonian force balance. To do so, we integrate to find $\dot{\theta}^2$ and substitute.
+        \begin{itemize}
+            \item Recall that
+            \begin{equation*}
+                \ddot{\theta} = \dv{\dot{\theta}}{t}
+                = \dv{\dot{\theta}}{\theta}\dv{\theta}{t}
+                = \dot{\theta}\dv{\dot{\theta}}{\theta}
+            \end{equation*}
+            \item Thus,
+            \begin{align*}
+                \dot{\theta}\dv{\dot{\theta}}{\theta} &= \frac{g}{R}\sin\theta\\
+                \int\dot{\theta}\dd\dot{\theta} &= \int\frac{g}{R}\sin\theta\dd\theta\\
+                \frac{\dot{\theta}^2}{2} &= -\frac{g}{R}\cos\theta+C
+            \end{align*}
+            \item The initial condition $\dot{\theta}(\theta=0)=0$ reveals that $C=g/R$. Note that the initial condition basically just formalizes the notion that the particle is at rest ($\dot{\theta}=0$) when it is at the top of the half-cylinder ($\theta=0$).
+            \item Thus, we obtain
+            \begin{equation*}
+                \dot{\theta}^2 = \frac{2g}{R}(1-\cos\theta)
+            \end{equation*}
+        \end{itemize}
+        \item Substituting this result into the Newtonian force balance, we obtain
+        \begin{equation*}
+            -mg\cos\theta+\lambda(t) = -2mg(1-\cos\theta)
+        \end{equation*}
+        \begin{itemize}
+            \item It follows that
+            \begin{equation*}
+                \lambda(t) = mg(3\cos\theta-2)
+            \end{equation*}
+        \end{itemize}
+        \item Once again, note that $\lambda(t)$ is the force exerted by the block on the particle.
+        \begin{itemize}
+            \item This interpretation implies something pretty cool: We can calculate the angle at which the particle will "fall off" of the surface of the block.
+            \item In particular, this critical angle happens when $\lambda(t)=0$, i.e., where
+            \begin{equation*}
+                \theta = \cos^{-1}\left( \frac{2}{3} \right)
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+
 \section{Chapter 3: Energy and Angular Momentum}
 \emph{From \textcite{bib:KibbleBerkshire}.}
 \begin{itemize}
