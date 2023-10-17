@@ -1,0 +1,239 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{3}
+
+\begin{document}
+
+
+
+
+\chapter{Central Conservative Forces}
+\section{Conservation Laws, Radial Energy Equation, Orbits}
+\begin{itemize}
+    \item \marginnote{10/16:}Review.
+    \begin{itemize}
+        \item The Lagrangian for a free particle.
+        \item We have that space is isotropic and homogeneous, and time is homogeneous.
+        \item $L(v^2)$ or $L(v)$ implies that the equations of motion are invariant under the velocity boost.
+        \item Recall that $v=\sqrt{v^2}=\sqrt{v_x^2+v_y^2+v_z^2}$.
+        \item From here, we get to $L=\frac{1}{2}mv^2$
+    \end{itemize}
+    \item What we've said on 3D central conservative forces thus far.
+    \begin{itemize}
+        \item Consider a particle in 3D at position $\vec{r}$ being acted on by external forces $\vec{F}(\vec{r})$.
+        \item In spherical coordinates, we have
+        \begin{align*}
+            x &= r\sin\theta\cos\phi&
+            y &= r\sin\theta\sin\phi&
+            z &= r\cos\theta
+        \end{align*}
+        \begin{itemize}
+            \item $\theta$ is the \textbf{polar} angle.
+            \item $\phi$ is the \textbf{azimuthal} angle.
+        \end{itemize}
+        \item Special case: \emph{Central} force.
+        \begin{itemize}
+            \item \emph{Central} force: Acts in a direction parallel to $\vec{r}$.
+            \item Thus, if $\vec{F}$ is central, then $\vec{G}=\vec{r}\times\vec{F}=0$. It follows that $\vec{J}=\vec{r}\times\vec{p}$ is conserved.
+        \end{itemize}
+        \item Special case: \emph{Conservative} force.
+        \begin{itemize}
+            \item Condition: $\vec{\nabla}\times\vec{F}=0$.
+            \item In this case, there exists a scalar function $V$ such that $\vec{F}=-\vec{\nabla}V$.
+            \item Equivalently, in spherical coordinates,
+            \begin{align*}
+                F_r &= -\pdv{V}{r}&
+                F_\theta &= -\frac{1}{r}\pdv{V}{\theta}&
+                F_\phi &= -\frac{1}{r\sin\theta}\pdv{V}{\phi}
+            \end{align*}
+            \item Thus, since $F_\theta=F_\phi=0$, it follows that $V=V(r)$ is not dependent on $\theta$ or $\phi$. Mathematically,
+            \begin{equation*}
+                \vec{F} = -\pdv{F}{r}\hat{r}
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
+    \item Recall: Uniform circular motion.
+    \begin{itemize}
+        \item In plane polar coordinates, we have
+        \begin{equation*}
+            \vec{F} = m\ddot{\vec{r}} = m[(\ddot{r}-r\dot{\theta}^2)\hat{r}+(r\ddot{\theta}+2\dot{r}\dot{\theta})\hat{\theta}]
+        \end{equation*}
+        \item In uniform circular motion, $\dot{\theta}=\omega$ and $r=R$, so we get
+        \begin{equation*}
+            \vec{F} = mR\omega^2\hat{r}
+            = \frac{mv^2}{R}\hat{r}
+        \end{equation*}
+        \begin{itemize}
+            \item Note that to get from the second expression above to the third one, we substitute the definition of angular velocity: $\omega=v/R$.
+        \end{itemize}
+    \end{itemize}
+    \item We are now ready to treat the case of the \emph{central conservative} force.
+    \begin{itemize}
+        \item Herein, we get a lot of conservation laws!
+        \begin{enumerate}
+            \item Energy is conserved:
+            \begin{equation*}
+                \frac{1}{2}m\dot{\vec{r}}{\,}^2+V(r) = E = \text{constant}
+            \end{equation*}
+            \begin{itemize}
+                \item Note that this is a scalar equation.
+            \end{itemize}
+            \item Angular momentum is conserved:
+            \begin{equation*}
+                m\vec{r}\times\dot{\vec{r}} = \vec{J} = \text{constant}
+            \end{equation*}
+            \begin{itemize}
+                \item Note that this is a set of 3 vector equations.
+            \end{itemize}
+        \end{enumerate}
+        \item Letting $r,\theta$ be our plane polar coordinates, we can rewrite equation (1) above as follows.
+        \begin{equation*}
+            \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)+V(r) = E
+        \end{equation*}
+        \item Similarly, we can rewrite equation (2) above as follows.
+        \begin{align*}
+            \vec{J} &= mr\hat{r}\times(\underbrace{\dot{r}}_{v_r}\hat{r}+\underbrace{r\dot{\theta}}_{v_\theta}\hat{\theta})\\
+            J &= mr^2\dot{\theta}
+        \end{align*}
+        \begin{itemize}
+            \item Note that $J$ is a scalar here.
+        \end{itemize}
+        \item Since $\dot{\theta}$ is a function of $r$, we get orbits??
+        \item In particular, if we plug $\dot{\theta}=J/mr^2$ into the original conservation of energy equation, we get the \textbf{radial energy equation}.
+    \end{itemize}
+    \item \textbf{Radial energy equation}: The equation defined as follows. \emph{Given by}
+    \begin{equation*}
+        \frac{1}{2}m\dot{r}^2+\frac{J^2}{2mr^2}+V(r) = E
+    \end{equation*}
+    \begin{itemize}
+        \item Note that this looks a lot like the original energy conservation law once we define the \textbf{effective potential energy}.
+    \end{itemize}
+    \item \textbf{Effective potential energy}: The following expression, which treats a radial particle as if it were a one-dimensional particle, i.e., in a rotating reference frame. \emph{Denoted by} $\bm{U(r)}$. \emph{Given by}
+    \begin{equation*}
+        U(r) = \frac{J^2}{2mr^2}+V(r)
+    \end{equation*}
+    \item Example: $V(r)=kr^2/2$.
+    \begin{itemize}
+        \item Then $U(r)=J^2/2mr^2+kr^2/2$. We get a shape that is a blend of a parabola but that goes up super steeply as we approach the axis.
+        \item We have a PE function that looks like a parabola, but gets steeper close to the origin; this gives us two turn about points.
+    \end{itemize}
+    \item Most important example: The inverse square law.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \small
+                \draw
+                    (0,-1) -- (0,3) node[above]{$U(r)$}
+                    (0,0) -- (3,0) node[right]{$r$}
+                ;
+    
+                \footnotesize
+                \draw (0.924,0.1) -- ++(0,-0.2) node[below]{$r_1$};
+                \draw [densely dashed] (0,2) node[left]{$E$} -- ++(3,0);
+    
+                \draw [blx,thick] plot[domain=0.69:3,smooth] (\x,{0.6/(\x)^2+1.2/\x});
+            \end{tikzpicture}
+            \caption{$k>0$.}
+            \label{fig:invSqPota}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \small
+                \draw
+                    (0,-1) -- (0,3) node[above]{$U(r)$}
+                    (0,0) -- (3,0) node[right]{$r$}
+                ;
+    
+                \footnotesize
+                \draw (0.5,0.1) -- ++(0,-0.2) node[below,xshift=-1pt]{$\frac{\ell}{2}$};
+                \draw (1,0.1) -- ++(0,-0.2) node[below]{$\ell$};
+                \draw (0.1,-0.6) -- ++(-0.2,0) node[left]{$-\frac{|k|}{2\ell}$};
+    
+                \draw [blx,thick] plot[domain=0.29:3,samples=100,smooth] (\x,{0.6/(\x)^2-1.2/\x});
+            \end{tikzpicture}
+            \caption{$k<0$.}
+            \label{fig:invSqPotb}
+        \end{subfigure}
+        \caption{Potentials under the inverse square law.}
+        \label{fig:invSqPot}
+    \end{figure}
+    \begin{itemize}
+        \item Attractive and repulsive case.
+        \item Occurs when $\vec{F}=k\hat{r}/r^2$.
+        \item $k>0$ is repulsive (think like charges).
+        \item $k<0$ is attractive (think gravity or opposite charges).
+        \item Repulsive case ($k>0$):
+        \begin{itemize}
+            \item We have
+            \begin{equation*}
+                U(r) = \frac{J^2}{2mr^2}+\frac{k}{r}
+            \end{equation*}
+            \item Thus, we get a point of closest approach as dictated by the energy $E$, but that's it.
+        \end{itemize}
+        \item Attractive case:
+        \begin{itemize}
+            \item We have
+            \begin{equation*}
+                U(r) = \frac{J^2}{2mr^2}+\frac{k}{r}
+            \end{equation*}
+            once again.
+            \item If we define the \textbf{length scale}, then we obtain
+            \begin{equation*}
+                U(r) = |k|\left( \frac{\ell}{2r^2}-\frac{1}{r} \right)
+            \end{equation*}
+            \item It follows that, as in Figure \ref{fig:invSqPotb}, the effective potential crosses $y=0$ at $\ell/2$ and has minimum at $y=-|k|/2\ell$.
+            \item Additionally, there are four possible types of trajectories depending on the value of $E$.
+            \begin{enumerate}
+                \item ($E=U_\text{min}=-|k|/2\ell$): $\vec{r}=0$, and we get uniform circular motion with $r=\vec{l}$. The kinetic energy is
+                \begin{equation*}
+                    \frac{1}{2}mv^2 = T
+                    = E-V
+                    = -\frac{|k|}{2\ell}-\frac{k}{\ell}
+                    = \frac{|k|}{2\ell}
+                \end{equation*}
+                so that the speed is
+                \begin{equation*}
+                    v = \sqrt{\frac{|k|}{m\ell}}
+                \end{equation*}
+                \item ($-|k|/2\ell<E<0$): Bounded orbit between $r_1<r<r_2$. The shape is an \emph{ellipse}, as we will later prove.
+                \item ($E=0$): The orbit is a parabola: It comes in, slingshots around, and just escapes back to $\infty$.
+                \item ($E>0$): The orbit is a hyperbola.
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Length scale}: The distance from the origin at which the particle orbits stably. \emph{Denoted by} $\bm{\ell}$. \emph{Given by}
+    \begin{equation*}
+        \ell = J^2/m|k|
+    \end{equation*}
+    \item We find the orbits by eliminating time from the radial energy equation.
+    \begin{itemize}
+        \item Recall that
+        \begin{equation*}
+            \frac{1}{2}m\dot{r}^2+\frac{J^2}{2mr^2}+V(r) = E
+        \end{equation*}
+        \item Now substitute in $u=1/r$ and its consequence $\dv*{u}{\theta}=(-1/r^2)\dv*{r}{\theta}$. Note, of course, that we are just encoding all of the information in $r$ in this "$u$."
+        \item It follows that
+        \begin{equation*}
+            \dot{r} = \dv{r}{\theta}\dot{\theta}
+            = -r^2\dot{\theta}\dv{u}{\theta}
+            = -\frac{J}{m}\dv{u}{\theta}
+        \end{equation*}
+        \item Returning the substitution into the radial energy equation, we obtain
+        \begin{equation*}
+            \frac{J^2}{2m}\left( \dv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+V(r) = E
+        \end{equation*}
+        \item Evidently, this equation relates $u$ to $\theta$ for a given potential energy function $V$!
+        \item We can use this equation to solve for the $V(u)$ that gives us an orbit $u(\theta)$, and (even easier) we can solve for the orbit given $V(u)$. Depending on how complicated this is, we may not be able to solve the ODE. But we \emph{can} solve it in several cool cases.
+    \end{itemize}
+    \item We'll start next time with orbits of the inverse square law.
+\end{itemize}
+
+
+
+
+\end{document}
