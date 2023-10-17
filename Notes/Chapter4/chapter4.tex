@@ -235,5 +235,110 @@
 
 
 
+\section{Office Hours (Jerison)}
+\begin{itemize}
+    \item Is the $L$ $\to$ $mv^2/2$ derivation in any textbook?
+    \begin{itemize}
+        \item No, but she will post it.
+    \end{itemize}
+    \item What do the Lagrangian and action \emph{mean}?
+    \begin{itemize}
+        \item The Lagrangian is $T-V$ to some extent because that's what gives us Newton's laws when we extremize it. It doensn't have to be this way, but this is the math that makes everything work out.
+        \item $T$ is a function of the velocities and $V$ of the positions (for conservative forces).
+        \item A \emph{necessary} condition: If $L$ satisfies Lagrange's EOMs, then $S$ is a stationary point.
+        \item The action really doesn't mean anything for the system; it happens that this is another way to formulate mechanics, but the principle of least action is just as empirical as Newton's laws.
+        \item She didn't have any good examples for $S$ in the $(x,v,t)$ space, but I'll try to come up with one. Maybe on uniform constant-velocity 1D motion.
+    \end{itemize}
+    \item Constraint equations in Problem 1?
+    \begin{itemize}
+        \item Just rewrite constraints in the form $f(q_i,t)=0$ and take derivatives.
+    \end{itemize}
+    \item An example of using Lagrange undetermined multipliers: Let's tackle the parabolic wire again.
+    \begin{itemize}
+        \item Let our bead be confined to the wire which has shape $y=\alpha x^2$. Let gravity act in the $-\jhat$ direction. Let the particle have mass $m$.
+        \item As per usual, write the Lagrangian as $L=T-V$. Instead of immediately using the constraint equations to get rid of a certain variable, we'll keep it and modify EOMs.
+        \item Take $T=m(\dot{x}^2+\dot{y}^2)/2$ and $V=mgy$.
+        \item Since we didn't substitute out variables using the constraint, we have to add an additional generalized force to the EOM:
+        \begin{equation*}
+            \dv{t}(\pdv{L}{\dot{q}_i})-\pdv{L}{q_i}+\sum_j\lambda_j(t)\pdv{f_j}{q_i} = 0
+        \end{equation*}
+        \item Constraint: $f_1(x,y)=y-\alpha x^2=0$.
+        \item Since we have 2 variables and 1 constraint, substituting everything in, we get 3 equations:
+        \begin{align*}
+            \dv{t}(m\dot{x})+\lambda_1(t)(-2\alpha x) &= 0&
+            \dv{t}(m\dot{y})-mg+\lambda_1(t) &= 0&
+            y-\alpha x^2 &= 0
+        \end{align*}
+        \begin{itemize}
+            \item We use the same $\lambda$ both times because each $\lambda$ corresponds to the single constraint, $f_1$.
+        \end{itemize}
+        \item Simplifying, we obtain
+        \begin{align*}
+            m\ddot{x}-2\alpha x\lambda(t) &= 0&
+            m\ddot{y}-mg+\lambda(t) &= 0&
+            y-\alpha x^2 &= 0
+        \end{align*}
+        \item To solve for $\lambda$ in terms of $y$, rewrite equation 2:
+        \begin{equation*}
+            \lambda(t) = mg-m\ddot{y}
+        \end{equation*}
+        \item Since $\ddot{y}=2\alpha\dot{x}^2+2\alpha x\ddot{x}$.and the force of constraint is $\lambda_1(t)\pdv*{f_1}{q_i}$, we obtain
+        \begin{equation*}
+            \lambda(t) = mg-m(2\alpha\dot{x}^2+2\alpha x\ddot{x})
+        \end{equation*}
+        \item This allows us to plug back into equation 1 to get
+        \begin{equation*}
+            m\ddot{x}-2\alpha x(mg-m(2\alpha\dot{x}^2+2\alpha x\ddot{x})) = 0
+        \end{equation*}
+        \item And we get back to the generic nonlinear ODE. So even if we slice the parabolic wire problem this way, we still can't solve for the motion analytically.
+        \item Notice how we used all three equations in the system to get to the final EOM above!
+    \end{itemize}
+    \item When would the method of Lagrange multipliers be a faster method than direct substitution?
+    \begin{itemize}
+        \item There are some types of constraints that are easier to do like this, but we aren't ready for any of those examples yet.
+        \item Right now, the main utility of this perspective is allowing for the generalized force of constraint to pop out so that we get this extra piece of information. It's not yet computationally simpler.
+    \end{itemize}
+    \item Why does problem 2 exist?
+    \begin{itemize}
+        \item It's one of the ways of deriving the plane polar coordinates we've used so often.
+        \item Question: What is the correct expression for acceleration in plane polar coordinates. We need
+        \begin{equation*}
+            \ddot{\vec{r}} = \pdv[2]{t}(r\hat{r})
+        \end{equation*}
+        \item So 2 is partially Newtonian and partially Lagrange multiplier. The Newtonian way is complicated; the other way is simpler.
+    \end{itemize}
+    \item How do we find $\omega$ in Problem 3?
+    \begin{itemize}
+        \item There is a correct period that is dictated by the requirement that if you look out at it, it looks like it is not moving.
+        \item For Question 3, we have full license to define our own variables and then look up their values online.
+        \item For instance,
+        \begin{equation*}
+            \vec{F} = -\frac{GMm}{r^2}\hat{r}
+        \end{equation*}
+    \end{itemize}
+    \item Problem 5:
+    \begin{itemize}
+        \item We won't need to look up any info about Kepler's laws, but we can if we want/need for context.
+    \end{itemize}
+    \item Problem 4:
+    \begin{itemize}
+        \item Question 4.9, not 3.9.
+        \item We can write an effective potential energy function; we know that circular motion occurs at the minimum.
+        \item There are several ways to solve this. An easier way actually might be with $mv^2/r$.
+    \end{itemize}
+    \item The $V(r)=kr^2/2$ example from class?
+    \begin{itemize}
+        \item There's a derivation of this in Section 4.1 of \textcite{bib:KibbleBerkshire}. We can find the orbits using the equation relating potentials to orbits. The isotropic harmonic oscillator gives elliptical orbits.
+        \item Ellipses look like oscillations if we only look at them radially.
+        \item In this case, it's \emph{not} spiralling in any funny way. There are some that do, but not this one.
+    \end{itemize}
+    \item What does the effective potential energy give us?
+    \begin{itemize}
+        \item It means that radially, the particle behaves as a particle in the 1D potential $U(r)$.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
