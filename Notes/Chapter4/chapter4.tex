@@ -208,7 +208,7 @@
     \end{itemize}
     \item \textbf{Length scale}: The distance from the origin at which the particle orbits stably. \emph{Denoted by} $\bm{\ell}$. \emph{Given by}
     \begin{equation*}
-        \ell = J^2/m|k|
+        \ell = \frac{J^2}{m|k|}
     \end{equation*}
     \item We find the orbits by eliminating time from the radial energy equation.
     \begin{itemize}
@@ -225,7 +225,7 @@
         \end{equation*}
         \item Returning the substitution into the radial energy equation, we obtain
         \begin{equation*}
-            \frac{J^2}{2m}\left( \dv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+V(r) = E
+            \frac{J^2}{2m}\left( \dv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+V(u) = E
         \end{equation*}
         \item Evidently, this equation relates $u$ to $\theta$ for a given potential energy function $V$!
         \item We can use this equation to solve for the $V(u)$ that gives us an orbit $u(\theta)$, and (even easier) we can solve for the orbit given $V(u)$. Depending on how complicated this is, we may not be able to solve the ODE. But we \emph{can} solve it in several cool cases.
@@ -335,6 +335,338 @@
     \item What does the effective potential energy give us?
     \begin{itemize}
         \item It means that radially, the particle behaves as a particle in the 1D potential $U(r)$.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Inverse Square Law, Scattering}
+\begin{itemize}
+    \item \marginnote{10/18:}Logistical announcements.
+    \begin{itemize}
+        \item We're in week 4 now!
+        \item Next week: Chapter 5. This will conclude Midterm 1 material.
+        \item We'll cover new material on 10/30 and 11/1, but they won't be on the midterm.
+        \item There will be an outline of all Midterm 1 content.
+        \item Logistical survey on Canvas very soon.
+    \end{itemize}
+    \item Today.
+    \begin{itemize}
+        \item Counting degrees of freedom.
+        \item Orbits of the inverse square law.
+    \end{itemize}
+    \item Recap.
+    \begin{itemize}
+        \item A central conservative force can be written as follows.
+        \begin{equation*}
+            \vec{F}(\vec{r}) = -\dv{V}{r}\hat{r}
+        \end{equation*}
+        \item This is a special, constrained scenario due to conservation laws.
+    \end{itemize}
+    \item A new perspective on this scenario: Define it in terms of \textbf{degrees of freedom} and, especially, what happens to them when we apply various conservation laws.
+    \item \textbf{Degree of freedom}: A piece of information that you need to specify the future trajectory of a particle. \emph{Also known as} \textbf{DOF}, \textbf{independent coordinate}.
+    \item Example.
+    \begin{itemize}
+        \item 1 particle in 3D has 6 DOFs: $(x,y,z,\dot{x},\dot{y},\dot{z})$.
+        \item The corresponding initial conditions $(x_0,y_0,z_0,\dot{x}_0,\dot{y}_0,\dot{z}_0)$ suffice to specify the complete future trajectory of the particle.
+    \end{itemize}
+    \item Continuing with this example, what if we start adding in constraints?
+    \begin{itemize}
+        \item If this particle in 3D is under a \emph{central} force, then the \emph{direction} of $\vec{J}$ is conserved.
+        \begin{itemize}
+            \item This corresponds to a loss of 2 DOFs.
+            \item In particular, if the direction of $\vec{J}$ is constant, then the particle's motion is constrained to the plane to which $\vec{J}$ is normal.
+            \item Thus, position and velocity normal to this plane are both zero, and we've lost 2 DOFs.
+            \item Note that this loss is easy to see in a coordinate system that takes the plane to which $\vec{J}$ is normal to be the $xy$-plane, or something. Then $z=\dot{z}=0$ for all time. However, in an alternate coordinate system, the DOFs are still lost; it's just expressed by the fact that changing one of the six coordinates \emph{necessarily} changes at least one of the others.
+        \end{itemize}
+        \item Additionally, if this particle in 3D is under a central force, then $|\vec{J}|$ and $E$ are also fixed.
+        \begin{itemize}
+            \item This removes two more DOFs, one per constraint.
+            \item For starters,
+            \begin{equation*}
+                |\vec{J}| = mr^2\dot{\theta}
+            \end{equation*}
+            relates $\dot{\theta}$ to $r$.
+            \item Additionally,
+            \begin{equation*}
+                \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)+V(r) = E
+            \end{equation*}
+            relates $\dot{r}$ to $r$.
+        \end{itemize}
+        \item At this point, the shape of the orbit is determined; the only things we can still pick are the particle's starting location $\vec{r}_0$ and the orientation of the plane of the orbit with respect to the coordinate system.
+        \begin{itemize}
+            \item The choices of these two things essentially allow us to specify the coordinate system in which our "affine" orbit takes place.
+        \end{itemize}
+    \end{itemize}
+    \item We now dive into orbits for the inverse square law, the most important case of a central force.
+    \begin{itemize}
+        \item Example inverse square forces.
+        \begin{itemize}
+            \item In gravity, $k=-GMm$.
+            \item In Coulomb, $k=qq'/4\pi\varepsilon_0$.
+        \end{itemize}
+        \item Reminders.
+        \begin{itemize}
+            \item For $F=-k/r^2$, $V(r)=k/r$.
+            \item Defining $u=1/r$ gives $V(u)=ku$.
+            \item $k<0$ is attractive and $k>0$ is repulsive.
+            \item Rewriting the conservation laws into more friendly forms yields the radial energy equation (with effective potential energy) and an \textbf{orbit equation}.
+        \end{itemize}
+        \item We now analyze the orbit equation relevant to the inverse square law, which is reiterated below for clarity. Guiding question: What orbits are possible?
+        \begin{equation*}
+            \frac{J^2}{2m}\left( \dv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+ku = E
+        \end{equation*}
+        \begin{itemize}
+            \item Define the length scale as before. Substituting it into the above equation and multiplying through by $2/|k|$, we obtain
+            \begin{equation*}
+                \ell\left( \dv{u}{\theta} \right)^2+\ell u^2\pm 2u = \frac{2E}{|k|}
+            \end{equation*}
+            \item Rearrange and simplify:
+            \begin{align*}
+                \ell\left( \dv{u}{\theta} \right)^2+\ell u^2\pm 2u &= \frac{2E}{|k|}\\
+                \ell^2\left( \dv{u}{\theta} \right)^2+\ell^2u^2\pm 2u\ell+1 &= \frac{2E\ell}{|k|}+1\\
+                \ell^2\left( \dv{u}{\theta} \right)^2+(\ell u\pm 1)^2 &= \frac{2E\ell}{|k|}+1
+            \end{align*}
+            \item Now, let
+            \begin{align*}
+                z &= \ell u\pm 1&
+                e^2 &= \frac{2E\ell}{|k|}+1
+            \end{align*}
+            so that
+            \begin{equation*}
+                \dv{z}{\theta} = \dv{z}{u}\dv{u}{\theta}
+                = \ell\dv{u}{\theta}
+            \end{equation*}
+            \item Then
+            \begin{equation*}
+                \left( \dv{z}{\theta} \right)^2+z^2 = e^2
+            \end{equation*}
+            \item The solution to this differential equation is
+            \begin{equation*}
+                z = e\cos(\theta-\theta_0)
+            \end{equation*}
+            where $\theta_0$ is a constant of integration.
+            \item Setting the above equal to the original definition of $z$ --- $\ell u\pm 1$ --- we can find the final trajectories
+            \begin{align*}
+                e\cos(\theta-\theta_0) &= \ell u\pm 1\\
+                e\cos(\theta-\theta_0)\mp 1 &= \frac{\ell}{r}\\
+                r(e\cos(\theta-\theta_0)\mp 1) &= \ell
+            \end{align*}
+        \end{itemize}
+        \item These equations are called \textbf{conic sections}.
+        \begin{itemize}
+            \item If $k>0$, we get repulsive:
+            \begin{equation*}
+                r(e\cos(\theta-\theta_0)-1) = \ell
+            \end{equation*}
+            \item If $k<0$, we get attractive:
+            \begin{equation*}
+                r(e\cos(\theta-\theta_0)+1) = \ell
+            \end{equation*}
+        \end{itemize}
+        \item Note that we call the constant $e$ the \textbf{eccentricity} and $\theta_0$ the \textbf{orientation}.
+    \end{itemize}
+    \item \textbf{Eccentricity}: A dimensionless quantity that discriminates amongst various types of orbits. \emph{Denoted by} $\bm{e}$.
+    \begin{itemize}
+        \item $e=0 \Longrightarrow \text{circle}$.
+        \item $e<1 \Longrightarrow \text{ellipse}$.
+        \item $e>1 \Longrightarrow \text{hyperbola}$.
+        \item $e=1 \Longrightarrow \text{parabola}$.
+    \end{itemize}
+    \item We typically let the origin of our coordinate system lie at one focus or the orbit.
+    \item Relating energy $E$ and eccentricity $e$.
+    \begin{itemize}
+        \item Recall that
+        \begin{equation*}
+            e^2-1 = \frac{2E\ell}{|k|}
+        \end{equation*}
+        \item Thus\dots
+        \begin{itemize}
+            \item $E>0$ implies $e^2>1$, i.e., a hyperbolic orbit.
+            \item $E<0$ implies $e<1$, i.e., an elliptical orbit.
+            \item $E=0$ implies $e=1$, i.e., a parabolic orbit.
+        \end{itemize}
+        \item Lastly, the minimum energy that such a system can have occurs when $e=0$. In this case, the energy is
+        \begin{equation*}
+            E_\text{min} = -\frac{|k|}{2\ell}
+        \end{equation*}
+        \begin{itemize}
+            \item Note that this can only occur under an attractive force; otherwise, looking back at the trajectory, we'd have $r=-\ell$.
+            \item This should also make intuitive sense, as to have uniform circular motion, we do need an \emph{attractive} central force.
+        \end{itemize}
+        \item In the case of a repulsive force, we necessarily have $E>0$ and a hyperbola. $k$ is independent here.
+    \end{itemize}
+    \item Now, let's further analyze the case of elliptic orbits.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw (-3.5,0) -- (1.5,0);
+            \draw (0,-1.5) -- (0,1.5);
+            \draw (-1,0.1) -- ++(0,-0.2) node[below]{$-ae$};
+    
+            \draw [rex,thick,dashed] (-1,0) -- node[right,black]{$b$} (-1,1);
+            \draw [rex,thick,dashed] (-1,0) -- node[above,black]{$a$} (-3,0);
+            \node [below right,yshift=-1mm] {0};
+            \draw (-0.1,{3^0.5/2}) -- ++(0.2,0) node[right,yshift=2pt]{$\ell$};
+    
+            \draw [rex,thick] (-1,0) ellipse (2cm and 1cm);
+        \end{tikzpicture}
+        \caption{Elliptic orbits.}
+        \label{fig:orbitsElliptic}
+    \end{figure}
+    \begin{itemize}
+        \item $E<0\Longrightarrow 0\leq e\leq 1$, and $k<0$ by necessity.
+        \item In Cartesian coordinates, the equation for an ellipse is
+        \begin{equation*}
+            \frac{(x+ae)^2}{a^2}+\frac{y^1}{b^2} = 1
+        \end{equation*}
+        where
+        \begin{align*}
+            a &= \frac{\ell}{1-e^2}&
+            b &= \frac{\ell}{\sqrt{1-e^2}}
+        \end{align*}
+        \item $a$ is the \textbf{semimajor axis length}; $b$ is the \textbf{semiminor axis length}; $\ell$ is known as the \textbf{semilatus rectum} in this context; the center of attraction lies at one of the ellipse's foci, which lies at the origin; and the center of the ellipse is at $(-ae,0)$ relative to this coordinate system.
+        \item Cartesian and polar form of the ellipse? See Appendix B in \textcite{bib:KibbleBerkshire}.
+    \end{itemize}
+    \item Elliptic orbit constant relations.
+    \begin{itemize}
+        \item The scale of the orbit is fixed by $E$ since
+        \begin{equation*}
+            a = \frac{\ell}{1-e^2} = \frac{|k|}{2|E|}
+        \end{equation*}
+        \item $\ell$ is determined by $J$ since
+        \begin{equation*}
+            b^2 = a\ell = \frac{J^2}{2m|E|}
+        \end{equation*}
+    \end{itemize}
+    \item We now investigate determine period $\tau$ of the orbit.
+    \begin{itemize}
+        \item Since we are investigating a central force, our system satisfies Kepler's second law:
+        \begin{equation*}
+            \dv{A}{t} = \frac{J}{2m}
+        \end{equation*}
+        \item Equivalently,
+        \begin{equation*}
+            \dv{t}{A} = \frac{2m}{J}
+        \end{equation*}
+        \begin{itemize}
+            \item Physically, this means that the time $t$ it takes for the particle to sweep out an area $A$ is $t=\dv*{t}{A}\cdot A=2mA/J$.
+        \end{itemize}
+        \item In particular, this means that the period (the time it takes the particle to sweep out a full ellipse of area $A=\pi ab$) is
+        \begin{equation*}
+            \tau = \pi ab\cdot\frac{2m}{J}
+        \end{equation*}
+    \end{itemize}
+    \item We now look at a consequence of this definition of the period.
+    \item \textbf{Kepler's third law}: The square of the period is proportional to the cube of the semimajor axis. \emph{Given by}
+    \begin{equation*}
+        \tau^2 \propto a^3
+    \end{equation*}
+    \item Derivation.
+    \begin{itemize}
+        \item Essentially, since $b^2=a\ell$ by the above and $\ell=J^2/m|k|$ by definition, we have that
+        \begin{align*}
+            \tau &= \pi ab\cdot\frac{2m}{J}\\
+            \frac{\tau}{2\pi} &= \frac{mab}{J}\\
+            \left( \frac{\tau}{2\pi} \right)^2 &= \frac{m^2a^2b^2}{J^2}\\
+            &= \frac{m^2a^2(a\ell)}{m|k|\ell}\\
+            &= \frac{m}{|k|}a^3\\
+            \tau^2 &\propto a^3
+        \end{align*}
+        \item Note that in the particular case of gravity, where $|k|=GMm$, we have
+        \begin{align*}
+            \left( \frac{\tau}{2\pi} \right)^2 &= \frac{a^3}{GM}
+        \end{align*}
+    \end{itemize}
+    \item This concludes our investigation of elliptic orbits.
+    \item We now investigate hyperbolic orbits.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw (-1.5,0) -- (3.5,0);
+            \draw (0,-2.5) -- (0,2.5);
+    
+            % \draw (1,0.1) -- ++(0,-0.2) node[below]{$ae$};
+            \draw [help lines]
+                (1,0.1) -- (1,-1.7)
+                (1.5,0.1) -- (1.5,-1.7)
+            ;
+            \draw [<->,shorten <=1pt,shorten >=1pt] (0,-1.6) -- node[below]{$ae$} ++(1,0);
+            \draw [<->,shorten <=1pt,shorten >=1pt] (1,-1.6) -- node[below]{$a$} ++(0.5,0);
+            \draw [<->,shorten <=1pt,shorten >=1pt] (0,0) -- node[below left=-2pt]{$b$} ++(0.5,-0.5);
+            \node [left] at (0,{3^0.5/4}) {$\ell$};
+    
+            \coordinate (A) at (3.5,0);
+            \coordinate (B) at (1,0);
+            \coordinate (C) at (3,2);
+            % \pic [draw,angle radius=4.5mm,angle eccentricity=0.8,pic text={\tiny$\theta_1$}] {angle=A--B--C};
+            \pic [draw,<->,shorten <=1pt,shorten >=1pt,angle radius=7mm,angle eccentricity=1.3,pic text={$\theta_1$}] {angle=A--B--C};
+            \coordinate (D) at (-1,2);
+            % \pic [draw,angle radius=4.5mm,angle eccentricity=0.7,pic text={\tiny$\theta$}] {angle=C--B--D};
+            \pic [draw,<->,shorten <=1pt,shorten >=1pt,angle radius=7mm,angle eccentricity=1.3,pic text={$\theta$}] {angle=C--B--D};
+    
+            \draw [white,line width=4pt] (1.3,-0.3) -- ++(0.4,-0.4);
+            \draw [rex,semithick,dashed]
+                (-1,-2) -- (3,2)
+                (-1,2) -- (3,-2)
+            ;
+    
+            \draw [white,line width=3pt] plot[domain=0.2:0.5,variable=\y,smooth,/pgf/fpu,/pgf/fpu/output format=fixed] ({1+(0.5^2*(1+\y*\y/0.5^2))^0.5},\y);
+            \draw [white,line width=3pt] plot[domain=-0.5:-0.2,variable=\y,smooth,/pgf/fpu,/pgf/fpu/output format=fixed] ({1-(0.5^2*(1+\y*\y/0.5^2))^0.5},\y);
+    
+            \draw [rex,thick,decoration={markings,mark=at position 0.2 with \arrow{>},mark=at position 0.8 with \arrow{>}},postaction={decorate}] plot[domain=-2:2,variable=\y,smooth,/pgf/fpu,/pgf/fpu/output format=fixed] ({1+(0.5^2*(1+\y*\y/0.5^2))^0.5},\y);
+            \draw [rex,thick,decoration={markings,mark=at position 0.2 with \arrow{>},mark=at position 0.8 with \arrow{>}},postaction={decorate}] plot[domain=-2:2,variable=\y,smooth,/pgf/fpu,/pgf/fpu/output format=fixed] ({1-(0.5^2*(1+\y*\y/0.5^2))^0.5},\y);
+        \end{tikzpicture}
+        \caption{Hyperbolic orbits.}
+        \label{fig:orbitsHyperbolic}
+    \end{figure}
+    \begin{itemize}
+        \item $E>0\Longrightarrow e>1$, but $k$ can be positive or negative.
+        \begin{itemize}
+            \item If $k>0$, then per the above, $r(e\cos\theta-1)=\ell$ and the particle follows the trajectory described by the right branch of the hyperbola in Figure \ref{fig:orbitsHyperbolic}, coming near it and being pushed away.
+            \item If $k<0$, then per the above, $r(e\cos\theta+1)=\ell$ and the particle follows the trajectory described by the left branch of the hyperbola in Figure \ref{fig:orbitsHyperbolic}, coming near it and being slingshot around.
+        \end{itemize}
+        \item In Cartesian coordinates, the equation for a hyperbola is
+        \begin{equation*}
+            \frac{(x-ae)^2}{a^2}-\frac{y^2}{b^2} = 1
+        \end{equation*}
+        where
+        \begin{align*}
+            a &= \frac{\ell}{e^2-1} = \frac{|k|}{2E}&
+            b^2 &= a\ell = \frac{J^2}{2mE}
+        \end{align*}
+        \item $b$ is known as the \textbf{impact parameter} in this context (because it tells you how close the particle would get to the center of attraction/repulsion if it continued in a straight line along the directrix) and $\theta$ is the \textbf{scattering angle}.
+    \end{itemize}
+    \item We now investigate the scattering angle more wholistically.
+    \begin{itemize}
+        \item To calculate $\theta_1$, notice that in the repulsive case, the particle has polar coordinate $\theta_1$ when $r=\infty$. But according to the polar equations, $r\to\infty$ implies that $e\cos\theta-1\to 0$ if the product is to stay equal to $\ell$. Thus, when $r=\infty$, we have
+        \begin{align*}
+            e\cos\theta_1-1 &= 0\\
+            \theta_1 &= \cos^{-1}\left( \tfrac{1}{e} \right)\\
+            &= \cos^{-1}\left( \tfrac{1}{e} \right)
+        \end{align*}
+        \item The hyperbola is symmetric in the attractive case, so the scattering angle $\theta$ is given by
+        \begin{equation*}
+            \theta = \pi-2\theta_1 = \pi-2\cos^{-1}\left( \tfrac{1}{e} \right)
+        \end{equation*}
+    \end{itemize}
+    \item The scattering angle can be used to calculate the impact parameter as follows.
+    \begin{itemize}
+        \item It follows by rearranging the above equation that
+        \begin{equation*}
+            e = \sec\left[ \tfrac{1}{2}(\pi-\theta) \right]
+        \end{equation*}
+        \item Thus, the facts that $a=\ell/(e^2-1)$ and $b^2=a\ell$ along with the trig identity $\sec^2[(\pi-x)/2]-1=\cot^2(x/2)$ imply that
+        \begin{align*}
+            \frac{a\ell}{e^2-1} &= a^2\\
+            \frac{b^2}{e^2-1} &= a^2\\
+            b^2 &= a^2(e^2-1)\\
+            &= a^2(\sec^2\left[ \tfrac{1}{2}(\pi-\theta) \right]-1)\\
+            &= a^2\cot^2\left( \tfrac{1}{2}\theta \right)
+        \end{align*}
+        \item We'll finish this derivation next time.
     \end{itemize}
 \end{itemize}
 

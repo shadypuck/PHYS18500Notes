@@ -1087,15 +1087,30 @@
         \item The motion is always confined to a plane, i.e., the plane to which $\vec{J}$ is normal and in which $\vec{r},\vec{p}$ lie.
         \item This is obvious physically (see Figure \ref{fig:conservAngMtum}).
     \end{itemize}
-    \item Implications of the conservation of the \emph{magnitude} of $\vec{J}$.
+    \item An implication of the conservation of the \emph{magnitude} of $\vec{J}$.
     \begin{itemize}
         \item Since $v_r=\dot{r}$, $v_\theta=r\dot{\theta}$, and $J=mrv_\theta$,\footnote{Why is $v_r$ not included here??} we have that
         \begin{equation*}
             J = mr^2\dot{\theta}
         \end{equation*}
-        \item That is, as the radius shrinks, the angular velocity increases and vice versa.
+        \item That is, as the radius shrinks, the angular velocity increases and vice versa. Formally, "the transverse component of the velocity, $v_\theta$, varies inversely with the radial distance $r$" \parencite[57]{bib:KibbleBerkshire}.
     \end{itemize}
-    \item A note on \textbf{Kepler's second law} and sweeping out equal areas during similar time intervals.
+    \item Another implication of the conservation of the \emph{magnitude} of $\vec{J}$.
+    \begin{itemize}
+        \item Notice that when $\theta$ changes by $\dd\theta$, the radius vector sweeps out a sector of approximate area
+        \begin{equation*}
+            \dd{A} = \frac{1}{2}r^2\dd\theta
+        \end{equation*}
+        \item Dividing through by $\dd{t}$ and substituting from the above, we obtain
+        \begin{equation*}
+            \dv{A}{t} = \frac{1}{2}r^2\dot{\theta}
+            = \frac{1}{2}\cdot\frac{J}{m}
+            = \frac{J}{2m}
+            = \text{constant}
+        \end{equation*}
+        \item Takeaway: Since $|\vec{J}|$ is constant, so is the rate at which the radius vector sweeps out an area.
+    \end{itemize}
+    \item \textbf{Kepler's second law}: For a particle under a central force, the rate at which it sweeps out area is constant.
 \end{itemize}
 
 
