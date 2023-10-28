@@ -604,8 +604,8 @@
             % \pic [draw,angle radius=4.5mm,angle eccentricity=0.8,pic text={\tiny$\theta_1$}] {angle=A--B--C};
             \pic [draw,<->,shorten <=1pt,shorten >=1pt,angle radius=7mm,angle eccentricity=1.3,pic text={$\theta_1$}] {angle=A--B--C};
             \coordinate (D) at (-1,2);
-            % \pic [draw,angle radius=4.5mm,angle eccentricity=0.7,pic text={\tiny$\theta$}] {angle=C--B--D};
-            \pic [draw,<->,shorten <=1pt,shorten >=1pt,angle radius=7mm,angle eccentricity=1.3,pic text={$\theta$}] {angle=C--B--D};
+            % \pic [draw,angle radius=4.5mm,angle eccentricity=0.7,pic text={\tiny$\Theta$}] {angle=C--B--D};
+            \pic [draw,<->,shorten <=1pt,shorten >=1pt,angle radius=7mm,angle eccentricity=1.3,pic text={$\Theta$}] {angle=C--B--D};
     
             \draw [white,line width=4pt] (1.3,-0.3) -- ++(0.4,-0.4);
             \draw [rex,semithick,dashed]
@@ -637,7 +637,7 @@
             a &= \frac{\ell}{e^2-1} = \frac{|k|}{2E}&
             b^2 &= a\ell = \frac{J^2}{2mE}
         \end{align*}
-        \item $b$ is known as the \textbf{impact parameter} in this context (because it tells you how close the particle would get to the center of attraction/repulsion if it continued in a straight line along the directrix) and $\theta$ is the \textbf{scattering angle}.
+        \item $b$ is known as the \textbf{impact parameter} in this context (because it tells you how close the particle would get to the center of attraction/repulsion if it continued in a straight line along the directrix) and $\Theta$ is the \textbf{scattering angle}.
     \end{itemize}
     \item We now investigate the scattering angle more wholistically.
     \begin{itemize}
@@ -647,26 +647,244 @@
             \theta_1 &= \cos^{-1}\left( \tfrac{1}{e} \right)\\
             &= \cos^{-1}\left( \tfrac{1}{e} \right)
         \end{align*}
-        \item The hyperbola is symmetric in the attractive case, so the scattering angle $\theta$ is given by
+        \item The hyperbola is symmetric in the attractive case, so the scattering angle $\Theta$ is given by
         \begin{equation*}
-            \theta = \pi-2\theta_1 = \pi-2\cos^{-1}\left( \tfrac{1}{e} \right)
+            \Theta = \pi-2\theta_1 = \pi-2\cos^{-1}\left( \tfrac{1}{e} \right)
         \end{equation*}
     \end{itemize}
     \item The scattering angle can be used to calculate the impact parameter as follows.
     \begin{itemize}
         \item It follows by rearranging the above equation that
         \begin{equation*}
-            e = \sec\left[ \tfrac{1}{2}(\pi-\theta) \right]
+            e = \sec\left[ \tfrac{1}{2}(\pi-\Theta) \right]
         \end{equation*}
         \item Thus, the facts that $a=\ell/(e^2-1)$ and $b^2=a\ell$ along with the trig identity $\sec^2[(\pi-x)/2]-1=\cot^2(x/2)$ imply that
         \begin{align*}
             \frac{a\ell}{e^2-1} &= a^2\\
             \frac{b^2}{e^2-1} &= a^2\\
             b^2 &= a^2(e^2-1)\\
-            &= a^2(\sec^2\left[ \tfrac{1}{2}(\pi-\theta) \right]-1)\\
-            &= a^2\cot^2\left( \tfrac{1}{2}\theta \right)
+            &= a^2(\sec^2\left[ \tfrac{1}{2}(\pi-\Theta) \right]-1)\\
+            &= a^2\cot^2\left( \tfrac{1}{2}\Theta \right)
         \end{align*}
         \item We'll finish this derivation next time.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Scattering}
+\begin{itemize}
+    \item \marginnote{10/20:}Today.
+    \begin{itemize}
+        \item Solid angle + differential cross-section.
+        \item Hard sphere scattering.
+        \item Rutherford scattering.
+    \end{itemize}
+    \item Recap.
+    \begin{itemize}
+        \item A central conservative force obeys
+        \begin{equation*}
+            \vec{F}(\vec{r}) = -\hat{r}\dv{V}{r}
+        \end{equation*}
+        \begin{itemize}
+            \item $\vec{J}$ and $E$ are both conserved.
+            \item 2 degrees of freedom: Starting location and orientation with respect to the coordinate system.
+        \end{itemize}
+        \item A particle under a central conservative force satisfies the orbit equation
+        \begin{equation*}
+            \frac{J^2}{2m}\left( \dv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+V(u) = E
+        \end{equation*}
+        where $u=1/r$.
+        \begin{itemize}
+            \item This equation relates the potential energy (or \textbf{force law}) to the \emph{shape} of the orbit.
+        \end{itemize}
+        \item Under an inverse square law force, $V(u)=ku$. In this case, the orbits are given by
+        \begin{align*}
+            r[e\cos(\theta-\theta_0)-1] &= \ell\tag{$k>0$}\\
+            r[e\cos(\theta-\theta_0)+1] &= \ell\tag{$k<0$}
+        \end{align*}
+        where
+        \begin{align*}
+            \ell &= \frac{J^2}{m|k|}&
+            e^2-1 &= \frac{2E\ell}{|k|}
+        \end{align*}
+    \end{itemize}
+    \item Continuing with last time's derivation: Calculating the impact parameter $b$ as a function of the scattering $\Theta$.
+    \begin{itemize}
+        \item Last time, we learned that
+        \begin{equation*}
+            b(\Theta) = a\cot\left( \tfrac{1}{2}\Theta \right)
+        \end{equation*}
+        \item Let $v$ be the particle's velocity at $r=\infty$. Then $E=mv^2/2$. Substituting this into the previous result $a=|k|/2E$ yields
+        \begin{equation*}
+            a = \frac{|k|}{mv^2}
+        \end{equation*}
+        \item Thus,
+        \begin{equation*}
+            b(\Theta) = \frac{|k|}{mv^2}\cot\left( \tfrac{1}{2}\Theta \right)
+        \end{equation*}
+    \end{itemize}
+    \item We are now ready to discuss particle scattering.
+    \item Consider a single particle with initial velocity $v$ traveling horizontally within a certain reference frame so that it approaches the scattering center at the origin with impact parameter $b$.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.4\linewidth]{../ExtFiles/scatteringSP.png}
+        \caption{Scattering of a single particle.}
+        \label{fig:scatteringSP}
+    \end{figure}
+    \begin{itemize}
+        \item Approaching at the distance $b$, we know via the above that the particle (if under an inverse square law force) leaves with scattering angle $\Theta$ where $b=|k|/mv^2\cdot\cot(\Theta/2)$.
+    \end{itemize}
+    \item Now consider a range of particles landing on a detector subtending angles $\dd\phi,\dd\theta$ at scattering angle $\theta$.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.3\linewidth]{../ExtFiles/scatteringMP.png}
+        \caption{Scattering of multiple particles.}
+        \label{fig:scatteringMP}
+    \end{figure}
+    \begin{itemize}
+        \item These particles would come from an impact parameter range $(b,b+\dd{b})$.
+        \item If the particle has interacted with the scattering center and is now a distance $L$ from it (where we assume $L\gg b$), then the area of the detector is given by
+        \begin{equation*}
+            \dd{A} = L^2\sin\theta\dd\theta\dd\phi
+        \end{equation*}
+        \item Per the above image, we define the area that produces particles that scatter at angle $\theta$ into solid angle $\sin\theta\dd\theta\dd\phi$ as $\dd\sigma=b\dd\phi\cdot\dd{b}$.
+        \item Let $I$ be the intensity of the particle beam in units of particles/area/time.
+        \item Then the \textbf{differential scattering cross-section} is given by
+        \begin{equation*}
+            \dv{\sigma}{\Omega} = \frac{Ib\dd{b}\dd\phi}{-I\sin\theta\dd\theta\dd\phi}
+            = \frac{b}{\sin\theta}\left| \dv{b}{\theta} \right|
+        \end{equation*}
+        \begin{itemize}
+            \item Note that we have the negative sign in the denominator because $\dv*{b}{\theta}$ is typically negative.
+            \item Alternatively, we are taking the ratio of a \emph{positive} flux of incoming particles to a \emph{negative} flux of outgoing particles.
+        \end{itemize}
+        \item Denote the number of particles hitting the detector (per unit time) by $\dd{w}$. Then
+        \begin{equation*}
+            \dd{w} = I\dd\sigma = I\dv{\sigma}{\Omega}\frac{\dd{A}}{L^2}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Solid angle}: The sphere-area element analogous to $\dd\theta$ on a circle. \emph{Denoted by} $\bm{\textbf{d}\Omega}$. \emph{Given by}
+    \begin{equation*}
+        \dd\Omega = \sin\theta\dd\theta\dd\phi
+    \end{equation*}
+    \begin{itemize}
+        \item Intuition: Using the solid angle, we can calculate the surface area of the unit sphere as follows.
+        \begin{equation*}
+            \iint_\text{sphere}\dd\Omega = \int_0^{2\pi}\int_0^\pi\sin\theta\dd\theta\dd\phi = 4\pi
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Differential scattering cross-section}: The rate of scattering particles per unit solid angle at angle $\theta$. \emph{Also known as} \textbf{differential cross-section}. \emph{Denoted by} $\bm{\textbf{d}\sigma/\textbf{d}\Omega}$.
+    \begin{itemize}
+        \item Generally, the differential scattering cross section is a function of the scattering angle $\theta$.
+    \end{itemize}
+    \item We now investigate two types of scattering.
+    \item Example 1: Hard sphere scattering.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.35\linewidth]{../ExtFiles/scatteringHS.png}
+        \caption{Hard sphere scattering.}
+        \label{fig:scatteringHS}
+    \end{figure}
+    \begin{itemize}
+        \item From Figure \ref{fig:scatteringHS}, we can read off that
+        \begin{equation*}
+            \alpha = \frac{\pi-\theta}{2}
+        \end{equation*}
+        \item It follows considering the triangle within the sphere that the central angle $\beta$ is given by
+        \begin{equation*}
+            \beta = \frac{\pi}{2}-\alpha
+            = \frac{\pi}{2}-\frac{\pi-\theta}{2}
+            = \frac{\theta}{2}
+        \end{equation*}
+        \item Thus, the impact parameter and scattering angle are related via simple trigonometry:
+        \begin{equation*}
+            \cos\frac{\theta}{2} = \frac{b}{R}
+        \end{equation*}
+        \item It follows that
+        \begin{equation*}
+            \dv{b}{\theta} = -\frac{1}{2}R\sin\frac{\theta}{2}
+        \end{equation*}
+        \item Hence,
+        \begin{equation*}
+            \dv{\sigma}{\Omega} = \frac{b}{\sin\theta}\left| \dv{b}{\theta} \right|
+            = \frac{R\cos(\frac{\theta}{2})}{2\sin(\frac{\theta}{2})\cos(\frac{\theta}{2})}\cdot\frac{1}{2}R\sin\left( \frac{\theta}{2} \right)
+            = \frac{R^2}{4}
+        \end{equation*}
+        \begin{itemize}
+            \item Note that the differential scattering cross-section is isotropic (i.e., does not depend on the scatterng angle) in this case!
+        \end{itemize}
+        \item Note: Intuitively, the total area $\sigma$ that scatters particles should be equal to the cross-sectional area of the target. We can check that it is here as follows.
+        \begin{equation*}
+            \sigma = \iint_\text{sphere}\dv{\sigma}{\Omega}\dd\Omega
+            = \int_0^{2\pi}\int_0^\pi\frac{R^2}{4}\sin\theta\dd\theta\dd\phi
+            = \pi R^2
+        \end{equation*}
+    \end{itemize}
+    \item Example 2: Rutherford scattering.
+    \begin{itemize}
+        \item This is analogous to the case of alpha particles and gold nuclei, which repel under an inverse square law force!
+        \item As before, we may invoke the following general result for scattering (regardless of force):
+        \begin{equation*}
+            \dv{\sigma}{\Omega} = \frac{b}{\sin\theta}\left| \dv{b}{\theta} \right|
+        \end{equation*}
+        \item Let's assemble the components of the above.
+        \begin{itemize}
+            \item First off, $b=a\cot(\theta/2)$ since we're working with an inverse square law force.
+            \item Next, $\sin\theta=2\sin(\theta/2)\cos(\theta/2)$.
+            \item Finally, we may use the first result to determine that $\dv*{b}{\theta}=-a/2\sin^2(\theta/2)$.
+        \end{itemize}
+        \item Putting everything back together, we obtain
+        \begin{equation*}
+            \dv{\sigma}{\Omega} = a\cdot\frac{\cos(\theta/2)}{\sin(\theta/2)}\cdot\frac{1}{2\sin(\theta/2)\cos(\theta/2)}\cdot\frac{a}{2\sin^2(\theta/2)}
+            = \frac{a^2}{4\sin^4(\theta/2)}
+        \end{equation*}
+        \item Moreover, note that $a=|k|/mv^2=qq'/4\pi\varepsilon_0mv^2$ because the Coulomb force in question is between an alpha particle of charge $q$ and gold nuclei of charge $q'$. Thus, alternatively,
+        \begin{equation*}
+            \dv{\sigma}{\Omega} = \frac{a^2{q'}^2}{64\pi^2\varepsilon_0^2m^2v^4\sin^4(\theta/2)}
+        \end{equation*}
+        \begin{itemize}
+            \item Thus, the number of particles hitting a certain detector scales with $q^2{q'}^2=Z^2{Z'}^2$ for nuclei, is strongly dependent on $v$, and is anisotropic with $\dv*{\sigma}{\Omega}$ at its minimum with respect to $\theta$ when $\theta=\pi$.
+        \end{itemize}
+    \end{itemize}
+    \item Mean free path and scattering in materials.
+    \item Consider a particle moving through a material containing $n$ atoms per unit volume (this quantity is a \textbf{number density}).
+    \begin{itemize}
+        \item Let $\sigma$ denote the total scattering cross-section per atom.
+        \item Thus, in a path of length $x$, we would expect the particle to collide with $n\sigma x$ atoms ($n$ is a number density and $\sigma x$ is a volume).
+        \item It follows that the \textbf{mean free path} is the value $x=\lambda$ such that $n\sigma\lambda=1$.
+    \end{itemize}
+    \item \textbf{Mean free path}: The typical distance the particle travels between collisions. \emph{Denoted by} $\bm{\lambda}$. \emph{Given by}
+    \begin{equation*}
+        \lambda = \frac{1}{n\sigma}
+    \end{equation*}
+    \item We can now answer questions such as, "how far do particles penetrate into a material?"
+    \begin{itemize}
+        \item Consider a beam of particles with an incident flux of $f$ particles/unit area/unit time.
+        \item Let $f(x)$ denote the flux of particles at penetration depth $x$.
+        \item In a thin slice of depth $\dd{x}$ and area $A$, the number of atoms is $nA\dd{x}$. Taking $\dd{x}$ to be small enough such that the cross-sectional areas of no two atoms overlap from the perspective of the incoming particles, we have that the total cross-sectional area of all $nA\dd{x}$ atoms in the slice is $\sigma nA\dd{x}$. Moreover, the number of particles that collide with an atom per unit time (i.e., the rate at which collisions occur) is equal to the summed cross-sectional area $\sigma nA\dd{x}$ times the flux, i.e., is $f(x)\sigma nA\dd{x}$.
+        \item Equivalently, the rate at which collisions occur is equal to the rate $Af(x)$ at which particles enter the slice minus the rate $Af(x+\dd{x})$ at which particles leave the slice, so the number of scattered particles is
+        \begin{equation*}
+            Af(x)-Af(x+\dd{x}) = f(x)\sigma nA\dd{x} = f(x)\frac{A}{\lambda}\dd{x}
+        \end{equation*}
+        \item The above equation can be rearranged to calculate $f(x)$, the desired quantity.
+        \begin{align*}
+            Af(x)-Af(x+\dd{x}) &= f(x)\frac{A}{\lambda}\dd{x}\\
+            f(x+\dd{x})-f(x) &= -\frac{1}{\lambda}f(x)\dd{x}\\
+            \dv{f(x)}{x} &= -\frac{1}{\lambda}f(x)\\
+            \int_{f(0)=f}^{f(x)}\frac{\dd{f(x)}}{f(x)} &= \int_0^x-\frac{1}{\lambda}\dd{x}\\
+            f(x) &= f\e[-x/\lambda]
+        \end{align*}
+        \item Takeaway: Particle flux is attenuated exponentially for a very thin material.
+        \item Takeaway: The rate at which collisions occur is
+        \begin{equation*}
+            Af(0)-Af(\var{x}) = f\sigma\underbrace{nA\var{x}}_N = N\sigma f
+        \end{equation*}
+        where $N$ is the number of atoms in the path.
+        \begin{itemize}
+            \item Particles enter the detector at a rate $N$ times larger than for scattering off a single atom??
+        \end{itemize}
+        \item Note: This approximation is valid for $x\ll\lambda$, i.e., when the probability of multiple scattering events for 1 particle traveling through the film is low.
     \end{itemize}
 \end{itemize}
 
