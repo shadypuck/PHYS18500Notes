@@ -473,5 +473,242 @@
 
 
 
+\section{Midterm Exam Review}
+\begin{itemize}
+    \item \marginnote{10/27:}Our guiding problem: Given $\vec{r}_1(0),\dots,\vec{r}_N(0)$ and $\vec{v}_1(0),\dots,\vec{v}_N(0)$, predict $\vec{r}_1(t),\dots,\vec{r}_N(t)$.
+    \item So far, we've discussed only the case of 1 particle feeling an external force $\vec{F}(\vec{r},\dot{\vec{r}},t)$ due to all others.
+    \item How do we determine particle motion?
+    \begin{enumerate}
+        \item Find \textbf{equations of motion}.
+        \begin{itemize}
+            \item These are second-order ODEs of the form $\ddot{\vec{r}}(t)=g(\vec{r},\dot{\vec{r}},t)$; one such ODE per particle in the system.
+        \end{itemize}
+        \item Solve for $r(t)$.
+        \begin{itemize}
+            \item $r(t)$ is the \textbf{trajectory} specified by the two initial conditions given per component.
+        \end{itemize}
+    \end{enumerate}
+    \item In physics, the laws of classical mechanics give us the EOMs. There are two formulations of them, however.
+    \begin{enumerate}
+        \item Newtonian.
+        \begin{itemize}
+            \item The sole EOM is
+            \begin{equation*}
+                m\ddot{\vec{r}}(t) = \vec{F}(\vec{r},\dot{\vec{r}},t)
+            \end{equation*}
+        \end{itemize}
+        \item Lagrangian.
+        \begin{itemize}
+            \item Start with the \textbf{Lagrangian}
+            \begin{equation*}
+                L = T-V = \frac{1}{2}m\dot{\vec{r}}^2-V(\vec{r})
+            \end{equation*}
+            of the system.
+            \item Theorem: Trajectories are stationary points of the \textbf{action}
+            \begin{equation*}
+                S = \int_{t_0}^{t_1}L(q_i,\dot{q}_i)\dd{t}
+            \end{equation*}
+            \item This gives us equations of motion via
+            \begin{equation*}
+                \dv{t}\pdv{L}{\dot{q}_i} = \pdv{L}{q_i}
+            \end{equation*}
+            for $i=1,2,3$.
+        \end{itemize}
+    \end{enumerate}
+    \item We now look at some important cases of this general program.
+    \item Concepts from Chapter 2: Linear motion.
+    \begin{enumerate}
+        \item In 1D, a force is \textbf{conservative} if it depends only on position.
+        \begin{itemize}
+            \item Then we can find a potential energy function $V(x)=-\int_{x_0}^xF(x')\dd{x'}$ (note also that $F(x)=-\dv*{V}{x}$). From here, we can obtain the total energy $E=m\dot{x}^2/2+V(x)$, which is conserved (i.e., $E=\text{constant}$, $\dv*{E}{t}=0$).
+            \item A plot of the potential $V(x)$ vs. $x$ gives lots of qualitative info on the trajectory.
+        \end{itemize}
+        \item Every potential energy function near a minimum (equilibrium) can be approximated as a harmonic oscillator potential.
+        \begin{itemize}
+            \item Taking $V(x)$ with minimum at $x^*$, let $\var{x}=x-x^*$. Then
+            \begin{equation*}
+                V(x) = V(x^*)+\eval{\dv{V}{x}}_{x^*}\var{x}+\frac{1}{2}\eval{\dv[2]{V}{x}}_{x^*}\var{x}^2+\cdots
+            \end{equation*}
+            \item Choose $V(x^*)=0$, and note that since we are at a minimum, the second term above (the slope at the minimum) equals zero.
+            \item Thus,
+            \begin{equation*}
+                V(x^*+\var{x}) = \frac{1}{2}k\var{x}^2
+            \end{equation*}
+            where $k=\eval{\dv*[2]{V}{x}}_{x^*}$.
+        \end{itemize}
+        \item Motion in a harmonic oscillator potential.
+        \begin{itemize}
+            \item Our Newtonian EOM is
+            \begin{equation*}
+                \ddot{x}+\frac{k}{m}x = 0
+            \end{equation*}
+            \item This means that the system oscillates with frequency $\omega=\sqrt{k/m}$ and follows the trajectory
+            \begin{equation*}
+                x(t) = a\cos(\omega t-\phi)
+            \end{equation*}
+            where $a,\phi$ follow from the initial conditions.
+            \item Damped case.
+            \begin{itemize}
+                \item Our Newtonian EOM is
+                \begin{equation*}
+                    \ddot{x}+2\gamma\dot{x}+\omega_0^2x = 0
+                \end{equation*}
+                where $\gamma=\lambda/2m$ and $\omega_0=\sqrt{k/m}$.
+                \item In the \textbf{overdamped} case, $\gamma>\omega_0$, and the trajectory looks like Figure \ref{fig:dampedOscillatora} and has the form
+                \begin{equation*}
+                    x(t) = \frac{1}{2}A\e[-\gamma_+t]+\frac{1}{2}B\e[-\gamma_-t]
+                \end{equation*}
+                where
+                \begin{equation*}
+                    \gamma_\pm = \gamma\pm\sqrt{\gamma^2-\omega_0^2}
+                \end{equation*}
+                \item In the \textbf{underdamped} case, $\gamma<\omega_0$, and the trajectory looks like Figure \ref{fig:dampedOscillatorb} and has the form
+                \begin{equation*}
+                    x(t) = a\e[-\gamma t]\cos(\omega t-\theta)
+                \end{equation*}
+                where
+                \begin{equation*}
+                    \omega = \sqrt{\omega_0^2-\gamma^2} \neq \omega_0
+                \end{equation*}
+                \item In the \textbf{critically damped} case, $\gamma=\omega_0$, and the trajectory looks like Figure \ref{fig:dampedOscillatorc} and has the form
+                \begin{equation*}
+                    x(t) = (a+bt)\e[-\gamma t]
+                \end{equation*}
+            \end{itemize}
+            \item Forced, damped case.
+            \begin{itemize}
+                \item Our Newtonian EOM is
+                \begin{equation*}
+                    \ddot{x}+2\gamma\dot{x}+\omega_0^2x = F_1\cos\omega_1t
+                \end{equation*}
+                \item The corresponding trajectory has the form
+                \begin{equation*}
+                    x(t) = a_1\cos(\omega_1t-\theta_1)+\underbrace{\text{damped solution}}_\text{transient}
+                \end{equation*}
+                where
+                \begin{align*}
+                    a_1 &= \frac{F_1/m}{\sqrt{(\omega_0^2-\omega_1^2)^2+4\gamma^2\omega_1^2}}&
+                    \theta_1 &= \tan^{-1}\left( \frac{2\gamma\omega_1}{\omega_0^2-\omega_1^2} \right)
+                \end{align*}
+                \item For small damping, $a_1$ is a sharply peaked function of $\omega_0-\omega_1$ (see Figure \ref{fig:resa}); this is the \textbf{resonance} condition.
+            \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+    \item Concepts from Chapter 3 of \textcite{bib:KibbleBerkshire}, Chapter 7 of \textcite{bib:ThorntonMarion}. Essentially, this covers 3D particle motion: Energy, angular momentum, and the Lagrangian.
+    \begin{enumerate}
+        \item In 3D, conservative forces satisfy
+        \begin{equation*}
+            \vec{\nabla}\times\vec{F} = 0
+        \end{equation*}
+        \begin{itemize}
+            \item From here, we can derive that $V(\vec{r})$ such that $\vec{F}=-\vec{\nabla}V(\vec{r})$.
+        \end{itemize}
+        \item Torque, angular momentum, and central forces satisfy, respectively,
+        \begin{align*}
+            \vec{G} &= \vec{r}\times\vec{F}&
+            \vec{J} &= \vec{r}\times\vec{p}&
+            \vec{F} &= F\hat{r}
+        \end{align*}
+        \begin{itemize}
+            \item Note:
+            \begin{equation*}
+                \dv{\vec{J}}{t} = \vec{G}
+            \end{equation*}
+            \item Central forces conserve angular momentum, i.e., $\dv*{\vec{J}}{t}=0$.
+        \end{itemize}
+        \item The Lagrangian in 3D.
+        \begin{itemize}
+            \item Lagrange's EOM generalizes to his equations of motion,
+            \begin{equation*}
+                \dv{t}\pdv{L}{\dot{q}_i} = \pdv{L}{q_i}
+            \end{equation*}
+            for $i=1,2,3$.
+            \begin{itemize}
+                \item Recall that $\pdv*{L}{\dot{q}_i}$ is the \textbf{generalized momentum}, and $\pdv{L}{q_i}$ is the \textbf{generalized force}.
+            \end{itemize}
+            \item Constraints can also be incorporated via Lagrange undetermined multipliers. Here, the equations of motion are
+            \begin{align*}
+                \dv{t}\pdv{L}{\dot{q}_i} &= \pdv{L}{q_i}+\sum_{j=1}^n\lambda_j(t)\pdv{f_j}{q_i}&
+                f_j(q_i,t) &= 0
+            \end{align*}
+            for $i=1,2,3$, $j=1,\dots,n$.
+            \begin{itemize}
+                \item Recall that $\sum_{j=1}^n\lambda_j(t)\pdv*{f_j}{q_i}$ is the \textbf{generalized force of constraint}.
+            \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+    \item Concepts from Chapter 4: Central, conservative forces.
+    \begin{enumerate}
+        \item A central, conservative force has the form $\vec{F}=-\hat{r}\dv*{V(r)}{r}$.
+        \begin{itemize}
+            \item \textbf{Central}: $\hat{r}$ direction.
+            \item \textbf{Conservative}: Radial dependence only.
+        \end{itemize}
+        \item In this constrained scenario, motion is confined to a plane under certain conservation laws.
+        \begin{itemize}
+            \item The plane of motion is that which is perpendicular to $\hat{J}$, which is directionally and magnitude-wise fixed.
+            \item The conservation laws are
+            \begin{align*}
+                \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)+V(r) &= E&
+                mr^2\dot{\theta} &= J
+            \end{align*}
+            \item Combining these, we obtain the \textbf{radial energy equation}
+            \begin{equation*}
+                \frac{1}{2}m\dot{r}^2+\frac{J^2}{2mr^2}+V(r) = E
+            \end{equation*}
+            \item From the above equation, we define the \textbf{effective potential energy}
+            \begin{equation*}
+                U(r) = \frac{J^2}{2mr^2}+V(r)
+            \end{equation*}
+            \begin{itemize}
+                \item This allows us to treat the system just like a 1D potential from chapter 2 in the radial coordinate.
+            \end{itemize}
+            \item We can also derive the \textbf{orbit equation}
+            \begin{equation*}
+                \frac{J^2}{2m}\left( \pdv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+V(u) = E
+            \end{equation*}
+            \begin{itemize}
+                \item $u=1/r$.
+                \item This equation has no time $t$ in it or in any derivatives!
+                \item Because of the lack of time, it relates the shape of the path $u(\theta)$ to the force law.
+            \end{itemize}
+        \end{itemize}
+        \item For inverse square law forces, the orbits are
+        \begin{align*}
+            r[e\cos(\theta-\theta_0)-1] &= \ell&
+            r[e\cos(\theta-\theta_0)+1] &= \ell
+        \end{align*}
+        \begin{itemize}
+            \item The left equation corresponds to the \textbf{repulsive} case, in which $k>0$.
+            \item The right equation corresponds to the \textbf{attractive} case, in which $k<0$.
+            \item $\ell=J^2/m|k|$.
+            \item $e=0$ gives you a circle.
+            \item $e<1$ gives you an ellipse.
+            \item $e=1$ gives you a parabola.
+            \item $e>1$ gives you a hyperbola.
+        \end{itemize}
+        \item Scattering experiments can probe force laws because the force law dictates an angular dependence of particle detection via
+        \begin{equation*}
+            \dv{\sigma}{\Omega} = \frac{b}{\sin\theta}\left| \dv{b}{\theta} \right|
+        \end{equation*}
+        \begin{itemize}
+            \item $b(\theta)$ can be found from $V(r)$.
+        \end{itemize}
+    \end{enumerate}
+    \item Concepts from Chapter 5: Rotating reference frames.
+    \begin{enumerate}
+        \item For $\vec{b}=b_x\ihat+b_y\jhat+b_z\khat$ in the rotating frame,
+        \begin{equation*}
+            \left( \dv{\vec{b}}{t} \right)_\text{inertial} = \dot{\vec{b}}_\text{rotating}+\vec{\omega}\times\vec{b}
+        \end{equation*}
+        \item The equations of motion as measured in the \emph{rotating} frame are
+        \begin{equation*}
+            m\ddot{\vec{r}} = \underbrace{m\dv[2]{\vec{r}}{t}}_\text{inertial}-\underbrace{2m\vec{\omega}\times\dot{\vec{r}}\vphantom{\dv[2]{\vec{r}}{t}}}_\text{Coriolis}-\underbrace{m\vec{\omega}\times(\vec{\omega}\times\vec{r})\vphantom{\dv[2]{\vec{r}}{t}}}_\text{centrifugal}
+        \end{equation*}
+    \end{enumerate}
+\end{itemize}
+
+
+
 
 \end{document}
