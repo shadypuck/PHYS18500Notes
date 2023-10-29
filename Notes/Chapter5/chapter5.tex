@@ -173,11 +173,11 @@
         \end{equation*}
         \item Define the angle between the true and apparent verticals to be
         \begin{equation*}
-            \alpha \approx \sin^{-1}\left( \frac{\omega^2R\sin\theta\cos\theta}{1-g+\omega^2R\sin^2\theta} \right)
+            \alpha \approx \sin^{-1}\left( \frac{\omega^2R\sin\theta\cos\theta}{g-\omega^2R\sin^2\theta} \right)
             \approx \frac{\omega^2R}{g}\sin\theta\cos\theta
         \end{equation*}
         \begin{itemize}
-            \item Where does the 1 in the denominator come from?? Why sine, not tangent? How are you doing the simplification?
+            \item Note that we simplify the first expression above with both the small angle approximation $\sin^{-1}(x)\approx x$ and the fact that $\omega^2R\ll g$ so $g$ dominates in the denominator.
         \end{itemize}
         \item By the above definition, $\alpha$ maxes out when $\theta=\ang{45}$, at about \ang{60}$6'$.
         \item Additionally, at the poles ($\theta=0,\pi$), $\alpha=0$ and $g_\text{apparent}=g$.
@@ -186,12 +186,12 @@
         \end{itemize}
         \item Note that (not accounting for the Earth being oblong), we have that
         \begin{equation*}
-            \Delta g = g-g_\text{apparent} = \SI[per-mode=symbol]{34}{\milli\meter\per\second}
+            \Delta g = g-g_\text{apparent} = \SI[per-mode=symbol]{34}{\milli\meter\per\second\squared}
         \end{equation*}
     \end{itemize}
     \item The Coriolis force.
     \begin{itemize}
-        \item The acceleration due to the Coriolis force is as follows.
+        \item The acceleration for a particle under the influence of both gravity and the Coriolis force is as follows.
         \begin{align*}
             \ddot{r}_r &\approx -g+2\omega\sin\theta\dot{r}_e&
             \ddot{r}_n &\approx -2\omega\cos\theta\dot{r}_e&
@@ -199,7 +199,6 @@
         \end{align*}
         \begin{itemize}
             \item Note that we say "approximately equal" for now because, as mentioned above, there are some parameters we're not yet accounting for, such as the Earth being oblong.
-            \item Why is $-g$ included in $\ddot{r}_r$??
         \end{itemize}
         \item Examples.
         \begin{enumerate}
@@ -706,6 +705,128 @@
             m\ddot{\vec{r}} = \underbrace{m\dv[2]{\vec{r}}{t}}_\text{inertial}-\underbrace{2m\vec{\omega}\times\dot{\vec{r}}\vphantom{\dv[2]{\vec{r}}{t}}}_\text{Coriolis}-\underbrace{m\vec{\omega}\times(\vec{\omega}\times\vec{r})\vphantom{\dv[2]{\vec{r}}{t}}}_\text{centrifugal}
         \end{equation*}
     \end{enumerate}
+\end{itemize}
+
+
+
+\section{Chapter 5: Rotating Frames}
+\emph{From \textcite{bib:KibbleBerkshire}.}
+\subsection*{Section 5.1: Angular Velocity; Rate of Change of a Vector}
+\begin{itemize}
+    % \item \marginnote{10/27:}Let $\vec{\omega}$ point in the $\khat$ direction. Then
+    % \begin{align*}
+    %     \dv{\ihat}{t} &= \omega\jhat&
+    %     \dv{\jhat}{t} &= -\omega\jhat&
+    %     \dv{\khat}{t} &= 0
+    % \end{align*}
+    % \item Let $\dv*{\vec{a}}{t}$ denote the rate of change of $\vec{a}$ as measured by an inertial observer at rest relative to the origin, and let $\dot{\vec{a}}$ denote the rate of change of $\vec{a}$ as measured by an observer rotating with the solid body.
+    % \begin{itemize}
+    %     \item Then
+    %     \begin{equation*}
+    %         \dv{\vec{a}}{t} = \dot{a}+\vec{\omega}\times\vec{a}
+    %     \end{equation*}
+    % \end{itemize}
+    \item \marginnote{10/29:}The vector angular velocity is an \emph{axial} vector.
+    \item \textbf{Sidereal} (day): The rotation period of the Earth with respect to the fixed stars, which ie less than that with respect to the sun by one part in 365.
+    \item Why $\vec{v}=\vec{\omega}\times\vec{r}$ (see Figure \ref{fig:Vrotation}).
+    \begin{equation*}
+        v = \omega\rho = \omega r\sin\theta = |\vec{\omega}\times\vec{r}|
+    \end{equation*}
+    \item The rest of this section mirrors the discussion in class.
+\end{itemize}
+
+
+\subsection*{Section 5.2: Particle in a Uniform Magnetic Field}
+\begin{itemize}
+    \item Same as in class.
+    \item Allusion to the \textbf{Lorentz force} and \textbf{crossed} fields.
+\end{itemize}
+
+
+\subsection*{Section 5.3: Acceleration; Apparent Gravity}
+\begin{itemize}
+    \item \textbf{Centripetal acceleration}: The acceleration in an inertial reference frame defined as follows, which keeps a vector stationary in a rotating reference frame. \emph{Given by}
+    \begin{equation*}
+        \vec{\omega}\times(\vec{\omega}\times\vec{r}) = (\vec{\omega}\cdot\vec{r})\vec{\omega}-\omega^2\vec{r}
+    \end{equation*}
+    \item A picture describing the measurement of apparent gravity, accounting for the centrifugal force.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.25\linewidth]{../ExtFiles/apparentGravity.png}
+        \caption{Apparent gravity.}
+        \label{fig:apparentGravity}
+    \end{figure}
+    \item Note that $\Delta g=\SI[per-mode=symbol]{34}{\milli\meter\per\second\squared}=(\SI{7.3e-5}{\per\second})^2(\SI{6371}{\kilo\meter})=\omega^2r$.
+    \item Example: Surface of a rotating liquid.
+    \begin{itemize}
+        \item Creates a paraboloid.
+        \item This is useful because it means that if the liquid is reflective like mercury, we can create a cheap parabolic mirror by spinning it!
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 5.4: Coriolis Force}
+\begin{itemize}
+    \item Understanding the Coriolis force.
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw circle (1cm);
+    
+                \draw [->] (-30:0.7) arc[start angle=-30,end angle=30,radius=0.7cm];
+                \node [left] at (0.7,0) {$\omega$};
+    
+                \draw [rex,thick,decoration={markings,mark=at position 0.25 with \arrow{latex}},postaction=decorate] (0,-1.2) -- (0,1.2);
+            \end{tikzpicture}
+            \caption{Inertial reference frame.}
+            \label{fig:coriolisForcea}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw circle (1cm);
+    
+                \draw [rex,thick,decoration={markings,mark=at position 0.75 with \arrowreversed{latex}},postaction=decorate] plot[domain=-190:-80,samples=100] (\x:{1/45*\x+3});
+            \end{tikzpicture}
+            \caption{Rotating reference frame.}
+            \label{fig:coriolisForceb}
+        \end{subfigure}
+        \caption{The Coriolis force in 2D.}
+        \label{fig:coriolisForce}
+    \end{figure}
+    \begin{itemize}
+        \item View the Earth from north pole so that it rotates counterclockwise beneath us with angular velocity $\omega$, as in Figure \ref{fig:coriolisForcea}. Alternatively, consider Figure \ref{fig:coriolisForcea} to represent a 2D disk rotating with angular velocity $\omega$.
+        \item Let a particle travel across the disk.
+        \begin{itemize}
+            \item If we are in an inertial reference frame, it appears as if the particle takes a straight line (Figure \ref{fig:coriolisForcea}).
+            \item If we are in a rotating reference frame, then it appears as if some force is curving the particle (Figure \ref{fig:coriolisForceb}).
+        \end{itemize}
+    \end{itemize}
+    \item Understanding why a dropped particle lands \emph{east} of where it started, instead of having the earth move under it so it lands \emph{west}: "Since the particle is dropped from rest relative to the Earth, it has a component of velocity towards the east relative to the inertial observer. As it falls, the angular momentum about the Earth's axis remains constant, and therefore its angular velocity increases, so that it gets ahead of the ground beneath it" \parencite[116-17]{bib:KibbleBerkshire}.
+    \item Foucault's pendulum, cyclones, and trade winds.
+\end{itemize}
+
+
+\subsection*{Section 5.5: Larmor Effect}
+\begin{itemize}
+    \item As in class.
+\end{itemize}
+
+
+\subsection*{Section 5.6: Angular Momentum and the Larmor Effect}
+\begin{itemize}
+    \item As in class.
+    \item Current loop analysis
+\end{itemize}
+
+
+\subsection*{Section 5.7: Summary}
+\begin{itemize}
+    \item Some good ideas.
 \end{itemize}
 
 
