@@ -233,5 +233,245 @@
 
 
 
+\section{Coriolis Effect and Larmor Effect}
+\begin{itemize}
+    \item \marginnote{10/25:}Recap.
+    \begin{itemize}
+        \item Rotating reference frames and motion near Earth.
+        \item For a rotating body, we define three vectors that rotate with it: $\ihat,\jhat,\khat$.
+        \item $\vec{\omega}=\omega\khat$ is chosen parallel to $\khat$ along the rotation axis.
+        \item If we have a vector $\vec{b}$ moving along the surface of the rotating body, then
+        \begin{equation*}
+            \dv{\vec{b}}{t} = \dot{\vec{b}}+\vec{\omega}\times\vec{b}
+        \end{equation*}
+        \begin{itemize}
+            \item If $\dv*{\vec{b}}{t}=\vec{\omega}\times\vec{b}$ for some $\vec{b}$, then $\vec{b}$ is constant in magnitude and rotating about the axis defined by $\vec{\omega}$ at rate $\omega$.
+        \end{itemize}
+        \item Rotating frames have new equations of motion:
+        \begin{equation*}
+            m\ddot{\vec{r}} = m\dv[2]{\vec{r}}{t}-2m\vec{\omega}\times\dot{\vec{r}}-m\vec{\omega}\times(\vec{\omega}\times\vec{r})
+        \end{equation*}
+        \item Near earth, we measure
+        \begin{equation*}
+            m\ddot{\vec{r}} = m\vec{g}+\vec{F}\underbrace{-2m\vec{\omega}\times\dot{\vec{r}}\vphantom{()}}_\text{Coriolis}\underbrace{-m\vec{\omega}\times(\vec{\omega}\times\vec{r})}_\text{centrifugal}
+        \end{equation*}
+        \item Effects.
+        \begin{enumerate}
+            \item Centrifugal force: Points outwards from the axis of motion, inducing a very small ($\sim 0.3\%$) correction to gravity called \emph{apparent gravity}.
+            \item Coriolis force: An adjustment by
+            \begin{equation*}
+                -2m\vec{\omega}\times\dot{\vec{r}} = 2m\omega(\underbrace{\dot{\vec{r}}_n\cos\theta-\dot{\vec{r}}_r\sin\theta}_{\hat{e}},\underbrace{-\dot{\vec{r}}_e\cos\theta}_{\hat{n}},\underbrace{\dot{\vec{r}}_e\sin\theta}_{\hat{r}})
+            \end{equation*}
+        \end{enumerate}
+    \end{itemize}
+    \item Example to visualize some of last time's content: (Fictional) Battle of Chicago.
+    \begin{itemize}
+        \item Aliens are attacking the Willis Tower! It is up to us to fire a cannon at them and destroy them! But how far will the Coriolis effect throw off our shot over such a distance?
+        \item Initial conditions.
+        \begin{itemize}
+            \item We are approximately (we'll say exactly for the sake of the problem) \SI{11.4}{\kilo\meter} due south of the Willis tower.
+            \item To ensure that the cannonball can make it to Willis Tower, we fire our cannon at \ang{45} with initial velocity $v=\SI[per-mode=symbol]{334}{\meter\per\second}$.
+            \item Chicago's latitude can be described by $\theta_\text{Chicago}=\ang{48.2}$.
+        \end{itemize}
+        \item Defining variables.
+        \begin{itemize}
+            \item If $v=\SI[per-mode=symbol]{334}{\meter\per\second}$, then the northern and radial components $v_n=v_r=\SI[per-mode=symbol]{236}{\meter\per\second}$.
+            \item The time of flight will be $\Delta t_\text{flight}=2v_r/g$.
+            \begin{itemize}
+                \item We won't need the actual value, but it is \SI{48.1}{\second}, if you're curious.
+            \end{itemize}
+            \item We approximate $\dot{\vec{r}}_n=v_{n,\text{init}}$. Note that this makes it so that the northern and radial components of the Coriolis force are of order $\omega^2$, i.e., negligible.
+        \end{itemize}
+        \item EOM.
+        \begin{equation*}
+            m\ddot{\vec{r}} = 2m\omega(v_n\cos\theta-v_r\sin\theta)\hat{e}-mg\hat{r}
+        \end{equation*}
+        \begin{itemize}
+            \item In scalar form, the above vector equation becomes
+            \begin{equation*}
+                m
+                \begin{bmatrix}
+                    \ddot{r}_e\\
+                    \ddot{r}_n\\
+                    \ddot{r}_r\\
+                \end{bmatrix}
+                = m
+                \begin{bmatrix}
+                    2\omega(v_n\cos\theta-v_r\sin\theta)\\
+                    0\\
+                    -g\\
+                \end{bmatrix}
+            \end{equation*}
+        \end{itemize}
+        \item Since $\ddot{r}_r=-g$, integration gives $\dot{r}=v_r-gt$.
+        \item Substituting this into the other equation, simplifying (including with $v_n=v_r$), and integrating with $r_e(0)=\dot{r}_e(0)=0$, we obtain
+        \begin{align*}
+            \ddot{r}_e &= 2\omega[v_r\cos\theta-(v_r-gt)\sin\theta]\\
+            &= 2\omega[v_r(\cos\theta-\sin\theta)+gt\sin\theta]\\
+            r_e &= 2\omega\left[ v_r(\cos\theta-\sin\theta)\frac{t^2}{2}+\frac{gt^3}{6}\sin\theta \right]
+        \end{align*}
+        \item Substituting in our expression for the time of flight, we obtain
+        \begin{equation*}
+            r_e = 2\omega\frac{v_r^3}{g^2}\left( 2\cos\theta_\text{Chicago}-\frac{2}{3}\sin\theta_\text{Chicago} \right)
+        \end{equation*}
+        \item Plugging in $\omega=\SI{7.29e-5}{\per\second}$, $v_r=\SI[per-mode=symbol]{236}{\meter\per\second}$, $g=\SI[per-mode=symbol]{9.81}{\meter\per\second}$, and $\theta_\text{Chicago}=\ang{48.2}$, we obtain the final answer
+        \begin{equation*}
+            r_e = \SI{16.7}{\meter}\,\hat{e}
+        \end{equation*}
+    \end{itemize}
+    \item We now start in on some new content.
+    \item Motion in a magnetic field.
+    \begin{itemize}
+        \item A particle of charge $q$ moving with velocity $\vec{v}$ in a constant magnetic field $\vec{B}$ experiences a force
+        \begin{equation*}
+            \vec{F} = q\vec{v}\times\vec{B}
+        \end{equation*}
+        \item It follows that
+        \begin{align*}
+            m\dv{\vec{v}}{t} &= q\vec{v}\times\vec{B}\\
+            \dv{\vec{v}}{t} &= \underbrace{-\frac{q}{m}\vec{B}}_{\vec{\omega}}\times\vec{v}\\
+        \end{align*}
+        \item Implication: In a magnetic field, a charged particle's velocity vector rotates about $\vec{B}$ with frequency $\omega=qB/m$.
+        \item Implication: $\vec{v}\parallel\vec{B}$ implies $\dv*{\vec{v}}{t}=0$.
+        \item Implication: $\vec{v}\perp\vec{B}$ implies that $\vec{v}$ remains constant in magnitude but directionally rotates about $\vec{B}$.
+        \begin{itemize}
+            \item Example: $\vec{v}(t)=v\cos(\omega t)\hat{x}+v\sin(\omega t)\hat{y}$.
+            \item Integrating the above yields an equation for circular motion about $(x_0,y_0+v/\omega)$ with radius $r=v/\omega$.
+            \begin{equation*}
+                \vec{r}(t) = \left( x_0+\frac{v}{\omega}\sin(\omega t) \right)\hat{x}+\left( y_0+\frac{v}{\omega}-\frac{v}{\omega}\cos(\omega t) \right)
+            \end{equation*}
+            \item Note that returning the definition of $\omega$, we obtain the following alternate expression for the radius of the motion.
+            \begin{equation*}
+                r = \frac{mv}{qB}
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
+    \item A quick note on cyclotrons.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.35\linewidth]{../ExtFiles/cyclotron.png}
+        \caption{A cyclotron.}
+        \label{fig:cyclotron}
+    \end{figure}
+    \begin{itemize}
+        \item Charged particles can be accelerated by using a strong magnetic field (perpendicular to the page) to constrain the particles to approximately circular motion, and then an alternating electric potential to accelerate them across a gap over and over again.
+        \item To achieve maximum acceleration, the angular frequency of the alternating voltage is chosen to correspond to the \textbf{cyclotron frequency}. This is analogous to the resonance condition of the driven harmonic oscillator!
+    \end{itemize}
+    \item \textbf{Cyclotron frequency}: The angular frequency at which a charged particle with nonzero velocity rotates under a given cyclotron's magnetic field. \emph{Denoted by} $\bm{\omega_c}$. \emph{Given by}
+    \begin{equation*}
+        \omega_c = \frac{qB}{m}
+    \end{equation*}
+    \item We now move onto the \textbf{Larmor effect}.
+    \item \textbf{Larmor effect}: In the presence of a magnetic field, typically stable elliptical orbits spiral.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.2\linewidth]{../ExtFiles/larmorEffect.png}
+        \caption{Larmor effect visualization.}
+        \label{fig:larmorEffect}
+    \end{figure}
+    \begin{itemize}
+        \item The picture: Suppose you have a point charge $q$ orbiting a fixed point charge $-q'$ in the presence of a constant magnetic field $\vec{B}$.
+        \item Let's analyze this system to determine $q$'s trajectory.
+        \item The equation of motion is
+        \begin{equation*}
+            m\dv[2]{\vec{r}}{t} = -\frac{k}{r^2}\hat{r}+q\dv{\vec{r}}{t}\times\vec{B}
+        \end{equation*}
+        where $k=qq'/4\pi\varepsilon_0$.
+        \item It will be useful to move to a rotation frame. Exactly which $\vec{\omega}$ we should choose to define this rotating frame will become clear in a moment; for now, we just substitute to yield
+        \begin{equation*}
+            \ddot{\vec{r}}+2\vec{\omega}\times\dot{\vec{r}}+\vec{\omega}\times(\vec{\omega}\times\vec{r}) = -\frac{k}{mr^2}\hat{r}+\frac{q}{m}(\dot{\vec{r}}+\vec{\omega}\times\vec{r})\times\vec{B}
+        \end{equation*}
+        \item We now choose $\vec{\omega}$ to make the above computationally simpler. Indeed, choosing $\omega=-(q/2m)\vec{B}$ simplifies the above to
+        \begin{equation*}
+            \ddot{\vec{r}} = -\frac{k}{mr^2}\hat{r}+\left( \frac{q}{2m} \right)^2\vec{B}\times(\vec{B}\times\vec{r})
+        \end{equation*}
+        \item We now make an approximation: Suppose that the square of the rotation of the reference frame
+        \begin{equation*}
+            \omega_L^2 = \left( \frac{qB}{2m} \right)^2 \ll \frac{k}{mr^3} = \frac{qq'}{4\pi\varepsilon_0mr^3} \approx \omega_0^2
+        \end{equation*}
+        where $\omega_0$ is the angular velocity of $q$ in its orbit around $q'$.
+        \begin{itemize}
+            \item The notation $\omega_L$ will be explained shortly.
+        \end{itemize}
+        \item Then in this case, we can neglect the $\vec{B}\times(\vec{B}\times\vec{r})$ term to yield
+        \begin{equation*}
+            \ddot{\vec{r}} = -\frac{k}{mr^2}\hat{r}
+        \end{equation*}
+        \item Thus, in the rotating frame, the orbits are ellipses.
+        \item In the inertial frame, the ellipse precesses about the direction of $\vec{B}$ with angular frequency equal to the \textbf{Larmor frequency}.
+    \end{itemize}
+    \item \textbf{Larmor frequency}: The angular frequency at which an elliptical orbit precesses about an applied magnetic field. \emph{Denoted by} $\bm{\omega_L}$. \emph{Given by}
+    \begin{equation*}
+        \omega_L = \frac{qB}{2m}
+    \end{equation*}
+    \item Precession of $\vec{J}$ when $\vec{B}\not\perp\vec{J}$.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.35\linewidth]{../ExtFiles/Jprecession.png}
+        \caption{Precession of $\vec{J}$.}
+        \label{fig:Jprecession}
+    \end{figure}
+    \begin{itemize}
+        \item The picture: A small force is exerted upon a rotating system much like the one discussed above. The small force is that of a weak magnetic field. The rotating system comprises $q$ circularly orbiting $q'$, which is fixed at the origin.
+        \begin{itemize}
+            \item $\khat$ defines an axis for an inertial reference frame.
+            \item To define a local, rotating reference frame for the rotating system, let\dots
+            \begin{itemize}
+                \item $\hat{n}$ be normal to the plane of the orbit, pointing in the same direction as $\vec{J}$;
+                \item $\hat{a}$ point in the direction of $\khat\times\hat{n}$;
+                \item $\hat{b}$ point in the direction of $\hat{n}\times\hat{a}$.
+            \end{itemize}
+            \item We also take $\alpha$ to be the angle between $\khat$ and $\hat{n}$, and $\psi$ to be the angle between $\hat{a}$ and $q$'s position vector $\vec{r}$.
+            \item Thus, if we fix the location of $q'$ to be the origin, then at a given moment the particle is\dots
+            \begin{itemize}
+                \item At position $\vec{r}=(r\cos\psi,r\sin\psi,0)$;
+                \item At velocity $\vec{v}=(-v\sin\psi,v\cos\psi,0)$.
+            \end{itemize}
+            \item The weak, constant magnetic field is taken to be $\vec{B}=B\khat=(0,B\sin\alpha,B\cos\alpha)$.
+        \end{itemize}
+        \item We want to\dots
+        \begin{enumerate}
+            \item Prove that $\vec{J}$ precesses about $\vec{k}$ without changing magnitude;
+            \item Find this precession's angular frequency.
+        \end{enumerate}
+        \item Thus, we will investigate $\dv*{\vec{J}}{t}$.
+        \item To begin, we may write that
+        \begin{equation*}
+            \dv{\vec{J}}{t} = \vec{r}\times\vec{F}
+            = q\vec{r}\times(\vec{v}\times\vec{B})
+            = q[(\vec{r}\cdot\vec{B})\vec{v}-(\vec{r}\cdot\vec{v})\vec{B}]
+        \end{equation*}
+        \item Since $\vec{r}\cdot\vec{v}=0$ in a circular orbit and we have the above definitions of $\vec{r},\vec{B},\vec{v}$ in terms of the local, rotating reference frame, we may expand the above to
+        \begin{align*}
+            \dv{\vec{J}}{t} &= q(\vec{r}\cdot\vec{B})\vec{v}\\
+            &= qBr\sin\alpha\sin\psi\vec{v}\\
+            &= qBrv\sin\alpha(-\sin^2\psi,\sin\psi\cos\psi,0)
+        \end{align*}
+        \item We now make an approximation: Since $\vec{B}$ is weak, $\vec{J}$ will not change much in the time it takes for $q$ to make one complete orbit of $q'$. Thus, we don't care that much about the exact change in $\vec{J}$ at every position $\psi$ within that orbit; we care much more about the net change over the whole orbit. Thus, let's replace the oscillating term $(-\sin^2\psi,\sin\psi\cos\psi,0)$ with its expected value $(-1/2,0,0)$. This changes the above into
+        \begin{equation*}
+            \dv{\vec{J}}{t} = qBrv\sin\alpha\left( -\frac{1}{2},0,0 \right)
+            = -\frac{1}{2}qBrv\sin(\alpha)\hat{a}
+        \end{equation*}
+        \item We have now accomplished our first task: The above shows that $\vec{J}$ moves exclusively in a direction perpendicular to it, so its magnitude remains unchanged. Moreover, this direction will cause it to precess about $\vec{k}$, as expected.
+        \item We now wrap up the second task.
+        \item If $\vec{J}$ is precessing about $\vec{k}$, then it's very analogous to the case surrounding Figure \ref{fig:Vrotation}. In particular, we should be able to write the above equation in the form
+        \begin{equation*}
+            \dv{\vec{J}}{t} = \vec{\omega}\times\vec{J}
+            = \omega\khat\times\vec{J}
+        \end{equation*}
+        for some $\omega$.
+        \item We may then solve for $\omega$ as follows, accomplishing our second task.
+        \begin{align*}
+            \omega\khat\times\vec{J} &= -\frac{1}{2}qBrv\sin(\alpha)\hat{a}\\
+            \omega mrv\khat\times\hat{n} &= -\frac{1}{2}qBrv\sin(\alpha)\hat{a}\\
+            \omega mrv\sin(\alpha)\hat{a} &= -\frac{1}{2}qBrv\sin(\alpha)\hat{a}\\
+            \omega m &= -\frac{1}{2}qB\\
+            \omega &= -\frac{qB}{2m}
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
