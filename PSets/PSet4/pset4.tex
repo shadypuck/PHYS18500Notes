@@ -1,0 +1,56 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{3}
+
+\begin{document}
+
+
+
+
+\section{Orbits, Scattering, and Rotating Reference Frames}
+\begin{enumerate}
+    \item \marginnote{10/27:}Here, we will consider orbits and scattering from an isotropic harmonic oscillator potential
+    \begin{equation*}
+        V(r) = \frac{1}{2}kr^2
+    \end{equation*}
+    where $k>0$, as well as the corresponding repulsive potential ($k<0$).
+    \begin{enumerate}
+        \item Use the radial energy equation to determine the effective potential energy function $U(r)$ for this potential in the two cases, $k>0$ and $k<0$. Sketch this function and describe whether the orbits are bounded in each case. For the attractive case, find the minimum $U_\text{min}$ of $U(r)$ and describe the motion for $E=U_\text{min}$.
+        \item Let $\gamma=J^2/2m$, $\beta=\sqrt{E^2/4\gamma^2-k/2\gamma}$, and $\alpha=E/2\gamma$. Use the orbit equation to show that the orbits of the potential $V(r)=kr^2/2$ can be written as
+        \begin{equation*}
+            1 = r^2[(\beta+\alpha)\cos^2\theta+(\alpha-\beta)\sin^2\theta]
+        \end{equation*}
+        Hint: To solve the differential equation, substitute $v=u^2$. You will need to complete the square as in class.
+        \item What are the shapes of the orbits for the cases $\alpha<\beta$ and $\alpha>\beta$? We saw that for the attractive inverse square law, the orbits could be either ellipses or hyperbolas. Is a hyperbola possible for the attractive harmonic oscillator potential? Discuss this result in light of part (A).
+        \item For the attractive case, show that the condition for a real orbit recovers the value of $E=U_\text{min}$ that you derived in part (A).
+    \end{enumerate}
+    \item In class, we found formulas for the change in angle of particles scattered via a hard sphere potential or an inverse square potential. Here, we will derive a general expression for the scattering angle as a function of the impact parameter.
+    \begin{enumerate}
+        \item Show that for a general force, the change in angle of the trajectory as it traverses from its smallest to its largest radial distance is given by
+        \begin{equation*}
+            \Delta\theta = 2\int_{r_\text{min}}^{r_\text{max}}\frac{J/r^2}{\sqrt{2m(E-V(r)-J^2/2mr^2)}}\dd{r}
+        \end{equation*}
+        Hint: Use the orbit equation to find an expression for $\dv*{\theta}{r}$, and integrate.
+        \item Let the speed of the particle far from the scattering center be $v$. Explain why the angular momentum is $J=mvb$, where $b$ is the impact parameter.
+        \item Show that the total angular change for an unbounded particle in a central force field is
+        \begin{equation*}
+            \Delta\theta = 2\int_{r_\text{min}}^\infty\frac{b/r^2}{\sqrt{1-V(r)/E-b^2/r^2}}\dd{r}
+        \end{equation*}
+        The scattering angle $\Theta$ is related to this angular change via $\Theta=\pi-\Delta\theta$. Write down the expression for the scattering angle in terms of $b$. This expression can be integrated to find $b(\theta)$, and hence the differential scattering cross-section, for a general potential $V(r)$.
+    \end{enumerate}
+    \item \textcite{bib:KibbleBerkshire}, Q5.4. Find the velocity relative to an inertial frame (in which the center of the Earth is at rest) of a point on the Earth's equator. Additionally, an aircraft is flying above the equator at \SI[per-mode=symbol]{1000.}{\kilo\meter\per\hour}. Assuming that it flies straight and level (i.e., at a constant altitude above the surface), give its velocity relative to the inertial frame\dots
+    \begin{enumerate}
+        \item If it flies north;
+        \item If it flies west;
+        \item If it flies east.
+    \end{enumerate}
+    \item A British warship fires a projectile due south near the Falkland Islands during World War I at latitude \ang{50}S. The shells are fired at \ang{37} elevation with a speed of \SI[per-mode=symbol]{400}{\meter\per\second}. If the projectile was aimed on the assumption that the latitude was \ang{50}N (i.e., the sailors accounted for the Coriolis force in the northern hemisphere by mistake), by how much did it miss? (This actually happened, though the precise numbers are not accurate.)
+    \item \textcite{bib:KibbleBerkshire}, Q5.18. Find the equation of motion for a particle in a \emph{uniformly accelerated} frame with acceleration $\vec{a}$. Show that for a particle moving in a uniform gravitatinoal field, and subject to other forces, the gravitational field may be eliminated by a suitable choice of $\vec{a}$.
+\end{enumerate}
+
+
+
+
+\end{document}
