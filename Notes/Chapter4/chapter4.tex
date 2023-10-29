@@ -890,5 +890,93 @@
 
 
 
+\section{Chapter 4: Central Conservative Forces}
+\emph{From \textcite{bib:KibbleBerkshire}.}
+\subsection*{Section 4.1: The Isotropic Harmonic Oscillator}
+\begin{itemize}
+    \item \marginnote{10/29:}Some of this may be relevant to PSet 4, Q1. Most of it is just more physics knowledge that wasn't covered in class, though.
+    \item \textbf{Isotropic} (harmonic oscillator): A harmonic oscillator that obeys equivalent force laws in all directions.
+    \item \textbf{Anisotropic} (harmonic oscillator): A harmonic oscillator that does not obey equivalent force laws in all directions.
+    \item Everything from the 1D SHO gets translated into 3D vector notation:
+    \begin{itemize}
+        \item $m\ddot{\vec{r}}+k\vec{r}=0$.
+        \item $\vec{r}=\vec{c}\cos\omega t+\vec{d}\sin\omega t$.
+        \begin{itemize}
+            \item $\vec{c}=\vec{r}_0$ and $\vec{d}=\vec{v}_0/\omega$.
+        \end{itemize}
+        \item $\dot{\vec{r}}=-\omega\vec{c}\sin\omega t+\omega\vec{d}\cos\omega t$.
+        \item $\vec{J}=m\vec{r}_0\times\vec{v}_0$.
+        \item $E=m\vec{v}_0^2/2+k\vec{r}_0^2/2$.
+    \end{itemize}
+    \item Proof that the 3D SHO has elliptical orbits.
+\end{itemize}
+
+
+\subsection*{Section 4.2: The Conservation Laws}
+\begin{itemize}
+    \item Statement of the \textbf{conservation of energy} and \textbf{conservation of angular momentum} equations.
+    \item Derivation of the \textbf{radial energy equation} and \textbf{effective potential energy}.
+    \item Note that the $J^2/2mr^2$ term in the effective potential energy corresponds to the \textbf{centrifugal force}
+    \begin{equation*}
+        -\dv{r}(\frac{J^2}{2mr^2}) = \frac{J^2}{mr^3}
+        = \frac{(mr^2\dot{\theta})^2}{mr^3}
+        = mr\dot{\theta}^2
+        = \frac{mv^2}{r}
+    \end{equation*}
+    \item More on the isotropic harmonic oscillator relevant to PSet 4, Q1.
+\end{itemize}
+
+
+\subsection*{Section 4.3: The Inverse Square Law}
+\begin{itemize}
+    \item Qualitative description of the behavior of such a particle, very similar to the discussion surrounding Figure \ref{fig:invSqPot}.
+    \item Example: Distance of closest approach for a particle scattered by an inverse square force.
+    \item Example: Escape velocity.
+    \item Example: Maximum height.
+    \item Example: Energy levels of the Bohr hydrogen atom.
+\end{itemize}
+
+
+\subsection*{Section 4.4: Orbits}
+\begin{itemize}
+    \item Derivation of the trajectories, as in class.
+    \item Some good words on the interdependence of $E,e,k$.
+    \item In the repulsive case, $r$ takes its minimum value when $\theta=\theta_0$.
+    \item In the attractive case, $r=\ell$ when $\theta=\theta_0\pm\pi/2$.
+    \item Discussion of elliptic and hyperbolic orbits, as in class.
+\end{itemize}
+
+
+\subsection*{Section 4.5: Scattering Cross-Sections}
+\begin{itemize}
+    \item \textbf{Cross-sectional area}: The area presented by the target of an impinging particle beam from the beam's point of view. \emph{Denoted by} $\bm{\sigma}$.
+    \item \textbf{Steradian}: The unit of measurement for a solid angle, analogous to radians for an angle. \emph{Denoted by} \textbf{sr}.
+    \begin{itemize}
+        \item The total solid angle subtended by an entire sphere is $4\pi\,\si{\steradian}$.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 4.7: Rutherford Scattering}
+\begin{itemize}
+    \item \textbf{Rutherford scattering cross-section}: The differential cross-section defined as follows. \emph{Given by}
+    \begin{equation*}
+        \dv{\sigma}{\Omega} = \frac{a^2}{4\sin^4(\frac{1}{2}\theta)}
+    \end{equation*}
+    \begin{itemize}
+        \item Note that the corresponding total cross-section is infinite, since the Coulomb force has infinite range.
+        \item Importantly, we can calculate the total number of particles scattered through any angle greater than some small lower limit $\theta_0$.
+    \end{itemize}
+    \item The attenuation of the impinging beam is related to the total cross-section $\sigma$, obtained by integrating the differential cross-section over all solid angles.
+\end{itemize}
+
+
+\subsection*{Section 4.8: Summary}
+\begin{itemize}
+    \item Some good ideas.
+\end{itemize}
+
+
+
 
 \end{document}
