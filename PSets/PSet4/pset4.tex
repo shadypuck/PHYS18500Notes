@@ -18,13 +18,143 @@
     where $k>0$, as well as the corresponding repulsive potential ($k<0$).
     \begin{enumerate}
         \item Use the radial energy equation to determine the effective potential energy function $U(r)$ for this potential in the two cases, $k>0$ and $k<0$. Sketch this function and describe whether the orbits are bounded in each case. For the attractive case, find the minimum $U_\text{min}$ of $U(r)$ and describe the motion for $E=U_\text{min}$.
+        \begin{proof}
+            The effective potential energy function $U(r)$ is defined as follows.
+            \begin{equation*}
+                U(r) = \frac{J^2}{2mr^2}+V(r)
+            \end{equation*}
+            Thus, plugging in the given definition of $V(r)$, we obtain
+            \begin{equation*}
+                \boxed{U(r) = \frac{J^2}{2mr^2}+\frac{1}{2}kr^2}
+            \end{equation*}
+            where $k$ can be positive or negative.\par
+            The function can be sketched as follows for the two cases.
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}[b]{0.25\linewidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \small
+                        \draw (0,-1) -- (0,2) node[above]{$U(x)$};
+                        \draw (-0.5,0) -- (2,0) node[right]{$r$};
+            
+                        \footnotesize
+                        \draw [dashed] (0,0.7) node[left]{$E$} -- ++(2,0);
+                        \draw (0.56,0.1) -- ++(0,-0.2) node[below]{$r_1$};
+                        \draw (1.785,0.1) -- ++(0,-0.2) node[below]{$r_2$};
+            
+                        \draw [blx,thick] plot[domain=0.318:2] (\x,{0.2/(\x)^2+0.2*(\x)^2});
+                    \end{tikzpicture}
+                    \caption{$k>0$.}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.25\linewidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \small
+                        \draw (0,-1) -- (0,2) node[above]{$U(x)$};
+                        \draw (-0.5,0) -- (2,0) node[right]{$r_1$};
+            
+                        \footnotesize
+                        \draw [dashed] (0,0.7) node[left]{$E$} -- ++(2,0);
+                        \draw (0.515,0.1) -- ++(0,-0.2) node[below]{$r$};
+            
+                        \draw [blx,thick] plot[domain=0.316:2] (\x,{0.2/(\x)^2-0.2*(\x)^2});
+                    \end{tikzpicture}
+                    \caption{$k<0$.}
+                \end{subfigure}
+            \end{figure}
+            Evidently, when \fbox{$k>0$ implies bounded orbits} and \fbox{$k<0$ implies unbounded orbits.}\par
+            In the attractive case, we can calculate $U_\text{min}$ by setting the first derivative equal to zero, solving for the corresponding $r$ value, and returning the substitution. Let's begin. The corresponding $r$ value is
+            \begin{align*}
+                0 &= \dv{U}{r}\\
+                &= -\frac{J^2}{mr^3}+kr\\
+                \frac{J^2}{mk} &= r^4\\
+                r &= \sqrt[4]{\frac{J^2}{mk}}
+            \end{align*}
+            Returning the substitution, we find that
+            \begin{align*}
+                U_\text{min} &= U\left( \sqrt[4]{\frac{J^2}{mk}} \right)\\
+                &= \frac{J^2}{2m\left( \sqrt[4]{\frac{J^2}{mk}} \right)^2}+\frac{1}{2}k\left( \sqrt[4]{\frac{J^2}{mk}} \right)^2\\
+                \Aboxed{U_\text{min} &= J\sqrt{\frac{k}{m}}}
+            \end{align*}
+            At $E=U_\text{min}$, \fbox{the particle circularly orbits the center of attraction at a distance $r=\sqrt[4]{J^2/mk}$.}
+        \end{proof}
         \item Let $\gamma=J^2/2m$, $\beta=\sqrt{E^2/4\gamma^2-k/2\gamma}$, and $\alpha=E/2\gamma$. Use the orbit equation to show that the orbits of the potential $V(r)=kr^2/2$ can be written as
         \begin{equation*}
             1 = r^2[(\beta+\alpha)\cos^2\theta+(\alpha-\beta)\sin^2\theta]
         \end{equation*}
         Hint: To solve the differential equation, substitute $v=u^2$. You will need to complete the square as in class.
+        \begin{proof}
+            The orbit equation can be stated as follows.
+            \begin{equation*}
+                \frac{J^2}{2m}\left( \dv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+V(1/u) = E
+            \end{equation*}
+            Substituting in $\gamma$ as defined in the problem statement and $V$, we obtain the following.
+            \begin{equation*}
+                \gamma\left( \dv{u}{\theta} \right)^2+\gamma u^2+\frac{k}{2u^2} = E
+            \end{equation*}
+            Taking the hint, change variables to the following.
+            \begin{align*}
+                v &= u^2&
+                \dv{v}{\theta} &= 2u\dv{u}{\theta}
+            \end{align*}
+            Substitute in the new variables and simplify.
+            \begin{align*}
+                \gamma\left( \frac{1}{2u}\dv{v}{\theta} \right)^2+\gamma v+\frac{k}{2v} &= E\\
+                \frac{\gamma}{4u^2}\left( \dv{v}{\theta} \right)^2+\gamma v+\frac{k}{2v} &= E\\
+                \frac{\gamma}{4v}\left( \dv{v}{\theta} \right)^2+\gamma v+\frac{k}{2v} &= E
+            \end{align*}
+            Multiplying through by $v/\gamma$ and completing the square, we obtain the following.
+            \begin{align*}
+                \frac{\gamma}{4v}\left( \dv{v}{\theta} \right)^2+\gamma v+\frac{k}{2v} &= E\\
+                \frac{1}{4}\left( \dv{v}{\theta} \right)^2+v^2+\frac{k}{2\gamma} &= \frac{Ev}{\gamma}\\
+                \frac{1}{4}\left( \dv{v}{\theta} \right)^2+v^2-\frac{E}{\gamma}v+\frac{E^2}{4\gamma^2} &= -\frac{k}{2\gamma}+\frac{E^2}{4\gamma^2}\\
+                \frac{1}{4}\left( \dv{v}{\theta} \right)^2+\left( v-\frac{E}{2\gamma} \right)^2 &= -\frac{k}{2\gamma}+\frac{E^2}{4\gamma^2}
+            \end{align*}
+            Substitute in $\alpha$ and $\beta$.
+            \begin{equation*}
+                \frac{1}{4}\left( \dv{v}{\theta} \right)^2+(v-\alpha)^2 = \beta^2
+            \end{equation*}
+            Change variables, once more, to the following.
+            \begin{align*}
+                z &= v-\alpha&
+                \dv{z}{\theta} &= \dv{v}{\theta}
+            \end{align*}
+            Substitute in the new variables and rearrange to obtain
+            \begin{align*}
+                \frac{1}{4}\left( \dv{z}{\theta} \right)^2+z^2 &= \beta^2\\
+                \left( \dv{z}{\theta} \right)^2+(2z)^2 &= (2\beta)^2
+            \end{align*}
+            The solution to this differential equation is
+            \begin{equation*}
+                z = \beta\cos(2(\theta-\theta_0))
+            \end{equation*}
+            where $\theta_0$ is a constant of integration. In this case, we will choose $\theta_0=0$. Setting the above equal to the definition of $z$, returning previous substitutions, and simplifying allows us to find the final trajectories, as desired.
+            \begin{align*}
+                \beta\cos(2\theta) &= v-\alpha\\
+                \alpha\cdot 1+\beta(\cos^2\theta-\sin^2\theta) &= u^2\\
+                \alpha(\cos^2\theta+\sin^2\theta)+\beta\cos^2\theta-\beta\sin^2\theta &= \frac{1}{r^2}\\
+                r^2[(\beta+\alpha)\cos^2\theta+(\alpha-\beta)\sin^2\theta] &= 1
+            \end{align*}
+        \end{proof}
         \item What are the shapes of the orbits for the cases $\alpha<\beta$ and $\alpha>\beta$? We saw that for the attractive inverse square law, the orbits could be either ellipses or hyperbolas. Is a hyperbola possible for the attractive harmonic oscillator potential? Discuss this result in light of part (A).
+        \begin{proof}
+            If $\alpha<\beta$, then the orbit is a hyperbola (so yes, it's possible). If $\alpha>\beta$, the orbit is an ellipse. This means that even potential energy functions that don't have the same shape --- such as those between the harmonic oscillator potential and inverse square law --- the orbits can be the same.
+        \end{proof}
         \item For the attractive case, show that the condition for a real orbit recovers the value of $E=U_\text{min}$ that you derived in part (A).
+        \begin{proof}
+            The condition for a real orbit is that
+            \begin{equation*}
+                \frac{E^2}{4\gamma^2}-\frac{k}{2\gamma} \geq 0
+            \end{equation*}
+            Simplifying, we obtain
+            \begin{align*}
+                E^2 &\geq 2\gamma k\\
+                E^2 &\geq \frac{J^2k}{m}\\
+                E &\geq J\sqrt{\frac{k}{m}} = U_\text{min}
+            \end{align*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \item In class, we found formulas for the change in angle of particles scattered via a hard sphere potential or an inverse square potential. Here, we will derive a general expression for the scattering angle as a function of the impact parameter.
     \begin{enumerate}
@@ -33,21 +163,101 @@
             \Delta\theta = 2\int_{r_\text{min}}^{r_\text{max}}\frac{J/r^2}{\sqrt{2m(E-V(r)-J^2/2mr^2)}}\dd{r}
         \end{equation*}
         Hint: Use the orbit equation to find an expression for $\dv*{\theta}{r}$, and integrate.
+        \begin{proof}
+            The orbit equation can be stated as follows.
+            \begin{equation*}
+                \frac{J^2}{2m}\left( \dv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+V(1/u) = E
+            \end{equation*}
+            Substituting in $u=1/r$ and simplifying yields the desired result as follows.
+            \begin{align*}
+                \frac{J^2}{2m}\left( \dv{u}{r}\dv{r}{\theta} \right)^2+\frac{J^2}{2mr^2}+V(r) &= E\\
+                \frac{1}{2m}\left( J\cdot-\frac{1}{r^2}\dv{r}{\theta} \right)^2 &= E-V(r)-\frac{J^2}{2mr^2}\\
+                \left( \frac{J}{r^2}\dv{r}{\theta} \right)^2 &= 2m(E-V(r)-\frac{J^2}{2mr^2})\\
+                \dv{r}{\theta} &= \frac{\sqrt{2m(E-V(r)-J^2/2mr^2)}}{J/r^2}\\
+                \dv{\theta}{r} &= \frac{J/r^2}{\sqrt{2m(E-V(r)-J^2/2mr^2)}}\\
+                \int_{\Delta\theta/2}^{\Delta\theta}\dd{\theta} &= \int_{r_\text{min}}^{r_\text{max}}\frac{J/r^2}{\sqrt{2m(E-V(r)-J^2/2mr^2)}}\dd{r}\\
+                \Delta\theta &= 2\int_{r_\text{min}}^{r_\text{max}}\frac{J/r^2}{\sqrt{2m(E-V(r)-J^2/2mr^2)}}\dd{r}
+            \end{align*}
+            Note that in the second-to-last line, we integrate $\dd{\theta}$ from $\theta/2$ to $\theta$ because although the scattering angle $\theta$ accounts for the \emph{full} change $\Delta\theta$ over all time, only \emph{half} of this change in angle happens on the leg of the hyperbola corresponding to the particle is moving away from the scatterer.
+        \end{proof}
         \item Let the speed of the particle far from the scattering center be $v$. Explain why the angular momentum is $J=mvb$, where $b$ is the impact parameter.
+        \begin{proof}
+            % If the speed of the particle far from the scattering center is $v$, then its linear momentum far from the scattering center is $p=mv$.
+            % Because the particle is only under the influence of a central force, angular momentum is conserved.
+
+
+            First of all, because the particle is only under the influence of a central force, angular momentum is conserved. Thus, we can calculate it at any location along the trajectory and the value will hold for all time. Since we have the velocity far from the scattering center, we'll calculate $J$ there.\par
+            At this point, we know that the particle's linear momentum $p=mv$, where $m$ is the mass of the particle. Additionally, since the particle is far from the scattering center, it is a good approximation to let $\vec{p}$ lie parallel to the hyperbolic trajectory's directrix (i.e., the linear path the particle would take were the scattering center not there). The position vector $\vec{r}$ then intersects $\vec{p}$ at the particle's location, forming an angle $\phi$. It follows by the definition of angular momentum that $J=rp\sin\phi$. But since $b$ is the distance from the scattering center to the directrix, trigonometry shows that $r\sin\phi=b$. Thus, returning the substitutions $p=mv$ and $b=r\sin\phi$, we obtain
+            \begin{equation*}
+                J = mvb
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Show that the total angular change for an unbounded particle in a central force field is
         \begin{equation*}
             \Delta\theta = 2\int_{r_\text{min}}^\infty\frac{b/r^2}{\sqrt{1-V(r)/E-b^2/r^2}}\dd{r}
         \end{equation*}
         The scattering angle $\Theta$ is related to this angular change via $\Theta=\pi-\Delta\theta$. Write down the expression for the scattering angle in terms of $b$. This expression can be integrated to find $b(\theta)$, and hence the differential scattering cross-section, for a general potential $V(r)$.
+        \begin{proof}
+            First off, note that since the particle has velocity $v$ when it is far from the scattering center, it is a good approximation to let the energy be entirely kinetic, i.e.,
+            \begin{equation*}
+                E = \frac{1}{2}mv^2
+            \end{equation*}
+            Equipped with this result and $J=mvb$, we can extend from part (A) as follows.
+            \begin{align*}
+                \Delta\theta &= 2\int_{r_\text{min}}^\infty\frac{J/r^2}{\sqrt{2m(E-V(r)-J^2/2mr^2)}}\dd{r}\\
+                &= 2\int_{r_\text{min}}^\infty\frac{mvb/r^2}{\sqrt{2m(mv^2/2-V(r)-(mvb)^2/2mr^2)}}\dd{r}\\
+                &= 2\int_{r_\text{min}}^\infty\frac{mvb/r^2}{\sqrt{m^2v^2(1-V(r)\cdot 2/mv^2-b^2/r^2)}}\dd{r}\\
+                &= 2\int_{r_\text{min}}^\infty\frac{b/r^2}{\sqrt{1-V(r)/E-b^2/r^2}}\dd{r}
+            \end{align*}
+            It follows that
+            \begin{equation*}
+                \boxed{\Theta = \pi-2\int_{r_\text{min}}^\infty\frac{b/r^2}{\sqrt{1-V(r)/E-b^2/r^2}}\dd{r}}
+            \end{equation*}
+        \end{proof}
     \end{enumerate}
-    \item \textcite{bib:KibbleBerkshire}, Q5.4. Find the velocity relative to an inertial frame (in which the center of the Earth is at rest) of a point on the Earth's equator. Additionally, an aircraft is flying above the equator at \SI[per-mode=symbol]{1000.}{\kilo\meter\per\hour}. Assuming that it flies straight and level (i.e., at a constant altitude above the surface), give its velocity relative to the inertial frame\dots
+    \item \textcite{bib:KibbleBerkshire}, Q5.4. Find the velocity relative to an inertial frame (in which the center of the Earth is at rest) of a point on the Earth's equator.
+    \begin{proof}
+        Let
+        \begin{align*}
+            \vec{\omega} &= (\SI{7.292e-5}{\per\second})\khat&
+            \vec{a} &= (\SI{6371}{\kilo\meter})\ihat
+        \end{align*}
+        Then
+        \begin{align*}
+            \dv{\vec{a}}{t} &= \vec{\omega}\times\vec{a}\\
+            \Aboxed{\vec{v} &= (\SI[per-mode=symbol]{1672}{\kilo\meter\per\hour})\jhat}
+        \end{align*}
+    \end{proof}
+    Additionally, an aircraft is flying above the equator at \SI[per-mode=symbol]{1000.}{\kilo\meter\per\hour}. Assuming that it flies straight and level (i.e., at a constant altitude above the surface), give its velocity relative to the inertial frame\dots
     \begin{enumerate}
         \item If it flies north;
+        \begin{proof}
+            From trigonometry, we can determine that
+            \begin{equation*}
+                \boxed{v = \SI{1948}{\kilo\meter\per\hour}}
+            \end{equation*}
+            where $t$ is the time in hours after the plane "takes off."
+        \end{proof}
         \item If it flies west;
+        \begin{proof}
+            If $\vec{v}'=(\SI[per-mode=symbol]{1000}{\kilo\meter\per\hour})\jhat$, then the overall velocity is
+            \begin{align*}
+                \dv{\vec{a}}{t} &= \vec{v}-\vec{v'}\\
+                \Aboxed{\dv{\vec{a}}{t} &= (\SI[per-mode=symbol]{672}{\kilo\meter\per\hour})\jhat}
+            \end{align*}
+        \end{proof}
         \item If it flies east.
+        \begin{proof}
+            If $\vec{v}'=(\SI[per-mode=symbol]{1000}{\kilo\meter\per\hour})\jhat$, then the overall velocity is
+            \begin{align*}
+                \dv{\vec{a}}{t} &= \vec{v}+\vec{v'}\\
+                \Aboxed{\dv{\vec{a}}{t} &= (\SI[per-mode=symbol]{2672}{\kilo\meter\per\hour})\jhat}
+            \end{align*}
+        \end{proof}
     \end{enumerate}
-    \item A British warship fires a projectile due south near the Falkland Islands during World War I at latitude \ang{50}S. The shells are fired at \ang{37} elevation with a speed of \SI[per-mode=symbol]{400}{\meter\per\second}. If the projectile was aimed on the assumption that the latitude was \ang{50}N (i.e., the sailors accounted for the Coriolis force in the northern hemisphere by mistake), by how much did it miss? (This actually happened, though the precise numbers are not accurate.)
-    \item \textcite{bib:KibbleBerkshire}, Q5.18. Find the equation of motion for a particle in a \emph{uniformly accelerated} frame with acceleration $\vec{a}$. Show that for a particle moving in a uniform gravitatinoal field, and subject to other forces, the gravitational field may be eliminated by a suitable choice of $\vec{a}$.
+    % \item A british warship fires a projectile due south near the Falkland Islands during World War I at latitude \ang{50}S. The shells are fired at \ang{37} elevation with a speed of \SI[per-mode=symbol]{400}{\meter\per\second}. If the projectile was aimed on the assumption that the latitude was \ang{50}N (i.e., the sailors accounted for the Coriolis force in the northern hemisphere by mistake), by how much did it miss? (This actually happened, though the precise numbers are not accurate.)
+    % \item \textcite{bib:KibbleBerkshire}, Q5.18. Find the equation of motion for a particle in a \emph{uniformly accelerated} frame with acceleration $\vec{a}$. Show that for a particle moving in a uniform gravitatinoal field, and subject to other forces, the gravitational field may be eliminated by a suitable choice of $\vec{a}$.
 \end{enumerate}
 
 
