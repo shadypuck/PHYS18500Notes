@@ -1146,5 +1146,158 @@
 
 
 
+\section{TM Chapter 6: Some Methods in the Calculus of Variations}
+\emph{From \textcite{bib:ThorntonMarion}.}
+\begin{itemize}
+    \item \marginnote{10/29:}Jerison recommendations.
+    \begin{itemize}
+        \item This chapter comprises "a useful reference if you would like to learn more about variational calculus, but there will be no HW or exam problems directly on this material."
+        \item See Chapter 6, p. 219-221 for "the derivation of the Euler-Lagrange equations with undetermined multipliers."
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 6.1: Introduction}
+\begin{itemize}
+    \item \textcite{bib:ThorntonMarion} emphasizes aspects of the broad mathematical theory of the calculus of variations that directly bear on classical systems.
+    \begin{itemize}
+        \item They omit some existence proofs.
+    \end{itemize}
+    \item Focus: Determining the path of extremum solutions.
+\end{itemize}
+
+
+\subsection*{Section 6.2: Statement of the Problem}
+\begin{itemize}
+    \item If the functional has zero derivative with respect to all $\alpha$, then $J$ has a \textbf{stationary} value.
+    \begin{itemize}
+        \item The inverse assertion is not necessarily true.
+    \end{itemize}
+    \item Example 6.1: Working with functionals.
+\end{itemize}
+
+
+\subsection*{Section 6.3: Euler's Equation}
+\begin{itemize}
+    \item Derivation of Euler's equation.
+    \item Example 6.2: The brachistochrone problem.
+    \item Example 6.3: The soap film problem.
+\end{itemize}
+
+
+\subsection*{Section 6.4: The "Second Form" of the Euler Equation}
+\begin{itemize}
+    \item Proof that the Euler equation can be rearranged into the following form.
+    \begin{equation*}
+        \pdv{f}{x}-\dv{x}(f-y'\pdv{f}{y'}) = 0
+    \end{equation*}
+    \item Thus, if $f(y,y';x)$ does not depend explicitly on $x$, i.e., $\pdv*{f}{x}=0$, then
+    \begin{equation*}
+        f-y'\pdv{f}{y'} = \text{constant}
+    \end{equation*}
+    \item \textbf{Geodesic}: A line that represents the shortest path between any two points when the path is restricted to a particular surface.
+    \item Example 6.4: Geodesic on a sphere.
+\end{itemize}
+
+
+\subsection*{Section 6.5: Functions with Several Dependent Variables}
+\begin{itemize}
+    \item Derivation of the independent E-L equations in each coordinate.
+    \item We derived the Euler equation for a function of the form $f(y,y';x)$. What if $f(y_i,y_i';x)$?
+    \begin{itemize}
+        \item The derivation proceeds analogously, resulting in
+        \begin{equation*}
+            \pdv{f}{\alpha} = \int_{x_1}^{x_2}\sum_i\left( \pdv{f}{y_i}-\dv{x}\pdv{f}{y_i'} \right)\eta_i(x)\dd{x}
+        \end{equation*}
+        \item Because the independent variations (the $\eta_i$) are all independent, the vanishing of the above equation when evaluate at $\alpha=0$ requires the separate vanishing of \emph{each} expression in the parentheses. In particular, we must have
+        \begin{equation*}
+            \pdv{f}{y_i}-\dv{x}\pdv{f}{y_i'} = 0
+        \end{equation*}
+        for $i=1,\dots,n$, as desired.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 6.6: Euler's Equations When Auxiliary Conditions Are Imposed}
+\begin{itemize}
+    \item We are now entering Jerison's first directly recommended section, the derivation of the method of Lagrange undetermined multipliers.
+    \item Motivation: In Example 6.4, the relatively simple equation of a sphere ($r=\rho=\text{constant}$) was subtly substituted into the math where needed. But what about for a more general surface $g(y_i;x)=0$? To tackle this problem, we need a more formal, explicit way to insert such constraints.
+    \item \textbf{Equation of constraint}: An equation setting some function of all relevant variables equal to zero.
+    \item We now begin the derivation in earnest.
+    \begin{itemize}
+        \item For pedagogical purposes, we will analyze a function of the form
+        \begin{equation*}
+            f(y,y',z,z';x)
+        \end{equation*}
+        instead of the more general $f(y_i,y_i';x)$.
+        \begin{itemize}
+            \item Note, however, that the derivation readily generalizes to the general case.
+        \end{itemize}
+        \item We start from the following intermediate result in the derivation of the Euler equation.
+        \begin{equation*}
+            \pdv{J}{\alpha} = \int_{x_1}^{x_2}\left[ \left( \pdv{f}{y}-\dv{x}\pdv{f}{y'} \right)\pdv{y}{\alpha}+\left( \pdv{f}{z}-\dv{x}\pdv{f}{z'} \right)\pdv{z}{\alpha} \right]\dd{x}
+        \end{equation*}
+        \begin{itemize}
+            \item Reminder: We are allowed to use $\dv*{y}{\alpha},\dv*{z}{\alpha}$ instead of $\eta_1,\eta_2$ (as in Section 6.5) because in the original derivation of the Euler equation, we proved that
+            \begin{align*}
+                \dv{y}{\alpha} &= \eta_1&
+                \dv{z}{\alpha} &= \eta_2
+            \end{align*}
+        \end{itemize}
+        \item Since $g(y,z;x)=0$ relates $y,z$, $\dv*{y}{\alpha}$ and $\dv*{z}{\alpha}$ are no longer independent. Thus, the expressions in parentheses above no longer \emph{separately} vanish at $\alpha=0$. Instead, we must derive a new expression that vanishes at $\alpha=0$.
+        \item We can do this as follows. Begin by noting that since $g(y,z;x)=0$,
+        \begin{equation*}
+            0 = \dv{g}{\alpha} = \pdv{g}{y}\pdv{y}{\alpha}+\pdv{g}{z}\pdv{z}{\alpha}
+        \end{equation*}
+        \begin{itemize}
+            \item A $\pdv*{g}{x}\cdot\pdv*{x}{\alpha}$ term does not appear because $x$ does not depend on $\alpha$, so $\pdv*{x}{\alpha}=0$ and the term vanishes.
+        \end{itemize}
+        \item Since $\dv*{y}{\alpha}=\eta_1$ and $\dv*{z}{\alpha}=\eta_2$ as mentioned above, we can rewrite the previous line as
+        \begin{align*}
+            \pdv{g}{y}\eta_1(x) &= -\pdv{g}{x}\eta_2(x)\\
+            \eta_2(x) &= -\frac{\pdv*{g}{y}}{\pdv*{g}{z}}\eta_1(x)
+        \end{align*}
+        and the original functional derivative as
+        \begin{equation*}
+            \pdv{J}{\alpha} = \int_{x_1}^{x_2}\left[ \left( \pdv{f}{y}-\dv{x}\pdv{f}{y'} \right)\eta_1(x)+\left( \pdv{f}{z}-\dv{x}\pdv{f}{z'} \right)\eta_2(x) \right]\dd{x}
+        \end{equation*}
+        \item Substituting to combine the above two results, we obtain our new expression that vanishes at $\alpha=0$.
+        \begin{equation*}
+            \pdv{J}{\alpha} = \int_{x_1}^{x_2}\left[ \left( \pdv{f}{y}-\dv{x}\pdv{f}{y'} \right)-\left( \pdv{f}{z}-\dv{x}\pdv{f}{z'} \right)\left( \frac{\pdv*{g}{y}}{\pdv*{g}{z}} \right) \right]\eta_1(x)\dd{x}
+        \end{equation*}
+        \item With the term in brackets vanishing, we obtain
+        \begin{equation*}
+            \left( \pdv{f}{y}-\dv{x}\pdv{f}{y'} \right)\left( \pdv{g}{y} \right)^{-1} = \left( \pdv{f}{z}-\dv{x}\pdv{f}{z'} \right)\left( \pdv{g}{z} \right)^{-1}
+        \end{equation*}
+        \item Because the above equality must hold even when $y,y',z,z'$ are varied as independent functions of $x$, we know that the above is equal to some (possibly different) constant for each value of $x$. In particular, the above equals some function of $x$, which we may denote by $-\lambda(x)$. But then both the left and right sides above equal $-\lambda(x)$, so we obtain
+        \begin{align*}
+            \pdv{f}{y}-\dv{x}\pdv{f}{y'}+\lambda(x)\pdv{g}{y} &= 0&
+            \pdv{f}{z}-\dv{x}\pdv{f}{z'}+\lambda(x)\pdv{g}{z} &= 0
+        \end{align*}
+        \item The complete solution to the problem now depends on finding three functions $y,z,\lambda$. But since we have three relations with which to do so (the two equations above and the equation of constraint), there is a sufficient number of relations to allow for a complete solution.
+    \end{itemize}
+    \item \textbf{Lagrange undetermined multiplier}: Any function $\lambda(x)$ like the above.
+    \item The general case is stated identically to how it was stated in class.
+    \item Note: $g_j(y_i;x)=0$ is equivalent to the set of $n$ differential equations
+    \begin{equation*}
+        \sum_{i=1}^m\pdv{g_j}{y_i}\dd{y_i} = 0
+    \end{equation*}
+    \begin{itemize}
+        \item In problems of mechanics, the constraint equations are frequently differential equations rather than algebraic equations. Therefore, equations such as the above can sometimes be more useful than the original equations of constraint.
+        \item See Section 7.5.
+    \end{itemize}
+    \item Example 6.5: Determining an equation of constraint.
+    \item Integral equations of constraint and the \textbf{isoperimetric problem}.
+    \item Example 6.6: An isoperimetric problem.
+\end{itemize}
+
+
+\subsection*{Section 6.7: The $\bm{\delta}$ Notation}
+\begin{itemize}
+    \item A helpful shorthand to represent the \textbf{variation} $\var{J},\var{y}$, etc.
+\end{itemize}
+
+
+
 
 \end{document}
