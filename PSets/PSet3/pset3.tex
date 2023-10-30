@@ -1,0 +1,45 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{2}
+
+\begin{document}
+
+
+
+
+\section{Lagrangian Mechanics and Central Conservative Forces}
+\begin{enumerate}
+    \item \marginnote{10/20:}A block is sliding down a frictionless, inclined plane with slope $-\alpha$. Use Lagrangian mechanics and the method of Lagrange undetermined multipliers to find the force of constraint exerted by the plane on the block. What is the relationship between this force and the Newtonian normal force?
+    \item A simple pendulum consists of a rigid rod of length $l$, with a bob of mass $m$ that is free to rotate in a vertical plane. (Note that it can swing in a full circle.)
+    \begin{enumerate}
+        \item For plane polar coordinates, show that
+        \begin{align*}
+            \pdv{\hat{r}}{\theta} &= \hat{\theta}&
+            \pdv{\hat{\theta}}{\theta} &= -\hat{r}
+        \end{align*}
+        By starting from $\vec{r}=r\hat{r}$ and differentiating, derive an expression for the acceleration in plane polar coordinates.
+        \item Use your expression for acceleration to write Newton's equations for the pendulum in plane polar coordinates. Write an expression for the tension in the rod as a function of the angular coordinate $\theta$ and/or $\dot{\theta}$.
+        \item Repeat the analysis of the pendulum using Lagrangian mechanics and Lagrange undetermined multipliers. First, write the Lagrangian in plane polar coordinates. Second, write Lagrange's equations of motion, including the undetermined multiplier, and the equation of constraint. Use the equation of constraint to eliminate a variable in the equations of motion.
+        \item Write down the relationship between the Lagrange undetermined multiplier and the force of tension in the rod.
+        \item Solve for the tension in the rod as a function of time in two cases. First, the bob begins at the lowest point with angular speed $\dot{\theta}=\omega_0$. Assume the angular deviations from the vertical are small compared to 1. Second, the bob begins at the apex with angular speed $\dot{\theta}=\omega_0$. Again, find an expression that is valid when the angular deviation from the vertical is small compared to 1.
+    \end{enumerate}
+    \item The orbits of synchronous communications satellites have been chosen so that viewed from the Earth, they appear to be stationary. Find the radius of the orbits. How does this compare to the distance to the moon?
+    \item \textcite{bib:KibbleBerkshire}, Q4.9. A particle of mass $m$ moves under the action of a harmonic oscillator force with potential $kr^2/2$. Initially, it is moving in a circle of radius $a$. Find the orbital speed $v$. It is then given a blow of impulse $mv$ in a direction making an angle $\alpha$ with its original velocity. Use the conservation laws to determine the minimum and maximum distances from the origin during the subsequent motion. Explain your results physically for the two limiting cases $\alpha=0,\pi$.
+    \item Deduce the inverse square law for gravity from Kepler's laws.
+    \begin{enumerate}
+        \item Use Kepler's second law (planets sweep out equal areas in equal time) to show that the force must be central.
+        \item Use Kepler's first law (the orbit of planets are ellipses with the sun at one focus) and the orbit equation to show that the force must be inversely proportional to $r^2$. (Note that the orbit equation gives the relationship between the shapes of orbits and the potential energy function.)
+    \end{enumerate}
+    \item A particle of mass $m$ moves in a central force field that has a constant magnitude $F_0$ but always points toward the origin.
+    \begin{enumerate}
+        \item Find the angular velocity $\omega_\phi$ required for the particle to move in a circular orbit of radius $r_0$. Give your answer in terms of $F_0,m,r_0$.
+        \item Find the frequency $\omega_r$ of small radial oscillations about the circular orbit. Give your answer in terms of $F_0,m,r_0$.
+    \end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}
