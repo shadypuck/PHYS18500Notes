@@ -1286,7 +1286,7 @@
         \item In problems of mechanics, the constraint equations are frequently differential equations rather than algebraic equations. Therefore, equations such as the above can sometimes be more useful than the original equations of constraint.
         \item See Section 7.5.
     \end{itemize}
-    \item Example 6.5: Determining an equation of constraint.
+    \item Example 6.5: Disk rolling down an inclined plane; determining an equation of constraint.
     \item Integral equations of constraint and the \textbf{isoperimetric problem}.
     \item Example 6.6: An isoperimetric problem.
 \end{itemize}
@@ -1295,6 +1295,184 @@
 \subsection*{Section 6.7: The $\bm{\delta}$ Notation}
 \begin{itemize}
     \item A helpful shorthand to represent the \textbf{variation} $\var{J},\var{y}$, etc.
+\end{itemize}
+
+
+
+\section{TM Chapter 7: Hamilton's Principle --- Lagrangian and Hamiltonian Dynamics}
+\emph{From \textcite{bib:ThorntonMarion}.}
+\begin{itemize}
+    \item Jerison recommendations.
+    \begin{itemize}
+        \item Sections 7.1-7.5 are relevant to what we're covering now; the rest of chapter 7 will be relevant later.
+        \item For more examples and information about systems confined to a circle or sphere, see pp. 229-237 [Section 7.1-7.3].
+        \item For examples of an imposed rotational speed, see p. 242 (example 7.5) and p. 245 (example 7.7).
+        \item For an example of a bead confined to move on a wire, see p. 245 (example 7.7).
+        \item For a description of Lagrangian mechanics with Lagrange undetermined multipliers, see p.248. Example 7.10 is particularly relevant.
+        \item See Chapter 7, p. 248-254 for how to use the method of Lagrange undetermined multipliers.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 7.1: Introduction}
+\begin{itemize}
+    \item \textbf{Lagrange's equations}: The equations of motion resulting from the application of \textbf{Hamilton's principle}.
+    \item The relationship between Lagrangian and Newtonian mechanics: "Hamilton's Principle has not provided us with any new physical theories, but it has allowed a satisfying unification of many individual theories by a single basic postulate" \parencite[229]{bib:ThorntonMarion}.
+    \item Some very nice words on how fundamental Hamilton's Principle is and why it is important in \emph{theoretical, axiomatic} physics.
+    \item Goal of this chapter: Take Hamilton's Principle, find Lagrange's equations, show that they are equivalent to Newton's equations, and use them to study conservative systems.
+    \item Lots of interesting ideas here!
+\end{itemize}
+
+
+\subsection*{Section 7.2: Hamilton's Principle}
+\begin{itemize}
+    \item The search for \textbf{minimum principles}.
+    \begin{itemize}
+        \item Lots of interesting history!
+    \end{itemize}
+    \item \textbf{Action}: A quantity with the dimensions of $\text{energy}\times\text{time}$.
+    \item The \textbf{principle of least action} is less general than Hamilton's principle, i.e., it follows from it.
+    \item \textbf{Hamilton's Principle}: Of all the possible paths along which a dynamical system may move from one point to another within a specified time interval (consistent with any constraints), the actual path followed is that which minimizes the time integral of the difference between the kinetic and potential energies.
+    \item Review of the setup/derivation of Lagrange's equations of motion.
+    \item Lagrangian pendulum.
+    \item Note: "Nowhere in the calculations did there enter any statement regarding force. The equations of motion were obtained only by specifying certain properties associated \emph{with the particle} (the kinetic and potential energies), and without the necessity of explicitly taking into account the fact that there was an external agency acting \emph{on the particle} (the force)" \parencite[232-33]{bib:ThorntonMarion}.
+    \begin{itemize}
+        \item Takeaway: It is possible to calculate the motion of a body completely without recourse to Newtonian theory.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 7.3: Generalized Coordinates}
+\begin{itemize}
+    \item \textbf{Generalized coordinates}: Any set of quantities that completely specify the state of a system. \emph{Denoted by} $\bm{q_1,q_2,\ldots}$, \textbf{the $\bm{q_j}$}.
+    \item \textbf{Proper} (generalized coordinates): A set of independent generalized coordinates whose number equals the number of degrees of freedom of the system and not restricted by the constraints.
+    \begin{itemize}
+        \item If we want to calculate the forces of constraint via the method of Lagrange undetermined multipliers, we'll use generalized coordinates whose number \emph{exceeds} the proper number so that we can explicitly take into account the constraint relations.
+        \item See Example 7.9.
+    \end{itemize}
+    \item There are infinitely many sets of generalized coordinates for any system.
+    \begin{itemize}
+        \item The trick is to choose the "most suitable" ones, i.e., the ones that render equations of motion with a sufficiently straightforward interpretation.
+        \item Choosing such a set is a skill developed through experience.
+    \end{itemize}
+    \item \textbf{Generalized velocities}: The set of time derivatives of the generalized coordinates. \emph{Denoted by} $\bm{\dot{q}_j}$.
+    \item Example 7.1: Generalized coordinates for the surface of a hemisphere.
+    \item Example 7.2: Very much relates to PSet3, Q2.
+    \item \textbf{Configuration space} (of a system): The $(s=3n-m)$-dimensional space, each point in which represents a state of a system consisting of $n$ particles and subject to $m$ constraints that connect some of the $3n$ rectangular coordinates.
+    \item \textbf{Configuration} (of a system): A point in the corresponding configuration space.
+    \item The time history of a system can be represented by a curve through its configuration space.
+\end{itemize}
+
+
+\subsection*{Section 7.4: Lagrange's Equations of Motion in Generalized Coordinates}
+\begin{itemize}
+    \item A restatement of Hamilton's principle: Of all the possible paths along which a dynamical system may move from one point to another in configuration space within a specified time interval, the actual path followed is that which minimizes the time integral of the Lagrangian function for the system.
+    \item The Lagrangian is invariant with respect to coordinate transformations.
+    \begin{itemize}
+        \item This is because it is a scalar function.
+    \end{itemize}
+    \item There exist transformations that change the Lagrangian but leave the equations of motion unchanged.
+    \begin{itemize}
+        \item Example:
+        \begin{equation*}
+            L+\dv{t}[f(q_i,t)]
+        \end{equation*}
+        for $f\in C^2$\footnote{That is, $f$ has continuous second partial derivatives.}.
+    \end{itemize}
+    \item The Lagrangian is indefinite up to an additive constant in the potential energy.
+    \item Lagrange's equations are only valid for systems that satisfy the following two constraints.
+    \begin{enumerate}
+        \item The forces acting on the system (apart from any forces of constraint) must be derivable from a potential (or several potentials).
+        \item The equations of constraint must be \textbf{holonomic}.
+    \end{enumerate}
+    \item \textbf{Holonomic} (constraint): A relation that connects the coordinates of the particles and may be a function of time.
+    \item \textbf{Scleronomic} (constraint): A holonomic constraint that \emph{does not} explicitly contain the time. \emph{Also known as} \textbf{fixed}.
+    \item \textbf{Rheonomic} (constraint): A holonomic constraint that \emph{does} explicitly contain the time.
+    \item Note that conservative forces (our focus here) satisfy Constraint 1!
+    \item Example 7.3: Lagrangian formulation of projectile motion.
+    \item Example 7.4: Particle inside a cone.
+    \item Example 7.5: Pendulum with moving point of support.
+    \begin{itemize}
+        \item Jerison recommended; however, I did not find this example to be of too much help when I was doing PSet 2.
+    \end{itemize}
+    \item Example 7.6: Could be helpful with PSet 4, Q5.
+    \item Example 7.7: A bead slides along a smooth wire bent in the shape of a parabola $z=cr^2$.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\linewidth]{../ExtFiles/ex7-7.png}
+        \caption{Bead on rotating wire.}
+        \label{fig:ex7-7}
+    \end{figure}
+    The bead rotates in a circle of radius $R$ when the wire is rotating about its vertical symmetry axis with angular velocity $\omega$. Find the value of $c$.
+    \begin{proof}[Answer]
+        Observe the cylindrical symmetry of the problem and thus choose $r,\theta,z$ as our generalized coordinates.\par
+        Kinetic and potential energy (note that we are implicitly choosing the zero of $U$ to lie at $z=0$):
+        \begin{align*}
+            T &= \frac{m}{2}[\dot{r}^2+\dot{z}^2+(r\dot{\theta})^2]&
+            U &= mgz
+        \end{align*}
+        Constraints:
+        \begin{align*}
+            r &= R&
+                &&
+                    z &= cr^2\\
+            \dot{r} &= 0&
+                \dot{\theta} &= \omega&
+                    \dot{z} &= 2cr\dot{r}
+        \end{align*}
+        With so many constraints, we could at this point construct a Lagrangian $L=T-U=mR^2\omega^2/2-mgcR^2$. However, this would not give us any useful information. Thus, we'll substitute out any $\theta$-dependence for now, keep the $r$-dependence, and then let $r=R$ be a condition of the particular motion. Note that the reason we keep the $r$-dependence instead of the $\theta$-dependence is because if we substitute out all $r$-dependence, $c$ does not stay in the math all the way through. If we're still confused, we could always use the method of Lagrange undetermined multipliers, but that will definitely take longer to work out here due to the shear number of variables and constraints\footnote{Why doesn't this method give me $c$??}. Regardless, executing our plan, we first write
+        \begin{equation*}
+            L = \frac{m}{2}[\dot{r}^2+4c^2r^2\dot{r}^2+r^2\omega^2]-mgcr^2
+        \end{equation*}
+        as our completed Lagrangian. Then, we employ the E-L equation to derive the equation of motion as follows.
+        \begin{align*}
+            \pdv{L}{r}-\dv{t}\pdv{L}{\dot{r}} &= 0\\
+            m(4c^2r\dot{r}^2+r\omega^2-2gcr)-\dv{t}\left[ \frac{m}{2}(2\dot{r}+8c^2r^2\dot{r}) \right] &= 0\\
+            m(4c^2r\dot{r}^2+r\omega^2-2gcr)-\frac{m}{2}(2\ddot{r}+16c^2r\dot{r}^2+8c^2r^2\ddot{r}) &= 0\\
+            \ddot{r}(1+4c^2r^2)+\dot{r}^2(4c^2r)+r(2gc-\omega^2) &= 0
+        \end{align*}
+        Now we substitute in the $r=R$ and $\dot{r}=\ddot{r}=0$ constraints to simplify the above to
+        \begin{equation*}
+            R(2gc-\omega^2) = 0
+        \end{equation*}
+        Rearranging the above yields our desired answer.
+        \begin{equation*}
+            c = \frac{\omega^2}{2g}
+        \end{equation*}
+    \end{proof}
+    \begin{itemize}
+        \item Jerison recommended; was helpful with PSet 2, Q6.
+    \end{itemize}
+    \item Example 7.8: Double pulley.
+    \item Contrasting points of view:
+    \begin{enumerate}
+        \item Lagrangian methods are recipes to follow that lose track of all the intuitive "physics."
+        \item Lagrangian methods allow us to solve problems that otherwise would lead to severe complications using Newtonian methods.
+    \end{enumerate}
+\end{itemize}
+
+
+\subsection*{Section 7.5: Lagrange's Equations with Undetermined Multipliers}
+\begin{itemize}
+    \item \textbf{Nonholonomic} (constraint): A relation that must be expressed in terms of the velocities of the particles of the system. \emph{Given by}
+    \begin{equation*}
+        f(x_{\alpha,i},\dot{x}_{\alpha,i},t) = 0
+    \end{equation*}
+    \item \textbf{Semiholonomic} (constraint): A relation that can be integrated to yield a holonomic constraint. \emph{Given by}
+    \begin{equation*}
+        \sum_j\pdv{f_k}{q_j}\dd{q_j}+\pdv{f_k}{t}\dd{t} = 0
+    \end{equation*}
+    \item \textbf{Generalized force of constraint}. \emph{Denoted by} $\bm{Q_j}$. \emph{Given by}
+    \begin{equation*}
+        Q_j = \sum_k\lambda_k\pdv{f_k}{q_j}
+    \end{equation*}
+    \item Example 7.9: Revisiting the disk rolling down an inclined plane (Example 6.5).
+    \item Example 7.10: Particle falling off a hemisphere (covered in class).
+    \item Advantages of the method of undetermined multipliers.
+    \begin{enumerate}
+        \item The Lagrange multipliers are closely related to the forces of constraint that are often needed.
+        \item When a proper set of generalized coordinates is not desired or too difficult to obtain, the method may be used to increase the number of generalized coordinates by including constraint relations between the coordinates.
+    \end{enumerate}
 \end{itemize}
 
 
