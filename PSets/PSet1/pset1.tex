@@ -144,10 +144,6 @@
             As in class, we can qualitatively inspect the graph from part (a) to learn that $V(-a/\mu_1)=V'(-a/\mu_1)=0$. Additionally, we can calculate that
             \begin{align*}
                 V''\left( -\frac{a}{\mu_1} \right) &= \eval{\dv[2]{x}(E((\mu_1x+a)(\mu_2x-b))^2)}_{-\frac{a}{\mu_1}}\\
-                % &= \eval{\dv{x}(\dv{x}(E((\mu_1x+a)(\mu_2x-b))^2))}_{-\frac{a}{\mu_1}}\\
-                % &= \eval{\dv{x}(2E((\mu_1x+a)(\mu_2x-b)))\cdot\dv{x}((\mu_1x+a)(\mu_2x-b))}_{-\frac{a}{\mu_1}}\\
-                % &= \eval{\dv{x}(2E((\mu_1x+a)(\mu_2x-b)))\cdot\dv{x}(\mu_1\mu_2x^2+(a\mu_2-b\mu_1)x-ab)}_{-\frac{a}{\mu_1}}\\
-                % &= \eval{\dv{x}(2E((\mu_1x+a)(\mu_2x-b)))\cdot(2\mu_1\mu_2x+a\mu_2-b\mu_1)}_{-\frac{a}{\mu_1}}
                 &= \eval{\dv[2]{x}(E(\mu_1\mu_2x^2+(a\mu_2-b\mu_1)x-ab)^2)}_{-\frac{a}{\mu_1}}\\
                 &= \eval{\dv[2]{x}(E(\mu_1^2\mu_2^2x^4+2(a\mu_1\mu_2^2-b\mu_1^2\mu_2)x^3+((a\mu_2-b\mu_1)^2-2ab\mu_1\mu_2)x^2+\cdots))}_{-\frac{a}{\mu_1}}\\
                 &= \eval{E(12\mu_1^2\mu_2^2x^2+12(a\mu_1\mu_2^2-b\mu_1^2\mu_2)x+2((a\mu_2-b\mu_1)^2-2ab\mu_1\mu_2))}_{-\frac{a}{\mu_1}}\\
@@ -217,15 +213,6 @@
         \begin{proof}
             We have that
             \begin{align*}
-                % \begin{align*}
-                %     \sum F &= m\ddot{x}\\
-                %     F_d-F_g &= m\ddot{x}\\
-                %     k\dot{x}-mg &= m\dv{\dot{x}}{t}\\
-                %     \int_0^t\dd{t} &= \int_0^{\dot{x}}\frac{1}{k\dot{x}'/m-g}\dd{\dot{x}'}\\
-                %     t &= \frac{m}{k}\ln(\frac{k\dot{x}}{m}-g)-\frac{m}{k}\ln(-g)\\
-                %     \e[-kt/m] &= 1-\frac{k\dot{x}}{mg}\\
-                %     \dot{x} &= \frac{mg}{k}\left( 1-\e[-kt/m] \right)
-                % \end{align*}
                 \sum F &= m\ddot{x}\\
                 F_g-F_d &= m\ddot{x}\\
                 mg-k\dot{x} &= m\dv{\dot{x}}{t}\\
@@ -236,9 +223,9 @@
             \end{align*}
             where $k$ is the proportionality constant between the retarding force and the velocity. It follows that
             \begin{align*}
-                \int_0^x\dd{x} &= \frac{mg}{k}-\frac{mg}{k}\int_0^t\e[-kt/m]\dd{t}\\
-                x(t) &= \frac{mg}{k}-\frac{mg}{k}\left( -\frac{m}{k}\e[-kt/m]+\frac{m}{k} \right)\\
-                \Aboxed{x(t) &= \frac{m^2g}{k^2}\e[-kt/m]-\frac{m^2g}{k^2}+\frac{mg}{k}}
+                \int_0^x\dd{x} &= \int_0^t\left( \frac{mg}{k}-\frac{mg}{k}\e[-kt/m] \right)\dd{t}\\
+                x(t) &= \frac{mgt}{k}-\frac{mg}{k}\left( -\frac{m}{k}\e[-kt/m]+\frac{m}{k} \right)\\
+                \Aboxed{x(t) &= \frac{m^2g}{k^2}\e[-kt/m]-\frac{m^2g}{k^2}+\frac{mgt}{k}}
             \end{align*}
         \end{proof}
         \item Show that it will eventually reach a terminal velocity, and solve for this velocity. (3 pts)
@@ -247,6 +234,7 @@
             \begin{equation*}
                 \boxed{\dot{x}_f = \frac{mg}{k}}
             \end{equation*}
+            Note that this velocity is pointing down.
         \end{proof}
     \end{enumerate}
     \item Suppose we have an oscillator with negative damping described by
@@ -257,13 +245,6 @@
     \begin{enumerate}
         \item Solve for $x(t)$ for the particle, if it begins at velocity $v$ at the origin. (4 pts)
         \begin{proof}
-            % Use the solution equations from class for the appropriate case.
-
-            % $\gamma=\lambda/2m<0$ and $\omega=\sqrt{k/m}>0$.
-
-            % Three cases; positive zooming away, positive oscillation, and positive acceleration away.
-
-
             Let $-\gamma=\lambda/2m$ and $\omega=\sqrt{k/m}$ so that we may rewrite the equation as
             \begin{equation*}
                 \ddot{x}-2\gamma\dot{x}+\omega_0^2x = 0
@@ -274,7 +255,7 @@
                 p &= \gamma\pm\sqrt{\gamma^2-\omega_0^2}
             \end{align*}
             We now divide into three cases.\par
-            Case 1 ($\gamma>\omega_0$): In this case, we have two real roots that are both positive real numbers by the form of $p$. Define
+            Case 1 ($|\gamma|>\omega_0$): In this case, we have two real roots that are both positive real numbers by the form of $p$. Define
             \begin{equation*}
                 \gamma_\pm = \gamma\pm\sqrt{\gamma^2-\omega_0^2}
             \end{equation*}
@@ -302,7 +283,7 @@
             \begin{equation*}
                 \boxed{x(t) = \frac{v}{\gamma_+-\gamma_-}(\e[\gamma_+t]-\e[\gamma_-t])}
             \end{equation*}
-            Case 3 ($\gamma<\omega_0$): In this case, we'll have two complex roots. Define
+            Case 2 ($|\gamma|<\omega_0$): In this case, we'll have two complex roots. Define
             \begin{equation*}
                 \omega = \sqrt{\omega_0-\gamma^2}
             \end{equation*}
@@ -326,40 +307,45 @@
         \end{proof}
         \item Describe the behavior of the particle. Under what conditions does it oscillate? Sketch the possible trajectories. (4 pts)
         \begin{proof}
-            Define $-\gamma=\lambda/2m$ and $\omega_0=\sqrt{k/m}$. Then it oscillates when $|\gamma|<|\omega_0|$, i.e., when
+            Once again, we divide into the three cases from part (a). I will sketch the possible trajectories and then describe them below.
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}[b]{0.3\linewidth}
+                    \centering
+                    \includegraphics[width=0.8\linewidth]{../ExtFiles/PSet1-Q4b-a.png}
+                    \caption{$|\gamma|>\omega_0$.}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.3\linewidth}
+                    \centering
+                    \includegraphics[width=0.8\linewidth]{../ExtFiles/PSet1-Q4b-b.png}
+                    \caption{$|\gamma|<\omega_0$.}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.3\linewidth}
+                    \centering
+                    \includegraphics[width=0.8\linewidth]{../ExtFiles/PSet1-Q4b-c.png}
+                    \caption{$\gamma=\omega_0$.}
+                \end{subfigure}
+            \end{figure}
+            Case 1 ($|\gamma|>\omega_0$): In this case, the particle will diverge exponentially to $\infty$, briefly under the dominating $\gamma_-$ term and then under the dominating $\gamma_+$ term. Indeed, for $t\gg 1/\gamma_+$, we have
             \begin{equation*}
-                \boxed{|\lambda| < 2\sqrt{km}}
+                x(t) \approx \frac{v}{\gamma_+-\gamma_-}\e[\gamma_+t]
             \end{equation*}
-            If $\lambda$ gets too large negatively, the system can reach critical damping or overdamping, at which point the particle will just take off to $\infty$ and never again return to the origin.
+            Case 2 ($|\gamma|<\omega_0$): In this case, the particle will periodically oscillate while the oscillation's amplitude grows exponentially.\par
+            Case 3 ($\gamma=\omega_0$): In this case, the particle will diverge exponentially to $\infty$, getting off to a quicker start because of its $t$ term but quickly losing the race to the larger $\gamma_+$ of Case 1.s
         \end{proof}
         \item In which case does the particle gain energy the fastest for large times? Explain. (2 pts)
         \begin{proof}
-            % Negative damping means the oscillation is growing!
-            % Looking at $\dv*{E}{t}$ in the long run.
-            % $-\lambda\dot{x}-kx=F=-\dv*{V}{t}$.
-            % Gain energy? As in kinetic energy or potential energy? Or both? We should be able to calculate $T=\frac{1}{2}m\dot{x}^2$ over time given the trajectory in part (A) and then $V=-\int_0^xF(x')\dd{x'}$ and relate that as well.
-
-            % Probably can just give a qualitative explanation that it's critical.
-
-            % However, total energy is always kinetic at the origin, so we can just use $T$ at every periodic time that $x(t)=0$!
-
-
-            In the \fbox{critical damping} case. Unlike in the other two cases, where some energy is lost due to imperfect synchronization of the oscillator and this pseudo-driving force, here, all of the energy that can be gained is gained. In particular, critical damping is faster than underdamping because $\gamma$ is just really small here ($<\omega_0$), and critical damping is faster than overdamping because $\gamma_-$ dominates in the long run in that case.
+            We have that
+            \begin{equation*}
+                E = \frac{1}{2}m\dot{x}^2+\frac{1}{2}kx^2
+            \end{equation*}
+            Thus, the energy grows the fastest when $x,\dot{x}$ grow the fastest. In all three cases from part (b), both $x,\dot{x}$ grow exponentially (on average over a cycle). Eventually, these exponential rates will dominate over any differences in the prefactors. Notably, however, the \emph{largest} exponential rate is $\gamma_+=\gamma+\sqrt{\gamma^2-\omega^2}$ from the case where $|\gamma|>\omega_0$. Therefore, while a "positively damped" harmonic oscillator loses energy the fastest in the critically damped case, this "negatively damped" harmonically oscillating particle gains energy the fastest in this \fbox{overdamped case.}
         \end{proof}
     \end{enumerate}
     \item \textcite{bib:KibbleBerkshire}, Q2.25. For an oscillator under periodic force $F(t)=F_1\cos(\omega_1t)$\dots
     \begin{enumerate}
-        \item Calculate the \textbf{power} (defined as the rate at which the force does work). (4 pts)
+        \item Calculate the \textbf{power} (defined as the rate at which the force does work) of the periodic force. (4 pts)
         \begin{proof}
-            % We need the Fourier integral.
-
-            % $P=F\dot{x}$.
-            % $P=F_1\cos(\omega_1 t)\dot{x}$.
-
-            % $\int F\dd{x}$
-
-            % Take velocity from the particular solution only, neglecting the transient term.
-
             From lecture, we know a particular solution of the driven, damped harmonic oscillator. It follows from the definition of power that we have
             \begin{align*}
                 P &= F\dot{x}\\
@@ -367,20 +353,24 @@
                 \Aboxed{P &= -a_1\omega_1F_1\cos(\omega_1t)\sin(\omega_1t-\theta_1)}
             \end{align*}
         \end{proof}
-        \item Show that the \textbf{average power} (defined as the time average over a complete cycle) is $P=m\omega_1^2a_1^2/\gamma$, and hence verify that it is equal to the average rate at which energy is dissipated against the resistive force. (3 pts)
+        \item Show that the \textbf{average power} (defined as the time average over a complete cycle) of the periodic force is $m\omega_1^2a_1^2\gamma$, and hence verify that it is equal to the average rate at which energy is dissipated against the resistive force. (3 pts)
         \begin{proof}
-            Let $\tau$ be the period of the oscillator. Then the average power $\bar{P}$ of the oscillator is given by
+            We approach this problem in two steps. Step 1 is to show that the average power of the periodic force is $\langle P_p\rangle=m\omega_1^2a_1^2\gamma$. Step 2 is to show that the average power of the resistive force is $\langle P_r\rangle=m\omega_1^2a_1^2\gamma$. Thus, we will have proven that these two powers are equal. Let's begin.\par\smallskip
+            Step 1: Let $\tau$ be the period of the periodic force. Then its average power is given by
             \begin{equation*}
-                \bar{P} = \frac{1}{\tau}\int_0^\tau P\dd{t}
+                \langle P_p\rangle = \frac{1}{\tau}\int_0^\tau P_p\dd{t}
             \end{equation*}
             Plugging in and solving, we can get to the following.
+            \begingroup
+            \allowdisplaybreaks
             \begin{align*}
-                \bar{P} &= \frac{1}{\tau}\int_0^\tau F_1\cos(\omega_1t)\cdot -a_1\omega_1\sin(\omega_1t-\theta_1)\dd{t}\\
+                \langle P_p\rangle &= \frac{1}{\tau}\int_0^\tau F_1\cos(\omega_1t)\cdot -a_1\omega_1\sin(\omega_1t-\theta_1)\dd{t}\\
                 &= -\frac{a_1\omega_1F_1}{\tau}\int_0^\tau\cos(\omega_1t)\sin(\omega_1t-\theta_1)\dd{t}\\
                 &= -\frac{a_1\omega_1F_1}{\tau}\int_0^\tau\cos(\omega_1t)(\sin(\omega_1t)\cos\theta_1-\cos(\omega_1t)\sin\theta_1)\dd{t}\\
                 &= -\frac{a_1\omega_1F_1}{\tau}\int_0^\tau\cos(\omega_1t)\sin(\omega_1t)\cos\theta_1\dd{t}+\frac{a_1\omega_1F_1}{\tau}\int_0^\tau\cos(\omega_1t)\cos(\omega_1t)\sin\theta_1\dd{t}\\
                 &= -a_1\omega_1F_1\cos\theta_1\cdot\frac{1}{\tau}\int_0^\tau\cos(\omega_1t)\sin(\omega_1t)\dd{t}+a_1\omega_1F_1\sin\theta_1\cdot\frac{1}{\tau}\int_0^\tau\cos^2(\omega_1t)\dd{t}
             \end{align*}
+            \endgroup
             At this point, we invoke the laws that
             \begin{align*}
                 \int_0^\tau\cos(\omega_1t)\sin(\omega_1t)\dd{t} &= 0&
@@ -388,7 +378,7 @@
             \end{align*}
             This simplifies the above expression to
             \begin{equation*}
-                \bar{P} = \frac{a_1\omega_1F_1\sin\theta_1}{2}
+                \langle P_p\rangle = \frac{a_1\omega_1F_1\sin\theta_1}{2}
             \end{equation*}
             But we're not quite done. Recalling that
             \begin{align*}
@@ -396,27 +386,116 @@
                 \sin(\tan^{-1}(x)) &= \frac{x}{\sqrt{x^2+1}}
             \end{align*}
             we can learn that
-            \begin{equation*}
-                \sin\theta_1 = \frac{\frac{2\gamma\omega_1}{\omega_0^2-\omega_1^2}}{\sqrt{\left( \frac{2\gamma\omega_1}{\omega_0^2-\omega_1^2} \right)^2+1}}
-                = \frac{2ma_1\omega_1}{F_1\gamma}
-            \end{equation*}
+            \begin{align*}
+                \sin\theta_1 &= \frac{\frac{2\gamma\omega_1}{\omega_0^2-\omega_1^2}}{\sqrt{\left( \frac{2\gamma\omega_1}{\omega_0^2-\omega_1^2} \right)^2+1}}\\
+                &= \frac{2\gamma\omega_1}{\sqrt{4\gamma^2\omega_1^2+(\omega_0^2-\omega_1^2)^2}}\\
+                &= \frac{F_1/m}{\sqrt{(\omega_0^2-\omega_1^2)^2+4\gamma^2\omega_1^2}}\cdot\frac{2\gamma\omega_1}{F_1/m}\\
+                &= \frac{2m\omega_1a_1\gamma}{F_1}
+            \end{align*}
             Therefore, we have that
             \begin{align*}
-                \bar{P} &= \frac{a_1\omega_1F_1\sin\theta_1}{2}\\
-                &= \frac{a_1\omega_1F_1}{2}\cdot\frac{2ma_1\omega_1}{F_1\gamma}\\
-                \bar{P} &= \frac{ma_1^2\omega_1^2}{\gamma}
+                \langle P_p\rangle &= \frac{\omega_1a_1F_1}{2}\cdot\frac{2m\omega_1a_1\gamma}{F_1}\\
+                &= m\omega_1^2a_1^2\gamma
+            \end{align*}
+            as desired.\par\smallskip
+            Step 2: From the original driven, damped harmonic oscillator equation, we may read off that the resistive force is
+            \begin{equation*}
+                F_r = \lambda\dot{x}
+            \end{equation*}
+            Thus, its power is
+            \begin{equation*}
+                P_r = F_r\dot{x}
+                = \lambda\dot{x}^2
+                = 2m\gamma\cdot\omega_1^2a_1^2\sin^2(\omega_1t-\theta_1)
+                = 2m\omega_1^2a_1^2\gamma\sin^2(\omega_1t-\theta_1)
+            \end{equation*}
+            Averaging once again, we obtain
+            \begin{align*}
+                \langle P_r\rangle &= \frac{1}{\tau}\int_0^\tau P_r\dd{t}\\
+                &= 2m\omega_1^2a_1^2\gamma\cdot\frac{1}{\tau}\int_0^\tau\sin^2(\omega_1t-\theta_1)\dd{t}\\
+                &= 2m\omega_1^2a_1^2\gamma\cdot\frac{1}{2}\\
+                &= m\omega_1^2a_1^2\gamma
             \end{align*}
             as desired.
         \end{proof}
-        \item Show that the power $P$ --- as a function of $\omega_1$ --- is at a maximum at $\omega_1=\omega_0$. Also find the values of $\omega_1$ for which it has half its maximum value. (3 pts)
-        % \begin{proof}
-        %     Fourier integrals?
-        % \end{proof}
+        \item Show that the average power from part (b) --- as a function of $\omega_1$ --- is at a maximum at $\omega_1=\omega_0$. Also find the values of $\omega_1$ for which it has half its maximum value. (3 pts)
+        \begin{proof}
+            To prove that $\langle P\rangle(\omega_1)$ has a maximum at $\omega_1=\omega_0$, it will suffice to show that
+            \begin{align*}
+                \eval{\dv{\langle P\rangle}{\omega_1}}_{\omega_1=\omega_0} &= 0&
+                \eval{\dv[2]{\langle P\rangle}{\omega_1}}_{\omega_1=\omega_0} &< 0
+            \end{align*}
+            We will prove the equality on the left first. Let's begin. From part (b) and the definition of $a_1$ from class, we have that
+            \begin{equation*}
+                \langle P\rangle = m\omega_1^2a_1^2\gamma
+                \propto \frac{\omega_1^2}{(\omega_0^2-\omega_1^2)^2+4\gamma^2\omega_1^2}
+            \end{equation*}
+            Thus, since constants factor out of derivatives, checking the left expression below will suffice to confirm the right expression below.
+            \begin{equation*}
+                \eval{\dv{\omega_1}\left[ \frac{\omega_1^2}{(\omega_0^2-\omega_1^2)^2+4\gamma^2\omega_1^2} \right]}_{\omega_1=\omega_0} = 0
+                \qquad\Longrightarrow\qquad
+                \eval{\dv{\langle P\rangle}{\omega_1}}_{\omega_1=\omega_0} = 0
+            \end{equation*}
+            We now introduce the substitutions
+            \begin{align*}
+                u &= \omega_1^2&
+                v &= \omega_0^2&
+                C &= 4\gamma^2
+            \end{align*}
+            Thus,
+            \begin{equation*}
+                \langle P\rangle \propto \frac{u}{(v-u)^2+Cu}
+            \end{equation*}
+            Moreover, since the chain rule implies that
+            \begin{equation*}
+                \dv{\omega_1}\left[ \frac{\omega_1^2}{(\omega_0^2-\omega_1^2)^2+4\gamma^2\omega_1^2} \right] = \dv{u}\left[ \frac{u}{(v-u)^2+Cu} \right]\cdot\dv{u}{\omega_1}
+            \end{equation*}
+            we need only check that
+            \begin{equation*}
+                \eval{\dv{u}\left[ \frac{u}{(v-u)^2+Cu} \right]}_{u=v} = 0
+            \end{equation*}
+            We can do this as follows.
+            \begin{align*}
+                \eval{\dv{u}\left[ \frac{u}{(v-u)^2+Cu} \right]}_{u=v} &= \eval{\frac{[(v-u)^2+Cu]\cdot[1]-[u]\cdot[-2(v-u)+C]}{[(v-u)^2+Cu]^2}}_{u=v}\\
+                &= \frac{[(v-v)^2+Cv]\cdot[1]-[v]\cdot[-2(v-v)+C]}{[(v-v)^2+Cv]^2}\\
+                &= \frac{0}{(Cv)^2}\\
+                &= 0
+            \end{align*}
+            For analogous reasons to above, to check the right equality at the top, it will suffice to show that
+            \begin{equation*}
+                \eval{\dv[2]{u}\left[ \frac{u}{(v-u)^2+Cu} \right]}_{u=v} < 0
+            \end{equation*}
+            We can do this as follows.
+            \begingroup
+            \allowdisplaybreaks
+            \begin{align*}
+                \eval{\dv[2]{u}\left[ \frac{u}{(v-u)^2+Cu} \right]}_{u=v}\hspace{-7em}\\
+                &= \eval{\dv{u}\left\{ \frac{v^2-u^2}{[(v-u)^2+Cu]^2} \right\}}_{u=v}\\
+                &= \eval{\frac{[(v-u)^2+Cu]^2\cdot[-2u]-[v^2-u^2]\cdot[2((v-u)^2+Cu)(-2(v-u)+C)]}{[(v-u)^2+Cu]^2}}_{u=v}\\
+                &= \frac{[(v-v)^2+Cv]^2\cdot[-2v]-[v^2-v^2]\cdot[2((v-v)^2+Cv)(-2(v-v)+C)]}{[(v-v)^2+Cv]^2}\\
+                &= -2v\\
+                &< 0
+            \end{align*}
+            \endgroup
+            Now for the final part of the problem. As before, we can keep working with our proportional function in $u,v,C$. This function can be rewritten as follows.
+            \begin{equation*}
+                \frac{u}{(v-u)^2+Cu} = \frac{1}{\frac{1}{u}(v-u)^2+C}
+            \end{equation*}
+            The expression on the right above is clearly maximized when $(v-u)^2/u=0$.\footnote{Note that this would have been a way to prove that maximization without using calculus.} Similarly, the half-maximum occurs when $(v-u)^2/u=C$. But this only occurs when
+            \begin{align*}
+                uC &= v^2-2uv+u^2\\
+                0 &= u^2+(-2v-C)u+v^2\\
+                u &= \frac{-(-2v-C)\pm\sqrt{(-2v-C)^2-4v^2}}{2}\\
+                &= \frac{2v+C\pm\sqrt{4vC+C^2}}{2}\\
+                \omega_1^2 &= \frac{2\omega_0^2+4\gamma^2\pm\sqrt{16\omega_0^2\gamma^2+16\gamma^4}}{2}\\
+                &= \omega_0^2+2\gamma^2\pm 2\gamma\sqrt{\omega_0^2+\gamma^2}\\
+                &= \left( \gamma\pm\sqrt{\omega_0^2+\gamma^2} \right)^2\\
+                \Aboxed{\omega_1 &= \gamma\pm\sqrt{\omega_0^2+\gamma^2}}
+            \end{align*}
+            Note that we neglect the negative solutions --- that is, $-(\gamma\pm\sqrt{\omega_0^2+\gamma^2})$ --- because in physical reality, $\omega_1\not<0$.
+        \end{proof}
     \end{enumerate}
     \item \textcite{bib:KibbleBerkshire}, Q2.32. Find the Green's function of an oscillator in the case $\gamma>\omega_0$. Use it to solve the problem of an oscillator that is initially in equilibrium, and is subjected from $t=0$ to a force increasing linearly with time via $F=ct$.
-    % \begin{proof}
-        
-    % \end{proof}
     \item How long did you spend on this problem set?
     \begin{proof}
         About 10 hours.
