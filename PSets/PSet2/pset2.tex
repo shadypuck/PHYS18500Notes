@@ -68,16 +68,11 @@
         \end{proof}
         \item $\vec{F}=\hat{r}\cdot a/r$.
         \begin{proof}
-            Check whether the components of the curl vanish. In spherically symmetric coordinates, we have
-            \begin{equation*}
-                \nabla = \pdv{r}\hat{r}
-            \end{equation*}
-            so that
-            \begin{equation*}
-                \nabla\times\vec{F} = \pdv{r}(\frac{a}{r})\hat{r}\times\hat{r}
-                = \pdv{r}(\frac{a}{r})0
-                = 0
-            \end{equation*}
+            Conceptually, the curl will always vanish for a central force field. Mathematically, we can also show this, however. In spherical coordinates $(r,\theta,\phi)$, we have
+            \begin{align*}
+                \vec{\nabla}\times\vec{F} &= \eval{\left( \frac{1}{r\sin\theta}\left[ \pdv{(F_\phi\sin\theta)}{\theta}-\pdv{F_\theta}{\phi} \right],\frac{1}{r}\left[ \frac{1}{\sin\theta}\pdv{F_r}{\phi}-\pdv{(rF_\phi)}{r} \right],\frac{1}{r}\left[ \pdv{(rF_\theta)}{r}-\pdv{F_r}{\theta} \right] \right)}_{(a/r,0,0)}\\
+                &= 0
+            \end{align*}
             Since the curl vanishes, the force \fbox{is conservative.}\par
             Thus, we can calculate the potential energy $V(\vec{r})$ as follows.
             \begin{align*}
@@ -185,7 +180,7 @@
     \end{proof}
     \item Show directly that the time rate of change of the angular momentum about the origin for a projectile fired from the origin (constant $g$) is equal to the moment of force (or torque) about the origin.
     \begin{proof}
-        For this particle fired from the origin, pick axes such that the motion is contained to the $xy$-plane and $\vec{F}=-mg\jhat$. Additionally, suppose it is fired with velocity $v=v_x\ihat+v_y\jhat$. Then using kinematics, we can give its position $\vec{r}$ as a function of time:
+        For this particle fired from the origin, pick axes such that the motion is contained to the $xy$-plane and $\vec{F}=-mg\jhat$. Additionally, suppose it is fired with velocity $\vec{v}=v_x\ihat+v_y\jhat$. Then using kinematics, we can give its position $\vec{r}$ as a function of time:
         \begin{equation*}
             \vec{r} = (v_xt)\ihat+(-\tfrac{1}{2}gt^2+v_yt)\jhat
         \end{equation*}
