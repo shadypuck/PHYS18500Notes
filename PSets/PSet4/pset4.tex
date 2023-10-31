@@ -139,7 +139,21 @@
         \end{proof}
         \item What are the shapes of the orbits for the cases $\alpha<\beta$ and $\alpha>\beta$? We saw that for the attractive inverse square law, the orbits could be either ellipses or hyperbolas. Is a hyperbola possible for the attractive harmonic oscillator potential? Discuss this result in light of part (A).
         \begin{proof}
-            If $\alpha<\beta$, then the orbit is a hyperbola (so yes, it's possible). If $\alpha>\beta$, the orbit is an ellipse. This means that even potential energy functions that don't have the same shape --- such as those between the harmonic oscillator potential and inverse square law --- the orbits can be the same.
+            First, observe that since $k>0$ by hypothesis and $\gamma=J^2/2m\geq 0$, we know that
+            \begin{align*}
+                \frac{k}{2\gamma} &\geq 0\\
+                \frac{E^2}{4\gamma^2} &\geq \frac{E^2}{4\gamma^2}-\frac{k}{2\gamma}\\
+                \frac{E}{2\gamma} &\geq \sqrt{\frac{E^2}{4\gamma^2}-\frac{k}{2\gamma}}\\
+                \alpha &\geq \beta
+            \end{align*}
+            Thus, the case $\alpha<\beta$ is not even possible, i.e., \fbox{there are no orbits in the $\alpha<\beta$ case.}\par
+            In the case $\alpha>\beta$, the orbits are of the form
+            \begin{align*}
+                1 &= r^2(A\cos^2\theta+B\sin^2\theta)\\
+                1 &= Ax^2+By^2
+            \end{align*}
+            for $A,B>0$. In other words, \fbox{the orbits are elliptical.}\par
+            Lastly, note that the orbits of the attractive harmonic oscillator potential would be bounded, so an unbounded \fbox{hyperbola is not possible for the attractive harmonic oscillator potential.} This echoes the boundedness/unboundness of the two cases in part (a).
         \end{proof}
         \item For the attractive case, show that the condition for a real orbit recovers the value of $E=U_\text{min}$ that you derived in part (A).
         \begin{proof}
@@ -172,7 +186,7 @@
             \begin{align*}
                 \frac{J^2}{2m}\left( \dv{u}{r}\dv{r}{\theta} \right)^2+\frac{J^2}{2mr^2}+V(r) &= E\\
                 \frac{1}{2m}\left( J\cdot-\frac{1}{r^2}\dv{r}{\theta} \right)^2 &= E-V(r)-\frac{J^2}{2mr^2}\\
-                \left( \frac{J}{r^2}\dv{r}{\theta} \right)^2 &= 2m(E-V(r)-\frac{J^2}{2mr^2})\\
+                \left( \frac{J}{r^2}\dv{r}{\theta} \right)^2 &= 2m\left( E-V(r)-\frac{J^2}{2mr^2} \right)\\
                 \dv{r}{\theta} &= \frac{\sqrt{2m(E-V(r)-J^2/2mr^2)}}{J/r^2}\\
                 \dv{\theta}{r} &= \frac{J/r^2}{\sqrt{2m(E-V(r)-J^2/2mr^2)}}\\
                 \int_{\Delta\theta/2}^{\Delta\theta}\dd{\theta} &= \int_{r_\text{min}}^{r_\text{max}}\frac{J/r^2}{\sqrt{2m(E-V(r)-J^2/2mr^2)}}\dd{r}\\
@@ -182,10 +196,6 @@
         \end{proof}
         \item Let the speed of the particle far from the scattering center be $v$. Explain why the angular momentum is $J=mvb$, where $b$ is the impact parameter.
         \begin{proof}
-            % If the speed of the particle far from the scattering center is $v$, then its linear momentum far from the scattering center is $p=mv$.
-            % Because the particle is only under the influence of a central force, angular momentum is conserved.
-
-
             First of all, because the particle is only under the influence of a central force, angular momentum is conserved. Thus, we can calculate it at any location along the trajectory and the value will hold for all time. Since we have the velocity far from the scattering center, we'll calculate $J$ there.\par
             At this point, we know that the particle's linear momentum $p=mv$, where $m$ is the mass of the particle. Additionally, since the particle is far from the scattering center, it is a good approximation to let $\vec{p}$ lie parallel to the hyperbolic trajectory's directrix (i.e., the linear path the particle would take were the scattering center not there). The position vector $\vec{r}$ then intersects $\vec{p}$ at the particle's location, forming an angle $\phi$. It follows by the definition of angular momentum that $J=rp\sin\phi$. But since $b$ is the distance from the scattering center to the directrix, trigonometry shows that $r\sin\phi=b$. Thus, returning the substitutions $p=mv$ and $b=r\sin\phi$, we obtain
             \begin{equation*}
@@ -233,11 +243,11 @@
     \begin{enumerate}
         \item If it flies north;
         \begin{proof}
-            From trigonometry, we can determine that
-            \begin{equation*}
-                \boxed{v = \SI{1948}{\kilo\meter\per\hour}}
-            \end{equation*}
-            where $t$ is the time in hours after the plane "takes off."
+            If $\vec{v}'=(\SI[per-mode=symbol]{1000}{\kilo\meter\per\hour})\khat$, then the overall velocity is
+            \begin{align*}
+                \left| \dv{\vec{a}}{t} \right| &= \sqrt{|\vec{v}|^2+|\vec{v'}|^2}\\
+                \Aboxed{v &= \SI[per-mode=symbol]{1948}{\kilo\meter\per\hour}}
+            \end{align*}
         \end{proof}
         \item If it flies west;
         \begin{proof}
@@ -256,8 +266,60 @@
             \end{align*}
         \end{proof}
     \end{enumerate}
-    % \item A british warship fires a projectile due south near the Falkland Islands during World War I at latitude \ang{50}S. The shells are fired at \ang{37} elevation with a speed of \SI[per-mode=symbol]{400}{\meter\per\second}. If the projectile was aimed on the assumption that the latitude was \ang{50}N (i.e., the sailors accounted for the Coriolis force in the northern hemisphere by mistake), by how much did it miss? (This actually happened, though the precise numbers are not accurate.)
-    % \item \textcite{bib:KibbleBerkshire}, Q5.18. Find the equation of motion for a particle in a \emph{uniformly accelerated} frame with acceleration $\vec{a}$. Show that for a particle moving in a uniform gravitatinoal field, and subject to other forces, the gravitational field may be eliminated by a suitable choice of $\vec{a}$.
+    \item A British warship fires a projectile due south near the Falkland Islands during World War I at latitude \ang{50}S. The shells are fired at \ang{37} elevation with a speed of \SI[per-mode=symbol]{400}{\meter\per\second}. If the projectile was aimed on the assumption that the latitude was \ang{50}N (i.e., the sailors accounted for the Coriolis force in the northern hemisphere by mistake), by how much did it miss? (This actually happened, though the precise numbers are not accurate.)
+    \begin{proof}
+        We begin by giving names to all of the numbers and quantities listed in the problem statement.
+        \begin{align*}
+            \theta_N &= \ang{50}&
+            \theta_S &= \ang{140}&
+            \alpha &= \ang{37}&
+            \dot{r}_0 &= \SI[per-mode=symbol]{400}{\meter\per\second}&
+            \omega &= \SI{7.29e-5}{\per\second}
+        \end{align*}
+        It follows that the northern and radial components of the projectile's initial velocity are
+        \begin{align*}
+            \dot{r}_{n,0} &= -\dot{r}_0\cos\alpha&
+            \dot{r}_{r,0} &= \dot{r}_0\sin\alpha
+        \end{align*}
+        From this information, we can calculate the time of flight $t$ as follows.
+        \begin{align*}
+            -\dot{r}_{r,0} &= -gt+\dot{r}_{r,0}\\
+            t &= \frac{2\dot{r}_{r,0}}{g}\\
+            t &= \frac{2\dot{r}_0\sin\alpha}{g}
+        \end{align*}
+        It follows that the particle's easterly displacement under the Coriolis force is
+        \begin{align*}
+            \ddot{r}_e &= 2\omega\dot{r}_n\cos\theta-2\omega\dot{r}_r\sin\theta\\
+            &= 2\omega[\dot{r}_{n,0}\cos\theta-(-gt+\dot{r}_{r,0})\sin\theta]\\
+            &= 2\omega(gt\sin\theta+\dot{r}_{n,0}\cos\theta-\dot{r}_{r,0}\sin\theta)\\
+            r_e &= \omega t^2\left( \frac{gt}{3}\sin\theta+\dot{r}_{n,0}\cos\theta-\dot{r}_{r,0}\sin\theta \right)\\
+            &= \frac{4\omega\dot{r}_0^2\sin^2\alpha}{g^2}\left( \frac{2\dot{r}_0\sin\alpha}{3}\sin\theta-\dot{r}_0\cos\alpha\cos\theta-\dot{r}_0\sin\alpha\sin\theta \right)\\
+            &= \frac{4\omega\dot{r}_0^3\sin^2\alpha}{g^2}\left[ \frac{2}{3}\sin\alpha\sin\theta-\cos(\theta-\alpha) \right]
+        \end{align*}
+        The desired result is thus
+        \begin{equation*}
+            \boxed{r_e(\theta_S)-r_e(\theta_N) = \SI{80.8}{\meter}}
+        \end{equation*}
+    \end{proof}
+    \item \textcite{bib:KibbleBerkshire}, Q5.18. Find the equation of motion for a particle in a \emph{uniformly accelerated} frame with acceleration $\vec{a}$. Show that for a particle moving in a uniform gravitational field, and subject to other forces, the gravitational field may be eliminated by a suitable choice of $\vec{a}$.
+    \begin{proof}
+        Consider two frames of reference, an inertial frame $(\hat{x},\hat{y},\hat{z})$ and the uniformly accelerated frame $(\hat{x}',\hat{y}',\hat{z}')$. Denote by $\vec{R}$ the vector from the origin of the inertial frame to the origin of the uniformly accelerated frame. Consider a particle in 3D space with position $\vec{r}$ relative to the inertial frame and $\vec{r}'$ relative to the accelerated frame. It follows that $\vec{r}=\vec{R}+\vec{r}'$. Differentiating twice, we obtain (in more standard notation)
+        \begin{equation*}
+            \dv[2]{\vec{r}}{t} = \ddot{\vec{r}}+\vec{a}
+        \end{equation*}
+        Thus, by Newton's second law, we may derive the equation of motion in the uniformly accelerated frame as follows.
+        \begin{align*}
+            \vec{F} &= m\dv[2]{\vec{r}}{t}\\
+            &= m\ddot{\vec{r}}+m\vec{a}\\
+            \Aboxed{m\ddot{\vec{r}} &= \vec{F}-m\vec{a}}
+        \end{align*}
+        It follows that if the particle is moving in a uniform gravitational field $-g\khat$ and subject to other forces $\vec{F}$, we may choose $\vec{a}=-g\khat$ to eliminate the gravitational field from the equation of motion, as desired:
+        \begin{align*}
+            m\ddot{\vec{r}} &= -mg\khat+\vec{F}-m\vec{a}\\
+            &= -mg\khat+\vec{F}+mg\khat\\
+            &= \vec{F}
+        \end{align*}
+    \end{proof}
 \end{enumerate}
 
 
