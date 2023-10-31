@@ -12,6 +12,49 @@
 \section{Lagrangian Mechanics and Central Conservative Forces}
 \begin{enumerate}
     \item \marginnote{10/20:}A block is sliding down a frictionless, inclined plane with slope $-\alpha$. Use Lagrangian mechanics and the method of Lagrange undetermined multipliers to find the force of constraint exerted by the plane on the block. What is the relationship between this force and the Newtonian normal force?
+    \begin{proof}
+        We start by writing the Lagrangian for the system (in regular Cartesian coordinates) and identifying the constraint.
+        \begin{align*}
+            L &= \frac{1}{2}m(\dot{x}^2+\dot{y}^2)-mgy&
+            f(x,y,t) &= y+\alpha x = 0
+        \end{align*}
+        To write the two E-L equations, we'll need the information
+        \begin{align*}
+            \pdv{L}{x} &= 0&
+                \pdv{L}{\dot{x}} &= m\dot{x}&
+                    \pdv{f}{x} &= \alpha\\
+            \pdv{L}{y} &= -mg&
+                \pdv{L}{\dot{y}} &= m\dot{y}&
+                    \pdv{f}{y} &= 1
+        \end{align*}
+        With this information in hand, we can construct the two Euler-Lagrange equations
+        \begin{align*}
+            0 &= \pdv{L}{x}-\dv{t}(\pdv{L}{\dot{x}})+\lambda(t)\pdv{f}{x} = -m\ddot{x}+\alpha\lambda(t)\\
+            0 &= \pdv{L}{y}-\dv{t}(\pdv{L}{\dot{y}})+\lambda(t)\pdv{f}{y} = -mg-m\ddot{y}+\lambda(t)
+        \end{align*}
+        To find the force of constraint in each dimension, we must solve for $\lambda$. To do so, we will eliminate $x,y$ from the bottom E-L equation above using the consecutive substitutions $\ddot{y}=-\alpha\ddot{x}$ (obtained by twice differentiating the equation of constraint) and $m\ddot{x}=\alpha\lambda(t)$ (obtained by rearranging the top E-L equation above). In particular, we have
+        \begin{align*}
+            \lambda &= mg+m\ddot{y}\\
+            &= mg-\alpha m\ddot{x}\\
+            &= mg-\alpha(\alpha\lambda)\\
+            \lambda(t) &= \frac{mg}{1+\alpha^2}
+        \end{align*}
+        Equipped with our undetermined multiplier, we can calculate the two components of the force of constraint as follows.
+        \begin{align*}
+            Q_1 &= \lambda\pdv{f}{x}&
+                Q_2 &= \lambda\pdv{f}{y}\\
+            Q_1 &= \frac{mg}{1+\alpha^2}\cdot\alpha&
+                Q_2 &= \frac{mg}{1+\alpha^2}\cdot 1\\
+            \Aboxed{Q_1 &= \frac{mg\alpha}{1+\alpha^2}}&
+                \Aboxed{Q_2 &= \frac{mg}{1+\alpha^2}}\\
+        \end{align*}
+        To relate this force to the Newtonian normal force, we first investigate the latter. For a plane with slope $-\alpha=-\tan\theta$, a free body diagram tells us that the normal force $F_n=mg\cos\theta=mg/\sqrt{1+\alpha^2}$. Comparing this normal force equation to those of $Q_1,Q_2$ revelas that
+        \begin{align*}
+            \Aboxed{Q_1 &= F_n\sin\theta}&
+            \Aboxed{Q_2 &= F_n\cos\theta}
+        \end{align*}
+        That is to say, $Q_1$ is the component of the normal force in the Cartesian $x$-direction and $Q_2$ is the component of the normal force in the Cartesian $y$-direction.
+    \end{proof}
     \item A simple pendulum consists of a rigid rod of length $l$, with a bob of mass $m$ that is free to rotate in a vertical plane. (Note that it can swing in a full circle.)
     \begin{enumerate}
         \item For plane polar coordinates, show that
@@ -20,22 +63,316 @@
             \pdv{\hat{\theta}}{\theta} &= -\hat{r}
         \end{align*}
         By starting from $\vec{r}=r\hat{r}$ and differentiating, derive an expression for the acceleration in plane polar coordinates.
+        \begin{proof}
+            Define $\hat{x}$ to point vertically downward and $\hat{y}$ to point horizontally rightward. Define $\hat{r}$ to point from the origin toward the bob and $\hat{\theta}$ to be perpendicular to $\hat{r}$ following the same right-hand rule as $\hat{x},\hat{y}$. The setup is very similar to that of Figure 3.2 in my notes, from the 10/11 lecture. Expressing $\hat{r},\hat{\theta}$ in terms of these Cartesian coordinates, we obtain
+            \begin{align*}
+                \hat{r} &= (\cos\theta)\hat{x}+(\sin\theta)\hat{y}&
+                \hat{\theta} &= (-\sin\theta)\hat{x}+(\cos\theta)\hat{y}
+            \end{align*}
+            Differentiating yields the desired result, as follows.
+            \begin{align*}
+                \pdv{\hat{r}}{\theta} &= (-\sin\theta)\hat{x}+(\cos\theta)\hat{y} = \hat{\theta}&
+                \pdv{\hat{\theta}}{\theta} &= (-\cos\theta)\hat{x}+(-\sin\theta)\hat{y} = -\hat{r}
+            \end{align*}
+            Moving onto the second part of the problem, note that $r$ is naturally a function of time but $\hat{r}$ is also a function of time through its dependence on $\theta$. Thus,
+            \begin{align*}
+                \ddot{\vec{r}} &= \dv[2]{t}(r\hat{r})\\
+                &= \dv{t}(\dot{r}\hat{r}+r\dv{\hat{r}}{t})\\
+                &= \dv{t}(\dot{r}\hat{r}+r\dv{\hat{r}}{\theta}\dv{\theta}{t})\\
+                &= \dv{t}(\dot{r}\hat{r}+r\dot{\theta}\hat{\theta})\\
+                &= \ddot{r}\hat{r}+\dot{r}\dv{\hat{r}}{t}+\dot{r}\dot{\theta}\hat{\theta}+r\ddot{\theta}\hat{\theta}+r\dot{\theta}\dv{\hat{\theta}}{t}\\
+                &= \ddot{r}\hat{r}+\dot{r}\dot{\theta}\hat{\theta}+\dot{r}\dot{\theta}\hat{\theta}+r\ddot{\theta}\hat{\theta}-r\dot{\theta}^2\hat{r}\\
+                \Aboxed{\ddot{\vec{r}} &= (\ddot{r}-r\dot{\theta}^2)\hat{r}+(r\ddot{\theta}+2\dot{r}\dot{\theta})\hat{\theta}}
+            \end{align*}
+        \end{proof}
         \item Use your expression for acceleration to write Newton's equations for the pendulum in plane polar coordinates. Write an expression for the tension in the rod as a function of the angular coordinate $\theta$ and/or $\dot{\theta}$.
+        \begin{proof}
+            We have from Newton's second law that
+            \begin{align*}
+                \sum F &= m\vec{a}\\
+                \vec{F}_T+\vec{F}_g &= m\ddot{\vec{r}}\\
+                \vec{F}_T+mg\hat{x} &= m(\ddot{r}-r\dot{\theta}^2)\hat{r}+m(r\ddot{\theta}+2\dot{r}\dot{\theta})\hat{\theta}\\
+                \vec{F}_T &= m(\ddot{r}-r\dot{\theta}^2)\hat{r}+m(r\ddot{\theta}+2\dot{r}\dot{\theta})\hat{\theta}-mg[(\cos\theta)\hat{r}-(\sin\theta)\hat{\theta}]\\
+                &= m(0-l\dot{\theta}^2)\hat{r}+m(l\ddot{\theta}+2\cdot 0\cdot\dot{\theta})\hat{\theta}-mg[(\cos\theta)\hat{r}-(\sin\theta)\hat{\theta}]\\
+                &= (-ml\dot{\theta}^2-mg\cos\theta)\hat{r}+(ml\ddot{\theta}+mg\sin\theta)\hat{\theta}
+            \end{align*}
+            Thus, since we know from physical considerations that the tension force is purely radial, we must set $ml\ddot{\theta}+mg\sin\theta$ equal to zero to obtain
+            \begin{equation*}
+                \boxed{\vec{F}_T = (-ml\dot{\theta}^2-mg\cos\theta)\hat{r}}
+            \end{equation*}
+            In fact, setting the $\hat{\theta}$ component of the above expression equal to zero also gives us Newton's equation for the pendulum in plane polar coordinates!
+            \begin{equation*}
+                \boxed{l\ddot{\theta}+g\sin\theta = 0}
+            \end{equation*}
+        \end{proof}
         \item Repeat the analysis of the pendulum using Lagrangian mechanics and Lagrange undetermined multipliers. First, write the Lagrangian in plane polar coordinates. Second, write Lagrange's equations of motion, including the undetermined multiplier, and the equation of constraint. Use the equation of constraint to eliminate a variable in the equations of motion.
+        \begin{proof}
+            In plane polar coordinates, the Lagrangian is given by the following, as in class.
+            \begin{equation*}
+                \boxed{L = \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)+mgr\cos\theta}
+            \end{equation*}
+            Additionally, the equation of constraint is given by
+            \begin{equation*}
+                f(r,\theta,t) = r-l = 0
+            \end{equation*}
+            Thus, to write the two E-L equations, we'll need the information
+            \begin{align*}
+                \pdv{L}{r} &= mr\dot{\theta}^2+mg\cos\theta&
+                    \pdv{L}{\dot{r}} &= m\dot{r}&
+                        \pdv{f}{r} &= 1\\
+                \pdv{L}{\theta} &= -mgr\sin\theta&
+                    \pdv{L}{\dot{\theta}} &= mr^2\dot{\theta}&
+                        \pdv{f}{\theta} &= 0\\
+            \end{align*}
+            With this information in hand, we can construct Lagrange's equations of motion.
+            \begin{empheq}[box=\fbox]{align*}
+                mr\dot{\theta}^2+mg\cos\theta-m\ddot{r}+\lambda(t) &= 0\\
+                -mgr\sin\theta-2mr\dot{r}\dot{\theta}-mr^2\ddot{\theta} &= 0\\
+                r-l &= 0
+            \end{empheq}
+            Using the constraint and its derivatives, we can substitute
+            \begin{align*}
+                r &= l&
+                \dot{r} &= \ddot{r} = 0
+            \end{align*}
+            into the equations of motion and simplify, eliminating $r$ to yield the following.
+            \begin{align*}
+                \Aboxed{\lambda(t) &= -ml\dot{\theta}^2-mg\cos\theta}&
+                \Aboxed{g\sin\theta+l\ddot{\theta} &= 0}
+            \end{align*}
+        \end{proof}
         \item Write down the relationship between the Lagrange undetermined multiplier and the force of tension in the rod.
+        \begin{proof}
+            Combining parts (b) and (c), we can see that
+            \begin{equation*}
+                \boxed{\vec{F}_T = \lambda(t)\hat{r}}
+            \end{equation*}
+        \end{proof}
         \item Solve for the tension in the rod as a function of time in two cases. First, the bob begins at the lowest point with angular speed $\dot{\theta}=\omega_0$. Assume the angular deviations from the vertical are small compared to 1. Second, the bob begins at the apex with angular speed $\dot{\theta}=\omega_0$. Again, find an expression that is valid when the angular deviation from the vertical is small compared to 1.
+        \begin{proof}
+            Since the tension $\vec{F}_T$ depends on time solely through $\theta$ and its derivatives, we must first solve for $\theta(t)$ in each of the two cases. Let's begin.\par
+            First case: Under the small-angle approximation, the equation of motion becomes
+            \begin{equation*}
+                l\ddot{\theta}+g\theta = 0
+            \end{equation*}
+            Additionally, per the problem statement, our initial conditions are
+            \begin{align*}
+                \theta(0) &= 0&
+                \dot{\theta}(0) = \omega_0
+            \end{align*}
+            As in class, this ODE has the following solution, where we define $\omega=\sqrt{g/l}$.
+            \begin{align*}
+                \theta(t) &= \theta(0)\cos(\omega t)+\frac{\dot{\theta}(0)}{\omega}\sin(\omega t)\\
+                &= \frac{\omega_0}{\omega}\sin(\omega t)
+            \end{align*}
+            Second case: We can no longer approximate $\theta$ as a small angle because $\theta$ is now near $\pi$. However, we can still use similar methods after applying the coordinate transformation $\theta=\pi+\var{\theta}$, which makes $\var{\theta}$ into a small angle. In particular, we can substitute into the original ODE
+            \begin{align*}
+                \sin(\pi+\var{\theta}) &\approx -\var{\theta}&
+                \ddot{\theta} &= \ddot{\var{\theta}}
+            \end{align*}
+            to get
+            \begin{equation*}
+                l\ddot{\var{\theta}}-g\var{\theta} = 0
+            \end{equation*}
+            As in class, this ODE has the following solution, where we define $p=\sqrt{-g/l}$.
+            \begin{equation*}
+                \var{\theta}(t) = \frac{1}{2}A\e[pt]+\frac{1}{2}B\e[-pt]
+            \end{equation*}
+            Our initial conditions in this case are
+            \begin{align*}
+                \var{\theta}(0) &= \theta(0)-\pi = \pi-\pi = 0&
+                \dot{\var{\theta}}(0) &= \dot{\theta}(0) = \omega_0
+            \end{align*}
+            Thus, we can solve for $A,B$ by solving the system of equations
+            \begin{align*}
+                \frac{1}{2}A+\frac{1}{2}B &= 0&
+                \frac{1}{2}Ap-\frac{1}{2}Bp &= \omega_0
+            \end{align*}
+            to get
+            \begin{align*}
+                A &= \frac{\omega_0}{p}&
+                B &= -\frac{\omega_0}{p}
+            \end{align*}
+            Consequently,
+            \begin{equation*}
+                \var{\theta}(t) = \frac{\omega_0}{2p}\e[pt]-\frac{\omega_0}{2p}\e[-pt]
+            \end{equation*}
+            Returning our substitution, we obtain
+            \begin{equation*}
+                \theta(t) = \pi+\frac{\omega_0}{2p}\e[pt]-\frac{\omega_0}{2p}\e[-pt]
+            \end{equation*}
+            To recap, at this point we have the left equations below for the first case and the right equations below for the second case.
+            \begin{align*}
+                \theta(t) &= \frac{\omega_0}{\omega}\sin(\omega t)&
+                    \theta(t) &= \pi+\frac{\omega_0}{2p}\e[pt]-\frac{\omega_0}{2p}\e[-pt]\\
+                \dot{\theta}(t) &= \omega_0\cos(\omega t)&
+                    \dot{\theta}(t) &= \frac{\omega_0}{2}(\e[pt]+\e[-pt])
+            \end{align*}
+            Therefore, the tension in the rod in the first case is given by the first equation below, and the tension in the rod in the second case is given by the second equation below.
+            \begin{gather*}
+                \boxed{\vec{F}_T = \left[ -ml\omega_0^2\cos^2(\omega t)-mg\cos(\frac{\omega_0}{\omega}\sin(\omega t)) \right]\hat{r}}\\
+                \boxed{\vec{F}_T = \left[ -\frac{ml\omega_0^2}{4}(\e[pt]+\e[-pt])^2+mg\cos(\frac{\omega_0}{2p}(\e[pt]-\e[-pt])) \right]\hat{r}}
+            \end{gather*}
+        \end{proof}
     \end{enumerate}
     \item The orbits of synchronous communications satellites have been chosen so that viewed from the Earth, they appear to be stationary. Find the radius of the orbits. How does this compare to the distance to the moon?
+    \begin{proof}
+        There are four equivalent ways in which we can solve this problem. Let's go through them.\par\smallskip
+        \underline{Newtonian force approach}: Consider a point particle satellite of mass $m$ orbiting a point particle Earth of mass $M=\SI{5.97e24}{\kilo\gram}$. To be geostationary, we require that the satellite orbits Earth with angular velocity $\omega=\SI{7.29e-5}{\per\second}$, matching that of Earth. The sole unbalanced force on the satellite is that of Newtonian gravity ($G=\SI{6.67e-11}{\newton\meter\squared\per\kilo\gram\squared}$), which causes it to accelerate centripetally. Therefore,
+        \begin{align*}
+            \sum F &= ma_r\\
+            \frac{GMm}{r^2} &= mr\omega^2\\
+            r^3 &= \frac{GM}{\omega^2}\\
+            \Aboxed{r &= \SI{4.22e7}{\meter}}
+        \end{align*}
+        \underline{Angular momentum approach}: We use the same setup as last time. However, this time we observe that since the particle is only being acted on by a \emph{central} conservative force, its angular momentum $J=mr^2\dot{\theta}$ is constant. It follows since $\dot{\theta}=\omega$ is constant as well that $r$ is constant. This implies that the orbit is circular, which means that the radius of the orbit is equal to the length scale, i.e.,
+        \begin{align*}
+            r &= \ell\\
+            &= \frac{J^2}{m|k|}\\
+            &= \frac{(mr^2\omega)^2}{m|GMm|}\\
+            &= \frac{r^4\omega^2}{GM}\\
+            r^3 &= \frac{GM}{\omega^2}
+        \end{align*}
+        \underline{Energy approach}: We use the same setup as last time. However, this time we observe that since the particle is only being acted on by a central \emph{conservative} force, its energy $E=m/2\cdot(\dot{r}^2+r^2\dot{\theta}^2)-GMm/r$ is constant. To be geostationary, we require that $r$ is fixed (hence $\dot{r}=0$) and $\dot{\theta}=\omega$. Additionally, for a circular orbit, we must have $r=\ell$ and $E=-|k|/2\ell$. Therefore, by transitivity
+        \begin{align*}
+            -\frac{|GMm|}{2r} &= \frac{1}{2}mr^2\omega^2-\frac{GMm}{r}\\
+            \frac{GM}{r} &= r^2\omega^2\\
+            r^3 &= \frac{GM}{\omega^2}
+        \end{align*}
+        \underline{Rotating reference frame approach}: Consider a point particle satellite of mass $m$ orbiting a solid Earth of mass $M$. Adopting the rotating reference frame of an observer on Earth who views the satellite as stationary, our EOM is
+        \begin{equation*}
+            m\ddot{\vec{r}} = \vec{g}+\vec{F}-2m\vec{\omega}\times\dot{\vec{r}}-m\vec{\omega}\times(\vec{\omega}\times\vec{r})
+        \end{equation*}
+        Since the only external forces acting on the satellite is gravity, $\vec{F}=0$. Moreover, we opt for Newtonian gravity $\vec{g}=-GMm/r^2\hat{r}$ here. Additionally, since the satellite is stationary when viewed from Earth and thus, in particular, does not have any radial velocity or acceleration relative to the Earth, $\dot{\vec{r}}=\ddot{\vec{r}}=0$. Thus, the above equation simplifies to
+        \begin{equation*}
+            0 = \frac{GM}{r^2}\hat{r}+\vec{\omega}\times(\vec{\omega}\times\vec{r})
+        \end{equation*}
+        If we take the radial component of $\vec{\omega}\times(\vec{\omega}\times\vec{r})$, which is $-\omega^2r\sin^2\theta$, we can create and simplify the following scalar equation from the above.
+        \begin{align*}
+            0 &= \frac{GM}{r^2}-\omega^2r\sin^2\theta\\
+            r^3 &= \frac{GM}{\omega^2\sin^2\theta}
+        \end{align*}
+        With $\theta$ as the polar angle, we observe that closer to the poles, the satellite must reside farther from the Earth to remain geostationary! For the sake of this problem, though, we'll assume (as we implicitly have in all other problems) that the satellite is orbiting the Earth above the equator where $\theta=\ang{90}$. Under this assumption, we recover the same result that we've gotten the last three times:
+        \begin{equation*}
+            r^3 = \frac{GM}{\omega^2}
+        \end{equation*}
+        Finally, to address the second part of the problem, note that since the distance from the Earth to the Moon is \SI{3.84e8}{\meter}, the Earth-Moon distance is still much longer than the geostationary orbit distance.
+    \end{proof}
     \item \textcite{bib:KibbleBerkshire}, Q4.9. A particle of mass $m$ moves under the action of a harmonic oscillator force with potential $kr^2/2$. Initially, it is moving in a circle of radius $a$. Find the orbital speed $v$. It is then given a blow of impulse $mv$ in a direction making an angle $\alpha$ with its original velocity. Use the conservation laws to determine the minimum and maximum distances from the origin during the subsequent motion. Explain your results physically for the two limiting cases $\alpha=0,\pi$.
+    \begin{proof}
+        We approach this problem from the perspective of angular momentum. In fact, in a very analogous manner to Q3, we will calculate the angular momentum directly and then use an alternate expression derived from the energy conservation law which relates the radius $a$ to $J$. To begin, we can calculate the angular momentum of the particle directly from the definition of angular momentum to yield
+        \begin{equation*}
+            J = mva
+        \end{equation*}
+        Additionally, per \textcite[78]{bib:KibbleBerkshire}, we know that
+        \begin{equation*}
+            J^2 = mka^4
+        \end{equation*}
+        Substituting, simplifying, and solving for $v$, we obtain
+        \begin{align*}
+            m^2v^2a^2 &= mka^4\\
+            mv^2 &= ka^2\\
+            \Aboxed{v &= a\sqrt{\frac{k}{m}}}
+        \end{align*}
+        We now move onto the second part of the problem. Taking the hint, we begin by stating the conservation laws for this system. For angular momentum, we add the $\hat{\theta}$ component of the impulse to the existing angular momentum as follows.
+        \begin{equation*}
+            J = mva+mva\cos\alpha
+            = mva(1+\cos\alpha)
+        \end{equation*}
+        For energy, we start with the usual expression and substitute and simplify as far as we can.
+        \begin{align*}
+            E &= \frac{1}{2}m(\dot{r}^2+a^2\dot{\theta}^2)+\frac{1}{2}ka^2\\
+            &= \frac{1}{2}m(v^2\sin^2\alpha+(v+v\cos\alpha)^2)+\frac{1}{2}ka^2\\
+            &= mv^2(1+\cos\alpha)+\frac{1}{2}ka^2
+        \end{align*}
+        The particle will be at its minimum and maximum distances from the origin when the effective potential energy $U(r)=E$. Thus, this is the equation we need to solve for $r$, which we can do as follows, using various substitutions from above.
+        \begin{align*}
+            U(r) &= E\\
+            \frac{J^2}{2mr^2}+\frac{1}{2}kr^2 &= mv^2(1+\cos\alpha)+\frac{1}{2}ka^2\\
+            \frac{m^2v^2a^2(1+\cos\alpha)^2}{2mr^2}+\frac{1}{2}kr^2 &= mv^2(1+\cos\alpha)+\frac{1}{2}ka^2\\
+            \frac{mv^2a^2(1+\cos\alpha)^2}{2r^2}+\frac{1}{2}kr^2 &= mv^2(1+\cos\alpha)+\frac{1}{2}ka^2\\
+            \frac{a^4k(1+\cos\alpha)^2}{2r^2}+\frac{1}{2}kr^2 &= a^2k(1+\cos\alpha)+\frac{1}{2}ka^2\\
+            a^4(1+\cos\alpha)^2+r^4 &= 2a^2r^2(1+\cos\alpha)+a^2r^2\\
+            0 &= (r^2)^2-[a^2+2a^2(1+\cos\alpha)]r^2+a^4(1+\cos\alpha)^2\\
+            r^2 &= \frac{a^2+2a^2(1+\cos\alpha)\pm\sqrt{[a^2+2a^2(1+\cos\alpha)]^2-4a^4(1+\cos\alpha)^2}}{2}\\
+            &= a^2\left( \frac{3+2\cos\alpha\pm\sqrt{5+4\cos\alpha}}{2} \right)\\
+            \Aboxed{r &= a\sqrt{\frac{3+2\cos\alpha\pm\sqrt{5+4\cos\alpha}}{2}}}
+        \end{align*}
+        In the limiting case that $\alpha=0$, the above equation gives $r=a$ and $r=2a$. It makes physical sense that the system should have its minimum distance and maximum speed when $r=a$ because this is where we got the impulse, and it is still where $\vec{v}$ is orthogonal to $\vec{r}$.\par
+        In the limiting case that $\alpha=0$, the above equation gives $r=a$ and $r=0$. Herein, we have stopped all angular motion and the particle is a true simple harmonic oscillator through the origin, getting as far away as the radius of the original circle and as close as 0 when it crosses the origin.
+    \end{proof}
     \item Deduce the inverse square law for gravity from Kepler's laws.
     \begin{enumerate}
         \item Use Kepler's second law (planets sweep out equal areas in equal time) to show that the force must be central.
+        \begin{proof}
+            Mathematically, Kepler's second law tells us that $\dv*{A}{t}$ is constant. But since we know from \textcite[57]{bib:KibbleBerkshire} that $\dv*{A}{t}=J/2m$, we know that $J$ is constant. It follows that the net torque on the system is $\vec{r}\times\vec{F}=\vec{G}=\dot{\vec{J}}=0$. But this implies that if both $\vec{r}$ and $\vec{F}$ are nonzero, then they're parallel. This is equivalent to stating that the force is central, as desired.
+        \end{proof}
         \item Use Kepler's first law (the orbit of planets are ellipses with the sun at one focus) and the orbit equation to show that the force must be inversely proportional to $r^2$. (Note that the orbit equation gives the relationship between the shapes of orbits and the potential energy function.)
+        \begin{proof}
+            From Kepler's first law, we know mathematically that if we situate the sun at the origin, then the orbit of a planet around it is given by
+            \begin{equation*}
+                r(e\cos(\theta-\theta_0)+1) = \ell
+            \end{equation*}
+            Changing coordinates to $u=1/r$, the above becomes
+            \begin{equation*}
+                \frac{1}{\ell}(e\cos(\theta-\theta_0)+1) = u
+            \end{equation*}
+            Differentiating with respect to $\theta$, we obtain
+            \begin{equation*}
+                \dv{u}{\theta} = -\frac{e}{\ell}\sin(\theta-\theta_0)
+            \end{equation*}
+            Plugging into the orbit equation, we obtain
+            \begin{align*}
+                E &= \frac{J^2}{2m}\left( \dv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+V(u)\\
+                &= \frac{J^2}{2m}\left( -\frac{e}{\ell}\sin(\theta-\theta_0) \right)^2+\frac{J^2}{2m}\left( \frac{1}{\ell}(e\cos(\theta-\theta_0)+1) \right)^2+V(u)\\
+                &= \frac{J^2e^2}{2m\ell^2}\sin^2(\theta-\theta_0)+\frac{J^2}{2m\ell^2}[e^2\cos^2(\theta-\theta_0)+2e\cos(\theta-\theta_0)+1]+V(u)\\
+                &= \frac{J^2}{2m\ell^2}[e^2+2e\cos(\theta-\theta_0)+1]+V(u)\\
+                &= \frac{J^2}{2m}\left[ \frac{2}{\ell}\cdot\frac{e\cos(\theta-\theta_0)+1}{\ell}+\frac{e^2-1}{\ell^2} \right]+V(u)\\
+                &= \frac{J^2}{2m}\left[ \frac{2u}{\ell}-\frac{1}{b^2} \right]+V(u)\\
+                &= \frac{J^2}{2m}\left[ \frac{2u}{\ell}-\frac{2m|E|}{J^2} \right]+V(u)\\
+                &= \frac{J^2}{m}\cdot\frac{u}{\ell}-E+V(u)\\
+                2E-\frac{J^2u}{m\ell} &= V(u)\\
+                2E-\frac{k}{r} &= V(r)
+            \end{align*}
+            Therefore, we have that
+            \begin{equation*}
+                F = -\pdv{V}{r} = -\frac{|k|}{r^2}
+            \end{equation*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \item A particle of mass $m$ moves in a central force field that has a constant magnitude $F_0$ but always points toward the origin.
     \begin{enumerate}
         \item Find the angular velocity $\omega_\phi$ required for the particle to move in a circular orbit of radius $r_0$. Give your answer in terms of $F_0,m,r_0$.
+        \begin{proof}
+            From Newton's second law, we have
+            \begin{align*}
+                \sum F &= mr_0\omega_\phi^2\\
+                F_0 &= mr_0\omega_\phi^2\\
+                \Aboxed{\omega_\phi &= \sqrt{\frac{F_0}{mr_0}}}
+            \end{align*}
+        \end{proof}
         \item Find the frequency $\omega_r$ of small radial oscillations about the circular orbit. Give your answer in terms of $F_0,m,r_0$.
+        \begin{proof}
+            The effective potential energy corresponding to the particle is
+            \begin{equation*}
+                U(r) = \frac{J^2}{2mr^2}+F_0r
+                = \frac{m^2r_0^4\omega_\phi^2}{2mr^2}+F_0r
+                = \frac{mr_0^4\omega_\phi^2}{2r^2}+F_0r
+            \end{equation*}
+            For the particle to have a stable circular orbit at radius $r=r_0$, $U(r_0)$ must be a minimum. Thus, a small displacement to $r=r_0+\var{r}$ would result in approximately harmonic radial oscillations. Now the angular frequency $\omega_r$ of these oscillations depends on
+            \begin{equation*}
+                k = \eval{\dv[2]{U}{r}}_{r=r_0}
+                = \eval{\dv{r}(F_0-\frac{F_0r_0^3}{r^3})}_{r=r_0}
+                = \eval{\frac{3F_0r_0^3}{r^4}}_{r=r_0}
+                = \frac{3F_0}{r_0}
+            \end{equation*}
+            Having calculated $k$, we know that
+            \begin{align*}
+                \omega_r &= \sqrt{\frac{k}{m}}\\
+                \Aboxed{\omega_r &= \sqrt{\frac{3F_0}{mr_0}}}
+            \end{align*}
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
