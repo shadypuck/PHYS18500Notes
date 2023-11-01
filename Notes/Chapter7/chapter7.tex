@@ -187,7 +187,7 @@
         \end{itemize}
     \end{itemize}
     \item We now switch to an important application of this CM theory.
-    \item Elastic collisions.
+    \item \textbf{Elastic} (collision): A collision between two particles in which the kinetic energy is the same before and after.
     \begin{figure}[h!]
         \centering
         \begin{subfigure}[b]{0.35\linewidth}
@@ -218,11 +218,7 @@
         \label{fig:CMelastic}
     \end{figure}
     \begin{itemize}
-        \item Background.
-        \begin{itemize}
-            \item In an elastic collision, the kinetic energy is the same before and after.
-            \item Examples: Hard spheres, Coulomb force, gravity.
-        \end{itemize}
+        \item Examples: Hard spheres, Coulomb force, gravity.
         \item Takeaways from Figure \ref{fig:CMelastica}.
         \begin{itemize}
             \item Here's what an elastic collision looks like in the CM frame: We have two particles coming in, one with momentum $\vec{p}{\,}^*$ and one with momentum $-\vec{p}{\,}^*$. After the collision, the particles separate with momenta $\vec{q}{\,}^*$ and $-\vec{q}{\,}^*$.
@@ -392,6 +388,50 @@
             \end{align*}
         \end{itemize}
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 7: The Two-Body Problem}
+\emph{From \textcite{bib:KibbleBerkshire}.}
+\begin{itemize}
+    \item \marginnote{10/31:}Focus: Isolated system of two particles with an internal force.
+    \item We will also touch on the presence of a uniform gravitational field, as that does not make the problem any more difficult to solve.
+    \item Consider two particles of masses $m_1,m_2$ at positions $\vec{r}_1,\vec{r}_2$.
+    \item Let $\vec{F}:=\vec{F}_{12}$.
+    \item EOMs of the two particles in a uniform gravitational field.
+    \begin{align*}
+        m_1\ddot{\vec{r}}_1 &= m_1\vec{g}+\vec{F}&
+        m_2\ddot{\vec{r}}_2 &= m_2\vec{g}-\vec{F}
+    \end{align*}
+    \item \textbf{Center of mass}: The point defined as follows for two particles of masses $m_1,m_2$ at positions $\vec{r}_1,\vec{r}_2$. \emph{Denoted by} $\bm{\vec{R}}$, $\bm{\vec{\bar{r}}}$. \emph{Given by}
+    \begin{equation*}
+        \vec{R} = \frac{m_1\vec{r}_1+m_2\vec{r}_2}{m_1+m_2}
+    \end{equation*}
+    \item Definition of \textbf{relative position} (see Chapter 1).
+    \item The vectors and scalars describing a two body system may be visualized as follows.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.2\linewidth]{../ExtFiles/2BodySystem.png}
+        \caption{Two-body system.}
+        \label{fig:2BodySystem}
+    \end{figure}
+    \item \textbf{Reduced mass}: The quantity defined as follows. \emph{Denoted by} $\bm{\mu}$. \emph{Given by}
+    \begin{equation*}
+        \mu = \frac{m_1m_2}{m_1+m_2}
+    \end{equation*}
+    \begin{itemize}
+        \item The reduced mass is named as such "because it is always less than either $m_1$ or $m_2$" \parencite[160]{bib:KibbleBerkshire}.
+    \end{itemize}
+    \item From the EOMs above, we can derive (as in class) that
+    \begin{align*}
+        M\ddot{\vec{R}} &= M\vec{g}&
+        \mu\ddot{\vec{r}} &= \vec{F}
+    \end{align*}
+    \item General procedure and conservation laws.
+    \item Lagrangian approach.
+    \item \textbf{Center-of-mass frame}: Teh frame of reference in which the center of mass is at rest at the origin. \emph{Also known as} \textbf{CM frame}.
+    \item Another section that we did not cover in class: CM and Lab Cross-Sections.
 \end{itemize}
 
 
