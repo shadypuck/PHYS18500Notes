@@ -306,5 +306,95 @@
 
 
 
+\section{Office Hours (Jerison)}
+\begin{itemize}
+    \item What is the differential scattering cross-section, intuitively?
+    \begin{itemize}
+        \item It's weird notation, because it's really a function of the scattering angle $\Theta$.
+        \item It's the rate of particles exiting at angle $\Theta$ per unit solid angle.
+        \begin{itemize}
+            \item So as we increase the area on the surface of the scatterer that we're considering (i.e., increase $\dd{\Omega}$), the flux of particles bouncing off of the sphere (i.e., rate of particles exiting at angle $\Theta$) increases a certain amount, which varies depending on characteristics of the system.
+        \end{itemize}
+        \item It depends on $b,\sin\theta,\dv*{b}{\theta}$, where $b(\Theta)$ depends on the particular force law or potential.
+        \item We can derive $b(\Theta)$ from constraints of the system.
+        \begin{itemize}
+            \item The general formula from the homework is relevant!
+        \end{itemize}
+        \item Then $\dv*{\sigma}{\Omega}$ can tell us things about our system.
+        \item Reread Sections 4.5 and 4.7 of \textcite{bib:KibbleBerkshire} in depth!
+    \end{itemize}
+    \item What are Lagrange undetermined multipliers?
+    \begin{itemize}
+        \item Jerison gives the definition.
+    \end{itemize}
+    \item Lagrange undetermined multipliers with multiple constraints?
+    \begin{itemize}
+        \item Jerison goes through the Atwood Machine --- Example 7.8 from \textcite{bib:ThorntonMarion}.
+    \end{itemize}
+    \item How do we convert between the following two expressions?
+    \begin{align*}
+        x(t) &= A\cos(\omega t)+B\sin(\omega t)&
+        x(t) &= a\cos(\omega t-\theta)
+    \end{align*}
+    \begin{itemize}
+        \item Use the trig identity $\cos(x-y)=\cos(x)\cos(y)+\sin(x)\sin(y)$.
+        \item Thus,
+        \begin{equation*}
+            x(t) = a[\cos(\omega t)\cos\theta+\sin(\omega t)\sin\theta]
+        \end{equation*}
+        \item It follows that we can identify $A=a\cos\theta$ and $B=a\sin\theta$.
+    \end{itemize}
+    \item Some thoughts on circular orbits.
+    \item Fundamental constants.
+    \begin{itemize}
+        \item Formulas will not be provided, but any fundamental constants (e.g., radius of earth or gravitational constant $G$) will be provided.
+        \item No calculators for the exam! They are not needed. If you don't want to work out the numerical value for something, leaving an expression is fine.
+        \item Exam is designed to be easier and faster than the PSets.
+        \item The most complicated things will not appear.
+        \item Driven oscillators are fair game, but nothing horribly complicated will be there.
+        \item No Greens functions or general periodic forcing (Fourier analysis) will appear.
+    \end{itemize}
+    \item You, the textbook, and the pset answer key have, at times, referred to equations of constraint as "Euler-Lagrange equations" in the context of the method of Lagrange undetermined multipliers. Why?
+    \item Why doesn't my solution to the bead on a rotating wire work with the method of Lagrange's undetermined multipliers?
+    \begin{itemize}
+        \item Proper approach.
+        \begin{itemize}
+            \item Use 3 equations ($y,r,\theta$) and 2 constraints ($\theta=\omega t$,$z=cr^2$) to find 5 variables $y,r,\theta,\lambda_1,\lambda_2$.
+            \item We do not use $r=R$ until the end because this is not \emph{technically} a force of constraint. Indeed, the particle is still free to move along the wire here, i.e., there is no reason we could not take the system and then push the bead down with our finger, while there is a reason we could not slow the wire or push it off the parabola with our finger.
+        \end{itemize}
+        \item Thus, the solution works out something like this.
+        \begin{itemize}
+            \item The Lagrangian is
+            \begin{equation*}
+                L = \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2+\dot{z}^2)-mgz
+            \end{equation*}
+            \item Lagrange's 5 equations are
+            \begin{align*}
+                mr\dot{\theta}^2-m\ddot{r}-2cr\lambda_1 &= 0\\
+                -2mr\dot{r}\theta-mr^2\dot{\theta}+\lambda_2 &= 0\\
+                -mg-m\ddot{z}+\lambda_1 &= 0\\
+                z-cr^2 &= 0\\
+                \theta-\omega t &= 0
+            \end{align*}
+            \item After inserting $r=R$ and its consequence $\dot{r}=\ddot{r}=\dot{z}=\ddot{z}=0$, these simplify quite a bit to
+            \begin{align*}
+                m\dot{\theta}^2-2c\lambda_1 &= 0\\
+                -mR^2\dot{\theta}+\lambda_2 &= 0\\
+                -mg+\lambda_1 &= 0\\
+                z-cR^2 &= 0\\
+                \theta-\omega t &= 0
+            \end{align*}
+            \item Substituting $\lambda_1=mg$ and $\dot{\theta}=\omega$ into the first line above and simplifying yields the desired result.
+            \begin{align*}
+                m\omega^2-2cmg &= 0\\
+                \omega^2-2cg &= 0\\
+                c &= \frac{\omega^2}{2g}
+            \end{align*}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
