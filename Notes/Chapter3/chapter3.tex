@@ -154,7 +154,7 @@
         \end{align*}
     \end{itemize}
     \item The analogy of force under rotation is \textbf{torque}.
-    \item \textbf{Torque}: A twisting force that tends to cause rotation, quantified as follows. \emph{Also known as} \textbf{moment of force}. \emph{Denoted by} $\bm{\vec{g}}$. \emph{Given by}
+    \item \textbf{Torque}: A twisting force that tends to cause rotation, quantified as follows. \emph{Also known as} \textbf{moment of force}. \emph{Denoted by} $\bm{\vec{G}}$. \emph{Given by}
     \begin{equation*}
         \vec{G} = \vec{r}\times\vec{F}
     \end{equation*}
@@ -171,7 +171,7 @@
     \item \textbf{Angular momentum}: The quantity of rotation of a body, quantified as follows. \emph{Denoted by} $\bm{\vec{J}}$. \emph{Given by}
     \begin{equation*}
         \vec{J} = \vec{r}\times\vec{p}
-        = m\vec{r}\times\vec{r}
+        = m\vec{r}\times\dot{\vec{r}}
     \end{equation*}
     \begin{itemize}
         \item Derivative:
@@ -211,7 +211,7 @@
         \item For the special case of a conservative force (requirement is that the curl vanishes, $\vec{\nabla}\times\vec{F}=0$), we can find a scalar potential energy function $V$ such that $\vec{F}=-\vec{\nabla}V$.
         \item Each
         \begin{equation*}
-            -\pdv{V}{x_i} = F_i = m\vec{\ddot{r}}_i = \dot{p}_i
+            -\pdv{V}{x_i} = F_i = m\ddot{\vec{r}}_i = \dot{p}_i
         \end{equation*}
     \end{itemize}
     \item Intro to variational calculus.
@@ -408,7 +408,7 @@
 
 \section{Office Hours (Jerison)}
 \begin{itemize}
-    \item Phase offsets in the driven harmonic oscillator.
+    \item I asked about phase offsets in the driven harmonic oscillator.
 \end{itemize}
 
 
@@ -582,8 +582,8 @@
             \item For the left equation above, we use the facts that $L$ may have a $\dot{q}_i$ term, $\pdv*{f}{q_i}\dot{q_i}$ does have a $\dot{q}_i$, and every other term does not contain a $\dot{q}_i$. This allows us to compute the partial derivative as written.
             \item For the right equation above, note that the partial and total derivatives $\pdv*{q_i}$ and $\dv*{t}$ do not commute in general. However, in this case, we know that
             \begin{equation*}
-                \pdv{q_i}(\sum_j\pdv{f}{q_j}\dot{q}_j+\pdv{f}{t}) = \sum_i\dot{q}_j\cdot\pdv{j}\pdv{f}{q_i}+\pdv{t}\pdv{f}{q_i}
-                = \dd{t}(\pdv{f}{q_i})
+                \pdv{q_i}(\sum_j\pdv{f}{q_j}\dot{q}_j+\pdv{f}{t}) = \sum_j\dot{q}_j\cdot\pdv{q_j}\pdv{f}{q_i}+\pdv{t}\pdv{f}{q_i}
+                = \dv{t}(\pdv{f}{q_i})
             \end{equation*}
             But how come $\pdv{q_i}\pdv{f}{q_j}\dot{q}_j=\dot{q}_j\cdot\pdv{j}\pdv{f}{q_i}$?? How do we know that $\dot{q}_j$ does not depend on $q_i$?
         \end{itemize}
@@ -644,7 +644,7 @@
 
 
 
-\section{Lagrange Multipliers and Forces of Constraint}
+\section{Free Particle, Lagrange Multipliers, and Forces of Constraint}
 \begin{itemize}
     \item \marginnote{10/13:}Today.
     \begin{itemize}
@@ -1130,7 +1130,7 @@
 
 \subsection*{Section 3.7: Hamilton's Principle; Lagrange's Equations}
 \begin{itemize}
-    \item \textbf{Hamilton's principle}: The action integral $I$ is stationary under arbitrary variations $\var{x},\var{y},\var{z}$ which vanish at the limits of integration $t_0,t_1$.
+    \item \textbf{Hamilton's principle}: The action integral $I=\int_{t_0}^{t_1}L\dd{t}$ is stationary under arbitrary variations $\var{x},\var{y},\var{z}$ which vanish at the limits of integration $t_0,t_1$.
     \item \textbf{Lagrange's equations}: The equations given as follows for $i=1,\dots,n$. \emph{Given by}
     \begin{equation*}
         \dv{t}(\pdv{L}{\dot{q}_i}) = \pdv{L}{q_i}

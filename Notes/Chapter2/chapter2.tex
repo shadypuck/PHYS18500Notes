@@ -219,12 +219,12 @@
                 x(t) = C\cos(\omega t)+D\sin(\omega t)
             \end{equation*}
             \item Plugging in $x_0=x(0)=C$ and $v_0=\dot{x}(0)$ so that $D=v_0/\omega$ will yield the desired result.
-            \item Alternative: $x(t)=a\cos(\omega t-\theta)$ where $a$ is the \textbf{amplitude} and $\theta$ is the \textbf{phase}. In particular, $c=a\cos\theta$ and $d=a\sin\theta$.
+            \item Alternative: $x(t)=a\cos(\omega t-\theta)$ where $a$ is the \textbf{amplitude} and $\theta$ is the \textbf{phase}. We relate the two formulations via $C=a\cos\theta$ and $D=a\sin\theta$.
             \item Last variables: The \textbf{angular frequency} $\omega=2\pi/\tau$ so that the \textbf{period} $\tau=2\pi/\omega$. Then the \textbf{frequency} is $f=1/\tau$.
         \end{itemize}
     \end{itemize}
     \item For any potential $V(x)$ with minimum at $x=0$, the particle will oscillate with $\omega=\sqrt{V''(0)/m}$.
-    \item Complex representation: A more convenient (mathematically speaking) way to solve such equations instead of using sines and cosines involves complex numbers (convenient because exponentials are super easy to integrate).
+    \item Complex representation: To solve such equations more conveniently (mathematically speaking), instead of using sines and cosines, use complex numbers! This is convenient because exponentials are super easy to integrate.
     \begin{itemize}
         \item Recall that $\e[i\theta]=\cos\theta+i\sin\theta$.
         \item Restart with $\ddot{x}-p^2x=0$ where $p=\sqrt{-k/m}$, but now instead of requiring $p$ to be real, we'll allow it to be complex.
@@ -245,7 +245,7 @@
 
 
 
-\section{Damped and Forced Oscillator}
+\section{Damped Oscillator}
 \begin{itemize}
     \item \marginnote{10/2:}Today: Recap + dimensional analysis, damped SHO, forced SHO.
     \item Jerison plugs \textcite{bib:ThorntonMarion}.
@@ -404,13 +404,17 @@
     \begin{itemize}
         \item $\gamma<\omega_0$.
         \item Write $p=-\gamma\pm i\omega$, where we define $\omega=\sqrt{\omega_0^2-\gamma^2}\neq\omega_0$.
-        \item The solutions are
+        \item The solution is
+        \begin{equation*}
+            x(t) = \frac{1}{2}A\e[i\omega t-\gamma t]+\frac{1}{2}B\e[-i\omega t-\gamma t]
+        \end{equation*}
+        \item To realify this complex solution, represent complex numbers $A,B$ as $A=a\e[-i\theta]$ and $B=a\e[i\theta]$. This still leaves us two degrees of freedom ($a,\theta$) while yielding a real solution (and showing why that $1/2$ coefficient is so important) as follows.
         \begin{align*}
-            x(t) &= \frac{1}{2}A\e[i\omega t-\gamma t]+\frac{1}{2}B\e[-i\omega t-\gamma t]\\
-            &= \re(A\e[i\omega t-\gamma t])\\
+            x(t) &= \frac{1}{2}a\e[-i\theta]\e[i\omega t-\gamma t]+\frac{1}{2}a\e[i\theta]\e[-i\omega t-\gamma t]\\
+            &= \frac{1}{2}a\e[-\gamma t]\e[i(\omega t-\theta)]+\frac{1}{2}a\e[-\gamma t]\e[-i(\omega t-\theta)]\\
+            &= a\e[-\gamma t]\left[ \frac{\e[i(\omega t-\theta)]+\e[-i(\omega t-\theta)]}{2} \right]\\
             &= a\e[-\gamma t]\cos(\omega t-\theta)
         \end{align*}
-        where $A=a\e[-i\theta]$ and $B=a\e[i\theta]$.
         \item Oscillation that decays in an exponential envelope.
     \end{itemize}
     \item Case 3: Critically damped case.
@@ -424,7 +428,7 @@
         \end{equation*}
         \item Decays the fastest of them all.
         \begin{itemize}
-            \item Faster than underdamped because $\gamma$ is relatively small here; it is $<\omega_0$.
+            \item Faster than underdamped because $\gamma$ is relatively small there; it is $<\omega_0$.
             \item Faster than overdamped because $\gamma_-<\omega_0$ and $\gamma_-<\gamma_\text{critical}=\omega_0$.
         \end{itemize}
     \end{itemize}
@@ -446,7 +450,7 @@
 
 
 
-\section{Fourier Series, Impulses, and Green's Functions}
+\section{Forced Oscillator, Impulses, and Green's Functions}
 \begin{itemize}
     \item \marginnote{10/4:}Fourier series are touched on in the book, but Jerison will skip it in class because of time constraints.
     \item Recap: Damped harmonic oscillator.
@@ -517,7 +521,7 @@
         \item Here are a few points though.
         \begin{itemize}
             \item The maximum amplitude $a_{1,max}$ occurs at $\omega_\text{res}=\sqrt{\omega_0^2-2\gamma^2}\approx\omega_0$.
-            \item We can define the \textbf{quality factor} $Q=\frac{a_{1,max}}{a_1(\omega_1=0)}=\omega_0/2\gamma$.
+            \item We can define the \textbf{quality factor} $Q=a_{1,max}/a_1(\omega_1=0)=\omega_0/2\gamma$.
             \item $\gamma$ represents the characteristic \textbf{width} of the peak as well; proving why is left as an exercise.
         \end{itemize}
         \item Important observation: The phase always lags behind the driving frequency.
@@ -965,9 +969,9 @@
         \item Small forces can set up large resonances; allusion to the Millennium Bridge.
         \item On the phase.
         \begin{itemize}
-            \item If the force is slowly oscillating, $\omega_1$ is small and $\theta_1\approx 0$ so that the induced oscillations are in phase with the force.
-            \item Vice versa for very fast oscillations. Note that in this case, $a_1$ is very small. Additionally, the oscillations roughly correspond to those of a free particle under the applied oscillatory force; indeed, the half-period offset means that as soon as the particle crosses 0, the force is drawing it back toward zero!
-            \item Right in the middle for resonance, that is, $\theta_1=\pi/2$. In this case, the induced oscillations lag behind the force by a quarter period.
+            \item If the force is slowly oscillating, $\omega_1$ is small and $\theta_1\approx 0$ so that the induced oscillations are in phase with the force. Essentially, the linear restoring force is doing the bulk of the work in terms of dragging the particle back to equilibrium because the force can't move it very quickly.
+            \item Vice versa for very fast oscillations. Note that in this case, $a_1$ is very small. Additionally, the oscillations roughly correspond to those of a free particle under the applied oscillatory force; indeed, the half-period offset means that as soon as the particle crosses 0, the force is drawing it back toward zero! Here, the force does the bulk of the work in dragging the particle back to zero because the linear restoring force is not comparably "strong enough."
+            \item Right in the middle for resonance, that is, $\theta_1=\pi/2$. In this case, the force lags behind the induced oscillations by a quarter period.
         \end{itemize}
         \item Last note: $\gamma$ and $\lambda$ are only important in the region near resonance.
     \end{itemize}

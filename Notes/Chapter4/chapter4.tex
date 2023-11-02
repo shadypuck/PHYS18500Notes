@@ -120,7 +120,7 @@
         \item We have a PE function that looks like a parabola, but gets steeper close to the origin; this gives us two turn about points.
     \end{itemize}
     \item Most important example: The inverse square law.
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \begin{subfigure}[b]{0.3\linewidth}
             \centering
@@ -189,7 +189,7 @@
             \item It follows that, as in Figure \ref{fig:invSqPotb}, the effective potential crosses $y=0$ at $\ell/2$ and has minimum at $y=-|k|/2\ell$.
             \item Additionally, there are four possible types of trajectories depending on the value of $E$.
             \begin{enumerate}
-                \item ($E=U_\text{min}=-|k|/2\ell$): $\vec{r}=0$, and we get uniform circular motion with $r=\vec{l}$. The kinetic energy is
+                \item ($E=U_\text{min}=-|k|/2\ell$): $\vec{r}=0$, and we get uniform circular motion with $r=\ell$. The kinetic energy is
                 \begin{equation*}
                     \frac{1}{2}mv^2 = T
                     = E-V
@@ -217,13 +217,13 @@
             \frac{1}{2}m\dot{r}^2+\frac{J^2}{2mr^2}+V(r) = E
         \end{equation*}
         \item Now substitute in $u=1/r$ and its consequence $\dv*{u}{\theta}=(-1/r^2)\dv*{r}{\theta}$. Note, of course, that we are just encoding all of the information in $r$ in this "$u$."
-        \item It follows that
+        \item Additionally, we will need the substitution
         \begin{equation*}
             \dot{r} = \dv{r}{\theta}\dot{\theta}
             = -r^2\dot{\theta}\dv{u}{\theta}
             = -\frac{J}{m}\dv{u}{\theta}
         \end{equation*}
-        \item Returning the substitution into the radial energy equation, we obtain
+        \item Returning the three substitutions into the radial energy equation, we obtain
         \begin{equation*}
             \frac{J^2}{2m}\left( \dv{u}{\theta} \right)^2+\frac{J^2}{2m}u^2+V(u) = E
         \end{equation*}
@@ -519,7 +519,7 @@
         \item $E<0\Longrightarrow 0\leq e\leq 1$, and $k<0$ by necessity.
         \item In Cartesian coordinates, the equation for an ellipse is
         \begin{equation*}
-            \frac{(x+ae)^2}{a^2}+\frac{y^1}{b^2} = 1
+            \frac{(x+ae)^2}{a^2}+\frac{y^2}{b^2} = 1
         \end{equation*}
         where
         \begin{align*}
@@ -735,7 +735,7 @@
     \begin{itemize}
         \item Approaching at the distance $b$, we know via the above that the particle (if under an inverse square law force) leaves with scattering angle $\Theta$ where $b=|k|/mv^2\cdot\cot(\Theta/2)$.
     \end{itemize}
-    \item Now consider a range of particles landing on a detector subtending angles $\dd\phi,\dd\theta$ at scattering angle $\theta$.
+    \item Now consider a range of particles landing on a detector subtending angles $\dd{\phi},\dd{\theta}$ at scattering angle $\theta$.
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.3\linewidth]{../ExtFiles/scatteringMP.png}
@@ -746,13 +746,13 @@
         \item These particles would come from an impact parameter range $(b,b+\dd{b})$.
         \item If the particle has interacted with the scattering center and is now a distance $L$ from it (where we assume $L\gg b$), then the area of the detector is given by
         \begin{equation*}
-            \dd{A} = L^2\sin\theta\dd\theta\dd\phi
+            \dd{A} = L^2\sin\theta\dd{\theta}\dd{\phi}
         \end{equation*}
-        \item Per the above image, we define the area that produces particles that scatter at angle $\theta$ into solid angle $\sin\theta\dd\theta\dd\phi$ as $\dd\sigma=b\dd\phi\cdot\dd{b}$.
+        \item Per the above image, we define the area that produces particles that scatter at angle $\theta$ into solid angle $\sin\theta\dd{\theta}\dd{\phi}$ as $\dd\sigma=b\dd{\phi}\cdot\dd{b}$.
         \item Let $I$ be the intensity of the particle beam in units of particles/area/time.
         \item Then the \textbf{differential scattering cross-section} is given by
         \begin{equation*}
-            \dv{\sigma}{\Omega} = \frac{Ib\dd{b}\dd\phi}{-I\sin\theta\dd\theta\dd\phi}
+            \dv{\sigma}{\Omega} = \frac{Ib\dd{b}\dd{\phi}}{-I\sin\theta\dd{\theta}\dd{\phi}}
             = \frac{b}{\sin\theta}\left| \dv{b}{\theta} \right|
         \end{equation*}
         \begin{itemize}
@@ -764,14 +764,14 @@
             \dd{w} = I\dd\sigma = I\dv{\sigma}{\Omega}\frac{\dd{A}}{L^2}
         \end{equation*}
     \end{itemize}
-    \item \textbf{Solid angle}: The sphere-area element analogous to $\dd\theta$ on a circle. \emph{Denoted by} $\bm{\textbf{d}\Omega}$. \emph{Given by}
+    \item \textbf{Solid angle}: The sphere-area element analogous to $\dd{\theta}$ on a circle. \emph{Denoted by} $\bm{\textbf{d}\Omega}$. \emph{Given by}
     \begin{equation*}
-        \dd\Omega = \sin\theta\dd\theta\dd\phi
+        \dd{\Omega} = \sin\theta\dd{\theta}\dd{\phi}
     \end{equation*}
     \begin{itemize}
         \item Intuition: Using the solid angle, we can calculate the surface area of the unit sphere as follows.
         \begin{equation*}
-            \iint_\text{sphere}\dd\Omega = \int_0^{2\pi}\int_0^\pi\sin\theta\dd\theta\dd\phi = 4\pi
+            \iint_\text{sphere}\dd{\Omega} = \int_0^{2\pi}\int_0^\pi\sin\theta\dd{\theta}\dd{\phi} = 4\pi
         \end{equation*}
     \end{itemize}
     \item \textbf{Differential scattering cross-section}: The rate of scattering particles per unit solid angle at angle $\theta$. \emph{Also known as} \textbf{differential cross-section}. \emph{Denoted by} $\bm{\textbf{d}\sigma/\textbf{d}\Omega}$.
@@ -816,8 +816,8 @@
         \end{itemize}
         \item Note: Intuitively, the total area $\sigma$ that scatters particles should be equal to the cross-sectional area of the target. We can check that it is here as follows.
         \begin{equation*}
-            \sigma = \iint_\text{sphere}\dv{\sigma}{\Omega}\dd\Omega
-            = \int_0^{2\pi}\int_0^\pi\frac{R^2}{4}\sin\theta\dd\theta\dd\phi
+            \sigma = \iint_\text{sphere}\dv{\sigma}{\Omega}\dd{\Omega}
+            = \int_0^{2\pi}\int_0^\pi\frac{R^2}{4}\sin\theta\dd{\theta}\dd{\phi}
             = \pi R^2
         \end{equation*}
     \end{itemize}
@@ -949,11 +949,123 @@
 
 \subsection*{Section 4.5: Scattering Cross-Sections}
 \begin{itemize}
+    \item Goal: Interpret the result of a scattering experiment.
+    \begin{itemize}
+        \item To do so, "we must know how to calculate the expected angular distribution when the forces are known" \parencite[90]{bib:KibbleBerkshire}.
+    \end{itemize}
+    \item Example case that is the focus of this section: A uniform, parallel beam of particles impinging upon a fixed, hard (i.e., perfectly elastic) sphere of radius $R$.
+    \begin{itemize}
+        \item See Figure \ref{fig:scatteringHS} and the associated discussion.
+        \item Let $f$ denote the particle \textbf{flux} in the beam.
+        \item Let $\sigma$ denote the \textbf{cross-sectional area} of the target (sphere). In this case,
+        \begin{equation*}
+            \sigma = \pi R^2
+        \end{equation*}
+        \item Let $w$ denote the number of particles that strike the target (sphere) in unit time. It follows that
+        \begin{equation*}
+            w = f\sigma
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Flux}: The number of particles crossing unit area normal to the beam direction per unit time.
     \item \textbf{Cross-sectional area}: The area presented by the target of an impinging particle beam from the beam's point of view. \emph{Denoted by} $\bm{\sigma}$.
+    \item Now consider a single particle impinging on the hard sphere with velocity $v$ and impact parameter $b$. We want to determine the direction in which (and speed with which) the particle leaves the vicinity of the hard sphere.
+    \begin{itemize}
+        \item Assign a cylindrical coordinate system $(r,\phi,z)$ to the scenario, where we take the beam direction to be $z$.
+        \begin{itemize}
+            \item Implication: The axial symmetry of the problem means that the motion of the particle is confined to some plane
+            \begin{equation*}
+                \phi = \text{constant}
+            \end{equation*}
+        \end{itemize}
+        \item Observe that the particle hits the sphere at angle $\alpha$ to the particle beam's normal, where
+        \begin{equation*}
+            \alpha = \sin^{-1}\left( \tfrac{b}{R} \right)
+        \end{equation*}
+        \item The force on the particle is an impulsive, central conservative force. The \emph{impulsive} part means that this force corresponds to a potential that is zero for $r>R$ and rises very sharply in the neighborhood of $r=R$. The \emph{central conservative} part means that both total energy and angular momentum are conserved during the collision.
+        \begin{itemize}
+            \item Implication of impulsive and conservation of energy parts: Since the force is impulsive, the particle will have the same potential energy at all times before and after the collision (that is, zero). This combined with the fact that total energy is conserved means that \emph{kinetic} energy is also conserved. From here, it follows that particle velocity is conserved, too.
+            \item Implication of angular momentum conservation: Since the particle approaches the sphere with angular momentum $J=pR\sin(\ang{180}-\alpha)$, the particle must leave the sphere with angular momentum $pR\sin(\ang{180}-\alpha)$. We've just proven that $v$ is conserved, hence $p$ is, too; thus, the angle must either not change or change to $\alpha$ by the symmetry of the sine function (recall that $\sin(\ang{180}-\alpha)=\sin\alpha$). The first case would take the particle through the sphere, which is impossible, so the particle must deflect to angle $\alpha$ as shown in Figure \ref{fig:scatteringHS}.
+        \end{itemize}
+        \item Note that the above implies that the particle is deflected through a scattering angle of $\Theta=\pi-2\alpha$.
+        \begin{itemize}
+            \item Also note that using the equation defining $\alpha$ above, we can relate $\Theta$ to $b,R$ via
+            \begin{align*}
+                b &= R\sin\alpha\\
+                &= R\sin(\tfrac{\pi-\Theta}{2})\\
+                &= R\cos(\tfrac{1}{2}\Theta)
+            \end{align*}
+        \end{itemize}
+    \end{itemize}
+    \item Switch from cylindrical to spherical coordinates. We can now calculate the number of particles scattered in a direction specified by the polar angles $\Theta,\phi$ and within the angular ranges $\dd{\Theta},\dd{\phi}$.
+    \begin{itemize}
+        \item Refer to Figure \ref{fig:scatteringHS2} throughout the following.
+        \item From the above relationship between $b,\Theta$, we know that the particles scattered through angles between $\Theta$ and $\Theta+\dd{\Theta}$ are those that came in with impact parameters between $b$ and $b+\dd{b}$ where
+        \begin{equation*}
+            \dd{b} = -\tfrac{1}{2}R\sin(\tfrac{1}{2}\Theta)\dd{\Theta}
+        \end{equation*}
+        \begin{itemize}
+            \item Note that the negative sign makes sense because as $\Theta$ increases, $b$ decreases, so increasing $\Theta$ to $\Theta+\dd{\Theta}$ will actually drop $b$ to $b-|\dd{b}|$.
+        \end{itemize}
+        \item The particles scattered through angles $\Theta$ to $\Theta+\dd{\Theta}$ and $\phi$ to $\phi+\dd{\phi}$ all come from a cross-section $\dd{\sigma}$ of the incoming beam. We can relate $\dd{\sigma}$ to $\Theta,\phi,\dd{\Theta},\dd{\phi}$ as follows.
+        \begin{align*}
+            \dd{\sigma} &= b|\dd{b}|\dd{\phi}\\
+            &= R\cos(\tfrac{1}{2}\Theta)\cdot\tfrac{1}{2}R\sin(\tfrac{1}{2}\Theta)\dd{\Theta}\cdot\dd{\phi}\\
+            &= \tfrac{1}{4}R^2\cdot 2\sin(\tfrac{1}{2}\Theta)\cos(\tfrac{1}{2}\Theta)\dd{\Theta}\dd{\phi}\\
+            &= \tfrac{1}{4}R^2\sin\Theta\dd{\Theta}\dd{\phi}
+        \end{align*}
+        \item Implication: The rate at which particles cross the area $\dd{\sigma}$, and therefore the rate at which they emerge in the given angular range, is
+        \begin{equation*}
+            \dd{w} = f\dd{\sigma}
+        \end{equation*}
+    \end{itemize}
+    \item Measuring $\dd{w}$.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\linewidth]{../ExtFiles/scatteringHS2.png}
+        \caption{Hard sphere scattering at the infinitesimal level.}
+        \label{fig:scatteringHS2}
+    \end{figure}
+    \begin{itemize}
+        \item Experimentally, we are constrained such that we can only do the following: Place a small detector with area $\dd{A}$ at a large distance $L\gg R$ from the target (sphere) in the specified direction.
+        \item We now seek to relate $\dd{A}$ to $\dd{w}$.
+        \item Recall that as a surface area element on a sphere,
+        \begin{equation*}
+            \dd{A} = L\dd{\Theta}\cdot L\sin\Theta\dd{\phi}
+        \end{equation*}
+        \item Defining the \textbf{solid angle}, we may write the above as
+        \begin{equation*}
+            \dd{A} = L^2\dd{\Omega}
+        \end{equation*}
+        \begin{itemize}
+            \item Note the analogy to $\dd{s}=L\dd{\theta}$ for a circle of radius $L$.
+        \end{itemize}
+        \item With all relevant terms now defined, we can write that
+        \begin{equation*}
+            \dd{w} = f\dd{\sigma}
+            = f\dv{\sigma}{\Omega}\dd{\Omega}
+            = f\dv{\sigma}{\Omega}\frac{\dd{A}}{L^2}
+        \end{equation*}
+        where $\dv*{\sigma}{\Omega}$ is the \textbf{differential cross-section}.
+    \end{itemize}
     \item \textbf{Steradian}: The unit of measurement for a solid angle, analogous to radians for an angle. \emph{Denoted by} \textbf{sr}.
     \begin{itemize}
         \item The total solid angle subtended by an entire sphere is $4\pi\,\si{\steradian}$.
     \end{itemize}
+    \item \textbf{Differential cross-section}: The ratio of scattered particles per unit solid angle to the number of incoming particles per unit area.
+    \item We calculate $\dv*{\sigma}{\Omega}$ via division.
+    \begin{equation*}
+        \dv{\sigma}{\Omega} = \frac{R^2\sin\Theta\dd{\Theta}\dd{\phi}/4}{\sin\Theta\dd\Theta\dd\phi} = \frac{1}{4}R^2
+    \end{equation*}
+    \begin{itemize}
+        \item Since $\dv*{\sigma}{\Omega}$ is isotropic (that is, independent of $\Theta$) in this case, we know that "the rate at which particles enter the detector is, in this case, independent of the direction in which it is placed" \parencite[94]{bib:KibbleBerkshire}.
+        \item Takeaway: If we are measuring a scattering and notice that our detector picks up the same amount of particles no matter where we place it, we will know that we are dealing with a hard sphere potential.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 4.6: Mean Free Path}
+\begin{itemize}
+    \item Same as in class.
 \end{itemize}
 
 
