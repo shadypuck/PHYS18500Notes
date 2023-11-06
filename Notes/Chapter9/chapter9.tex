@@ -239,6 +239,254 @@
 
 
 
+\section{Euler's Angles; Freely Rotating Symmetric Body}
+\begin{itemize}
+    \item \marginnote{11/6:}Announcements.
+    \begin{itemize}
+        \item Our exams are graded; we can pick them up after class.
+        \begin{itemize}
+            \item High: 96\%.
+            \item Median: 71\%.
+        \end{itemize}
+        \item Our course grades will be curved.
+        \begin{itemize}
+            \item $\text{A}^-$/$\text{B}^+$ cutoff is likely 83\%.
+            \item $\text{B}^-$/$\text{C}^+$ cutoff is likely 60\%.
+        \end{itemize}
+        \item Office hours are back in her office today.
+        \item Where we're going.
+        \begin{itemize}
+            \item Next week: Hamiltonians and conservation laws.
+            \item Then Thanksgiving.
+            \item Then a bit of dynamical systems.
+        \end{itemize}
+    \end{itemize}
+    \item Recap.
+    \begin{itemize}
+        \item Rigid bodies --- rotation about a fixed axis.
+        \item Moments and products of inertia.
+        \begin{itemize}
+            \item What is a tensor?
+        \end{itemize}
+    \end{itemize}
+    \item Addressing a question from last time: Why do we call $T^*+V_\text{int}$ the "total energy" in the CM frame?
+    \begin{itemize}
+        \item It's tautological: This is the only possible definition of "total energy" in the CM frame.
+        \item More specifically, recall that $\dv*{t}(T+V_\text{int})=\sum_\alpha\dot{\vec{r}}_\alpha\cdot\vec{F}_\alpha$ and $\dv*{t}(T^*+V_\text{int})=\sum_\alpha\dot{\vec{r}}_\alpha{}^*\cdot\vec{F}_\alpha$.
+        \begin{itemize}
+            \item If the $\vec{F}_\alpha$ are \emph{conservative}, then we can define $V_\text{ext}$ via
+            \begin{equation*}
+                -\dv{t}(V_\text{ext}(\{\vec{r}_\alpha\})) = -\sum_{\alpha,i}\pdv{V_\text{ext}}{r_{\alpha i}}\dv{r_{\alpha i}}{t}
+                = -\sum_\alpha\dot{\vec{r}}_\alpha\cdot\vec{F}_\alpha
+            \end{equation*}
+            \item Plugging the above into the expression for $\dv*{t}(T+V_\text{int})$ given above yields
+            \begin{equation*}
+                \dv{t}(T+V_\text{int}+V_\text{ext}) = 0
+            \end{equation*}
+            \item But this is exactly the condition we expect for \emph{conservative} external forces.
+        \end{itemize}
+        \item Visualizing the system also helps make this definition of total energy more clear.
+        \begin{itemize}
+            \item Recall that the system is like a bunch of particles connected by springs, all of which are connected to some external potential like gravity.
+            \item When we talk about the "total energy" in the CM frame, we're essentially just "diagonalizing" the system between external and internal forces.
+        \end{itemize}
+    \end{itemize}
+    \item Back to rigid bodies now.
+    \item Rigid body motion is completely specified by the following two equations of motion.
+    \begin{enumerate}
+        \item $\dot{\vec{P}}=M\ddot{\vec{R}}=\sum_\alpha\vec{F}_\alpha$.
+        \begin{itemize}
+            \item Looks like a particle of mass $M$ at the CM.
+        \end{itemize}
+        \item $\dot{\vec{J}}=\sum_\alpha\vec{r}_\alpha\times\vec{F}_\alpha$.
+    \end{enumerate}
+    \item Recap.
+    \begin{itemize}
+        \item Last time, we found that there's a huge simplification we can make because all the particles in a rigid body are locked together.
+        \begin{itemize}
+            \item The simplification is that $\vec{J}=\overleftrightarrow{I}\vec{\omega}$, where $\overleftrightarrow{I}$ is the moment of inertia tensor from last time.
+            \item Jerison writes out the matrix formula all over again.
+            \item Point to emphasize: $\overleftrightarrow{I}$ is an intrinsic property of the rigid body, and it plays the role of mass.
+            \item If we have a continuous object, the sums over indices $\alpha$ turn into an integral! Recall this from prior courses.
+            \item Compare to $\vec{P}=M\dot{\vec{R}}$??
+        \end{itemize}
+        \item Special case: Rotation about a fixed axis.
+        \begin{itemize}
+            \item We're headed toward the \textbf{compound pendulum}.
+            \item For such a problem, we use cylindrical coordinates.
+            \begin{itemize}
+                \item Jerison redefines the coordinate conversions.
+            \end{itemize}
+            \item We take $\vec{\omega}$ to lie in the $\khat$ direction via $\vec{\omega}=\omega\khat$.
+            \item The moment we're most concerned with is $I_{zz}$, defined as previously. Differentiating gets us to $J_z=I_{zz}\omega_z$ and $\dot{J}_z=I_{zz}\dot{\omega}$.
+            \item From here, we can define the kinetic energy
+            \begin{equation*}
+                T = \sum_\alpha\frac{1}{2}m_\alpha\dot{\vec{r}}_\alpha{}^2
+                = \sum_\alpha\frac{1}{2}m_\alpha(\rho_\alpha\omega)^2
+                = \frac{1}{2}I_{zz}\omega^2
+            \end{equation*}
+            where we recall that $\dot{\vec{r}}_\alpha=\vec{\omega}\times\vec{r}_\alpha=\rho_\alpha\omega\,\hat{\phi}$.
+        \end{itemize}
+    \end{itemize}
+    \item The EOMs for this system are given by $\dot{\vec{J}}=\sum_\alpha\vec{r}_\alpha\times\vec{F}_\alpha$.
+    \begin{itemize}
+        \item We're mostly interested in the $z$ component, i.e., $\dot{J}_z=\sum_\alpha\rho_\alpha F_\phi$.
+        \item Sometimes, it can be useful to separate out the forces into axial forces and other forces via
+        \begin{equation*}
+            \dot{\vec{P}} = M\ddot{\vec{R}}
+            = \vec{Q}+\sum_\alpha\vec{F}_\alpha
+        \end{equation*}
+        \item To make calculations, it will additionally be useful to have the following expression. For a rotating body, $\dot{\vec{R}}$ is given via $\dot{\vec{R}}=\vec{\omega}\times\vec{R}$ and $\ddot{\vec{R}}=\dot{\vec{\omega}}\times\vec{R}+\vec{\omega}\times\dot{\vec{R}}=\dot{\vec{\omega}}\times\vec{R}+\vec{\omega}\times(\vec{\omega}\times\vec{R})$.
+    \end{itemize}
+    \item This is true in general; if we specialize to our case of rotation about an axis\dots
+    \begin{itemize}
+        \item We first choose coordinates such that $z_\text{cm}=0$.
+        \item Since this is rotation about an axis, the above equation simplifies to
+        \begin{equation*}
+            \ddot{\vec{R}} = R\dot{\omega}\,\hat{\phi}-\omega^2R\,\hat{\phi}
+            = R\ddot{\phi}\,\hat{\phi}-\dot{\phi}^2R\,\hat{\rho}
+        \end{equation*}
+        \item In the right term above, the left term is tangential acceleration and the right term is centripetal acceleration.
+    \end{itemize}
+    \item Example: Compound pendulum.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \small
+            \draw [stealth-stealth] (2,0) node[right]{$y$} -- (0,0) coordinate (o) -- (0,-2) coordinate (x) node[below]{$x$};
+            \fill circle (1.5pt);
+    
+            \footnotesize
+            \coordinate (c) at (-50:0.8);
+            \draw [pux,thick,rotate around={-50:(c)}] (c) ellipse (1.5cm and 1cm);
+            \draw [->] (0,0) -- node[right,yshift=1mm]{$\vec{R}$} (c);
+            \draw [->] (c) -- node[right]{$\vec{F}$} ++(0,-1);
+            \pic [draw,angle radius=4mm,angle eccentricity=1.4,pic text={$\phi$}] {angle=x--o--c};
+        \end{tikzpicture}
+        \caption{Compound pendulum.}
+        \label{fig:compoundPendulum}
+    \end{figure}
+    \begin{itemize}
+        \item We want to look at the force on the pivot.
+        \item We define a new coordinate system as in Figure \ref{fig:compoundPendulum}. Explicitly, $\hat{x}$ points straight downwards and $\hat{y}$ points straight rightwards.
+        \item We put our pendulum's center of mass such that it rotates through angle $\phi$.
+        \item At this point, we have
+        \begin{align*}
+            T &= \frac{1}{2}I_{zz}\dot{\phi}^2&
+            V &= M\vec{g}\cdot\vec{R} = -MgR\cos\phi
+        \end{align*}
+        \item Thus, our Lagrangian is
+        \begin{equation*}
+            L = T-V = \frac{1}{2}I_{zz}\dot{\phi}^2+MgR\cos\phi
+        \end{equation*}
+        \item It follows that our EOM is
+        \begin{align*}
+            I\ddot{\phi} &= -MgR\sin\phi\\
+            \ddot{\phi} &= -\frac{MgR}{I}\sin\phi\\
+            &= -\frac{g}{\ell}\sin\phi
+        \end{align*}
+        where $\ell=I/MR$.
+        \begin{itemize}
+            \item $\ell$ defines the \textbf{equivalent simple pendulum}.
+        \end{itemize}
+        \item From here, we can solve for the force on the pivot as a function of $\phi$ (we could also go through $\phi(t)$, and solve for $F(t)$ if we desired).
+        \begin{itemize}
+            \item We start with the conservation of energy
+            \begin{equation*}
+                \frac{1}{2}I\dot{\phi}^2-MgR\cos\phi = E
+            \end{equation*}
+            \item It follows that
+            \begin{equation*}
+                \dot{\phi}^2 = \frac{E+MgR\cos\phi}{I/2}
+                = \frac{2E}{Mr\ell}+\frac{2g}{\ell}\cos\phi
+            \end{equation*}
+            \item We want to solve for $\vec{Q}$ from $M\ddot{\vec{R}}=\vec{Q}+\sum_\alpha\vec{F}_\alpha$.
+            \item Here, the only relevant external force is our gravitational force $Mg\cos\phi\,\hat{\rho}-Mg\sin\phi\,\hat{\phi}$.
+            \item We also found previously that $\ddot{\vec{R}}=R\ddot{\phi}\,\hat{\phi}-\dot{\phi}^2R\,\hat{\rho}$. Thus,
+            \begin{equation*}
+                MR\ddot{\phi}\,\hat{\phi}-MR\dot{\phi}^2\,\hat{\rho} = \vec{Q}+Mg\cos\phi\,\hat{\rho}-Mg\sin\phi\,\hat{\phi}
+            \end{equation*}
+            \item Splitting this vector equation into scalar equations, we obtain
+            \begin{align*}
+                Q_\rho &= -MR\dot{\phi}^2-Mg\cos\phi&
+                Q_z &= 0&
+                Q_\phi &= MR\ddot{\phi}+Mg\sin\phi
+            \end{align*}
+            \item Substituting from the conservation of energy, we obtain
+            \begin{align*}
+                Q_\rho &= -\frac{2E}{\ell}-Mg\left( 1+\frac{2R}{ell} \right)\cos\phi&
+                Q_z &= 0&
+                Q_\phi &= Mg\left( 1-\frac{R}{\ell} \right)\sin\phi
+            \end{align*}
+            \item These are the final formulae for the forces on pivot as a function of $\phi$.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Equivalent simple pendulum}: The simple pendulum having the same equation of motion as our extended body.
+    \item What happens in a similar system when we have a "sudden blow" or impulse?
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \small
+            \draw [stealth-stealth] (2,0) node[right]{$y$} -- (1.5,0) -- (1.5,-0.5) node[below]{$x$};
+            \node at (1.7,-0.2) {$+$};
+    
+            \footnotesize
+            \fill
+                (0,0) circle (1.5pt)
+                (0,-1.6) circle (1.5pt)
+            ;
+            \coordinate (c) at (0,-0.8);
+            \draw [pux,thick,rotate around={-90:(c)}] (c) ellipse (1.5cm and 1cm);
+            \draw [dashed] (0,0) -- node[right]{$d$} ($(0,0)!2!(c)$);
+    
+            \draw [->] (-2.3,-1.6) -- node[above]{$\vec{K}$} ++(0.9,0);
+            \draw [->,shorten >=2pt] (0.7,0) -- node[above]{$\vec{S}$} (0,0);
+        \end{tikzpicture}
+        \caption{The "sweet spot" of a compound pendulum.}
+        \label{fig:compoundPendulum2}
+    \end{figure}
+    \begin{itemize}
+        \item Such pendulums have a sweet spot or equilibrium where the CM is just hanging down.
+        \item We imagine that we kick the pendulum with impulse $\vec{K}$ in the $\hat{y}$ direction (using our modified coordinate system), as shown above.
+        \item We have that $K\hat{y}=\vec{K}=\vec{F}\Delta t$.
+        \item Let $\vec{S}=\vec{Q}\Delta t$.
+        \item What we'll see is that there is a special value of $d$ (between the pivot and CM) for which $\vec{\rho}$ vanishes!
+        \item During the short interval,
+        \begin{equation*}
+            I\ddot{\phi} = -MgR\sin\phi+Fd
+        \end{equation*}
+        \item We make the approximation that $\ddot{\phi}$ is constant during $\Delta t$ and that $\sin\phi=0$.
+        \item It follows that
+        \begin{equation*}
+            \omega_\text{final} = \ddot{\phi}\Delta t
+            = F\Delta t\frac{d}{I}
+            = \frac{Kd}{I}
+        \end{equation*}
+        \item Additionally, we have that $\dot{\vec{P}}=\vec{Q}+\vec{F}$ so that
+        \begin{equation*}
+            P_\text{final} = \dot{P}\Delta t
+            = -Q\Delta t+F\Delta t
+            = -S+K
+        \end{equation*}
+        \item But we also know that
+        \begin{equation*}
+            P_\text{final} = M\dot{R}_\text{final}
+            = M\omega_\text{final}R
+            = \frac{MKdR}{I}
+        \end{equation*}
+        \item Thus, putting everything together, we obtain
+        \begin{align*}
+            \frac{MKdR}{I} &= -S+K\\
+            S &= K\left( 1-\frac{MdR}{I} \right)
+        \end{align*}
+        \item Thus, $S$ vanishes if we choose $d=\ell=I/MR$.
+        \item Takeaway: Regardless of the shape of our pendulum, if we hit it at the distance of the equivalent simple pendulum, we'll have no impulse on the pivot.
+        \item This is the "sweet spot" of our baseball bat or whatever.
+    \end{itemize}
+\end{itemize}
+
+
+
 \section{Chapter 8: Many-Body Systems}
 \emph{From \textcite{bib:KibbleBerkshire}.}
 \begin{itemize}
