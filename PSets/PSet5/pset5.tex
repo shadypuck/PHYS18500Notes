@@ -1,0 +1,32 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{4}
+
+\begin{document}
+
+
+
+
+\section{Multiple-Body Systems}
+\begin{enumerate}
+    \item \marginnote{11/10:}\textcite{bib:KibbleBerkshire}, Q7.3. The \textbf{parallax} of a star (the angle subtended at the star by the radius of the Earth's orbit) is $\bar{\omega}$. The star's position is observed to oscillate with angular amplitude $\alpha$ and period $\tau$. If the oscillation is interpreted as being due to the existence of a planet moving in a circular orbit around the star, show that its mass $m_1$ is given by
+    \begin{equation*}
+        \frac{m_1}{M_\text{S}} = \frac{\alpha}{\bar{\omega}}\left( \frac{M\tau_\text{E}}{M_\text{S}\tau} \right)^{2/3}
+    \end{equation*}
+    where $M$ is the total mass of the star plus planet, $M_\text{S}$ is the Sun's mass, and $\tau_\text{E}=\SI{1}{\year}$. Evaluate the mass $m_1$ if $M=0.25M_\text{S}$, $\tau=\SI{16}{\year}$, $\bar{\omega}=0.5''$, and $\alpha=0.01''$. What conclusion can be drawn without making the assumption that the orbit is circular?\par
+    See \textcite[164]{bib:KibbleBerkshire} for a discussion of the angular variation.
+    \item \textcite{bib:KibbleBerkshire}, Q7.4. Two particles of masses $m_1$ and $m_2$ are attached to the ends of a light spring. The natural length of the spring is $l$, and its tension is $k$ times its extension. Initially, the particles are at rest, with $m_1$ at a height $l$ above $m_2$. At $t=0$, $m_1$ is projected vertically upward with velocity $v$. Find the positions of the particles at any subsequent time (assuming that $v$ is not so large that the spring is expanded or compressed beyond its elastic limit).
+    \item \textcite{bib:KibbleBerkshire}, Q8.15. Show that in a conservative $N$-body system, a state of minimal total energy for a given total $z$-component of angular momentum is necessarily one in which the system is rotating as a rigid body about the $z$-axis. \emph{Hint}: Use the method of Lagrange multipliers (see \textcite{bib:KibbleBerkshire}, QA.11), and treat the components of the positions $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$ as independent variables.\par
+    For more details on the setting of this problem, refer to Problem 4.\par
+    Note that this is not a function minimization problem, as we have discussed previously in the course. Rather, we have a system where the positions and velocities of the particle ar changing, and energy is being dissipated, until the system reaches an equilibrium state of minimal energy. We would like to minimize the total energy $E$ subject to the constraint on the angular momentum, which can be accomplished by minimizing $E(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-\omega(J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0})$, where $\omega$ is a scalar Lagrange undetermined multiplier, $J_z$ is the $z$-component of angular momentum, and $J_{z,0}$ is the constant (conserved) value of $J_z$. We assume the system can explore all configurations, so that this function can be minimized with respect to each component of velocity and position for each particle independently. (If you need a referesher on using Lagrange multipliers in this type of optimization problem, Wikipedia has a \href{https://en.wikipedia.org/wiki/Lagrange_multiplier}{good article}.) As inticated in the description for Problem 4, the rigid body result comes from minimization with respect to the velocity components $\dot{r}_{\alpha i}$.
+    \item \textcite{bib:KibbleBerkshire}, Q8.16. A planet of mass $M$ is surrounded by a cloud of small particles in orbits around it. Their mutual gravitational attraction is negligible. Due to collisions between the particles, the energy will gradually decrease from its initial value, but the angular momentum will remain fixed at, say, $\vec{J}=\vec{J}_0$. The system will thus evolve toward a state of minimum energy, subject to this constraint. Show that the particles will tend to form a ring around the planet. What happens to the energy lost? Why does the argument not necessarily apply to a cloud of particles around a hot star? \emph{Hint}: As in Problem 3, the constraint may be imposed by the method of Lagrange multipliers. In this case, because there are three components of the constraint equation, we need three Lagrange multipliers, say $\omega_x,\omega_y,\omega_z$. We have to minimize the function $E-\vec{\omega}\cdot(\vec{J}-\vec{J}_0)$ with respect to variations of the position $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$, and with respect to $\vec{\omega}$. Show by minimizing with respect to $\dot{\vec{r}}_i$ that once equilibrium has been reached, the cloud rotates as a rigid body, and by minimizing with respect to $\vec{r}_i$ that all particles occupy the same orbit.\par
+    You can assume that the planet's mass is very large, so the planet is effectively fixed.
+    \item \textcite{bib:KibbleBerkshire}, Q9.11. A long, thin, hollow cylinder of radius $a$ is balanced on a horizontal knife edge, with its axis parallel to it. It is given a small displacement. Calculate the angular displacement at the moment when the cylinder ceases to touch the knife edge. \emph{Hint}: This is the moment when the radial component of the reaction falls to zero.
+\end{enumerate}
+
+
+
+
+\end{document}

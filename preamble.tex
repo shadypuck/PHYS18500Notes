@@ -13,7 +13,7 @@
 \usepackage{subcaption,float}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{physics,bm,mathtools,empheq}
-\usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks,allcolors=black,urlcolor=cyan!50!blue]{hyperref}
 \usepackage{subfiles}
 
 \MakeOuterQuote{"}
@@ -40,6 +40,8 @@
     \draw [line width=0.3pt] (0,1) -- (1.2,0) -- (0,-1) -- (3.5,0) -- cycle;
     \fill (1.2,0) -- (0,-1) -- (3.5,0);
 }}}
+
+\DeclareSIUnit{\year}{y}
 
 \usetikzlibrary{decorations.markings,angles,intersections,fpu,calc}
 \colorlet{blx}{blue!90!green!80}
