@@ -1,0 +1,71 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{11}
+
+\begin{document}
+
+
+
+
+\chapter{Hamiltonian Mechanics}
+\section{Free Rotation; Hamilton's Equations}
+\begin{itemize}
+    \item \marginnote{11/13:}Hamilton's equations and the Hamiltonian.
+    \begin{itemize}
+        \item Like Lagrange's formulation is slightly different than Newton's, so too is Hamilton's.
+        \item Hamilton's formulation is --- once again --- more general, and hence applicable for certain dissipative systems that can't be (easily??) treated with the other two methods.
+        \item It is also ubiquitous throughout physics.
+    \end{itemize}
+    \item We mainly consider \textbf{natural} systems, and natural-conservative systems at that.
+    \begin{itemize}
+        \item Thus, we can write $L=L(q_1,\dots,q_N;\dot{q}_1,\dots,\dot{q}_N)=L(q,\dot{q})$.
+    \end{itemize}
+    \item \textbf{Natural} (system): The Lagrangian does not depend explicitly on time.
+    \item \textbf{Forced} (system): The Lagrangian does depend explicitly on time.
+    \item Recall that
+    \begin{align*}
+        \dot{p}_\alpha &= \pdv{L}{q_\alpha}&
+        p_\alpha &= \pdv{L}{\dot{q}_\alpha}
+    \end{align*}
+    where the $\alpha=1,\dots,N$ index generalized coordinates such as Cartesian coordinates or even Euler angles.
+    \item We can also let $\dot{q}_\alpha=\dot{q}_\alpha(q,p)$, i.e., let $\dot{q}_\alpha$ be a function of $q$ and $p$.
+    \begin{itemize}
+        \item For example, for a particle in plane polar coordinates, our Lagrangian is
+        \begin{equation*}
+            L = \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)-V(r,\theta)
+        \end{equation*}
+        \item Thus,
+        \begin{align*}
+            p_r &= m\dot{r}&
+                p_\theta &= mr^2\dot{\theta}\\
+            \dot{r} &= \frac{p_r}{m}&
+                \dot{\theta} &= \frac{p_\theta}{mr^2}
+        \end{align*}
+    \end{itemize}
+    \item \textbf{Hamiltonian}: The operator defined as follows. \emph{Given by}
+    \begin{equation*}
+        H(q,p) = \sum_{\beta=1}^np_\beta\dot{q}_\beta(q,p)-L(q,\dot{q}(q,p))
+    \end{equation*}
+    \item Thus,
+    \begin{equation*}
+        \pdv{H}{p_\alpha} = \dot{q}_\alpha+\sum_{\beta=1}^np_\beta\pdv{\dot{q}_\beta}{p_\alpha}-\sum_{\beta=1}^n\underbrace{\pdv{L}{\dot{q}_\beta}}_{p_\beta}\pdv{\dot{q}_\beta}{p_\alpha}
+        = \dot{q}_\alpha
+    \end{equation*}
+    \item Additionally,
+    \begin{equation*}
+        \pdv{H}{q_\alpha} = \underbrace{-\pdv{L}{q_\alpha}}_{-p_\alpha}+\sum_{\beta=1}^np_\beta\pdv{\dot{q}_\beta}{q_\alpha}-\sum_{\beta=1}^n\underbrace{\pdv{L}{\dot{q}_\beta}}_{p_\beta}\pdv{\dot{q}_\beta}{q_\alpha}
+        = -p_\alpha
+    \end{equation*}
+    \item Therefore, we get Hamilton's equations of motion:
+    \begin{align*}
+        \pdv{H}{p_\alpha} &= \dot{q}_\alpha&
+        \pdv{H}{q_\alpha} &= -p_\alpha
+    \end{align*}
+\end{itemize}
+
+
+
+
+\end{document}

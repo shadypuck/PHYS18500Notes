@@ -921,6 +921,134 @@
 
 
 
+\section{Free Rotation; Hamilton's Equations}
+\begin{itemize}
+    \item \marginnote{11/13:}Outline.
+    \begin{itemize}
+        \item Free rotation.
+        \begin{itemize}
+            \item Lagrangian + precession under gravity.
+        \end{itemize}
+        \item Hamiltonian.
+    \end{itemize}
+    \item Last time.
+    \begin{itemize}
+        \item We defined the Euler angles $\theta,\phi,\psi$ so that $\vec{\omega}=\dot{\phi}\khat+\dot{\theta}\hat{e}_2'+\dot{\psi}\hat{e}_3$.
+        \item For a symmetric body, $I_1=I_2$. Thus, we had $\vec{\omega}=-\dot{\phi}\sin\theta\,\hat{e}_1'+\dot{\theta}\,\hat{e}_2'+(\dot{\psi}+\dot{\phi}\cos\theta)\,\hat{e}_3$
+        \begin{itemize}
+            \item $\hat{e}_1',\hat{e}_2',\hat{e}_3$ are the principal axes of the object.
+        \end{itemize}
+        \item With $\vec{\omega}$ in terms of our principal axes basis, it was easy to write down expressions for $\vec{J}$ and $T$.
+    \end{itemize}
+    \item We now investigate the motion of such a freely rotating system in a couple of cases.
+    \item Case 1: No external forces.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.43\linewidth]{../ExtFiles/FreeRot1.png}
+        \caption{Free rotation under no external forces.}
+        \label{fig:FreeRot1}
+    \end{figure}
+    \begin{itemize}
+        \item In this case, $\vec{J}$ is conserved, so we have
+        \begin{equation*}
+            \vec{J} = J\khat=-J\sin\theta\,\hat{e}_1'+J\cos\theta\,\hat{e}_3
+        \end{equation*}
+        \item By comparing this with last class's equation defining $\vec{J}$ in terms of the Euler angles, we obtain the componentwise equations
+        \begin{align*}
+            I_1\dot{\phi}\sin\theta &= J\sin\theta\\
+            I_1\dot{\theta} &= 0\\
+            I_3(\dot{\psi}+\dot{\phi}\cos\theta) &= J\cos\theta
+        \end{align*}
+        \item The middle equation above implies that $\theta$ is constant, from which it follows that $J\sin\theta$ and $J\cos\theta$ are constant.
+        \item Thus, we can solve for\dots
+        \begin{align*}
+            \dot{\phi} &= \frac{J}{I_1}&
+            \dot{\psi} &= \frac{J\cos\theta}{I_3}-\frac{J}{I_1}\cos\theta
+        \end{align*}
+        where all of the terms on the right above are constant.
+        \item It follows that in this case, $\hat{e}_3$ is fixed at angle $\theta$ with respect to $\vec{J}$.
+        \item Moreover, $\vec{\omega}$ is at a fixed angle with respect to $\khat$, precessing around $\khat$ with rate $\dot{\phi}$.
+        \item It follows that
+        \begin{align*}
+            \vec{\omega} &= -\dot{\phi}\sin\theta\hat{e}_1'+(\dot{\psi}+\dot{\phi}\cos\theta)\hat{e}_3\\
+            &= \frac{J\sin\theta}{I_1}\hat{e}_1'+\frac{J\cos\theta}{I_3}\hat{e}_3\\
+            &= \sin\beta\hat{e}_1+\cos\beta\hat{e}_3
+        \end{align*}
+        \item It follows that
+        \begin{equation*}
+            \tan\beta = \frac{I_3}{I_1}\tan\theta
+        \end{equation*}
+        \item The body cone "rolls around" the \textbf{space cone}; that is, we can check that $\dot{\psi}\sin\beta=\dot{\phi}\sin(\theta-\beta)$.
+        \item The net motion is that the body is rotating on its \textbf{body cone} and also rotating about the axis.
+    \end{itemize}
+    \item Case 2: Gravity as an external force.
+    \begin{itemize}
+        \item In this case, it's easier to write down a Lagrangian.
+        \item Luckily, we already have the kinetic energy, so
+        \begin{equation*}
+            L = \frac{1}{2}I_1\dot{\phi}^2\sin^2\theta+\frac{1}{2}I_1\dot{\theta}^2+\frac{1}{2}I_3(\dot{\psi}+\dot{\phi}\cos\theta)^2-MgR\cos\theta
+        \end{equation*}
+        \item Thus, our Euler-Lagrange equations will be
+        \begin{align*}
+            \dv{t}(I_1\dot{\theta}) &= I_1\dot{\phi}^2\sin\theta\cos\theta-I_3(\dot{\psi}+\dot{\phi}\cos\theta)\dot{\phi}\sin\theta\tag{$\theta$}\\
+            \dv{t}[\underbrace{I_1\dot{\phi}\sin^2\theta+I_3(\dot{\psi}+\dot{\phi}\cos\theta)\cos\theta}_{P_\phi}] &= 0\tag{$\phi$}\\
+            \dv{t}[\underbrace{I_3(\dot{\psi}+\dot{\phi}\cos\theta)}_{P_\psi}] &= 0\tag{$\psi$}
+        \end{align*}
+        \begin{itemize}
+            \item Note that $P_\phi,P_\psi$ are generalized momenta.
+        \end{itemize}
+        \item It follows that
+        \begin{equation*}
+            \omega_3 = \dot{\psi}+\dot{\phi}\cos\theta
+        \end{equation*}
+        which is constant from Equation ($\psi$) above.
+        \item What are the conditions for steady procession at fixed angle $\theta$?
+        \begin{itemize}
+            \item If $\theta$ is constant, $\dot{\psi},\dot{\phi}$ are constant.
+            \item Let $\Omega:=\dot{\phi}$ be the precession rate.
+            \item Then it follows by Equation ($\theta$) above that for $\dot{\theta}=0$, we must assume $\sin\theta\neq 0$.
+            \item Substituting the definition of $\Omega$ into Equation ($\theta$), we have
+            \begin{align*}
+                0 &= I_1\Omega^2\cos\theta-I_3\omega_3\Omega+MgR\\
+                \Omega &= \frac{I_3\omega_3\pm\sqrt{I_3^2\omega_3^2-4I_1\cos\theta MgR}}{2I_1\cos\theta}
+            \end{align*}
+            \item Thus, for real $\Omega$, we need $I_3^2\omega_3^2-4I_1\cos\theta MgR>0$.
+            \item Thus, there is a minimum rotation speed $\omega_3$ to get steady precession for a given $\theta$ given by
+            \begin{equation*}
+                I_3^2\omega_3^2 = 4I_1\cos\theta MgR
+            \end{equation*}
+            \item Takeaway: The smaller the angle of inclination, the faster you have to be spinning to get steady procession at that rate.
+            \item Next time, we'll analyze some even more general cases using the Hamiltonian.
+        \end{itemize}
+    \end{itemize}
+    \item Problems with translation and rotation.
+    \begin{itemize}
+        \item Recall from our discussion of many-body systems that
+        \begin{equation*}
+            T = \frac{1}{2}M(\dot{X}^2+\dot{Y}^2+\dot{Z}^2)+T^*
+        \end{equation*}
+        where $\vec{R}=(X,Y,Z)$ is the center of mass and $T^*$ is the kinetic energy in the CM frame.
+        \item For any general system, this is equal to
+        \begin{equation*}
+            T^* = \sum_\alpha\frac{1}{2}m_\alpha(\dot{\vec{r}}_\alpha{}^*)^2
+        \end{equation*}
+        \item Additionally, for a rigid body,
+        \begin{equation*}
+            T^* = \frac{1}{2}I_1^*\omega_1^2+\frac{1}{2}I_2^*\omega_2^2+\frac{1}{2}I_3^*\omega_3^2
+        \end{equation*}
+        \begin{itemize}
+            \item Note that $I_1^*$ is the moment of inertia about principal axis 1 with CM at the origin.
+            \item Explicitly,
+            \begin{equation*}
+                I_1^* = \iiint\rho_m(\vec{r}{\,}^*)(z^2+y^2)
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
+    \item We now leap to Chapter 12 to talk about the Hamiltonian!
+\end{itemize}
+
+
+
 \section{Chapter 8: Many-Body Systems}
 \emph{From \textcite{bib:KibbleBerkshire}.}
 \begin{itemize}
