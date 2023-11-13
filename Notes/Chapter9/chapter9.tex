@@ -720,6 +720,207 @@
 
 
 
+\section{Euler's Angles; Freely Rotating Symmetric Body}
+\begin{itemize}
+    \item \marginnote{11/10:}Recap.
+    \begin{itemize}
+        \item Stability of rotation about a principal axis.
+    \end{itemize}
+    \item Today.
+    \begin{itemize}
+        \item Euler angles.
+        \item Freely rotating body.
+    \end{itemize}
+    \item Recall.
+    \begin{itemize}
+        \item Last time, we talked about the moment of inertia tensor $\overleftrightarrow{I}$.
+        \item Before you diagonalize it, this $3\times 3$ matrix has an element like $I_{xy}$ in each slot.
+        \item Moreover, since it is a real symmetric matrix, the moment of inertia tensor is orthonormally diagonalizable.
+        \begin{itemize}
+            \item We call it's eigenvectors the principal axes.
+        \end{itemize}
+        \item In general, we will deal with nice symmetric objects like the cylinder, which you can just look at and see its principal axes.
+        \begin{itemize}
+            \item Moreover, in the particular case of the cylinder, \emph{symmetric} has the additional meaning that $I_1=I_2$.
+            \item In this case, we can choose any two orthogonal vectors in the span of $\vec{e}_1,\vec{e}_2$ to be the principal axes.
+        \end{itemize}
+        \item Note that to find the principal axes rigorously, the rule is that the cross terms (i.e., those $I_{xy}$ in which the two subscripted variables differ and which thus do not lie along the diagonal of $\overleftrightarrow{I}$) equal zero.
+        \begin{itemize}
+            \item This occurs when integrating $m_\alpha xy$ over the whole object yields zero.
+        \end{itemize}
+        \item In the principal axes basis, $\overleftrightarrow{I}=\diag(I_1,I_2,I_3)$.
+        \begin{itemize}
+            \item Calculate $I_1,I_2,I_3$ either by choosing the principal axes from the beginning or by choosing nonstandard axes and diagonalizing.
+        \end{itemize}
+        \item Specific example: The rotating top.
+        \begin{itemize}
+            \item We often want to use the pivot point at the origin (which may well not be the CM of the system).
+            \item To find the moment of inertia for bodies like this, we usually use the parallel axis theorem.
+            \item Beware, though, that the principal axes at the CM and a pivot point need not be parallel. However, they are parallel (and thus can be taken to be identical) if the new origin is on a principal axis that passes through the COM.
+        \end{itemize}
+    \end{itemize}
+    \item To start today, we generalize rotation.
+    \begin{itemize}
+        \item What if we can have any instantaneous angular velocity $\vec{\omega}$?
+        \item The angular momentum in the basis of the principal axes will still be
+        \begin{equation*}
+            \vec{J} = I_1\omega_1\hat{e}_1+I_2\omega_2\hat{e}_2+I_3\omega_3\hat{e}_3
+        \end{equation*}
+        \begin{itemize}
+            \item Recall that $\hat{e}_1,\hat{e}_2,\hat{e}_3$ rotate with the body.
+        \end{itemize}
+        \item To find our EOM, we start with our previously discovered EOMs.
+        \begin{equation*}
+            \left( \dv{\vec{J}}{t} \right)_\text{inertial} = \sum_\alpha\vec{r}_\alpha\times\vec{F}_\alpha
+            = \vec{G}
+            = \dot{\vec{J}}+\vec{\omega}\times\vec{J}
+        \end{equation*}
+        \begin{itemize}
+            \item In particular, $\vec{G}$ is the net external torque and $\dot{\vec{J}}$ is the rate of change of the angular momentum within the rotating frame.
+        \end{itemize}
+        \item In this scenario, $\dot{\vec{J}}$ is easily found by differentiating the equation two lines above:
+        \begin{equation*}
+            \dot{\vec{J}} = I_1\dot{\omega}_1\hat{e}_1+I_2\dot{\omega}_2\hat{e}_2+I_3\dot{\omega}_3\hat{e}_3
+        \end{equation*}
+        \item It follows by combining the above two equations that the componentwise EOMs are
+        \begin{align*}
+            I_1\dot{\omega}_1+(I_3-I_2)\omega_2\omega_3 &= G_1\\
+            I_2\dot{\omega}_2+(I_1-I_3)\omega_3\omega_1 &= G_2\\
+            I_3\dot{\omega}_3+(I_2-I_1)\omega_1\omega_2 &= G_3
+        \end{align*}
+        \begin{itemize}
+            \item We will discuss all of these next time.
+        \end{itemize}
+    \end{itemize}
+    \item We now discuss a special case of the above motion.
+    \item No external torques: The situation wherein $\vec{G}=0$.
+    \begin{itemize}
+        \item Suppose that we initially have some $\omega_3$ but that $\omega_1=\omega_2=0$.
+        \begin{itemize}
+            \item This is rotation about just one principal axis.
+        \end{itemize}
+        \item It follows that $\omega_1,\omega_2,\omega_3$ are constant and hence rotation continues about the same axis.
+    \end{itemize}
+    \item When is rotation about a principal axis stable?
+    \begin{itemize}
+        \item Suppose that $\vec{\omega}=\omega\hat{e}_3$, but this time, a small perturbtaion introduces angular momentum about one or more of the other axes.
+        \begin{itemize}
+            \item Mathematically, we assume $\omega_1,\omega_2\ll\omega_3$.
+            \item Thus, we neglect terms that contain a product of $\omega_1$ and $\omega_2$.
+        \end{itemize}
+        \item Under these constraints, our EOMs become
+        \begin{align*}
+            I_1\dot{\omega}_1+(I_3-I_2)\omega_2\omega_3 &= 0\\
+            I_2\dot{\omega}_2+(I_1-I_3)\omega_3\omega_1 &= 0\\
+            I_3\dot{\omega}_3 &= 0
+        \end{align*}
+        \item The last line above implies that $\omega_3$ is constant.
+        \item This leaves us with the task of solving the two remaining first-order, coupled ODEs.
+        \item Try the ansatzs
+        \begin{align*}
+            \omega_1 &= a_1\e[pt]&
+            \omega_2 &= a_2\e[pt]
+        \end{align*}
+        \item Then we get the following system of equations.
+        \begin{equation*}
+            \begin{cases}
+                I_1pa_1\e[pt]+(I_3-I_2)a_2\e[pt]\omega_3 = 0\\
+                I_2pa_2\e[pt]+(I_1-I_3)\omega_3a_1\e[pt] = 0
+            \end{cases}
+            \quad\Longrightarrow\quad
+            \begin{cases}
+                I_1pa_1+(I_3-I_2)a_2\omega_3 = 0\\
+                I_2pa_2+(I_1-I_3)\omega_3a_1 = 0
+            \end{cases}
+        \end{equation*}
+        \item We can solve this for two separate forms of the ratio $a_1/a_2$:
+        \begin{align*}
+            \frac{a_1}{a_2} &= \frac{-(I_3-I_2)\omega_3}{I_1p}&
+            \frac{a_1}{a_2} &= \frac{I_2p}{-(I_1-I_3)\omega_3}
+        \end{align*}
+        \item It follows by transitivity that
+        \begin{align*}
+            \frac{I_2p}{-(I_1-I_3)\omega_3} &= \frac{-(I_3-I_2)\omega_3}{I_1p}\\
+            I_1I_2p^2 &= \omega_3^2(I_3-I_2)(I_1-I_3)
+        \end{align*}
+        \item Thus, if $(I_3-I_2)(I_1-I_3)>0$, then $p>0$ and the rotation is unstable.
+        \item On the other hand, if the term is less than zero, then $p$ is imaginary, so the rotation is purely oscillatory and hence stable.
+        \item Takeaway:
+        \begin{itemize}
+            \item If $I_3$ is the smallest or largest of the moments, then the rotation is stable.
+            \item If $I_3$ is the middle moment, the the rotation is unstable.
+        \end{itemize}
+    \end{itemize}
+    \item Example of the above.
+    \begin{itemize}
+        \item Consider a rectangular prism with longest axis $a$, second longest $b$, and third longest.
+        \item We can calculate that $\hat{e}_3\parallel c$, $\hat{e}_1\parallel a$, and $\hat{e}_2\parallel b$.
+        \item Now calculate $I_1,I_2,I_3$.
+        \begin{align*}
+            I_3 &= M\left( \frac{a^2}{3}+\frac{b^2}{3} \right)&
+            I_2 &= M\left( \frac{a^2}{3}+\frac{c^2}{3} \right)&
+            I_1 &= M\left( \frac{b^2}{3}+\frac{c^2}{3} \right)
+        \end{align*}
+        \begin{itemize}
+            \item It follows that $I_3$ is largest, $I_2$ is middle, and $I_1$ is smallest.
+            \item Note that the $1/3$ comes from integrating $x^2$.
+        \end{itemize}
+        \item Thus, if the prism is rotating around the smallest axis to begin with, it will remain stably spinning around that axis.
+        \item Rotating head over heels one is unstable.
+        \item And the frisbee one (rotating around the largest axis) is also stable.
+    \end{itemize}
+    \item Euler angles.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.47\linewidth]{../ExtFiles/EulerAngles.png}
+        \caption{Euler angles.}
+        \label{fig:EulerAngles}
+    \end{figure}
+    \begin{itemize}
+        \item A method of specifying the orientation of an object in space that uses three angles.
+        \item For rotation about the CM, these three angles will be our three DOFs for the system.
+        \item Goal: Write $\vec{J},T$ in terms of these angles.
+        \item Suppose our object starts such that it is oriented along $\ihat,\jhat,\khat$. We now want to go to an arbitrary new orientation. We do so in three steps.
+        \begin{enumerate}
+            \item Rotate it through an angle $\phi$ about $\khat$. Then
+            \begin{equation*}
+                \ihat,\jhat,\khat \mapsto \hat{e}_1'',\hat{e}_2',\khat
+            \end{equation*}
+            \item Rotate it through an angle $\theta$ about $\hat{e}_2'$. Then
+            \begin{equation*}
+                \hat{e}_1'',\hat{e}_2',\khat \mapsto \hat{e}_1',\hat{e}_2',\hat{e}_3
+            \end{equation*}
+            \item Finally, rotate it about an angle $\psi$ about $\hat{e}_3$. Then
+            \begin{equation*}
+                \hat{e}_1',\hat{e}_2',\hat{e}_3 \mapsto \hat{e}_1,\hat{e}_2,\hat{e}_3
+            \end{equation*}
+        \end{enumerate}
+        \item It follows based on these definitions (see reasoning in \textcite{bib:KibbleBerkshire}) that
+        \begin{equation*}
+            \vec{\omega} = \dot{\phi}\khat+\dot{\theta}\hat{e}_2'+\dot{\psi}\hat{e}_3
+        \end{equation*}
+        \item But these bases are not ideal since these aren't our principal axis basis. Thus, we wish to define $\vec{\omega}$ in the principal axis basis.
+        \item In the restrictive case of a symmetric body, $I_1=I_2$. Thus, we can choose $\hat{e}_1:=\hat{e}_1'$ and $\hat{e}_2:=\hat{e}_2'$ because we can choose \emph{any} vectors in this plane, as stated above.
+        \item Additionally, we have that $\khat=-\sin\theta\,\hat{e}_1'+\cos\theta\,\hat{e}_3$.
+        \item Thus,
+        \begin{equation*}
+            \vec{\omega} = \dot{\phi}(-\sin\theta\,\hat{e}_1'+\cos\theta\,\hat{e}_3)+\dot{\theta}\,\hat{e}_2'+\dot{\psi}\,\hat{e}_3
+            = -\dot{\phi}\sin\theta\,\hat{e}_1'+\dot{\theta}\,\hat{e}_2'+(\dot{\psi}+\dot{\phi}\cos\theta)\,\hat{e}_3
+        \end{equation*}
+        \item Therefore,
+        \begin{equation*}
+            \vec{J} = -I_1\dot{\phi}\sin\theta\,\hat{e}_1'+I_1\dot{\theta}\,\hat{e}_2'+I_3(\dot{\psi}+\dot{\phi}\cos\theta)\,\hat{e}_3
+        \end{equation*}
+        and
+        \begin{equation*}
+            T = \frac{1}{2}I\vec{\omega}^2
+            = \frac{1}{2}I_1\dot{\phi}^2\sin^2\theta+\frac{1}{2}I_1\dot{\theta}^2+\frac{1}{2}I_3(\dot{\psi}+\dot{\phi}\cos\theta)^2
+        \end{equation*}
+    \end{itemize}
+\end{itemize}
+
+
+
 \section{Chapter 8: Many-Body Systems}
 \emph{From \textcite{bib:KibbleBerkshire}.}
 \begin{itemize}
