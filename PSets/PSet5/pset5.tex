@@ -11,19 +11,222 @@
 
 \section{Multiple-Body Systems}
 \begin{enumerate}
-    \item \marginnote{11/10:}\textcite{bib:KibbleBerkshire}, Q7.3. The \textbf{parallax} of a star (the angle subtended at the star by the radius of the Earth's orbit) is $\bar{\omega}$. The star's position is observed to oscillate with angular amplitude $\alpha$ and period $\tau$. If the oscillation is interpreted as being due to the existence of a planet moving in a circular orbit around the star, show that its mass $m_1$ is given by
+    \item \marginnote{11/10:}\textcite{bib:KibbleBerkshire}, Q7.3. The \textbf{parallax} of a star (the angle subtended at the star by the radius of the Earth's orbit) is $\bar{\omega}$. The star's position is observed to oscillate with angular amplitude $\alpha$ and period $\tau$. If the oscillation is interpreted as being due to the existence of a planet moving in a circular orbit around the star, show that the planet's mass $m_1$ is given by
     \begin{equation*}
         \frac{m_1}{M_\text{S}} = \frac{\alpha}{\bar{\omega}}\left( \frac{M\tau_\text{E}}{M_\text{S}\tau} \right)^{2/3}
     \end{equation*}
     where $M$ is the total mass of the star plus planet, $M_\text{S}$ is the Sun's mass, and $\tau_\text{E}=\SI{1}{\year}$. Evaluate the mass $m_1$ if $M=0.25M_\text{S}$, $\tau=\SI{16}{\year}$, $\bar{\omega}=0.5''$, and $\alpha=0.01''$. What conclusion can be drawn without making the assumption that the orbit is circular?\par
     See \textcite[164]{bib:KibbleBerkshire} for a discussion of the angular variation.
+    \begin{proof}
+        The setup for this problem is as follows, very much not to scale.
+        \begin{center}
+            \begin{tikzpicture}[
+                every node/.style={black}
+            ]
+                \footnotesize
+                \coordinate (sun) at (0,0);
+                \coordinate (earth) at (83:1);
+                \coordinate (cm) at (5,0);
+                \coordinate (star) at ($(cm)+(-103:0.6)$);
+                \coordinate (planet) at ($(cm)+(77:1.8)$);
+        
+                \fill [orx]       (sun)   circle (3pt) node[below left]{$M_\text{S}$};
+                \draw [semithick] (sun)   circle (1cm);
+                \fill [blx]       (earth) circle (2pt);
+        
+                \fill             (cm)     circle (1.5pt);
+                \draw [semithick] (cm)     circle (6mm);
+                \draw [semithick] (cm)     circle (1.8cm);
+                \fill [orx]       (star)   circle (3pt) node[below]{$M-m_1$};
+                \fill [grx]       (planet) circle (2pt) node[above right]{$m_1$};
+        
+                \draw [help lines]
+                    (earth) -- (cm) -- node[right]{$a_2$} (star) -- (sun) -- node[left]{$a_\text{E}$} cycle
+                    (earth) -- node[below]{$r$} (star)
+                ;
+                \draw [white,line width=4pt,decorate,decoration={brace}] ($(planet)+(-20:0.7)$) -- ($(star)+(-20:0.7)$);
+                \draw [decorate,decoration={brace}] ($(planet)+(-13:0.7)$) -- node[right=1pt,yshift=-1pt]{$a$} ($(star)+(-13:0.7)$);
+        
+                \pic [pic text={$\bar{\omega}$},angle eccentricity=2.8] {angle=earth--star--sun};
+                \pic [pic text={$\alpha$},angle eccentricity=3.5] {angle=star--earth--cm};
+                \pic [draw,help lines,angle radius=2mm] {right angle=earth--cm--star};
+                \pic [draw,help lines,angle radius=2mm] {right angle=star--sun--earth};
+            \end{tikzpicture}
+        \end{center}
+        The structure of the equation we are looking to derive strongly suggests that Kepler's third law will be involved in the derivation in some manner. Thus, let's start by writing out the two iterations that we can for this setup, one for the orbit of the Earth about the fixed sun and one for the orbit of the star and planet about their center of mass.
+        \begin{align*}
+            \left( \frac{\tau_\text{E}}{2\pi} \right)^2 &= \frac{a_\text{E}^3}{GM_\text{S}}&
+            \left( \frac{\tau}{2\pi} \right)^2 &= \frac{a^3}{GM}
+        \end{align*}
+        To combine these equations and make them look a bit more like the desired result, let's divide the left one by the right one.
+        \begin{align*}
+            \frac{\left( \frac{\tau_\text{E}}{2\pi} \right)^2}{\left( \frac{\tau}{2\pi} \right)^2} &= \frac{\frac{a_\text{E}^3}{GM_\text{S}}}{\frac{a^3}{GM}}\\
+            \left( \frac{\tau_\text{E}}{\tau} \right)^2 &= \frac{Ma_\text{E}^3}{M_Sa^3}
+        \end{align*}
+        Now we know that $a_\text{E}$ is not in the final answer, so let's try to substitute it out. From the geometry of the setup, we can see that
+        \begin{equation*}
+            \frac{a_\text{E}}{r} = \sin\bar{\omega}
+            \approx \bar{\omega}
+        \end{equation*}
+        This substitution would help a bit: It would get $a_\text{E}$ out of there and it would get $\bar{\omega}$ in there. However, it also introduces $r$. Howe, in turn, could we get $r$ out? Well, we can get $r$ out (and $\alpha$ in!) via
+        \begin{equation*}
+            \frac{a_2}{r} = \sin\alpha
+            \approx \alpha
+        \end{equation*}
+        Once again, we have made progress, but now we have to deal with $a_2$. Additionally, we still have to find some way to get $m_1$ into the math. Fortunately, we can do \emph{both} of these things at the same time with the substitution
+        \begin{equation*}
+            a_2 = \frac{m_1}{M}a
+        \end{equation*}
+        Combining all of the above results, we obtain the desired equality.
+        \begin{align*}
+            \left( \frac{\tau_\text{E}}{\tau} \right)^2 &= \frac{Ma_\text{E}^3}{M_Sa^3}\\
+            &= \frac{M\bar{\omega}^3r^3}{M_Sa^3}\\
+            &= \frac{M\bar{\omega}^3a_2^3}{M_Sa^3\alpha^3}\\
+            &= \frac{M\bar{\omega}^3m_1^3a^3}{M_Sa^3\alpha^3M^3}\\
+            &= \frac{\bar{\omega}^3m_1^3}{M_S\alpha^3M^2}\\
+            \left( \frac{M\tau_\text{E}}{M_\text{S}\tau} \right)^2 &= \frac{\bar{\omega}^3m_1^3}{M_S^3\alpha^3}\\
+            &= \left( \frac{\bar{\omega}m_1}{M_S\alpha} \right)^3\\
+            \frac{\alpha}{\bar{\omega}}\left( \frac{M\tau_\text{E}}{M_\text{S}\tau} \right)^{2/3} &= \frac{m_1}{M_\text{S}}
+        \end{align*}
+        For the second part of the question, we can plug and chug as follows.
+        \begin{align*}
+            m_1 &= \frac{\alpha}{\bar{\omega}}\left( \frac{M\tau_\text{E}}{M_\text{S}\tau} \right)^{2/3}M_S\\
+            &= \frac{0.01''}{0.5''}\left( \frac{(0.25M_\text{S})(\SI{1}{\year})}{(M_\text{S})(\SI{16}{\year})} \right)^{2/3}M_S\\
+            &= \frac{0.01}{0.5}\left( \frac{(0.25)(1)}{(1)(16)} \right)^{2/3}M_S\\
+            &= \frac{0.01}{0.5}\left( \frac{(0.25)(1)}{(1)(16)} \right)^{2/3}M_S\\
+            \Aboxed{m_1 &= 0.00125\,M_\text{S}}
+        \end{align*}
+        For the third part of the question, if the orbit is not circular, then our observation of $\alpha$ may \emph{underestimate} $a$ depending on the orientation of the orbit with respect to Earth. But if $\alpha$ is underestimated, then $m_1$ may be underestimated, too. It follows that if the orbit is elliptical, then
+        \begin{equation*}
+            \boxed{m_1 \geq 0.00125\,M_\text{S}}
+        \end{equation*}
+    \end{proof}
     \item \textcite{bib:KibbleBerkshire}, Q7.4. Two particles of masses $m_1$ and $m_2$ are attached to the ends of a light spring. The natural length of the spring is $l$, and its tension is $k$ times its extension. Initially, the particles are at rest, with $m_1$ at a height $l$ above $m_2$. At $t=0$, $m_1$ is projected vertically upward with velocity $v$. Find the positions of the particles at any subsequent time (assuming that $v$ is not so large that the spring is expanded or compressed beyond its elastic limit).
-    \item \textcite{bib:KibbleBerkshire}, Q8.15. Show that in a conservative $N$-body system, a state of minimal total energy for a given total $z$-component of angular momentum is necessarily one in which the system is rotating as a rigid body about the $z$-axis. \emph{Hint}: Use the method of Lagrange multipliers (see \textcite{bib:KibbleBerkshire}, QA.11), and treat the components of the positions $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$ as independent variables.\par
-    For more details on the setting of this problem, refer to Problem 4.\par
-    Note that this is not a function minimization problem, as we have discussed previously in the course. Rather, we have a system where the positions and velocities of the particle ar changing, and energy is being dissipated, until the system reaches an equilibrium state of minimal energy. We would like to minimize the total energy $E$ subject to the constraint on the angular momentum, which can be accomplished by minimizing $E(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-\omega(J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0})$, where $\omega$ is a scalar Lagrange undetermined multiplier, $J_z$ is the $z$-component of angular momentum, and $J_{z,0}$ is the constant (conserved) value of $J_z$. We assume the system can explore all configurations, so that this function can be minimized with respect to each component of velocity and position for each particle independently. (If you need a referesher on using Lagrange multipliers in this type of optimization problem, Wikipedia has a \href{https://en.wikipedia.org/wiki/Lagrange_multiplier}{good article}.) As inticated in the description for Problem 4, the rigid body result comes from minimization with respect to the velocity components $\dot{r}_{\alpha i}$.
-    \item \textcite{bib:KibbleBerkshire}, Q8.16. A planet of mass $M$ is surrounded by a cloud of small particles in orbits around it. Their mutual gravitational attraction is negligible. Due to collisions between the particles, the energy will gradually decrease from its initial value, but the angular momentum will remain fixed at, say, $\vec{J}=\vec{J}_0$. The system will thus evolve toward a state of minimum energy, subject to this constraint. Show that the particles will tend to form a ring around the planet. What happens to the energy lost? Why does the argument not necessarily apply to a cloud of particles around a hot star? \emph{Hint}: As in Problem 3, the constraint may be imposed by the method of Lagrange multipliers. In this case, because there are three components of the constraint equation, we need three Lagrange multipliers, say $\omega_x,\omega_y,\omega_z$. We have to minimize the function $E-\vec{\omega}\cdot(\vec{J}-\vec{J}_0)$ with respect to variations of the position $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$, and with respect to $\vec{\omega}$. Show by minimizing with respect to $\dot{\vec{r}}_i$ that once equilibrium has been reached, the cloud rotates as a rigid body, and by minimizing with respect to $\vec{r}_i$ that all particles occupy the same orbit.\par
-    You can assume that the planet's mass is very large, so the planet is effectively fixed.
+    \begin{proof}
+        % Suppose that in an $xy$-coordinate system with gravity acting in the $-\hat{y}$ direction, $m_2$ is initially at $(0,0)$ and $m_1$
+
+        The motion of this system will be one-dimensional. Call this one dimension "$\hat{y}$" so that gravity acts in the $-\hat{y}$ direction. Note that after $m_1$ is projected vertically upward by the impulse $m_1v$, neither particle is "held in place" any more, and both particles move solely under the force of gravity and the spring potential. Essentially, this system is \emph{not} a case of $m_1$ moving upward with constant velocity $v$ for all times after $t=0$ and $m_2$ being carried along. Lastly, the condition that the tension in the spring is $k$ times its extension identifies the spring as one that obeys Hooke's law.\par
+        With all of this in mind, we may now begin solving for the positions of the particles in the coordinate system defined above. To do so, we will make use of the diagonalization of $m_1\ddot{y}_1=-m_1g-k(y_1-y_2-\ell)$ and $m_2\ddot{y}_2=-m_2g+k(y_1-y_2-\ell)$ into
+        \begin{align*}
+            M\ddot{Y} &= -Mg&
+            \mu\ddot{y} &= -k(y-\ell)
+        \end{align*}
+        where
+        \begin{align*}
+            M &= m_1+m_2&
+            Y &= \frac{m_1y_1+m_2y_2}{m_1+m_2}&
+            \mu &= \frac{m_1m_2}{m_1+m_2}
+            y &= y_1-y_2
+        \end{align*}
+        The initial conditions are
+        \begin{align*}
+            Y(0) &= \frac{m_1\ell+m_2\cdot 0}{m_1+m_2} = \frac{m_1}{M}\ell&
+                y(0) &= \ell\\
+            \dot{Y}(0) &= \frac{m_1v+m_2\cdot 0}{m_1+m_2} = \frac{m_1}{M}v&
+                \dot{y}(0) &= v
+        \end{align*}
+        The left EOM above can be solved easily, yielding
+        \begin{equation*}
+            Y = -\frac{1}{2}gt^2+\frac{m_1}{M}vt+\frac{m_1}{M}\ell
+        \end{equation*}
+        The right EOM above will take slightly more work to solve. In particular, we need to change coordinates via $\Delta y=y-\ell$ and its consequence $\ddot{\Delta y}=\ddot{y}$. Thus, we obtain
+        \begin{align*}
+            \mu\ddot{\Delta y} &= -k\Delta y\\
+            \ddot{\Delta y} &= -\frac{k}{\mu}\Delta y
+        \end{align*}
+        This equation is analogous to the SHO, so the solution is
+        \begin{equation*}
+            \Delta y = C\cos(\omega t)+D\sin(\omega t)
+        \end{equation*}
+        where $\omega=\sqrt{k/\mu}$, $C=\Delta y(0)=y(0)-\ell=0$, and $D=\dot{\Delta y}(0)/\omega=\dot{y}(0)/\omega=v/\omega$. Applying these substitutions and returning to our original center of mass coordinates, we obtain the final solution for the right EOM above.
+        \begin{equation*}
+            y = \ell+\frac{v}{\omega}\sin(\omega t)
+        \end{equation*}
+        We now return from our diagonalized coordinates to our original (and desired) coordinates via
+        \begin{align*}
+            y_1 &= Y+\frac{m_2}{M}y\\
+            &= -\frac{1}{2}gt^2+\frac{m_1}{M}vt+\frac{m_1}{M}\ell+\frac{m_2}{M}\left( \frac{v}{\omega}\sin(\omega t)+\ell \right)\\
+            \Aboxed{y_1 &= \ell+\frac{m_1vt}{M}-\frac{1}{2}gt^2+\frac{m_2v}{M\omega}\sin(\omega t)}
+        \end{align*}
+        \begin{align*}
+            y_2 &= Y-\frac{m_1}{M}y\\
+            &= -\frac{1}{2}gt^2+\frac{m_1}{M}vt+\frac{m_1}{M}\ell-\frac{m_1}{M}\left( \frac{v}{\omega}\sin(\omega t)+\ell \right)\\
+            \Aboxed{y_2 &= \frac{m_1vt}{M}-\frac{1}{2}gt^2-\frac{m_1v}{M\omega}\sin(\omega t)}
+        \end{align*}
+        where, once again, $\omega=\sqrt{k/\mu}$.
+    \end{proof}
+    % \item \textcite{bib:KibbleBerkshire}, Q8.15. Show that in a conservative $N$-body system, a state of minimal total energy for a given total $z$-component of angular momentum is necessarily one in which the system is rotating as a rigid body about the $z$-axis. \emph{Hint}: Use the method of Lagrange multipliers (see \textcite{bib:KibbleBerkshire}, QA.11), and treat the components of the positions $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$ as independent variables.\par
+    % For more details on the setting of this problem, refer to Problem 4.\par
+    % Note that this is not a function minimization problem, as we have discussed previously in the course. Rather, we have a system where the positions and velocities of the particle are changing, and energy is being dissipated, until the system reaches an equilibrium state of minimal energy. We would like to minimize the total energy $E$ subject to the constraint on the angular momentum, which can be accomplished by minimizing $E(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-\omega(J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0})$, where $\omega$ is a scalar Lagrange undetermined multiplier, $J_z$ is the $z$-component of angular momentum, and $J_{z,0}$ is the constant (conserved) value of $J_z$. We assume the system can explore all configurations, so that this function can be minimized with respect to each component of velocity and position for each particle independently. (If you need a referesher on using Lagrange multipliers in this type of optimization problem, Wikipedia has a \href{https://en.wikipedia.org/wiki/Lagrange_multiplier}{good article}.) As inticated in the description for Problem 4, the rigid body result comes from minimization with respect to the velocity components $\dot{r}_{\alpha i}$.
+    % \item \textcite{bib:KibbleBerkshire}, Q8.16. A planet of mass $M$ is surrounded by a cloud of small particles in orbits around it. Their mutual gravitational attraction is negligible. Due to collisions between the particles, the energy will gradually decrease from its initial value, but the angular momentum will remain fixed at, say, $\vec{J}=\vec{J}_0$. The system will thus evolve toward a state of minimum energy, subject to this constraint. Show that the particles will tend to form a ring around the planet. What happens to the energy lost? Why does the argument not necessarily apply to a cloud of particles around a hot star? \emph{Hint}: As in Problem 3, the constraint may be imposed by the method of Lagrange multipliers. In this case, because there are three components of the constraint equation, we need three Lagrange multipliers, say $\omega_x,\omega_y,\omega_z$. We have to minimize the function $E-\vec{\omega}\cdot(\vec{J}-\vec{J}_0)$ with respect to variations of the position $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$, and with respect to $\vec{\omega}$. Show by minimizing with respect to $\dot{\vec{r}}_i$ that once equilibrium has been reached, the cloud rotates as a rigid body, and by minimizing with respect to $\vec{r}_i$ that all particles occupy the same orbit.\par
+    % You can assume that the planet's mass is very large, so the planet is effectively fixed.
+    \setcounter{enumi}{4}
     \item \textcite{bib:KibbleBerkshire}, Q9.11. A long, thin, hollow cylinder of radius $a$ is balanced on a horizontal knife edge, with its axis parallel to it. It is given a small displacement. Calculate the angular displacement at the moment when the cylinder ceases to touch the knife edge. \emph{Hint}: This is the moment when the radial component of the reaction falls to zero.
+    \begin{proof}
+        The setup for this problem is as follows.
+        \begin{center}
+            \begin{tikzpicture}[
+                every node/.style={black}
+            ]
+                \footnotesize
+                \draw [help lines] (30:1.5) coordinate (a) -- (-150:1) coordinate (b) -- ++(0,1.5) coordinate (c);
+                \pic [draw,help lines,pic text={$\phi$}] {angle=a--b--c};
+                \draw [help lines] (0,0) -- node[right]{$a$} (100:1);
+        
+                \draw [pux,thick] circle (1cm);
+                \fill (-150:1) circle (2pt);
+                \draw [thick] (-150:1) -- ++(0,-2);
+        
+                \fill circle (1.5pt);
+                \draw [->] (0,0) -- (30:1.3) node[above]{$\hat{\rho}$};
+                \draw [->] (0,0) -- (-60:1.3) node[below]{$\hat{\phi}$};
+                \draw [->] (0,0) -- (-90:1.3) node[below left=-1pt]{$\vec{F}_g$};
+            \end{tikzpicture}
+        \end{center}
+        Taking the hint, we look to derive an expression for the radial component $Q_\rho$ of the force of the pivot point on the rotating cylinder. $Q_\rho$ appears in the vector equation of motion
+        \begin{equation*}
+            M\ddot{\vec{R}} = \vec{Q}+\vec{F}_g
+        \end{equation*}
+        describing the system, so this will be our starting point. Expanding based on the picture for the setup, we obtain
+        \begin{equation*}
+            M(a\ddot{\phi}\,\hat{\phi}-Ma\dot{\phi}^2\,\hat{\rho}) = (Q_\phi\,\hat{\phi}+Q_\rho\,\hat{\rho})+(Mg\sin\phi\,\hat{\phi}-Mg\cos\phi\,\hat{\rho})
+        \end{equation*}
+        From here, we may isolate the radial component to yield
+        \begin{equation*}
+            Q_\rho = Mg\cos\phi-Ma\dot{\phi}^2
+        \end{equation*}
+        If we were to set $Q_\rho=0$ now, we could solve for $\phi$ in terms of the variables of the above equation. But we can do better! $\dot{\phi}^2$ also occurs in the expression for the kinetic energy of the rotating cylinder, so we now build up to a way to substitute this term out via said conservation law. Let's begin.\par
+        By the parallel axis theorem, the moment of inertia of the rotating cylinder about the pivot point is
+        \begin{equation*}
+            I = Ma^2+I^*
+            = Ma^2+Ma^2
+            = 2Ma^2
+        \end{equation*}
+        Additionally, we know from class that its kinetic and potential energies are
+        \begin{align*}
+            T &= \frac{1}{2}I\dot{\phi}^2
+                = Ma^2\dot{\phi}^2&
+            V &= Mga\cos\phi
+        \end{align*}
+        Thus, we can calculate the total energy $E$ of the system by using the starting position of the cylinder at rest on top of the knife. In particular,
+        \begin{equation*}
+            E = V = Mga\cos(0) = Mga
+        \end{equation*}
+        It follows by the conservation of energy that
+        \begin{align*}
+            Ma^2\dot{\phi}^2+Mga\cos\phi &= Mga\\
+            \dot{\phi}^2 &= \frac{Mga-Mga\cos\phi}{Ma^2}\\
+            &= \frac{g}{a}(1-\cos\phi)
+        \end{align*}
+        Substituting this into the original expression for $Q_\rho$ and simplifying yields the desired result as follows.
+        \begin{align*}
+            Mg\cos\phi-Ma\cdot\frac{g}{a}(1-\cos\phi) &= 0\\
+            % &= \cos\phi-(1-\cos\phi)\\
+            % &= 2\cos\phi-1\\
+            \cos\phi &= \frac{1}{2}\\
+            \Aboxed{\phi &= \ang{60}}
+        \end{align*}
+    \end{proof}
 \end{enumerate}
 
 
