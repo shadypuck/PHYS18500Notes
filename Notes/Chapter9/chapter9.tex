@@ -74,7 +74,7 @@
     \item The setup is as follows.
     \begin{itemize}
         \item We choose rotation to be in the $\hat{z}$ direction. We choose a shape (whatever we want), and it is rotating about this $\hat{z}$ axis.
-        \item If is often useful to use cylindrical coordinates $(\rho,\phi,z)$. here because of the axial symmetry.
+        \item If is often useful to use cylindrical coordinates $(\rho,\phi,z)$ here because of the axial symmetry.
         \begin{itemize}
             \item Conversions: $x=\rho\cos\phi$, $y=\rho\sin\phi$, and $z=z$.
             \item Note that $\vec{r}=z\hat{z}+\rho\hat{\rho}$, much like in Figure \ref{fig:Vrotation}.
@@ -414,7 +414,7 @@
             \end{align*}
             \item Substituting from the conservation of energy, we obtain
             \begin{align*}
-                Q_\rho &= -\frac{2E}{\ell}-Mg\left( 1+\frac{2R}{ell} \right)\cos\phi&
+                Q_\rho &= -\frac{2E}{\ell}-Mg\left( 1+\frac{2R}{\ell} \right)\cos\phi&
                 Q_z &= 0&
                 Q_\phi &= Mg\left( 1-\frac{R}{\ell} \right)\sin\phi
             \end{align*}
@@ -506,6 +506,216 @@
     \item Could you post the KE of a free particle derivation?
     \item There will not be another \emph{in-class} review session, but she will hold one outside of class.
     \item We will get to Euler angles on Friday.
+\end{itemize}
+
+
+
+\section{Moment of Inertia Tensor; Principal Axis Rotation}
+\begin{itemize}
+    \item \marginnote{11/8:}Outline.
+    \begin{itemize}
+        \item Moment of inertia tensor.
+        \begin{itemize}
+            \item What is a tensor?
+            \item Principal axes.
+            \item Calculating moments of inertia.
+        \end{itemize}
+        \item Rotation about a principal axis.
+        \begin{itemize}
+            \item Precession.
+        \end{itemize}
+    \end{itemize}
+    \item Next time.
+    \begin{itemize}
+        \item Stability of rotation about a principal axis.
+        \item Euler angles.
+        \item Lagrangian for rigid bodies.
+    \end{itemize}
+    \item Recall.
+    \begin{itemize}
+        \item Our EOMs are
+        \begin{align*}
+            \dot{\vec{P}} &= M\ddot{\vec{R}} = \sum_\alpha\vec{F}_\alpha&
+            \dot{\vec{J}} &= \sum_\alpha\vec{r}_\alpha\times\vec{F}_\alpha
+        \end{align*}
+        \item Last time, we talked about rotation about a fixed axis.
+        \item We've also seen that more generally, if $\vec{\omega}=\omega_x\ihat+\omega_y\jhat+\omega_z\khat$, then the angular momentum is given by
+        \begin{equation*}
+            \vec{J} = \overleftrightarrow{I}\vec{\omega}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Tensor}: A mathematical object that has geometric meaning independent of the coordinate basis.
+    \item What is a tensor?
+    \begin{itemize}
+        \item She won't belabor the point because most of this machinery is orthogonal to our present aims.
+        \item The "geometric meaning" alluded to in the definition has to be some kind of multilinear relationship, usually between vectors.
+        \item In particular, $\overleftrightarrow{I}$ is an intrinsic property of the rigid body and its geometry.
+        \begin{itemize}
+            \item Its \emph{numerical} representation will change with the basis, though.
+        \end{itemize}
+        \item To calculate it, we need to be able to define it in a particular basis.
+        \begin{itemize}
+            \item The tensor comes prepackaged with (1) a definition in one basis and (2) a rule about how to change bases.
+        \end{itemize}
+        \item So, in our specific example, $\overleftrightarrow{I}$ is the linear operator that takes $\vec{\omega}$ and returns to you $\vec{J}$ for your rigid body.
+        \item The rule to calculate entries of $\overleftrightarrow{I}$ is: Start with the $3\times 3$ matrix and then employ
+        \begin{align*}
+            I_{xx} &= \iiint\rho_m(\vec{r})(z^2+y^2)&
+            I_{xy} &= -\iiint\rho_m(\vec{r})xy&
+        \end{align*}
+        and the like where herein, $\rho_m$ is the density mass/volume, not the radial coordinate.
+        \item Change of basis rule: If you have a change of basis matrix $R$, then $\overleftrightarrow{I}$ in your new basis looks like $R^{-1}IR$.
+        \item Note that $\overleftrightarrow{I}$ is called a $\binom{1}{1}$ tensor since it has 1 \textbf{contravariant} and 1 \textbf{covariant} dimension, meaning that it is like a regular matrix with 1 dimension that transforms as row vectors and 1 dimension that transforms as column vectors.
+        \item Other examples of tensors.
+        \begin{itemize}
+            \item Scalars: Rank 0 tensors (same in any dimension).
+            \item Vectors: Rank 1 tensors (can be row or column vectors).
+            \item Metrics: There are $\binom{0}{2}$ tensors which do \emph{not} transform as matrices, even though they are arrays of numbers.
+        \end{itemize}
+        \item Note that since $I_{xy}=I_{yx}$, etc., $\overleftrightarrow{I}$ is \textbf{symmetric}.
+        \begin{itemize}
+            \item This implies that $\overleftrightarrow{I}$ has three real eigenvalues.
+            \item Moreover, the eigenvectors of $\overleftrightarrow{I}$ are orthogonal.
+            \item Thus, the eigenvectors of $\overleftrightarrow{I}$ are called the \textbf{principal axes} $\vec{e}_1,\vec{e}_2,\vec{e}_3$. Thus, in principle, we can find these for any object we choose, even though in any object we study, it will be obvious which axes are which.
+            \item In the special basis of the principal axes, $\overleftrightarrow{I}$ is diagonal, i.e., $\overleftrightarrow{I}=\diag(I_{xx},I_{yy},I_{zz})$. It follows that
+            \begin{equation*}
+                \vec{J} = I_1\omega_1\vec{e}_1+I_2\omega_2\vec{e}_2+I_3\omega_3\vec{e}_3
+            \end{equation*}
+        \end{itemize}
+        \item We don't need to worry about any of this stuff if we don't want to.
+    \end{itemize}
+    \item All these tensor machinations help with defining\dots
+    \begin{itemize}
+        \item The kinetic energy as:
+        \begin{equation*}
+            T = \sum_\alpha\frac{1}{2}m_\alpha\dot{\vec{r}}_\alpha{}^2
+            = \sum_\alpha\frac{1}{2}m_\alpha(\vec{\omega}\times\vec{r}_\alpha)^2
+            = \sum_\alpha\frac{1}{2}m_\alpha[\omega^2r_\alpha^2-(\vec{\omega}\cdot\vec{r}_\alpha)^2]
+        \end{equation*}
+        \item The angular momentum as:
+        \begin{equation*}
+            \vec{J} = \sum_\alpha m_\alpha\vec{r}_\alpha\times\dot{\vec{r}}_\alpha
+            = \sum_\alpha m_\alpha\vec{r}_\alpha\times(\vec{\omega}\times\vec{r}_\alpha)
+            = \sum_\alpha m_\alpha[r_\alpha^2\vec{\omega}-(\vec{r}_\alpha\cdot\vec{\omega})\vec{r}_\alpha]
+        \end{equation*}
+        \item Comparing the above two results, we obtain
+        \begin{equation*}
+            T = \frac{1}{2}\vec{\omega}\cdot\vec{J}
+        \end{equation*}
+        \item In particular, in the basis of principal axes,
+        \begin{equation*}
+            T = \frac{1}{2}I_1\omega_1^2+\frac{1}{2}I_2\omega_2^2+\frac{1}{2}I_3\omega_3^2
+        \end{equation*}
+        \item We can use the above to get the Lagrangian for general rigid body motion.
+        \item A few notes on this.
+        \begin{itemize}
+            \item $\vec{e}_1,\vec{e}_2,\vec{e}_3$ rotate with the body.
+            \item $\vec{J}=\overleftrightarrow{I}\vec{\omega}$ implies that in general, $\vec{J}$ is not parallel to $\vec{\omega}$. However, if $\vec{\omega}$ is along $\vec{e}_1,\vec{e}_2,\vec{e}_3$, then $\vec{J}$ is parallel to $\vec{\omega}$.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Symmetric body}: A rigid body for which two of the moments of inertia (usually taken to be $I_1,I_2$) are equal.
+    \item \textbf{Totally symmetric body}: A rigid body for which all three of the moments of inertia are equal.
+    \item Examples of (totally) symmetric bodies.
+    \begin{itemize}
+        \item A cylinder and square pyramid are both symmetric.
+        \item A sphere and cube are both totally symmetric.
+    \end{itemize}
+    \item We'll mostly be dealing with \emph{symmetric} bodies.
+    \item In this case:
+    \begin{itemize}
+        \item We have that
+        \begin{equation*}
+            \vec{J} = I_1(\omega_1\vec{e}_1+\omega_2\vec{e}_2)+I_3\omega_3\vec{e}_3
+        \end{equation*}
+        \item Thus, any axis in place of $\vec{e}_1,\vec{e}_2$ is a principal axis; we can choose any pair of orthogonal vectors herein.
+    \end{itemize}
+    \item In the case of a totally symmetric object, any axis ais a principal axis and $\vec{J}$ is always parallel to $\vec{\omega}$.
+    \item Calculating $\overleftrightarrow{I}$.
+    \begin{enumerate}
+        \item If we take $\vec{r}=\vec{R}+\vec{r}{\,}^*$, then
+        \begin{equation*}
+            \sum_\alpha m_\alpha x^* = \sum_\alpha m_\alpha y^* = \sum_\alpha m_\alpha z^* = 0
+        \end{equation*}
+        \begin{itemize}
+            \item Let $\vec{R}=(X,Y,Z)$.
+            \item The above identities imply that the cross terms work out as follows.
+            \begin{equation*}
+                I_{xy} = \sum_\alpha m_\alpha(X+x^*)(Y+y^*)
+                = -MXY-\sum_\alpha m_\alpha x_\alpha^*y_\alpha^*
+            \end{equation*}
+            \item Similarly, for the moments of inertia,
+            \begin{equation*}
+                I_{xx} = M(Y^2+Z^2)+I_{xx}^*
+            \end{equation*}
+            \begin{itemize}
+                \item This decomposes the moment of inertia into the sum of the moment of the CM about your origin and the moment of inertia relative to $\vec{R}$.
+                \item This is the \textbf{parallel axis theorem}.
+            \end{itemize}
+        \end{itemize}
+        \item Objects with 3 perpendicular symmetry planes.
+        \begin{itemize}
+            \item Picture a cylinder or an ellipsoid with uniform density and three axes $a,b,c$.
+            \item Then
+            \begin{align*}
+                I_1^* &= M(\lambda_yb^2+\lambda_zc^2)&
+                I_2^* &= M(\lambda_xa^2+\lambda_zc^2)&
+                I_3^* &= M(\lambda_xa^2+\lambda_yb^2)
+            \end{align*}
+            where\dots
+            \begin{itemize}
+                \item $\lambda_x=\lambda_y=\lambda_z=1/5$ for an ellipsoid;
+                \item $\lambda_x=\lambda_y=\lambda_z=1/3$ for a parallelipiped;
+                \item $\lambda_x=\lambda_y=1/4$ and $\lambda_z=1/3$ for a cylinder.
+            \end{itemize}
+            \item The derivation of the above results is on \textcite[209-11]{bib:KibbleBerkshire}.
+            \begin{itemize}
+                \item We should look through this as we may be expected to do the integrals!
+            \end{itemize}
+            \item What are the $\lambda$'s?
+            \begin{itemize}
+                \item It's just a number that has to do with the geometry of the subscripted axis.
+            \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+    \item An interesting case: The effect of a small force on an axis; \textbf{precession}.
+    \begin{itemize}
+        \item Imagine an object that is spinning fairly rapidly about one of its axes.
+        \item Assume that we have a symmetric body and that initially, $\vec{\omega}=\omega\vec{e}_3$.
+        \item It follows that initially, $\vec{J}=I_3\omega_3\vec{e}_3$.
+        \item In the case of no external forces, we have
+        \begin{equation*}
+            \dot{\vec{J}} = I_3\dot{\vec{\omega}}_3
+            = \sum\vec{r}_\alpha\times\vec{F}_\alpha
+            = 0
+        \end{equation*}
+        \item Now imagine we exert a small force $\vec{F}$ at a distance $\vec{r}$ up the axis from the CM/origin.
+        \item It follows that $\dot{\vec{J}}=I_3\dot{\vec{\omega}}=\vec{r}\times\vec{F}$.
+        \item Thus, $\dot{\vec{J}}$ is perpendicular to $\vec{\omega}$ and $\vec{\omega}$ changes direction, so the system turns.
+        \item Under gravity, the wheel turns right.
+        \item \emph{Mysterious picture}
+    \end{itemize}
+    \item At this point, we can analyze the motion of a top/gyroscope!
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.2\linewidth]{../ExtFiles/topGyroscope.png}
+        \caption{A spinning top/gyroscope.}
+        \label{fig:topGyroscope}
+    \end{figure}
+    \begin{itemize}
+        \item We have that
+        \begin{align*}
+            I_3\dot{\vec{\omega}} &= R\vec{e}_3\times(-Mg\khat)\\
+            I_3\omega\dot{\vec{e}}_3 &= MgR\khat\times\vec{e}_3\\
+            \dot{\vec{e}}_3 &= \frac{MgR}{I_3\omega}\khat\times\vec{e}_3
+        \end{align*}
+        \item Defining $\vec{\Omega}=\frac{MgR}{I_3\omega}\khat$, we have that
+        \begin{equation*}
+            \dot{\vec{e}}_3 = \vec{\Omega}\times\vec{e}_3
+        \end{equation*}
+        \item Thus, $\vec{e}_3$ rotates about the $\khat$ axis (direction of $\vec{\Omega}$) at rate $\Omega$. This is precession!
+        \item We make the approximation that the value for $\Omega\ll\omega$, or $I_3\omega^2/2\gg MgR$.
+        \item We are making the approximation that $\vec{J}$ points in the $\vec{\omega}$ direction ($\vec{e}_3$ direction), which is not quite true due to the $\Omega$ contribution.
+    \end{itemize}
 \end{itemize}
 
 
