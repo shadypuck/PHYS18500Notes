@@ -1,0 +1,42 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{5}
+
+\begin{document}
+
+
+
+
+\section{Rigid Body Motion}
+\begin{enumerate}
+    \item \marginnote{11/17:}\textcite{bib:KibbleBerkshire}, Q9.15. A gyroscope consisting of a uniform circular disc of mass \SI{100}{\gram} and radius \SI{40}{\milli\meter} is pivoted so that its center of mass is fixed, and it's spinning about its axis at \SI{2400}{\rpm}. A \SI{5}{\gram} mass is attached to the axis at a distance of \SI{100}{\milli\meter} from the center. Find the angular velocity of precession of the axis.
+    \item \textcite{bib:KibbleBerkshire}, Q9.18. A solid rectangular box, of dimensions $\SI{100}{\milli\meter}\times\SI{60}{\milli\meter}\times\SI{20}{\milli\meter}$, is spinning freely with angular velocity \SI{240}{\rpm}. Determine the frequency of small oscillations of the axis, if the axis of rotation is\dots
+    \begin{enumerate}
+        \item The longest;
+        \item The shortest.
+    \end{enumerate}
+    \item \textcite{bib:KibbleBerkshire}, Q10.10. Show that the kinetic energy of the gyroscope described in Q9.21 is
+    \begin{equation*}
+        T = \frac{1}{2}I_1(\Omega\sin\lambda\cos\phi)^2+\frac{1}{2}I_1(\dot{\phi}+\Omega\cos\lambda)^2+\frac{1}{2}I_3(\dot{\phi}+\Omega\sin\lambda\sin\phi)^2
+    \end{equation*}
+    From Lagrange's equations, show that the angular velocity $\omega_3$ about the axis is constant, and obtain the equation for $\phi$ without neglecting $\Omega^2$. Show that motion with the axis pointing north becomes unstable for very small values of $\omega_3$, and find the smallest value for which it is stable. What are the stable positions when $\omega_3=0$? Interpret this result in terms of a non-rotating frame.\par
+    A \textbf{gyrocompass} is a type of constrained gyroscope that points north due to the Earth's rotation. In this problem, we will see how this works. First, read Q9.21 for the setup (pasted below), but actually solve Q10.10, above. This is a great example of a problem where the Lagrangian approach is much more straightforward.\par
+    The axis of a gyroscope is free to rotate within a smooth horizontal circle in colatitude $\lambda$. Due to the Coriolis force, there is a couple on the gyroscope. To find the effect of this couple, use the equation for the rate of change of angular momentum in a frame rotating with the Earth (e.g., that having basis vectors $\hat{r},\hat{n},\hat{e}$), which is $\dot{\vec{J}}+\vec{\Omega}\times\vec{J}=\vec{G}$, where $\vec{G}$ is the couple restraining the axis from leaving the horizontal plane, and $\vec{\Omega}$ is the Earth's angular velocity. (Neglect terms of order $\Omega^2$, in particular the contribution of $\vec{\Omega}$ to $\vec{J}$.) From the component along the axis, show that the angular velocity $\omega$ about the axis is constant; from the vertical component show that the angle $\phi$ between the axis and east obeys the equation
+    \begin{equation*}
+        I_1\ddot{\phi}-I_3\omega\Omega\sin\lambda\cos\phi = 0
+    \end{equation*}
+    Show that the stable position is with the axis pointing north. Determine the period of small oscillations about this direction if the gyroscope is a flat circular disc spinning at \SI{6000}{\rpm} at latitude \ang{30} N. Explain why this system is sensitive to the horizontal component of $\Omega$, and describe the effect qualitatively from the point of view of an inertial observer.
+    \item \textcite{bib:KibbleBerkshire}, Q10.11. Find the Lagrangian function for a symmetric top whose pivot is free to slide on a smooth horizontal table, in terms of the generalized coordinates $X,Y,\phi,\theta,\psi$ and the principal moments $I_1^*,I_1^*,I_3^*$ about the center of mass. (Note that $Z$ is related to $\theta$, hence why it does not appear as an independent generalized coordinate in the above list.) Show that the horizontal motion of the center of mass may be completely separated from the rotational motion. What difference is there in the equation
+    \begin{equation*}
+        I_1\Omega^2\cos\theta-I_3\omega_3\Omega+MgR = 0
+    \end{equation*}
+    for steady precession? Are the precessional angular velocities greater or less than in the case of a fixed pivot? Show that steady precession at a given value of $\theta$ can occur for a smaller value of $\omega_3$ than in the case of a fixed pivot.
+    \item \textcite{bib:KibbleBerkshire}, Q10.12. A uniform plank of length $2a$ is placed with one end on a smooth horizontal floor and the other against a smooth vertical wall. Write down the Lagrangian function, using two generalized coordinates: The distance $x$ of the foot of the plank from the wall, and its angle $\theta$ of inclination to the horizontal, with a suitable constraint between the two. Given that the plank is initially at rest at an inclination of \ang{60}, find the angle at which it loses contact with the wall. (Hint: First write the co-ordinates of the centre of mass in terms of $x$ and $\theta$. Note that the reaction at the wall is related to the Lagrange multiplier.)
+\end{enumerate}
+
+
+
+
+\end{document}
