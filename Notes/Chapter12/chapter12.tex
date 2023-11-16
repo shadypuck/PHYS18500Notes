@@ -55,14 +55,202 @@
     \end{equation*}
     \item Additionally,
     \begin{equation*}
-        \pdv{H}{q_\alpha} = \underbrace{-\pdv{L}{q_\alpha}}_{-p_\alpha}+\sum_{\beta=1}^np_\beta\pdv{\dot{q}_\beta}{q_\alpha}-\sum_{\beta=1}^n\underbrace{\pdv{L}{\dot{q}_\beta}}_{p_\beta}\pdv{\dot{q}_\beta}{q_\alpha}
-        = -p_\alpha
+        \pdv{H}{q_\alpha} = \underbrace{-\pdv{L}{q_\alpha}}_{-\dot{p}_\alpha}+\sum_{\beta=1}^np_\beta\pdv{\dot{q}_\beta}{q_\alpha}-\sum_{\beta=1}^n\underbrace{\pdv{L}{\dot{q}_\beta}}_{p_\beta}\pdv{\dot{q}_\beta}{q_\alpha}
+        = -\dot{p}_\alpha
     \end{equation*}
     \item Therefore, we get Hamilton's equations of motion:
     \begin{align*}
         \pdv{H}{p_\alpha} &= \dot{q}_\alpha&
-        \pdv{H}{q_\alpha} &= -p_\alpha
+        \pdv{H}{q_\alpha} &= -\dot{p}_\alpha
     \end{align*}
+\end{itemize}
+
+
+
+\section{Conservation of Energy; Ignorable Coordinates}
+\begin{itemize}
+    \item \marginnote{11/15:}Recap.
+    \begin{itemize}
+        \item Hamiltonian as total energy.
+        \item Ignorable coordinates.
+        \item Examples.
+    \end{itemize}
+    \item Logistics.
+    \begin{itemize}
+        \item HW 6 due Friday.
+        \item HW 7 due at last class.
+        \begin{itemize}
+            \item A little bit long (Hamiltonians + dynamical systems stuff from after break).
+        \end{itemize}
+        \item HW 8 (optional) due at exam.
+        \begin{itemize}
+            \item Will be posted during Thanksgiving week.
+            \item A mixture of newer material and then some review questions from the second half of the quarter.
+        \end{itemize}
+        \item The final will focus on second-half stuff. However, it may use stuff from the beginning of the quarter. There will not be a specific rotating reference frames or scattering question, but we may have to use knowledge of Lagrangians, etc.
+    \end{itemize}
+    \item Last time.
+    \begin{itemize}
+        \item We constructed the Hamiltonian $H(q,p)$.
+    \end{itemize}
+    \item Note: A Hamiltonian is an example of something called a \textbf{Legendre transform}, though that's not important for this class.
+    \item Example: Central conservative force in the plane.
+    \begin{itemize}
+        \item Recall that the relevant Lagrangian is
+        \begin{equation*}
+            L = \frac{1}{2}m\dot{r}^2+\frac{1}{2}mr^2\dot{\theta}^2-V(r)
+        \end{equation*}
+        \item The expression for the generalized momentum yields the following two relations.
+        \begin{align*}
+            p_r &= \pdv{L}{\dot{r}} = m\dot{r}&
+                p_\theta &= \pdv{L}{\dot{\theta}} = mr^2\dot{\theta}\\
+            \dot{r} &= \frac{p_r}{m}&
+                \dot{\theta} &= \frac{p_\theta}{mr^2}
+        \end{align*}
+        \item Substituting the above into the definition of the Hamiltonian, we obtain
+        \begin{equation*}
+            H = (p_r\dot{r}+p_\theta\dot{\theta})-\left[ \frac{1}{2}m\dot{r}^2+\frac{1}{2}mr^2\dot{\theta}^2-V(r) \right]
+            = \frac{p_r^2}{2m}+\frac{p_\theta^2}{2mr^2}+V(r)
+        \end{equation*}
+        \begin{itemize}
+            \item Observe that this is the kinetic plus potential energy! This is a recurring theme.
+        \end{itemize}
+        \item Using Hamilton's equations, we obtain
+        \begin{align*}
+            \dot{r} &= \pdv{H}{p_r} = \frac{p_r}{m}\\
+            \dot{\theta} &= \pdv{H}{p_\theta} = \frac{p_\theta}{mr^2}\\
+            -\dot{p}_r &= \pdv{H}{r} = -\frac{p_\theta^2}{mr^3}+\dv{V}{r}\\
+            -\dot{p}_\theta &= \pdv{H}{\theta} = 0
+        \end{align*}
+        \item The first two equations provide relations we already knew.
+        \item The last equation implies that $J=p_\theta$ is constant, as we'd expect for a central conservative force!
+        \item The third equation can be arranged into the following form, which (when integrated) yields the radial energy equation.
+        \begin{equation*}
+            \dot{p}_r = m\ddot{r} = \frac{J^2}{mr^3}-\dv{V}{r}
+        \end{equation*}
+    \end{itemize}
+    \item The Hamiltonian as total energy.
+    \begin{itemize}
+        \item Let's see why this is the general case.
+        \item We have that
+        \begin{equation*}
+            T = \frac{1}{2}\sum_{\alpha=1}^nm_\alpha\dot{\vec{r}}_\alpha{}^2
+            = \frac{1}{2}\sum_{\alpha=1}^nm_\alpha(\dot{x}_\alpha^2+\dot{y}_\alpha^2+\dot{z}_\alpha^2)
+        \end{equation*}
+        \item Notice that
+        \begin{equation*}
+            \sum_{\alpha=1}^n\pdv{T}{\dot{q}_\alpha}\dot{q}_\alpha = 2T
+        \end{equation*}
+        \item Here, we're summing over all generalized coordinates.
+        \item This is true for generalized coordinates for natural systems ($T$ is independent of $t$).
+        \begin{itemize}
+            \item A proof can be found on \textcite[232-33]{bib:KibbleBerkshire}.
+        \end{itemize}
+        \item It follows that
+        \begin{equation*}
+            H = \sum_{\beta=1}^np_\beta\dot{q}_\beta-L
+            = \sum_{\beta=1}^n\pdv{T}{\dot{q}_\beta}\dot{q}_\beta-L
+            = 2T-(T-V)
+            = T+V
+            = E
+        \end{equation*}
+    \end{itemize}
+    \item In general, for $H(q,p,t)$, we have
+    \begin{equation*}
+        \dv{H}{t} = \pdv{H}{t}+\sum_{\alpha=1}^n\pdv{H}{q_\alpha}\dot{q}_\alpha+\sum_{\alpha=1}^n\pdv{H}{p_\alpha}\dot{p}_\alpha
+        = \pdv{H}{t}+\sum_{\alpha=1}^n\left( \pdv{H}{q_\alpha}\pdv{H}{p_\alpha}-\pdv{H}{p_\alpha}\pdv{H}{q_\alpha} \right)
+        = \pdv{H}{t}
+    \end{equation*}
+    \begin{itemize}
+        \item The substitutions from the second to the third equality above follow from Hamilton's equations.
+    \end{itemize}
+    \item Special case of the above: Natural, conservative systems.
+    \begin{itemize}
+        \item $H(q,p,t)=H(q,p)$, so $\pdv*{H}{t}=0$.
+        \item It follows that in such a system, $\dv*{H}{t}=0$, hence $H=T+V=E$ is constant.
+    \end{itemize}
+    \item \textbf{Ignorable coordinate}: A coordinate $q_\alpha$ that does not appear in $H$.
+    \begin{itemize}
+        \item Thus, for an ignorable coordinate,
+        \begin{equation*}
+            -\dot{p}_\alpha = \pdv{H}{q_\alpha} = 0
+        \end{equation*}
+        so $p_\alpha$ is constant.
+        \item Generally, $p_\alpha$ is in $H$.
+    \end{itemize}
+    \item Example: Central force in plane? Recall the Hamiltonian from the first example above and note that $\theta$ is ignorable because $\dot{p}_\theta=0$.
+    \begin{itemize}
+        \item Thus, we recover the radial energy equation.
+        \item Hamilton's equations for this system:
+        \begin{align*}
+            \dot{r} &= \frac{p_r}{m}&
+            -\dot{p}_r &= \pdv{H}{r} = \dv{U}{r}
+        \end{align*}
+        where $U(r)$ is the effective potential energy.
+        \item Thus, the $r$ coordinate behaves just like a single particle that sees the potential energy function $U(r)$.
+        \item The remaining Hamilton's equations tell us that
+        \begin{align*}
+            \dot{p}_\theta &= 0&
+            \dot{\theta} &= \frac{p_\theta}{mr^2}
+        \end{align*}
+    \end{itemize}
+    \item Example: Symmetric top.
+    \begin{itemize}
+        \item $2/3$ of our Euler angles are ignorable, so we can write an effective potential energy function for the third.
+        \item Our slightly complicated expression for the Lagrangian here is
+        \begin{equation*}
+            L = \underbrace{\frac{1}{2}I_1\dot{\theta}^2\sin^2\theta+\frac{1}{2}I_1\dot{\theta}^2+\frac{1}{2}I_3(\dot{\psi}+\dot{\phi}\cos\theta)^2}_T-MgR\cos\theta
+        \end{equation*}
+        \item Thus,
+        \begin{gather*}
+            p_\phi = \pdv{L}{\dot{\phi}} = I_1\dot{\phi}\sin^2\theta+I_3(\dot{\psi}+\dot{\phi}\cos\theta)\cos\theta\\
+            p_\theta = I_1\dot{\theta}\\
+            p_\psi = I_3(\dot{\psi}+\dot{\phi}\cos\theta)
+        \end{gather*}
+        \item It follows that
+        \begin{align*}
+            \dot{\phi} &= \frac{p_\phi-p_\psi\cos\theta}{I_1\sin^2\theta}\\
+            \dot{\phi} &= \frac{p_\theta}{I_1}\\
+            \dot{\psi} &= \frac{p_\psi}{I_3}-\frac{p_\phi-p_\psi\cos\theta}{I_1\sin^2\theta}\cos\theta
+        \end{align*}
+        \item Thus,
+        \begin{equation*}
+            H = T+V
+        \end{equation*}
+        where $T$ is given in the Lagrangian above.
+        \item It follows that
+        \begin{equation*}
+            H = \frac{(p_\phi-p_\psi\cos\theta)^2}{2I_1\sin^2\theta}+\frac{p_\theta^2}{2I_1}+\frac{p_\psi^2}{2I_3}+MgR\cos\theta
+        \end{equation*}
+        \item Since $\phi,\psi$ don't appear, they're ignorable. Thus, $p_\phi,p_\psi$ are constants.
+        \item Consequently, we can rewrite this Hamiltonian in the simpler form
+        \begin{equation*}
+            H = \frac{p_\theta^2}{2I_1}+U(\theta)
+        \end{equation*}
+        where
+        \begin{equation*}
+            U(\theta) = MgR\cos\theta+\frac{(p_\phi-p_\psi\cos\theta)^2}{2I_1\sin^2\theta}+\frac{p_\psi^2}{2I_3}
+        \end{equation*}
+        \item $U(\theta)$ is pretty complicated, but once we fix $p_\phi,p_\psi$, it can be thought of as an effective potential energy function in $\theta$.
+        \item We can now evaluate Hamilton's equations.
+        \begin{equation*}
+            -\dot{p}_\theta = -I_1\ddot{\theta} = \pdv{H}{\theta} = \dv{U}{\theta}
+        \end{equation*}
+        \item Evaluating the derivative of $U(\theta)$ would be very nasty, but we can learn some thing without evaluating it.
+        \item We get the conservation law
+        \begin{equation*}
+            \frac{p_\theta^2}{2I_1}+U(\theta) = E
+        \end{equation*}
+        \item Thus, fixing $U(\theta)$, we get a parabola in $p_\theta$ with minimum at $\theta_0$ and we get a wiggling motion between $\theta_\text{min}$ and $\theta_\text{max}$. At $U=E_\text{min}$, $\theta=\theta_0$ and we have \emph{steady precession}.
+        \item The precession rate
+        \begin{equation*}
+            \dot{\phi} = \frac{p_\phi-p_\psi\cos\theta}{I_1\sin^2\theta}
+        \end{equation*}
+        \item Then $\dot{\theta}=0$, $\cos\theta=p_\phi/p_\psi$. If $\arccos(p_\phi/p_\psi)<\theta_\text{min}$ or $>\theta_\text{max}$.
+        \item So the thing is rotating on its own, and alternating back and forth \emph{see picture}
+        \item In the case $\theta_\text{min}<\arccos(p_\phi/p_\psi)<\theta_\text{max}$, we get loop de loops. Importantly, $\dot{\phi}$ changes sign.
+        \item If $\arccos(p_\phi/p_\psi)=\theta_\text{min}$, we get cusps corresponding to $\dot{\phi}=0$.
+    \end{itemize}
 \end{itemize}
 
 
