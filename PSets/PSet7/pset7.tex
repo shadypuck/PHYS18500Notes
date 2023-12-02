@@ -1,0 +1,42 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{6}
+
+\begin{document}
+
+
+
+
+\section{Hamiltonian Mechanics and Phase Portraits}
+\begin{enumerate}
+    \item \marginnote{12/1:}\textcite{bib:KibbleBerkshire}, Q12.1. A particle of mass $m$ slides on the inside of a smooth cone of semi-vertical angle $\alpha$, whose axis points vertically upwards. Obtain the Hamiltonian function using the distance $r$ from the vertex and the azimuth angle $\phi$ as generalized coordinates. Show that stable circular motion is possible for any value of $r$, and determine the corresponding angular velocity $\omega$. Find the angle $\alpha$ if the frequency of small oscillations about this circular motion is also $\omega$.
+    \item \textcite{bib:KibbleBerkshire}, Q12.4. A particle of mass $m$ moves in three dimensions under the action of a central conservative force with potential energy $V(r)$. Find the Hamiltonian function in spherical coordinates, and show that $\phi$, but not $\theta$, is ignorable. Express the quantity
+    \begin{equation*}
+        \vec{J}{\,}^2 = m^2r^4(\dot{\theta}^2+\dot{\phi}^2\sin^2\theta)
+    \end{equation*}
+    in terms of the generalized momenta, and show that it is a second constant of the motion.
+    \item \textcite{bib:KibbleBerkshire}, Q12.6. Obtain the Hamiltonian function for the top with freely sliding pivot described in Q10.11. Find whether the minimum angular velocity required for stable vertical rotation is greater or less than in the case of a ﬁxed pivot. Can you explain this result physically?
+    \item \textcite{bib:KibbleBerkshire}, Q13.4. Draw the phase portrait of the damped linear oscillator, whose displacement $x(t)$ satisﬁes $\ddot{x}+\mu\dot{x}+\omega_0^2x=0$, in the phase plane $(x,y)$, where $y=\dot{x}$. Distinguish the cases\dots
+    \begin{enumerate}
+        \item Underdamping (or light damping): $0<\mu<2\omega_0$;
+        \item Overdamping: $\mu>2\omega_0$;
+        \item Critical damping: $\mu=2\omega_0$.
+    \end{enumerate}
+    \item \textcite{bib:KibbleBerkshire}, Q13.12. For the rotation of a rigid body about its center of mass with zero torque, the equations for the angular momentum components $J_1,J_2,J_3$ are given by
+    \begin{equation*}
+        \dot{J}_1-\left( \frac{I_2-I_3}{I_2I_3} \right)J_2J_3 = 0
+    \end{equation*}
+    \begin{enumerate}
+        \item Show that $J_1^2+J_2^2+J_3^2=J^2$ (constant), so that the angular momentum $\vec{J}$ must lie on a sphere in $(J_1,J_2,J_3)$ phase space.
+        \item When $I_1<I_2<I_3$, show that there are six critical points on this phase sphere and show that, in local expansion, four of these are centers and two are saddles. (Hence the tennis racket theorem of Section 13.6.)
+        \item Show that when $I_1=I_2\neq I_3$, then $J_3$ is constant ($\equiv I_3\Omega$) and that $J_1,J_2$ are simple harmonic (with frequency $[|I_3-I_1|/I_1]\Omega$).
+        \item A space station with $I_1<I_2<I_3$ is executing a tumbling motion with $\omega_1,\omega_2,\omega_3$ nonzero. It is to be stabilized by reducing $\vec{\omega}$ to 0 with an applied torque $-|\mu|\vec{\omega}$, with $\mu$ constant, so that the right-hand side of the equation in the problem statement becomes $-|\mu|\omega_1$, etc. About which of its axes does the space station tend to be spinning as $\vec{\omega}\to 0$?
+    \end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}
