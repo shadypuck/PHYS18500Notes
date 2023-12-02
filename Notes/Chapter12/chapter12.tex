@@ -461,5 +461,80 @@
 
 
 
+\section{Introduction to Dynamical Systems; Phase Portraits}
+\begin{itemize}
+    \item \marginnote{11/27:}Announcements.
+    \begin{itemize}
+        \item Office hours today 4:00-5:30, GCIS E231 are the last of the quarter.
+        \begin{itemize}
+            \item Possible last OH on Saturday.
+        \end{itemize}
+        \item Email her for exam accommodations.
+        \item This week: M/W (dynamical systems), F (review).
+    \end{itemize}
+    \item Outline.
+    \begin{itemize}
+        \item Review of Lagrangian and Hamiltonian stuffs.
+        \item A note on L + H for forced systems.
+        \item Dynamical systems.
+        \begin{itemize}
+            \item Phase portraits.
+            \item Fixed points and linear stability analysis.
+            \item Conservative systems with 1 DOF.
+        \end{itemize}
+    \end{itemize}
+    \item Recap.
+    \begin{itemize}
+        \item Prior to break, we learned about the Hamiltonian, which can be written from the Lagrangian.
+        \item For a natural system, the Hamiltonian can also be interpreted as the total energy $H=T+V=E$.
+        \item The Hamiltonian is another way of getting EOMs (Hamilton's equations) from the system; they're a nice set of symmetrical, first-order ODEs.
+        \item A nice aspect of this structure is that \emph{ignorable} coordinates, which do not appear in $H$, are ones you don't have to worry about because the fact that $p_\alpha$ is conserved with respect to this coordinate follows from the Hamilton equation $-p_\alpha=\pdv*{H}{q_\alpha}$.
+        \item Another thing we saw is that for a function $G(q,p)$, $[G,H]=0$ implies that $G$ is conserved.
+        \item From the relativity principles, we also get some pieces of information.
+        \begin{enumerate}
+            \item There are constraints on the form of the Hamiltonian (e.g., depending on relative positions of particles).
+            \item There are particular quantities that we expect to be conserved if these relativity principles are to be true.
+        \end{enumerate}
+    \end{itemize}
+    \item Before more Hamiltonian systems, let's do forced systems. See \textcite[231-42]{bib:KibbleBerkshire}.
+    \item Fact: Constraints with time dependence can do work.
+    \item Example: Suppose we have a pendulum that we're rotating about the vertical axis at constant angular speed $\omega$.
+    \begin{itemize}
+        \item The general form of the kinetic energy for such a system is
+        \begin{equation*}
+            T = \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2+(r\sin\theta)^2\dot{\phi}^2)
+        \end{equation*}
+        \item There are 2 constraints on the system:
+        \begin{align*}
+            r &= \ell&
+            \dot{\phi} &= \omega
+        \end{align*}
+        \begin{itemize}
+            \item An \textbf{algebraic} constraint, like the one above on the left, changes directions and does no work.
+            \item The other kind of constraint, which does depend on time via its alternate (integrated) form $\phi=\omega t$, can do work.
+        \end{itemize}
+        \item We can still write $L=T-V$ and substitute for constraints, obtaining
+        \begin{equation*}
+            L = \frac{1}{2}m(\ell^2\dot{\theta}^2+(\ell\sin\theta)\omega^2)-mg\ell(1-\cos\theta)
+        \end{equation*}
+        \begin{itemize}
+            \item Because of the dependence on $\theta$, the above is not a natural system.
+            \item Essentially, $T$ is not just a function of $\dot{q}_\alpha$ and $\dot{q}_\beta$!
+            \item Thus, $H\neq T+V$
+        \end{itemize}
+        \item Use, for this system,
+        \begin{equation*}
+            H = \sum_\alpha p_\alpha\dot{q}_\alpha-L
+        \end{equation*}
+        \item Note that the effective kinetic and potential energies (i.e., $T',V'$ such that $H=T'+V'$) of this system are
+        \begin{align*}
+            T' &= \frac{1}{2}m\ell^2\dot{\theta}^2&
+            V' &= \frac{\ell^2}{2m}\omega^2\sin^2\theta+mg\ell(1-\cos\theta)
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
