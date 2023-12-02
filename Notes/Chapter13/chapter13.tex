@@ -146,30 +146,30 @@
         \centering
         \begin{subfigure}[b]{0.24\linewidth}
             \centering
-            \includegraphics[width=0.95\linewidth]{../ExtFiles/classifyFixedPointsa.png}
+            \includegraphics[width=0.95\linewidth]{../ExtFiles/flows2Da.png}
             \caption{Node.}
-            \label{fig:classifyFixedPointa}
+            \label{fig:flows2Da}
         \end{subfigure}
         \begin{subfigure}[b]{0.24\linewidth}
             \centering
-            \includegraphics[width=0.95\linewidth]{../ExtFiles/classifyFixedPointsb.png}
+            \includegraphics[width=0.95\linewidth]{../ExtFiles/flows2Db.png}
             \caption{Saddle.}
-            \label{fig:classifyFixedPointb}
+            \label{fig:flows2Db}
         \end{subfigure}
         \begin{subfigure}[b]{0.24\linewidth}
             \centering
-            \includegraphics[width=0.95\linewidth]{../ExtFiles/classifyFixedPointsc.png}
+            \includegraphics[width=0.95\linewidth]{../ExtFiles/flows2Dc.png}
             \caption{Spiral.}
-            \label{fig:classifyFixedPointc}
+            \label{fig:flows2Dc}
         \end{subfigure}
         \begin{subfigure}[b]{0.24\linewidth}
             \centering
-            \includegraphics[width=0.95\linewidth]{../ExtFiles/classifyFixedPointsd.png}
+            \includegraphics[width=0.95\linewidth]{../ExtFiles/flows2Dd.png}
             \caption{Center.}
-            \label{fig:classifyFixedPointd}
+            \label{fig:flows2Dd}
         \end{subfigure}
-        \caption{Classifying fixed points.}
-        \label{fig:classifyFixedPoint}
+        \caption{Dynamical flows of a 2D system.}
+        \label{fig:flows2D}
     \end{figure}
     \begin{enumerate}
         \item \textbf{Nodes} happen when both $\lambda_1,\lambda_2$ are real and both are positive \emph{or} both are negative.
@@ -187,13 +187,319 @@
     \item A handy picture to help us classify any fixed point we want in two dimensions.
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.4\linewidth]{../ExtFiles/fixedPointParabola.png}
-        \caption{Fixed points parabola.}
-        \label{fig:fixedPointParabola}
+        \includegraphics[width=0.4\linewidth]{../ExtFiles/fixedPoints2D.png}
+        \caption{Classifying fixed points of a 2D system.}
+        \label{fig:fixedPoints2D}
     \end{figure}
     \begin{itemize}
         \item If we look at systems defined in terms of their trace and determinant, there is a sideways parabola defined by the discriminant of the eigenvalue formula, i.e., via $\tr(J)^2-4\det(J)=0$.
         \item Various paths live in different parts of the map.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Bifurcations; Order and Chaos in Hamiltonian Systems}
+\begin{itemize}
+    \item \marginnote{11/29:}Outline.
+    \begin{itemize}
+        \item Bifurcations.
+        \item Integrability and chaos.
+    \end{itemize}
+    \item Today.
+    \begin{itemize}
+        \item Ambitous plan:
+        \item Dynamical systems and phase portraits.
+        \item What bifurcations are and why they're interesting.
+        \item When a system is ordered or chaotic.
+    \end{itemize}
+    \item Recap.
+    \begin{itemize}
+        \item Definition of a \textbf{dyanmical system}.
+        \item Recall that Hamilton's equations can help us describe motion in a phase plane through a phase portrait.
+        \item Essentially, the system of equations defines a vector field $(\dot{q},\dot{p})$ at each point $(q,p)$ in the plane. Moreover, trajectories run tangent to vectors.
+        \item We also saw last time that near a fixed point, for a 2D system $\dot{x}=f(x,y)$ and $\dot{y}=g(x,y)$ such that there exists a point $(x^*,y^*)$ such that $f(x^*,y^*)=g(x^*,y^*)=0$. Then if we perturb a bit away from this point, our perturbation is given by the Jacobian matrix formula.
+        \item It follows that we can classify fixed points based on the eigenvalues of the Jacobian, which are given by $\lambda_{1,2}=(\tr(J)\pm\sqrt{\tr(J)^2-4\det(J)})/2$.
+        \item Recall Figure \ref{fig:fixedPoints2D}.
+    \end{itemize}
+    \item Why do the eigenvalues of the Jacobian matrix control the fixed point?
+    \begin{itemize}
+        \item Let
+        \begin{equation*}
+            \vec{\nu} =
+            \begin{pmatrix}
+                \xi\\
+                \eta\\
+            \end{pmatrix}
+        \end{equation*}
+        so that
+        \begin{equation*}
+            \dot{\vec{\nu}} = J\vec{\nu}
+        \end{equation*}
+        \item Diagonalize $J$ to $J=R^{-1}DR$. Then
+        \begin{align*}
+            \dot{\vec{\nu}} &= R^{-1}DR\vec{\nu}\\
+            R\dot{\vec{\nu}} &= DR\vec{\nu}\\
+            \dv{t}\underbrace{(R\vec{\nu})}_\mu &= D\underbrace{(R\vec{\nu})}_\mu\\
+            \dot{\mu} &= D\mu
+        \end{align*}
+        uncouples into
+        \begin{align*}
+            \dot{\mu}_1 &= \lambda_1\mu_1&
+                \dot{\mu}_2 &= \lambda_2\mu_2\\
+            \mu_1 &= A\e[\lambda_1t]&
+                \mu_2 &= A\e[\lambda_2t]
+        \end{align*}
+    \end{itemize}
+    \item Now let's talk about classifying fixed points in the context of conservative Hamiltonian systems with one degree of freedom.
+    \begin{itemize}
+        \item In this case, we have 
+        \begin{align*}
+            p &= m\dot{x}&
+            H &= \frac{p^2}{2m}+V(x)
+        \end{align*}
+        \item Hamilton's equations then give us
+        \begin{align*}
+            \dot{x} &= \pdv{H}{p} = \frac{p}{m}&
+            \dot{p} &= -\pdv{H}{x} = -\dv{V}{x}
+        \end{align*}
+        \item Now define
+        \begin{align*}
+            f(x,p) &= \dot{x} = \frac{p}{m}&
+            g(x,p) &= \dot{p} = -\dv{V}{x}
+        \end{align*}
+        \item Thus, the Jacobian matrix is
+        \begin{equation*}
+            J =
+            \begin{pNiceMatrix}
+                0 & \frac{1}{m}\\
+                -V''(x) & 0\\
+            \end{pNiceMatrix}
+        \end{equation*}
+        with
+        \begin{align*}
+            \tr(J) &= 0&
+            \det(J) &= \frac{V''(x)}{m}
+        \end{align*}
+        \item Thus, according to Figure \ref{fig:fixedPoints2D}, if $V''(x)>0$, we get a center, and if $V''(x)<0$, we get a saddle.
+        \item More specifically, if $V''(x)>0$, then from the eigenvalues formula,
+        \begin{equation*}
+            \lambda_{1,2} = i\omega
+        \end{equation*}
+        where
+        \begin{equation*}
+            \omega = \sqrt{\frac{V''(x)}{m}}
+        \end{equation*}
+        \item Recall the pendulum picture, Figure \ref{fig:flowsPendulum}.
+        \item In this conservative system, we have a fixed energy $E=p^2/2m+V(x)$. All of the trajectories in Figure \ref{fig:flowsPendulum} are level sets of $E$. So we pick our energy, and the $p(x)=\pm\sqrt{2m(E-V(x))}$, so you can plug in your favorite $V$, and you will get $p$.
+    \end{itemize}
+    \item Now let's talk about \textbf{bifurcations}.
+    \item One of the nice things that this dynamical systems picture gives us is an idea of when a system is going to \emph{really} change.
+    \item \textbf{Bifurcation}: A number or type of fixed point changes.
+    \item Prototypical type of bifurcation: A \textbf{sattle-node} bifurcation.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.2\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw [
+                    decoration={
+                        markings,
+                        mark=at position 0.23 with \arrow{>},
+                        mark=at position 0.43 with \arrow{<},
+                        mark=at position 0.6 with \arrow{<},
+                        mark=at position 0.8 with \arrow{>}
+                    },
+                    postaction=decorate
+                ] (-1,0) -- (1,0) node[right]{$x$};
+                \draw (0,-1) -- (0,1) node[above]{$\dot{x}$};
+        
+                \draw [grx,thick] plot[domain=-0.6:0.6] (\x,{4*\x*\x-0.5});
+        
+                \filldraw              (-0.354,0) circle (1pt);
+                \filldraw [fill=white] (0.354,0)  circle (1pt);
+            \end{tikzpicture}
+            \caption{$r<0$.}
+            \label{fig:bifurSaddleNodea}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.2\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw [
+                    decoration={
+                        markings,
+                        mark=at position 0.25 with \arrow{>},
+                        mark=at position 0.75 with \arrow{>}
+                    },
+                    postaction=decorate
+                ] (-1,0) -- (1,0) node[right]{$x$};
+                \draw (0,-1) -- (0,1) node[above]{$\dot{x}$};
+        
+                \draw [grx,thick] plot[domain=-0.5:0.5] (\x,{4*\x*\x});
+        
+                \filldraw [fill=white] (-0,0) circle (1pt);
+                \fill (0,1pt) arc[start angle=90,end angle=270,radius=1pt];
+            \end{tikzpicture}
+            \caption{$r=0$.}
+            \label{fig:bifurSaddleNodeb}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.2\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw [
+                    decoration={
+                        markings,
+                        mark=at position 0.25 with \arrow{>},
+                        mark=at position 0.75 with \arrow{>}
+                    },
+                    postaction=decorate
+                ] (-1,0) -- (1,0) node[right]{$x$};
+                \draw (0,-1) -- (0,1) node[above]{$\dot{x}$};
+        
+                \draw [grx,thick] plot[domain=-0.35:0.35] (\x,{4*\x*\x+0.5});
+            \end{tikzpicture}
+            \caption{$r>0$.}
+            \label{fig:bifurSaddleNodec}
+        \end{subfigure}\\[1em]
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw (-2,0) -- (2,0) node[right]{$r$};
+                \draw (0,-1) -- (0,1) node[above]{$x$};
+        
+                \draw [orx,thick,densely dashed] plot[domain=0:0.7] ({-4*\x*\x},{\x});
+                \draw [orx,thick] plot[domain=-0.7:0] ({-4*\x*\x},{\x});
+    
+                \node at (-1,-0.7) {stable};
+                \node at (-1,0.75) {unstable};
+            \end{tikzpicture}
+            \caption{Bifurcation diagram.}
+            \label{fig:bifurSaddleNoded}
+        \end{subfigure}
+        \caption{Saddle-node bifurcation.}
+        \label{fig:bifurSaddleNode}
+    \end{figure}
+    \begin{itemize}
+        \item One-dimensional example: Consider $\dot{x}=r+x^2$.
+        \item As $r$ varies from negative to zero to postive, we get the Figure \ref{fig:bifurSaddleNodea}-\ref{fig:bifurSaddleNodec}. First two fixed points, then one, then none.
+        \item A \textbf{bifurcation diagram} plots $r$ vs. the $x$-position of the fixed points, stable ones with solid lines and unstable ones with dotted lines. See Figure \ref{fig:bifurSaddleNoded}.
+    \end{itemize}
+    \item There's a lovely taxonomy of many types of bifurcations. We don't have time to go into them, but here's another one that comes up a lot in physics (we'll talk about it further in discussion section).
+    \item The \textbf{pitchfork bifurcation}.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.2\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \draw [grx,thick] plot[domain=-1:1,smooth] (\x,{2/2*(\x)^2+1*(\x)^4});
+            \end{tikzpicture}
+            \caption{$S>0$.}
+            \label{fig:bifurPitchforka}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.2\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \draw [grx,thick] plot[domain=-1.39:1.39,smooth] (\x,{-2/2*(\x)^2+1*(\x)^4});
+            \end{tikzpicture}
+            \caption{$S<0$.}
+            \label{fig:bifurPitchforkb}
+        \end{subfigure}\\[1em]
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw (-2,0) -- (2,0) node[right]{$r$};
+                \draw (0,-1) -- (0,1) node[above]{$x$};
+        
+                \draw [orx,thick] plot[domain=-0.7:0.7] ({-4*\x*\x},{\x});
+                \draw [orx,thick,densely dashed] (-2,0) -- (0,0);
+                \draw [orx,thick] (0,0) -- (2,0);
+            \end{tikzpicture}
+            \caption{Bifurcation diagram.}
+            \label{fig:bifurPitchforkc}
+        \end{subfigure}
+        \caption{Pitchfork bifurcation.}
+        \label{fig:bifurPitchfork}
+    \end{figure}
+    \begin{itemize}
+        \item Consider a potential well of the form
+        \begin{equation*}
+            V(x) = \frac{S}{2}x^2+ux^4
+        \end{equation*}
+        \item There are two important cases here.
+        \begin{enumerate}
+            \item If $S>0$, we get a single well (see Figure \ref{fig:bifurPitchforka}).
+            \item If $S<0$, then the well divides into two (see Figure \ref{fig:bifruPitchforkb}).
+        \end{enumerate}
+        \item The particle always wants to slide toward the minimum potential energy, so in the first case, we have on stable branch, and in the second case, we develop three stable branches and one unstable branch. See Figure \ref{fig:bifurPitchforkc}.
+    \end{itemize}
+    \item We now return to rigid-body rotation.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.4\linewidth]{../ExtFiles/flowsRigid.png}
+        \caption{Dynamical flows of a rotating rigid body.}
+        \label{fig:flowsRigid}
+    \end{figure}
+    \begin{itemize}
+        \item We'll look at this problem more in the last problem of PSet 7.
+        \item Recall the following equation for a rigid body with no external torque.
+        \begin{equation*}
+            \underbrace{I_1\dot{\omega}_1}_{\dot{J}_1}+(I_3-I_2)\omega_2\omega_3 = 0
+        \end{equation*}
+        \item This equation can be rewritten in the form
+        \begin{align*}
+            \dot{J}_1-\frac{I_2-I_3}{I_2I_3}J_2J_3 &= 0\\
+            \dot{J}_2-\frac{I_1-I_3}{I_1I_3}J_1J_3 &= 0\\
+            \dot{J}_3-\frac{I_2-I_1}{I_1I_2}J_2J_1 &= 0
+        \end{align*}
+        \item We have the conservation laws
+        \begin{align*}
+            J_1^2+J_2^2+J_3^2 &= J&
+            \frac{J_1^2}{I_1}+\frac{J_2^2}{I_2}+\frac{J_3^2}{I_3} &= 2T
+        \end{align*}
+        \item Thus the fixed points arise as points on a unit sphere where one axis has unit value and the other two have none. These represent rotation about each fixed axis.
+        \item As we'd expect from the tennis raquet theorem, the largest ones are stable, and the remaining intermediate axis has saddle points which defines separatrices that interpolate between the other centers.
+        \item Fixed points: $J_3^2=J^2$, $J_1,J_2=0$.
+    \end{itemize}
+    \item We now try to understand the possible types of long-term behavior in a system.
+    \item Here are the options.
+    \begin{enumerate}
+        \item Flow to a fixed point (this is an equilibrium situation, common especially in system with dissipation).
+        \item Systems can oscillate forever (two common cases are centers, which often arise in Hamiltonian systems with energy conservation [planets, pendulums, etc.] and limit cycles of nonlinear systems).
+        \item Strange attractor (leads to \textbf{chaos}).
+    \end{enumerate}
+    \item The most canonical set of equations that display chaos (though many systems due this in certain parameter regimes) is the \textbf{Lorentz system}, an extremely simplified model of fluid convection between parallel plates at different temperatures.
+    \item \textbf{Lorentz system}:
+    \begin{align*}
+        \dot{x} &= \sigma(y-x)&
+        \dot{y} &= \rho x-y-xz&
+        \dot{z} &= -\beta z+xy
+    \end{align*}
+    \begin{itemize}
+        \item We watched a \href{https://youtu.be/q3kNHomvU0k?t=26}{video} in class.
+        \item We get attraction to a certain manifold.
+        \item There's a picture in the textbook.
+    \end{itemize}
+    \item Characteristics of chaotic systems.
+    \begin{enumerate}
+        \item Aperiodic long-term behavior in a deterministic system.
+        \item Sensitive dependence on initial conditions.
+        \begin{itemize}
+            \item This means that if you have two different trajectories in the phase plane that are separated by distance $d_0$ at time $t=0$, then the separation $d$ at time $t$ is exponentially dependent on time via $d=d_0\e[\lambda t]$ where $\lambda$ is a \textbf{Lyapunov exponent}.
+        \end{itemize}
+    \end{enumerate}
+    \item Hamiltonian systems.
+    \begin{itemize}
+        \item $n$ generalized coordinates.
+        \item Phase space: $2n$.
+        \item Number of conserved quantities: $k$.
+        \item Dimension of the restricted space is $M=2n-k$.
+        \item If $k\geq n$, the system is \textbf{integrable} and there is no chaos, whereas if $k<n$, then there will be chaos in \emph{some} parameter.
+        \item The damped, forced pendulum; top with external torques; etc. fall in this regime, so this kind of motion is not hard to find.
     \end{itemize}
 \end{itemize}
 
