@@ -12,28 +12,93 @@
 \section{Hamiltonian Mechanics and Phase Portraits}
 \begin{enumerate}
     \item \marginnote{12/1:}\textcite{bib:KibbleBerkshire}, Q12.1. A particle of mass $m$ slides on the inside of a smooth cone of semi-vertical angle $\alpha$, whose axis points vertically upwards. Obtain the Hamiltonian function using the distance $r$ from the vertex and the azimuth angle $\phi$ as generalized coordinates. Show that stable circular motion is possible for any value of $r$, and determine the corresponding angular velocity $\omega$. Find the angle $\alpha$ if the frequency of small oscillations about this circular motion is also $\omega$.
-    \item \textcite{bib:KibbleBerkshire}, Q12.4. A particle of mass $m$ moves in three dimensions under the action of a central conservative force with potential energy $V(r)$. Find the Hamiltonian function in spherical coordinates, and show that $\phi$, but not $\theta$, is ignorable. Express the quantity
-    \begin{equation*}
-        \vec{J}{\,}^2 = m^2r^4(\dot{\theta}^2+\dot{\phi}^2\sin^2\theta)
-    \end{equation*}
-    in terms of the generalized momenta, and show that it is a second constant of the motion.
-    \item \textcite{bib:KibbleBerkshire}, Q12.6. Obtain the Hamiltonian function for the top with freely sliding pivot described in Q10.11. Find whether the minimum angular velocity required for stable vertical rotation is greater or less than in the case of a ﬁxed pivot. Can you explain this result physically?
-    \item \textcite{bib:KibbleBerkshire}, Q13.4. Draw the phase portrait of the damped linear oscillator, whose displacement $x(t)$ satisﬁes $\ddot{x}+\mu\dot{x}+\omega_0^2x=0$, in the phase plane $(x,y)$, where $y=\dot{x}$. Distinguish the cases\dots
-    \begin{enumerate}
-        \item Underdamping (or light damping): $0<\mu<2\omega_0$;
-        \item Overdamping: $\mu>2\omega_0$;
-        \item Critical damping: $\mu=2\omega_0$.
-    \end{enumerate}
-    \item \textcite{bib:KibbleBerkshire}, Q13.12. For the rotation of a rigid body about its center of mass with zero torque, the equations for the angular momentum components $J_1,J_2,J_3$ are given by
-    \begin{equation*}
-        \dot{J}_1-\left( \frac{I_2-I_3}{I_2I_3} \right)J_2J_3 = 0
-    \end{equation*}
-    \begin{enumerate}
-        \item Show that $J_1^2+J_2^2+J_3^2=J^2$ (constant), so that the angular momentum $\vec{J}$ must lie on a sphere in $(J_1,J_2,J_3)$ phase space.
-        \item When $I_1<I_2<I_3$, show that there are six critical points on this phase sphere and show that, in local expansion, four of these are centers and two are saddles. (Hence the tennis racket theorem of Section 13.6.)
-        \item Show that when $I_1=I_2\neq I_3$, then $J_3$ is constant ($\equiv I_3\Omega$) and that $J_1,J_2$ are simple harmonic (with frequency $[|I_3-I_1|/I_1]\Omega$).
-        \item A space station with $I_1<I_2<I_3$ is executing a tumbling motion with $\omega_1,\omega_2,\omega_3$ nonzero. It is to be stabilized by reducing $\vec{\omega}$ to 0 with an applied torque $-|\mu|\vec{\omega}$, with $\mu$ constant, so that the right-hand side of the equation in the problem statement becomes $-|\mu|\omega_1$, etc. About which of its axes does the space station tend to be spinning as $\vec{\omega}\to 0$?
-    \end{enumerate}
+    \begin{proof}
+        % First, find the Lagrangian for the particle.
+        % \begin{align*}
+        %     L &= T-V\\
+        %     &= \frac{1}{2}m(\dot{r}^2+r^2\dot{\alpha}^2+r^2\dot{\phi}^2\sin^2\alpha)-mgr\cos\alpha
+        % \end{align*}
+        % Since we have the equation of constraint $\dot{\alpha}=0$ for motion on the surface of a cone, the Lagrangian simplifies to
+        % \begin{equation*}
+        %     L = \frac{1}{2}m(\dot{r}^2+r^2\dot{\phi}^2\sin^2\alpha)-mgr\cos\alpha
+        % \end{equation*}
+
+        The Hamiltonian may be derived as follows.
+        \begin{align*}
+            H &= T+V\\
+            &= \frac{1}{2}m(\dot{r}^2+r^2\dot{\alpha}^2+r^2\dot{\phi}^2\sin^2\alpha)+mgr\cos\alpha
+        \end{align*}
+        Since we have the equation of constraint $\dot{\alpha}=0$ for motion on the surface of a cone, the Hamiltonian simplifies to
+        \begin{equation*}
+            \boxed{H = \frac{1}{2}m(\dot{r}^2+r^2\dot{\phi}^2\sin^2\alpha)+mgr\cos\alpha}
+        \end{equation*}
+        For stable circular motion, $r$ does not change. Hence, mathematically, a condition for stable circular motion is $\dot{p}_r=m\dot{r}=m\cdot 0=0$. According to Hamilton's equations, this happens when
+        \begin{align*}
+            0 &= -\dot{p}_r\\
+            &= \pdv{H}{r}\\
+            &= mr\dot{\phi}^2\sin^2\alpha-mg\cos\alpha\\
+            g\cos\alpha &= r\dot{\phi}^2\sin^2\alpha\\
+            \frac{g\cos\alpha}{r\sin^2\alpha} &= \dot{\phi}^2\\
+            \Aboxed{\omega &= \sqrt{\frac{g\cos\alpha}{r\sin^2\alpha}}}
+        \end{align*}
+        Since the above equation is continuous under changes in $r$ for any acceptable value of $r$ (that is, for any $r>0$), stable circular motion \emph{is} possible for any value of $r$, as desired.\par
+        To investigate small oscillations about this circular motion, let's look at how $r$ changes under a small perturbation in $r$. To do so, let's see how the effective potential energy changes under variations in $r$. An expression for the effective potential energy may be found by first eliminating $\dot{\phi}$ from the Hamiltonian using the Lagrangian as a second equation. Indeed, from $L=T-V$, we have that
+        \begin{align*}
+            p_\phi &= \pdv{L}{\dot{\phi}}\\
+            &= mr^2\dot{\phi}\sin^2\alpha\\
+            \dot{\phi} &= \frac{p_\phi}{mr^2\sin^2\alpha}
+        \end{align*}
+        We also have from Hamilton's other equation that
+        \begin{align*}
+            -\dot{p}_\phi &= \pdv{H}{\phi}\\
+            &= 0\\
+            p_\phi &= J
+        \end{align*}
+        Thus, altogether,
+        \begin{equation*}
+            H = \frac{1}{2}m\dot{r}^2+\underbrace{\frac{J^2}{2mr^2\sin^2\alpha}+mgr\cos\alpha}_{U(r)}
+        \end{equation*}
+        It follows that the mathematical condition for the frequency of small oscillations about circular motion being equal to $\omega$ is
+        \begin{equation*}
+            \omega^2 = \frac{U''(r_0)}{m}
+        \end{equation*}
+        $r_0$ can be found by rearranging the above definition of $\omega$, and $U''(r)$ can be found by taking consecutive derivatives, yielding
+        \begin{align*}
+            r_0 = r &= \frac{g\cos\alpha}{\omega^2\sin^2\alpha}&
+            U''(r) &= \frac{3J^2}{mr^4\sin^2\alpha}
+        \end{align*}
+        Therefore,
+        \begin{align*}
+            \omega^2 &= \frac{1}{m}\cdot\frac{3}{m\sin^2\alpha}\cdot J^2\cdot\frac{1}{r_0^4}\\
+            &= \frac{1}{m}\cdot\frac{3}{m\sin^2\alpha}\cdot(mr_0^2\omega\sin^2\alpha)^2\cdot\frac{1}{r_0^4}\\
+            &= 3\omega^2\sin^2\alpha\\
+            \frac{1}{\sqrt{3}} &= \sin\alpha\\
+            \alpha &= \arcsin(1/\sqrt{3})\\
+            \Aboxed{\alpha &\approx \ang{35.3}}
+        \end{align*}
+    \end{proof}
+    % \item \textcite{bib:KibbleBerkshire}, Q12.4. A particle of mass $m$ moves in three dimensions under the action of a central conservative force with potential energy $V(r)$. Find the Hamiltonian function in spherical coordinates, and show that $\phi$, but not $\theta$, is ignorable. Express the quantity
+    % \begin{equation*}
+    %     \vec{J}{\,}^2 = m^2r^4(\dot{\theta}^2+\dot{\phi}^2\sin^2\theta)
+    % \end{equation*}
+    % in terms of the generalized momenta, and show that it is a second constant of the motion.
+    % \item \textcite{bib:KibbleBerkshire}, Q12.6. Obtain the Hamiltonian function for the top with freely sliding pivot described in Q10.11. Find whether the minimum angular velocity required for stable vertical rotation is greater or less than in the case of a ﬁxed pivot. Can you explain this result physically?
+    % \item \textcite{bib:KibbleBerkshire}, Q13.4. Draw the phase portrait of the damped linear oscillator, whose displacement $x(t)$ satisﬁes $\ddot{x}+\mu\dot{x}+\omega_0^2x=0$, in the phase plane $(x,y)$, where $y=\dot{x}$. Distinguish the cases\dots
+    % \begin{enumerate}
+    %     \item Underdamping (or light damping): $0<\mu<2\omega_0$;
+    %     \item Overdamping: $\mu>2\omega_0$;
+    %     \item Critical damping: $\mu=2\omega_0$.
+    % \end{enumerate}
+    % \item \textcite{bib:KibbleBerkshire}, Q13.12. For the rotation of a rigid body about its center of mass with zero torque, the equations for the angular momentum components $J_1,J_2,J_3$ are given by
+    % \begin{equation*}
+    %     \dot{J}_1-\left( \frac{I_2-I_3}{I_2I_3} \right)J_2J_3 = 0
+    % \end{equation*}
+    % \begin{enumerate}
+    %     \item Show that $J_1^2+J_2^2+J_3^2=J^2$ (constant), so that the angular momentum $\vec{J}$ must lie on a sphere in $(J_1,J_2,J_3)$ phase space.
+    %     \item When $I_1<I_2<I_3$, show that there are six critical points on this phase sphere and show that, in local expansion, four of these are centers and two are saddles. (Hence the tennis racket theorem of Section 13.6.)
+    %     \item Show that when $I_1=I_2\neq I_3$, then $J_3$ is constant ($\equiv I_3\Omega$) and that $J_1,J_2$ are simple harmonic (with frequency $[|I_3-I_1|/I_1]\Omega$).
+    %     \item A space station with $I_1<I_2<I_3$ is executing a tumbling motion with $\omega_1,\omega_2,\omega_3$ nonzero. It is to be stabilized by reducing $\vec{\omega}$ to 0 with an applied torque $-|\mu|\vec{\omega}$, with $\mu$ constant, so that the right-hand side of the equation in the problem statement becomes $-|\mu|\omega_1$, etc. About which of its axes does the space station tend to be spinning as $\vec{\omega}\to 0$?
+    % \end{enumerate}
 \end{enumerate}
 
 
