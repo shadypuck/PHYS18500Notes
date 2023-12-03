@@ -505,5 +505,203 @@
 
 
 
+\section{Final Exam Review}
+\begin{itemize}
+    \item \marginnote{12/1:}Announcements.
+    \begin{itemize}
+        \item Thanks for a great quarter!
+        \item Fill out course evals.
+    \end{itemize}
+    \item Our problem.
+    \begin{itemize}
+        \item We have $N$ particles with initial positions $\vec{x}_1(0),\dots,\vec{x}_N(0)$ in 3D space and initial momenta $\vec{p}_1(0),\dots,\vec{p}_N(0)$.
+        \item We want to know what they will do, i.e., what is $\vec{x}_i(t)$ for all $i=1,\dots,N$ and $t>0$.
+    \end{itemize}
+    \item 2-body systems (Chapter 7).
+    \begin{itemize}
+        \item The center of mass $\vec{R}$ and relative position $\vec{r}$ are given by
+        \begin{align*}
+            \vec{R} &= \frac{m_1\vec{r}_1+m_2\vec{r}_2}{m_1+m_2}&
+            \vec{r} &= \vec{r}_1-\vec{r}_2
+        \end{align*}
+        \item We also define the total mass $M$ and reduced mass $\mu$ by
+        \begin{align*}
+            M &= m_1+m_2&
+            \mu &= \frac{m_1m_2}{m_1+m_2}
+        \end{align*}
+        \item Under the constant force of gravity\dots
+        \begin{itemize}
+            \item The Lagrangian for the system is
+            \begin{equation*}
+                L = \frac{1}{2}M\dot{\vec{R}}^2+M\vec{g}\cdot\vec{R}+\frac{1}{2}\mu\dot{\vec{r}}^2-V_\text{int}(\vec{r})
+            \end{equation*}
+            \item The EOMs separate into
+            \begin{align*}
+                M\ddot{\vec{R}} &= M\vec{g}\\
+                \mu\ddot{\vec{r}} &= \vec{F}_{12}
+            \end{align*}
+            where the second equation above is that of a one-body problem.
+            \item We then solve for $\vec{r},\vec{R}$ and use these to find $\vec{r}_1,\vec{r}_2$ via
+            \begin{align*}
+                r_1 &= \vec{R}+\frac{m_2}{M}\vec{r}\\
+                r_2 &= \vec{R}-\frac{m_1}{M}\vec{r}
+            \end{align*}
+        \end{itemize}
+        \item It is often useful to do this in the center of mass frame (*).
+        \begin{itemize}
+            \item We convert into this frame with
+            \begin{align*}
+                \vec{r}_1{}^* &= +\frac{m_2}{M}\vec{r}\\
+                \vec{r}_2{}^* &= -\frac{m_1}{M}\vec{r}
+            \end{align*}
+            \item In the CM frame, we have the following laws.
+            \begin{align*}
+                P^* &= 0&
+                J^* &= \mu\vec{r}\times\dot{\vec{r}}&
+                T^* &= \frac{1}{2}\mu\dot{\vec{r}}{\,}^2
+            \end{align*}
+            \item In the lab frame, we have the following laws.
+            \begin{align*}
+                \vec{P} &= M\vec{R}&
+                \vec{J} &= M\vec{R}\times\dot{\vec{R}}+J^*&
+                T &= \frac{1}{2}M\dot{\vec{R}}{\,}^2+T^*
+            \end{align*}
+        \end{itemize}
+    \end{itemize}
+    \item Moving onto many-body systems (Chapter 8).
+    \begin{itemize}
+        \item We generalize the center of mass to
+        \begin{equation*}
+            \vec{R} = \frac{1}{M}\sum_\alpha m_\alpha\vec{r}_\alpha
+        \end{equation*}
+        where $M=\sum_\alpha m_\alpha$.
+        \item Within the CM frame (*),
+        \begin{align*}
+            \vec{r}_\alpha &= \vec{R}+\vec{r}_\alpha{}^*&
+            \vec{J}{\,}^* &= \sum_\alpha m_\alpha\vec{r}_\alpha{}^*\times\dot{\vec{r}}_\alpha{}^*&
+            T^* &= \sum_\alpha\frac{1}{2}m_\alpha\dot{\vec{r}}_\alpha{}^2
+        \end{align*}
+        \item Within the lab frame,
+        \begin{align*}
+            \vec{P} &= M\dot{\vec{R}}&
+            \vec{J} &= M\vec{R}\times\dot{\vec{R}}+J^*&
+            T &= \frac{1}{2}M\dot{\vec{R}}{\,}^2+T^*
+        \end{align*}
+        \item For no force or constant force (like gravity), the Hamiltonian and Lagrangian separate into CM and rest of system.
+        \item Such problems are hard to solve in general, so we quickly specified to rigid bodies.
+    \end{itemize}
+    \item Rigid bodies (Chapter 9 + a bit of 10).
+    \begin{itemize}
+        \item No changes in internal potential energy.
+        \item We define the angular momentum of the whole system as
+        \begin{equation*}
+            \vec{J} = \overleftrightarrow{I}\vec{\omega}
+        \end{equation*}
+        where $\overleftrightarrow{I}$ is the moment of inertia tensor and $\vec{\omega}$ is the instantaneous angular velocity.
+        \item There is a special set of coordinates here called the principal axes. In the basis of the principal axes $\hat{e}_1,\hat{e}_2,\hat{e}_3$, the moment of inertia tensor is diagonal, i.e.,
+        \begin{equation*}
+            \overleftrightarrow{I} =
+            \begin{bmatrix}
+                I_1 & 0 & 0\\
+                0 & I_2 & 0\\
+                0 & 0 & I_3\\
+            \end{bmatrix}
+        \end{equation*}
+        where
+        \begin{equation*}
+            I_1 = \int\dd{V}\rho_m(y^2+z^2)
+        \end{equation*}
+        for $\rho_m$ the density, and similarly for $I_2,I_3$.
+        \item The products of inertia vanish for these axes; we can use this as a check.
+        \item How do we find a moment of inertia?
+        \begin{itemize}
+            \item Use the parallel axis theorem, which tells us that
+            \begin{equation*}
+                I_1 = M(X^2+Y^2)+I_1^*
+            \end{equation*}
+            where $I_1^*$ is $I_1$ with the origin at the center of mass and $X,Y$ are center of mass coordinates.
+            \item Have Routh's Rules in our mind or in our note's sheet! These are the factors for cylindrical, ellipsoidal, parallelepiped, etc. symmetry. Very important!
+        \end{itemize}
+        \item In the principal axis basis,
+        \begin{equation*}
+            \vec{J} = I_1\omega_1\hat{e}_1+I_2\omega_2\hat{e}_2+I_3\omega_3\hat{e}_3
+        \end{equation*}
+        \item The equations of motion for a rigid body:
+        \begin{align*}
+            \dot{\vec{J}} &= \sum\vec{r}\times\vec{F}&
+            \dot{\vec{P}} &= M\ddot{\vec{R}} = \sum\vec{F}
+        \end{align*}
+        \begin{itemize}
+            \item These equations of motion can help us answer questions such as, "why does a spinning top not fall over?"
+            \item Here, the EOMs are $\vec{J}=I_3\omega\hat{e}_3$ and $\vec{F}=-Mg\khat$.
+            \item Essentially, we have a torque, which is a change in $\vec{J}$ in the $-\hat{e}_3\times\khat$ direction.
+            \item This causes $\vec{\omega}$ to rotate, leading to the phenomenon of precession.
+            \item What balances gravity is $M\ddot{\vec{R}}=\sum\vec{F}=\vec{F}_\text{pivot}+\vec{F}_\text{gravity}$.
+            \item This is used to solve for a force on the pivot via $m\ddot{\vec{R}}=\dot{\omega}\times\vec{R}+\vec{\omega}\times(\vec{\omega}\times\vec{R})$.
+            \item In contrast, if $\omega=0$, then $\dot{\vec{J}}$ is in the $-\hat{e}_3\times\khat$ direction, so the $\vec{J}$ component is into the board, i.e., along $\hat{e}_1$.
+        \end{itemize}
+        \item Stability: $I_1<I_2<I_3$ for a freely rotating body.
+        \begin{itemize}
+            \item Rotation about $\hat{e}_2$ is unstable.
+            \item Rotation about $\hat{e}_1,\hat{e}_3$ is stable.
+            \item Energy in this paradigm.
+            \begin{align*}
+                T &= \frac{1}{2}I_1\omega_1^2+\frac{1}{2}I_2\omega_2^2+\frac{1}{2}I_3\omega_3^2&
+                T^* &= \frac{1}{2}I_1^*\omega_1^2+\frac{1}{2}I_2^*\omega_2^2+\frac{1}{2}I_3^*\omega_3^2
+            \end{align*}
+            \item In terms of Euler angles, i.e., by writing $\vec{\omega}=\dot{\phi}\khat+\dot{\theta}\hat{e}_2'+\dot{\psi}\hat{e}_3$, then for a symmetric body,
+            \begin{equation*}
+                T = \frac{1}{2}I_1\dot{\phi}\sin^2\theta+\frac{1}{2}I_1\dot{\theta}^2+\frac{1}{2}I_3(\dot{\psi}+\dot{\phi}\cos\theta)^2
+            \end{equation*}
+            implies fixed point.
+        \end{itemize}
+        \item With translations, it is usually convenient to separate out this translation from the center of mass, yielding
+        \begin{equation*}
+            T = \frac{1}{2}M(\dot{X}^2+\dot{Y}^2+\dot{Z}^2)+\frac{1}{2}I_1^*(\dot{\phi}\sin^2\theta+\dot{\theta}^2)+\frac{1}{2}I_3^*(\dot{\psi}+\dot{\phi}\cos\theta)^2
+        \end{equation*}
+        \begin{itemize}
+            \item We are not expected to memorize formulas this complicated; if anything this complicated were to arise, she would simply put it on the exam.
+        \end{itemize}
+    \end{itemize}
+    \item After this, we moved onto\dots
+    \item Hamiltonian mechanics (Chapter 12).
+    \begin{itemize}
+        \item We have our friend the Lagrangian $L=T-V$, which gives us generalized momenta
+        \begin{equation*}
+            p_\alpha = \pdv{L}{\dot{q}_\alpha}
+        \end{equation*}
+        \item From here, we can construct the Hamiltonian
+        \begin{equation*}
+            H = \sum_\alpha p_\alpha\dot{q}_\alpha-L
+        \end{equation*}
+        \item For a natural, conservative system: $H=T+V=E$.
+        \item We then get $2n$ first-order ODEs called Hamilton's equations, which are given by
+        \begin{align*}
+            -\dot{p}_\alpha &= \pdv{H}{q_\alpha}&
+            \dot{q}_\alpha &= \pdv{H}{p_\alpha}
+        \end{align*}
+        \item Cool things about the Hamiltonian.
+        \begin{enumerate}
+            \item If $q_\alpha$ is not in $H$, then $q_\alpha$ is ignorable, and $p_\alpha$ is conserved.
+            \item Use this to construct effective potential functions via
+            \begin{equation*}
+                H = \frac{p_\alpha^2}{2m}+U(x,\text{constants})
+            \end{equation*}
+        \end{enumerate}
+        \item If we have a function $G(q,p)$, then because $H$ is the time translation operator, we have that
+        \begin{equation*}
+            \dv{G}{t} = \pdv{G}{t}+[G,H]
+        \end{equation*}
+        \begin{itemize}
+            \item Thus, if $\pdv*{G}{t}=0$ and $[G,H]=-[H,G]=0$, then $G$ is a conserved quantity.
+        \end{itemize}
+        \item It follows that the Galilean relativity principles, which require certain symmetries of $H$, are conserved quantities for an isolated system.
+        \item The quantities conserved are energy, linear momentum, angular momentum.
+    \end{itemize}
+    \item Email her if we have questions about dynamical systems.
+\end{itemize}
+
+
+
 
 \end{document}
