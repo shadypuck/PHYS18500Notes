@@ -155,12 +155,221 @@
         \end{align*}
         where, once again, $\omega=\sqrt{k/\mu}$.
     \end{proof}
-    % \item \textcite{bib:KibbleBerkshire}, Q8.15. Show that in a conservative $N$-body system, a state of minimal total energy for a given total $z$-component of angular momentum is necessarily one in which the system is rotating as a rigid body about the $z$-axis. \emph{Hint}: Use the method of Lagrange multipliers (see \textcite{bib:KibbleBerkshire}, QA.11), and treat the components of the positions $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$ as independent variables.\par
-    % For more details on the setting of this problem, refer to Problem 4.\par
-    % Note that this is not a function minimization problem, as we have discussed previously in the course. Rather, we have a system where the positions and velocities of the particle are changing, and energy is being dissipated, until the system reaches an equilibrium state of minimal energy. We would like to minimize the total energy $E$ subject to the constraint on the angular momentum, which can be accomplished by minimizing $E(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-\omega(J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0})$, where $\omega$ is a scalar Lagrange undetermined multiplier, $J_z$ is the $z$-component of angular momentum, and $J_{z,0}$ is the constant (conserved) value of $J_z$. We assume the system can explore all configurations, so that this function can be minimized with respect to each component of velocity and position for each particle independently. (If you need a referesher on using Lagrange multipliers in this type of optimization problem, Wikipedia has a \href{https://en.wikipedia.org/wiki/Lagrange_multiplier}{good article}.) As inticated in the description for Problem 4, the rigid body result comes from minimization with respect to the velocity components $\dot{r}_{\alpha i}$.
-    % \item \textcite{bib:KibbleBerkshire}, Q8.16. A planet of mass $M$ is surrounded by a cloud of small particles in orbits around it. Their mutual gravitational attraction is negligible. Due to collisions between the particles, the energy will gradually decrease from its initial value, but the angular momentum will remain fixed at, say, $\vec{J}=\vec{J}_0$. The system will thus evolve toward a state of minimum energy, subject to this constraint. Show that the particles will tend to form a ring around the planet. What happens to the energy lost? Why does the argument not necessarily apply to a cloud of particles around a hot star? \emph{Hint}: As in Problem 3, the constraint may be imposed by the method of Lagrange multipliers. In this case, because there are three components of the constraint equation, we need three Lagrange multipliers, say $\omega_x,\omega_y,\omega_z$. We have to minimize the function $E-\vec{\omega}\cdot(\vec{J}-\vec{J}_0)$ with respect to variations of the position $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$, and with respect to $\vec{\omega}$. Show by minimizing with respect to $\dot{\vec{r}}_i$ that once equilibrium has been reached, the cloud rotates as a rigid body, and by minimizing with respect to $\vec{r}_i$ that all particles occupy the same orbit.\par
-    % You can assume that the planet's mass is very large, so the planet is effectively fixed.
-    \setcounter{enumi}{4}
+    \item \textcite{bib:KibbleBerkshire}, Q8.15. Show that in a conservative $N$-body system, a state of minimal total energy for a given total $z$-component of angular momentum is necessarily one in which the system is rotating as a rigid body about the $z$-axis. \emph{Hint}: Use the method of Lagrange multipliers (see \textcite{bib:KibbleBerkshire}, QA.10), and treat the components of the positions $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$ as independent variables.\par
+    For more details on the setting of this problem, refer to Problem 4.\par
+    Note that this is not a variational problem (i.e., a functional minimization problem), as we have discussed previously in the course. Rather, we have a system where the positions and velocities of the particle are changing, and energy is being dissipated, until the system reaches an equilibrium state of minimal energy. We would like to minimize the total energy $E$ subject to the constraint on the angular momentum, which can be accomplished by minimizing $E(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-\omega(J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0})$, where $\omega$ is a scalar Lagrange multiplier, $J_z$ is the $z$-component of angular momentum, and $J_{z,0}$ is the constant (conserved) value of $J_z$. We assume the system can explore all configurations, so that this function can be minimized with respect to each component of velocity and position for each particle independently. (If you need a referesher on using Lagrange multipliers in this type of optimization problem, Wikipedia has a \href{https://en.wikipedia.org/wiki/Lagrange_multiplier}{good article}.) As indicated in the description for Problem 4, the rigid body result comes from minimization with respect to the velocity components $\dot{r}_{\alpha i}$.\par
+    \emph{Hint}: Recall that vectors that satisfy $\dd{\vec{b}}/\dd{t}=\vec{\omega}\times\vec{b}$ are fixed in magnitude and rotate about the axis specified by the direction of $\vec{\omega}$ at rate $\omega$.
+    \begin{proof}
+        % The kinetic energy for this system is
+        % \begin{equation*}
+        %     T = \sum\frac{1}{2}m_\alpha\dot{\vec{r}}_\alpha{}^2
+        % \end{equation*}
+        % Let the potential energy of the system be denoted by
+        % \begin{equation*}
+        %     V(\{\vec{r}_\alpha\})
+        % \end{equation*}
+        % Thus, the Lagrangian for the system is
+        % \begin{equation*}
+        %     L = T-V
+        %     = \sum_\alpha\frac{1}{2}m_\alpha\dot{\vec{r}}_\alpha{}^2-V(\{\vec{r}_\alpha\})
+        % \end{equation*}
+        % A holonomic constraint is $f(\vec{r}_\alpha,\dot{\vec{r}}_\alpha,t)=J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0}=\sum_\alpha m_\alpha(x_\alpha\dot{y}_\alpha-y_\alpha\dot{x}_\alpha)-J_{z,0}=0$.
+
+        % Let $E$ be one scalar field over $(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)$. We want to find the minimum of $E$ on the surface $J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0}=0$. Thus, to this end, we minimize $E-\omega(J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0})$.
+        % This is the "method of Lagrange multipliers," not the "method of Lagrange undetermined multipliers!!!" Is it possible to use the method of Lagrange undetermined multipliers here, or not at all??
+        
+
+        We seek a specific state of the described system in its phase space. Specifically, we mathematically seek the point in the $6N$-dimensional phase space $(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)$ at which the scalar field $E(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)$ is minimized on the surface of the manifold described by $J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0}=0$. Taking the hint, we can solve such a minimization problem using the method of Lagrange multipliers\footnote{Note that this is the "method of Lagrange multipliers," not the "method of Lagrange undetermined multipliers!" These are two very much different (albeit related) things. Is it possible to use the method of Lagrange undetermined multipliers here, or not at all?? The original wording of the guidance document called $\omega$ a "scalar Lagrange \emph{undetermined} multiplier," which leads me to believe that it is possible. See \href{https://askfilo.com/user-question-answers-physics/show-that-in-a-conservative-body-system-a-state-of-minimal-35393438393537}{here} for a possible solution using Lagrange undetermined multipliers.} as described in QA.10, i.e., by minimizing the function
+        \begin{equation*}
+            w = E(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-\omega(J_z(\vec{r}_\alpha,\dot{\vec{r}}_\alpha)-J_{z,0})
+        \end{equation*}
+        over the $6N+1$ independent variables $(\vec{r}_\alpha,\dot{\vec{r}}_\alpha,\omega)$.\par
+        Before we take partial derivatives of $w$ with respect to each of these independent variables, let's express it explicitly in terms of these variables. To do so, we find that
+        \begin{align*}
+            E &= T+V\\
+            &= \frac{1}{2}\sum_\alpha m_\alpha\dot{\vec{r}}_\alpha{}^2+V(\{\vec{r}_\alpha\})\\
+            &= \frac{1}{2}\sum_\alpha m_\alpha(\dot{x}_\alpha^2+\dot{y}_\alpha^2+\dot{z}_\alpha^2)+V(\{x_\alpha,y_\alpha,z_\alpha\})
+        \end{align*}
+        We also find that
+        \begin{align*}
+            J_z &= \left[ \sum_\alpha m_\alpha(\vec{r}_\alpha\times\dot{\vec{r}}_\alpha) \right]\cdot\khat\\
+            &= \sum_\alpha m_\alpha[(x_\alpha\ihat+y_\alpha\jhat+z_\alpha\khat)\times(\dot{x}_\alpha\ihat+\dot{y}_\alpha\jhat+\dot{z}_\alpha\khat)]\cdot\khat\\
+            &= \sum_\alpha m_\alpha(x_\alpha\dot{y}_\alpha-y_\alpha\dot{x}_\alpha)
+        \end{align*}
+        Thus, the function to minimize is
+        \begin{equation*}
+            w = \frac{1}{2}\sum_\alpha m_\alpha(\dot{x}_\alpha^2+\dot{y}_\alpha^2+\dot{z}_\alpha^2)+V(\{x_\alpha,y_\alpha,z_\alpha\})-\omega\left[ \sum_\alpha m_\alpha(x_\alpha\dot{y}_\alpha-y_\alpha\dot{x}_\alpha)-J_{z,0} \right]
+        \end{equation*}\par
+        Taking the next hint, we find the rigid body result by minimizing with respect to the velocity components. The velocity-coordinate partial derivatives for each $\alpha=1,\dots,N$ are
+        \begin{align*}
+            \dv{w}{\dot{x}_\alpha} &= m_\alpha\dot{x}_\alpha+\omega m_\alpha y_\alpha&
+            \dv{w}{\dot{y}_\alpha} &= m_\alpha\dot{y}_\alpha-\omega m_\alpha x_\alpha&
+            \dv{w}{\dot{z}_\alpha} &= m_\alpha\dot{z}_\alpha
+        \end{align*}
+        Setting these equations equal to zero, we learn that
+        \begin{align*}
+            \dot{x}_\alpha &= -\omega y_\alpha&
+            \dot{y}_\alpha &= \omega x_\alpha&
+            \dot{z}_\alpha &= 0
+        \end{align*}
+        Equivalently, defining $\vec{\omega}$ in the usual fashion (i.e., via $\vec{\omega}=(0,0,\omega)$), the above equations can be expressed in the form
+        \begin{equation*}
+            \dv{\vec{r}_\alpha}{t} = \vec{\omega}\times\vec{r}_\alpha
+        \end{equation*}
+        Therefore, taking the final hint, the above equation shows that $\vec{r}_\alpha$ is fixed in magnitude and rotates about the axis specified by the direction of $\vec{\omega}$ at rate $\omega$ for all particles $\alpha$, as desired.
+    \end{proof}
+    \item \textcite{bib:KibbleBerkshire}, Q8.16. A planet of mass $M$ is surrounded by a cloud of small particles in orbits around it. Their mutual gravitational attraction is negligible. Due to collisions between the particles, the energy will gradually decrease from its initial value, but the angular momentum will remain fixed at, say, $\vec{J}=\vec{J}_0$. The system will thus evolve toward a state of minimum energy, subject to this constraint. Show that the particles will tend to form a ring around the planet. What happens to the energy lost? Why does the argument not necessarily apply to a cloud of particles around a hot star? \emph{Hint}: As in Problem 3, the constraint may be imposed by the method of Lagrange multipliers. In this case, because there are three components of the constraint equation, we need three Lagrange multipliers, say $\omega_x,\omega_y,\omega_z$. We have to minimize the function $E-\vec{\omega}\cdot(\vec{J}-\vec{J}_0)$ with respect to variations of the position $\vec{r}_i$ and velocities $\dot{\vec{r}}_i$, and with respect to $\vec{\omega}$. Show by minimizing with respect to $\dot{\vec{r}}_i$ that once equilibrium has been reached, the cloud rotates as a rigid body, and by minimizing with respect to $\vec{r}_i$ that all particles occupy the same orbit.\par
+    You can assume that the planet's mass is very large, so the planet is effectively fixed. Use the hints in Problem 3 for the rigid body result. The derivatives with respect to position components should give a relationship that looks like a force law for each particle. This force law can be used in conjunction with the rigid body result to show that the orbits of the particles are all the same.
+    \begin{proof}
+        % Lastly, we will show that all $r_\alpha$ are equal. Let $\omega=|\vec{\omega}|$ and take the magnitude of both sides of the above equation to find an explicit expression for $r_\alpha$ as follows.
+        
+        % argue that $\vec{\omega},\vec{r}_\alpha,\dot{\vec{r}}_\alpha$ are mutually orthogonal for all particles $\alpha$. Since $\dot{\vec{r}}_\alpha=\dv*{\vec{r}_\alpha}{t}=\vec{\omega}\times\vec{r}_\alpha$ and since the cross product of two vectors is, by definition, orthogonal to both vectors, we know that
+        % \begin{align*}
+        %     \dot{\vec{r}}_\alpha &\perp \vec{\omega}&
+        %     \dot{\vec{r}}_\alpha &\perp \vec{r}_\alpha
+        % \end{align*}
+        % Additionally, since $(-GM/r_\alpha^3)\vec{r}_\alpha=\vec{\omega}\times\dot{\vec{r}}_\alpha$, we know that
+        % \begin{equation*}
+        %     r_\alpha \perp \vec{\omega}
+        % \end{equation*}
+        % Thus, we have the desired orthogonality relation. Since $\vec{\omega}$ is fixed, the fact that each $\vec{r}_\alpha$ ($\alpha=1,\dots,N$) is perpendicular to $\vec{\omega}$ implies that all $\vec{r}_\alpha$ lie in the same plane.
+        
+        % This implies that we can redefine the $x,y,z$-axes of our coordinate system to lie along these vectors
+
+
+        Taking the hint, we once again seek to minimize a function
+        \begin{equation*}
+            w = E-\vec{\omega}\cdot(\vec{J}-\vec{J}_0)
+        \end{equation*}
+        Thus, as in Problem 3, let's begin by expressing $w$ in terms of the $6N$ independent variables. Once again, $E=T+V$, but while the kinetic energy expression $T$ is the same as last time, the potential energy expression $V$ is different. Indeed, the hypothesis that the mutual gravitational attraction between each of these particles is negligible means, mathematically, that
+        \begin{equation*}
+            V_\text{int}(\{\vec{r}_\alpha-\vec{r}_\beta\}) = 0
+        \end{equation*}
+        However, this still leaves the question of the external potential energy $V_\text{ext}$. This expression is nontrivial because each particle exists within the gravitational field of the planet. If we define the origin of our coordinate system to be the center of mass of the planet, then
+        \begin{align*}
+            V_\text{ext}(\{\vec{r}_\alpha\}) &= \sum_\alpha -\frac{GMm_\alpha}{r_\alpha}\\
+            V(\{x_\alpha,y_\alpha,z_\alpha\}) &= \sum_\alpha -\frac{GMm_\alpha}{\sqrt{x_\alpha^2+y_\alpha^2+z_\alpha^2}}
+        \end{align*}
+        Next, there is the question of the angular momentum. This also differs from last time, but as we are taking the whole thing instead of just one component, the method to calculate it is very similar:
+        \begin{align*}
+            \vec{J} &= \sum_\alpha m_\alpha(\vec{r}_\alpha\times\dot{\vec{r}}_\alpha)\\
+            &= \sum_\alpha m_\alpha[(x_\alpha\ihat+y_\alpha\jhat+z_\alpha\khat)\times(\dot{x}_\alpha\ihat+\dot{y}_\alpha\jhat+\dot{z}_\alpha\khat)]\\
+            &= \sum_\alpha m_\alpha[(y_\alpha\dot{z}_\alpha-z_\alpha\dot{y}_\alpha)\ihat+(z_\alpha\dot{x}_\alpha-x_\alpha\dot{z}_\alpha)\jhat+(x_\alpha\dot{y}_\alpha-y_\alpha\dot{x}_\alpha)\khat]\\
+            &= \sum_\alpha m_\alpha
+            \begin{bmatrix}
+                y_\alpha\dot{z}_\alpha-z_\alpha\dot{y}_\alpha\\
+                z_\alpha\dot{x}_\alpha-x_\alpha\dot{z}_\alpha\\
+                x_\alpha\dot{y}_\alpha-y_\alpha\dot{x}_\alpha\\
+            \end{bmatrix}
+        \end{align*}
+        Lastly, we have that
+        \begin{align*}
+            \vec{\omega} &=
+            \begin{bmatrix}
+                \omega_x\\
+                \omega_y\\
+                \omega_z\\
+            \end{bmatrix}&
+            \vec{J}_0 &=
+            \begin{bmatrix}
+                J_{x,0}\\
+                J_{y,0}\\
+                J_{z,0}\\
+            \end{bmatrix}
+        \end{align*}
+        Thus, the function to minimize is
+        \begin{equation*}
+            w = \underbrace{\underbrace{\frac{1}{2}\sum_\alpha m_\alpha(\dot{x}_\alpha^2+\dot{y}_\alpha^2+\dot{z}_\alpha^2)\vphantom{
+                \begin{bmatrix}
+                    \omega_x\\
+                    \omega_y\\
+                    \omega_z\\
+                \end{bmatrix}
+            }}_T+\underbrace{\sum_\alpha -\frac{GMm_\alpha}{\sqrt{x_\alpha^2+y_\alpha^2+z_\alpha^2}}\vphantom{
+                \begin{bmatrix}
+                    \omega_x\\
+                    \omega_y\\
+                    \omega_z\\
+                \end{bmatrix}
+            }}_V}_E-\underbrace{
+                \begin{bmatrix}
+                    \omega_x\\
+                    \omega_y\\
+                    \omega_z\\
+                \end{bmatrix}
+            }_{\vec{\omega}}\cdot\Bigg(
+                \underbrace{
+                    \sum_\alpha m_\alpha
+                    \begin{bmatrix}
+                        y_\alpha\dot{z}_\alpha-z_\alpha\dot{y}_\alpha\\
+                        z_\alpha\dot{x}_\alpha-x_\alpha\dot{z}_\alpha\\
+                        x_\alpha\dot{y}_\alpha-y_\alpha\dot{x}_\alpha\\
+                    \end{bmatrix}
+                }_{\vec{J}}-\underbrace{
+                    \begin{bmatrix}
+                        J_{x,0}\\
+                        J_{y,0}\\
+                        J_{z,0}\\
+                    \end{bmatrix}
+                }_{\vec{J}_0}
+            \Bigg)
+        \end{equation*}
+        By taking the dot product and algebraically rearranging, we obtain
+        \begin{equation*}
+            \begin{aligned}
+                w ={}& \sum_\alpha\left[ \frac{1}{2}m_\alpha(\dot{x}_\alpha^2+\dot{y}_\alpha^2+\dot{z}_\alpha^2)-\frac{GMm_\alpha}{\sqrt{x_\alpha^2+y_\alpha^2+z_\alpha^2}} \right]\\
+                & -\sum_\alpha\left[ \omega_xm_\alpha(y_\alpha\dot{z}_\alpha-z_\alpha\dot{y}_\alpha)+\omega_ym_\alpha(z_\alpha\dot{x}_\alpha-x_\alpha\dot{z}_\alpha)+\omega_zm_\alpha(x_\alpha\dot{y}_\alpha-y_\alpha\dot{x}_\alpha) \right]\\
+                & +\omega_xJ_{x,0}+\omega_yJ_{y,0}+\omega_zJ_{z,0}
+            \end{aligned}
+        \end{equation*}
+        Taking the next hint, we prove by minimizing $w$ with respect to variations of the velocities $\dot{\vec{r}}_\alpha$ that once equilibrium has been reached, the cloud rotates as a rigid body. The velocity-coordinate partial derivatives for each $\alpha=1,\dots,N$ are
+        \begin{align*}
+            \pdv{w}{\dot{x}_\alpha} &= m_\alpha\dot{x}_\alpha-\omega_ym_\alpha z_\alpha+\omega_zm_\alpha y_\alpha\\
+            \pdv{w}{\dot{y}_\alpha} &= m_\alpha\dot{y}_\alpha-\omega_zm_\alpha x_\alpha+\omega_xm_\alpha z_\alpha\\
+            \pdv{w}{\dot{z}_\alpha} &= m_\alpha\dot{z}_\alpha-\omega_xm_\alpha y_\alpha+\omega_ym_\alpha x_\alpha
+        \end{align*}
+        Setting these equations equal to zero, we learn that
+        \begin{align*}
+            \dot{x}_\alpha &= \omega_yz_\alpha-\omega_zy_\alpha\\
+            \dot{y}_\alpha &= \omega_zx_\alpha-\omega_xz_\alpha\\
+            \dot{z}_\alpha &= \omega_xy_\alpha-\omega_yx_\alpha
+        \end{align*}
+        Equivalently, with $\vec{\omega}$ defined as in the first definition of the function $w$, the above equations can be expressed in the form
+        \begin{equation*}
+            \dv{\vec{r}_\alpha}{t} = \vec{\omega}\times\vec{r}_\alpha
+        \end{equation*}
+        Therefore, taking the final hint from Problem 3, the above equation shows that $\vec{r}_\alpha$ is fixed in magnitude and rotates about the axis specified by the direction of $\vec{\omega}$ at rate $\omega$ for all particles $\alpha$. Hence, the cloud rotates as a rigid body.\par
+        Taking the following hint, we prove by minimizing with respect to the variations of the positions $\vec{r}_\alpha$ that all particles occupy the same orbit. The position-coordinate partial derivatives for each $\alpha=1,\dots,N$ are
+        \begin{align*}
+            \pdv{w}{x_\alpha} &= \frac{GMm_\alpha x_\alpha}{(x_\alpha^2+y_\alpha^2+z_\alpha^2)^{3/2}}+\omega_ym_\alpha\dot{z}_\alpha-\omega_zm_\alpha\dot{y}_\alpha\\
+            \pdv{w}{y_\alpha} &= \frac{GMm_\alpha y_\alpha}{(x_\alpha^2+y_\alpha^2+z_\alpha^2)^{3/2}}+\omega_zm_\alpha\dot{x}_\alpha-\omega_xm_\alpha\dot{z}_\alpha\\
+            \pdv{w}{z_\alpha} &= \frac{GMm_\alpha z_\alpha}{(x_\alpha^2+y_\alpha^2+z_\alpha^2)^{3/2}}+\omega_xm_\alpha\dot{y}_\alpha-\omega_ym_\alpha\dot{x}_\alpha
+        \end{align*}
+        Setting these equations equal to zero, we learn that
+        \begin{align*}
+            -\frac{GMx_\alpha}{(x_\alpha^2+y_\alpha^2+z_\alpha^2)^{3/2}} &= \omega_y\dot{z}_\alpha-\omega_z\dot{y}_\alpha\\
+            -\frac{GMy_\alpha}{(x_\alpha^2+y_\alpha^2+z_\alpha^2)^{3/2}} &= \omega_z\dot{x}_\alpha-\omega_x\dot{z}_\alpha\\
+            -\frac{GMz_\alpha}{(x_\alpha^2+y_\alpha^2+z_\alpha^2)^{3/2}} &= \omega_x\dot{y}_\alpha-\omega_y\dot{x}_\alpha
+        \end{align*}
+        Equivalently, the above equations can be expressed in the form
+        \begin{equation*}
+            -\frac{GM}{r_\alpha^3}\vec{r}_\alpha = \vec{\omega}\times\dot{\vec{r}}_\alpha
+        \end{equation*}
+        This equation gives us everything we need to finish the problem. But before we can move any closer to proving that "all particles $\alpha$ occupy the same orbit," we need a more precise understanding of exactly what this condition means mathematically. First off, since we have proven that the particles rotate as a rigid body, each "orbit" will be circular. Since a circular orbit is specified by a plane in which the orbit lies and a radius, this condition further translates to all $\vec{r}_\alpha$ lying in the same plane and all $|\vec{r}_\alpha|=r_\alpha$ being equal.\par
+        We will now show that all $\vec{r}_\alpha$ lie in the same plane. To do so, we will prove that they are all perpendicular to a single vector, namely $\vec{\omega}$. Let $\alpha$ be arbitrary. Then this relation follows immediately from the facts that $(-GM/r_\alpha^3)\vec{r}_\alpha=\vec{\omega}\times\dot{\vec{r}}_\alpha$ and that the cross product of two vectors ($\vec{r}_\alpha$) is, by definition, orthogonal to both vectors (including $\vec{\omega}$).\par
+        We will show that all $r_\alpha$ are equal by taking the magnitude of both sides of the above vector equation and solving for an explicit expression for $r_\alpha$. However, before we can do this, we need the definition $\omega:=|\vec{\omega}|$. We also need to recall that $\dot{\vec{r}}_\alpha=\dv*{\vec{r}_\alpha}{t}=\vec{\omega}\times\vec{r}_\alpha$. Lastly, we need to establish the orthogonality not just between $\vec{\omega}$ and $\vec{r}_\alpha$, but between every vector in the set $\vec{\omega},\vec{r}_\alpha,\dot{\vec{r}}_\alpha$; fortunately, this can be done by adding to the previously determined fact that $\vec{\omega}\perp\vec{r}_\alpha$ the relation $\dot{\vec{r}}_\alpha=\vec{\omega}\times\vec{r}_\alpha$ and the aforementioned fact that the cross product of two vectors is orthogonal to both vectors. Therefore,
+        \begingroup
+        \allowdisplaybreaks
+        \begin{align*}
+            \left| -\frac{GM}{r_\alpha^3}\vec{r}_\alpha \right| &= \left| \vec{\omega}\times\dot{\vec{r}}_\alpha \right|\\
+            \frac{GM}{r_\alpha^3}|\vec{r}_\alpha| &= |\vec{\omega}|\,|\dot{\vec{r}}_\alpha|\sin\ang{90}\\
+            \frac{GM}{r_\alpha^3}r_\alpha &= |\vec{\omega}|\,|\vec{\omega}\times\vec{r}_\alpha|\,1\\
+            \frac{GM}{r_\alpha^2} &= |\vec{\omega}|\,|\vec{\omega}|\,|\vec{r}_\alpha|\sin\ang{90}\\
+            &= \omega^2r_\alpha\\
+            \sqrt[3]{\frac{GM}{\omega^2}} &= r_\alpha
+        \end{align*}
+        \endgroup
+    \end{proof}
     \item \textcite{bib:KibbleBerkshire}, Q9.11. A long, thin, hollow cylinder of radius $a$ is balanced on a horizontal knife edge, with its axis parallel to it. It is given a small displacement. Calculate the angular displacement at the moment when the cylinder ceases to touch the knife edge. \emph{Hint}: This is the moment when the radial component of the reaction falls to zero.
     \begin{proof}
         The setup for this problem is as follows.
