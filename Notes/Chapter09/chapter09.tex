@@ -12,80 +12,26 @@
 \chapter{Rigid Body Motion}
 \section{Introduction; Rotation About an Axis; Moments of Inertia}
 \begin{itemize}
-    \item \marginnote{11/3:}Announcements.
+    \item \marginnote{11/3:}Today.
     \begin{itemize}
-        \item We will now have \emph{seven} problem sets instead of \emph{eight}.
-        \begin{itemize}
-            \item Each problem set is now worth more (PSets still amount to 40\% of our grade).
-            \item There will still be one makeup PSet at the end of the quarter.
-        \end{itemize}
-        \item PSet 5 is due next Friday.
-    \end{itemize}
-    \item Recap: Many-body motion.
-    \begin{itemize}
-        \item It's useful to introduce the center of mass coordinate, $\vec{R}=1/M\cdot\sum_\alpha m_\alpha\vec{r}_\alpha$, where $M=\sum_\alpha m_\alpha$.
-        \item In the CM frame, $\vec{R}{\,}^*=0$ and $\vec{r}_\alpha=\vec{R}+\vec{r}_\alpha{}^*$.
-        \begin{itemize}
-            \item We also have $\vec{P}{\,}^*=0$, $T^*=\sum_\alpha m_\alpha(\dot{\vec{r}}_\alpha{}^*)^2/2$, and $\vec{J}{\,}^*=\sum_\alpha m_\alpha\vec{r}_\alpha{}^*\times\dot{\vec{r}}_\alpha{}^*$.
-        \end{itemize}
-        \item Then, going back into the lab frame, we have $\vec{P}=M\cdot\dot{\vec{R}}$, $T=M\dot{\vec{R}}^2/2+T^*$, and $\vec{J}=M\vec{R}\times\dot{\vec{R}}+\vec{J}{\,}^*$.
-        \item One more note before we move onto rigid bodies: Suppose we're interested in the work, i.e., the rate of change of $T$ in the system.
-        \begin{itemize}
-            \item Recall that $m\ddot{\vec{r}}_\alpha=\sum_\beta\vec{F}_{\alpha\beta}+\vec{F}_\alpha$.
-            \item Thus,
-            \begin{equation*}
-                \dot{T} = \sum_\alpha m_\alpha\dot{\vec{r}}_\alpha\cdot\ddot{\vec{r}}_\alpha
-                = \sum_\alpha\sum_\beta\dot{\vec{r}}_\alpha\cdot\vec{F}_{\alpha\beta}+\sum_\alpha\dot{\vec{r}}_\alpha\cdot\vec{F}_\alpha
-            \end{equation*}
-            \item Note: Even letting $\vec{r}_{\alpha\beta}=\vec{r}_\alpha-\vec{r}_\beta$ and using $\vec{F}_{\alpha\beta}=-\vec{F}_{\beta\alpha}$, the left term above is often not equal to zero, i.e., there is no reason for it to vanish as in previous cases.
-            \begin{itemize}
-                \item This is not surprising, as it makes sense that the internal potential energy of the system would change in many cases.
-            \end{itemize}
-            \item However, if the $\vec{F}_{\alpha\beta}$ are conservative, then
-            \begin{equation*}
-                \dot{\vec{r}}_{\alpha\beta}\cdot\vec{F}_{\alpha\beta} = -\dv{t}V_{\text{int},\alpha\beta}
-            \end{equation*}
-            is the rate of internal forces doing work.
-            \item Consequence: The rate of change of the kinetic plus internal potential energy is equal to the rate at which the external forces do work. That is,
-            \begin{equation*}
-                \dv{t}(T+V_\text{int}) = \sum_\alpha\dot{\vec{r}}_\alpha\cdot\vec{F}_\alpha
-            \end{equation*}
-            \item Additionally, we can find the rate of change of energy relative to the center of mass. In particular, in the CM frame, we have
-            \begin{equation*}
-                \dv{t}(\frac{1}{2}M\dot{\vec{R}}^2) = M\dot{\vec{R}}\cdot\ddot{\vec{R}}
-                = \dot{\vec{R}}\cdot\sum_\alpha\vec{F}_\alpha
-            \end{equation*}
-            \item Subtracting the above equation from the one above it, we obtain
-            \begin{align*}
-                \dv{t}(T^*+V_\text{int}) &= \dv{t}(T-\frac{1}{2}M\dot{\vec{R}}^2+V_\text{int})\\
-                &= \sum_\alpha\dot{\vec{r}}_\alpha\cdot\vec{F}_\alpha-\dot{\vec{R}}\cdot\sum_\alpha\vec{F}_\alpha\\
-                &= \sum_\alpha\dot{\vec{r}}_\alpha{}^*\cdot\vec{F}_\alpha
-            \end{align*}
-            \item Note that in the leftmost term above, we are differentiating the total energy in the CM frame with respect to time. But since the time rate of change of energy is power, what we have expressed is the power.
-        \end{itemize}
-        \item Comparing this to $\dot{\vec{J}}{\,}^*=\sum_\alpha\vec{r}_\alpha{}^*\times\vec{F}_\alpha$, we see that we have a similar structure.
-    \end{itemize}
-    \item Today.
-    \begin{itemize}
-        \item Rigid bodies (a special case of many-body motion in which the particles are fixed relative to each other).
+        \item Rigid bodies (special case of many-body motion in which particles are fixed relative to each other).
         \item Motion about an axis.
     \end{itemize}
     \item Today, we will primarily focus on rotation about an axis.
     \item The setup is as follows.
     \begin{itemize}
-        \item We choose rotation to be in the $\hat{z}$ direction. We choose a shape (whatever we want), and it is rotating about this $\hat{z}$ axis.
+        \item We choose rotation to be in the $\hat{z}$ direction. This means that we choose a shape (whatever we want) and let it rotate about this $\hat{z}$ axis.
         \item If is often useful to use cylindrical coordinates $(\rho,\phi,z)$ here because of the axial symmetry.
         \begin{itemize}
             \item Conversions: $x=\rho\cos\phi$, $y=\rho\sin\phi$, and $z=z$.
-            \item Note that $\vec{r}=z\hat{z}+\rho\hat{\rho}$, much like in Figure \ref{fig:Vrotation}.
         \end{itemize}
-        \item Recall that $\dv*{\vec{r}}{t}=\vec{\omega}\times\vec{r}=\dot{\vec{r}}$.
+        \item Note that $\vec{r}=z\hat{z}+\rho\hat{\rho}$ (much like in Figure \ref{fig:Vrotation}) and recall that $\dv*{\vec{r}}{t}=\vec{\omega}\times\vec{r}=\dot{\vec{r}}$.
         \item We can now calculate our $\vec{J}$. It is equal to
         \begin{equation*}
             \vec{J} = \sum_\alpha m_\alpha\vec{r}_\alpha\times\dot{\vec{r}}_\alpha
             = \sum_\alpha m_\alpha\vec{r}_\alpha\times(\vec{\omega}\times\vec{r}_\alpha)
         \end{equation*}
-        \item Expanding out the cross product, we obtain
+        \item Expanding out the cross product in parentheses, we obtain
         \begin{equation*}
             \begin{pmatrix}
                 \hat{\rho} & \hat{\phi} & \hat{z}\\
@@ -103,30 +49,29 @@
             \end{pmatrix}
             = -z\rho\omega\hat{\rho}+\rho^2\omega\hat{z}
         \end{equation*}
+        \item Thus, we have that
+        \begin{align*}
+            \vec{J} &= \sum_\alpha m_\alpha(\rho_\alpha^2\omega\hat{z}-z_\alpha\omega\rho_\alpha\hat{\rho})\\
+            &= \sum_\alpha m_\alpha[\rho_\alpha^2\omega\hat{z}-z_\alpha\omega(\rho_\alpha\cos\phi\,\hat{x}+\rho_\alpha\sin\phi\,\hat{y})]\\
+            &= \omega\left( \sum_\alpha m_\alpha\rho_\alpha^2 \right)\hat{z}+\omega\left( -\sum_\alpha m_\alpha z_\alpha x_\alpha \right)\hat{x}+\omega\left( -\sum_\alpha m_\alpha z_\alpha y_\alpha \right)\hat{y}
+        \end{align*}
+        \item We can get this into a more familiar form via \textbf{moments of inertia}.
     \end{itemize}
-    \item Thus, we have that
-    \begin{align*}
-        \vec{J} &= \sum_\alpha m_\alpha(\rho_\alpha^2\omega\hat{z}-z_\alpha\omega\rho_\alpha\hat{\rho})\\
-        &= \sum_\alpha m_\alpha[\rho_\alpha^2\omega\hat{z}-z_\alpha\omega(\rho_\alpha\cos\phi\hat{x}+\rho_\alpha\sin\phi\hat{y})]\\
-        &= \omega\left( \sum_\alpha m_\alpha\rho_\alpha^2 \right)\hat{z}-\left( \omega\sum_\alpha m_\alpha z_\alpha x_\alpha \right)\hat{x}-\left( \omega\sum_\alpha m_\alpha z_\alpha y_\alpha \right)\hat{y}
-    \end{align*}
-    \begin{itemize}
-        \item We can get this into a more familiar term via \textbf{moments of inertia}.
-    \end{itemize}
+    \pagebreak
     \item \textbf{Moment of inertia} (about the $z$-axis). \emph{Denoted by} $\bm{I_{zz}}$. \emph{Given by}
     \begin{equation*}
         I_{zz} = \sum_\alpha m_\alpha\rho_\alpha^2
         = \sum_\alpha m_\alpha(x_\alpha^2+y_\alpha^2)
     \end{equation*}
     \begin{itemize}
-        \item In general, these are \textbf{second} moments about an axis. This just reflects the fact that the axial distance is \emph{squred}.
+        \item In general, these are \textbf{second} moments about an axis. This name just reflects the fact that the axial distance $\rho_\alpha$ is \emph{squared}.
     \end{itemize}
-    \item \textbf{Products of inertia}. Examples.
-    \begin{itemize}
-        \item $I_{xz}=-\sum_\alpha m_\alpha x_\alpha z_\alpha$.
-        \item $I_{yz}=-\sum_\alpha m_\alpha y_\alpha z_\alpha$.
-    \end{itemize}
-    \item It follows from these definitions that, for $\vec{\omega}=\omega\hat{z}$, we have
+    \item \textbf{Products of inertia}. \emph{Examples}.
+    \begin{align*}
+        I_{xz} &= -\sum_\alpha m_\alpha x_\alpha z_\alpha&
+        I_{yz} &= -\sum_\alpha m_\alpha y_\alpha z_\alpha
+    \end{align*}
+    \item It follows from these definitions and the above expression for $\vec{J}$ that, for $\vec{\omega}=\omega\hat{z}$, we have
     \begin{align*}
         J_z &= I_{zz}\omega&
         J_y &= I_{yz}\omega&
@@ -140,7 +85,7 @@
         J_y &= I_{yx}\omega&
         J_x &= I_{xx}\omega
     \end{align*}
-    \item If we have $\vec{\omega}=\omega_x\hat{x}+\omega_y\hat{y}+\omega_z\hat{z}$, then the contributions to angular momentum add via
+    \item If we have $\vec{\omega}=\omega_x\hat{x}+\omega_y\hat{y}+\omega_z\hat{z}$, then the contributions to angular momentum add as a linear combination via
     \begin{equation*}
         \begin{bmatrix}
             J_x\\
@@ -153,7 +98,7 @@
                 I_{yx} & I_{yy} & I_{yz}\\
                 I_{zx} & I_{zy} & I_{zz}\\
             \end{bmatrix}
-        }_I
+        }_{\overleftrightarrow{I}}
         \begin{bmatrix}
             \omega_x\\
             \omega_y\\
@@ -161,11 +106,12 @@
         \end{bmatrix}
     \end{equation*}
     \begin{itemize}
-        \item $I$ is the \textbf{moment of inertia tensor}.
+        \item $\overleftrightarrow{I}$ is the \textbf{moment of inertia tensor}.
         \item It follows that, for example,
         \begin{equation*}
             J_x = I_{xx}\omega_x+I_{xy}\omega_y+I_{xz}\omega_z
         \end{equation*}
+        \item Since $I_{xy}=I_{yx}$, for example, $\overleftrightarrow{I}$ is a symmetric matrix.
     \end{itemize}
     \item What's a tensor?
     \begin{itemize}
@@ -174,44 +120,46 @@
     \end{itemize}
     \item Consider again $\vec{\omega}=\omega\hat{z}$.
     \begin{itemize}
-        \item Then
+        \item We know that
         \begin{equation*}
             J_z = I_{zz}\omega
             = \sum_\alpha m_\alpha\rho_\alpha^2\omega
         \end{equation*}
-        \item It follows that
+        \item Additionally, recall that
         \begin{equation*}
             \dot{\vec{J}} = \sum_\alpha\vec{r}_\alpha\times\vec{F}_\alpha
         \end{equation*}
-        \item Computing the cross product, we have
+        \item Computing the cross product in the above expression, we have
         \begin{equation*}
             \begin{pmatrix}
                 \hat{\rho} & \hat{\phi} & \hat{z}\\
                 \rho_\alpha & 0 & z_\alpha\\
                 F_\rho & F_\phi & F_z\\
             \end{pmatrix}
-            = -F_\phi z_\alpha\hat{\rho}+\rho_\alpha F_\phi\hat{z}
+            = -F_\phi z_\alpha\hat{\rho}+\rho_\alpha F_\phi\hat{z}\footnotemark
         \end{equation*}
+        \footnotetext{Why is there not a $\hat{\phi}$ term in this cross product??}
         \item Then
         \begin{equation*}
             \dot{J}_z = I_{zz}\dot{\omega}
             = \sum_\alpha\rho_\alpha F_\phi
         \end{equation*}
         \begin{itemize}
-            \item This is the equation of motion for rigid bodies.
+            \item This equation determines the rate of change of angular velocity, and hence may be called the equation of motion of the rotating body.
             \item It gives $\omega(t)$ in terms of force $F_\phi$.
         \end{itemize}
     \end{itemize}
-    \item Example: Equilibrium.
-    \begin{figure}[h!]
+    \item Example: Let the shape depicted in Figure \ref{fig:rectangularLamina} be in equilibrium, i.e., $\dot{\omega}=0$.
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.22\linewidth]{../ExtFiles/rectangularLamina.png}
         \caption{The rectangular lamina.}
         \label{fig:rectangularLamina}
     \end{figure}
     \begin{itemize}
-        \item The \textbf{rectangular lamina}.
-        \item We're pulling on two corners, and if it's in equilibrium, the thing is not rotating. This means that
+        \item This shape is called the \textbf{rectangular lamina}. It is of size $a\times b$, of negligible mass, pivoted at one quarter, carrying a weight $Mg$ at one corner, and supported by a horizontal force $\vec{F}$.
+        \item We're pulling on two corners, and if it's in equilibrium, the thing is not rotating.
+        \item This means that the force $F$ with which we have to pull on the top-left corner in order for the shape to stay in equilibrium is
         \begin{align*}
             bF-aMg &= 0\\
             F &= \frac{a}{b}Mg
@@ -222,24 +170,24 @@
         \item We have that
         \begin{equation*}
             T = \sum_\alpha\frac{1}{2}m_\alpha(\rho_\alpha\omega)^2
-            = \frac{1}{2}I\omega^2
+            = \frac{1}{2}I_{zz}\omega^2
         \end{equation*}
         \item It follows that the time rate of change of the kinetic energy is
         \begin{equation*}
-            \dot{T} = I\omega\dot{\omega}
+            \dot{T} = I_{zz}\omega\dot{\omega}
             = \sum_\alpha\omega\rho_\alpha F_\phi
             = \sum_\alpha(\rho\dot{\phi})F_\phi
             = \sum_\alpha\dot{\vec{r}}_\alpha\cdot\vec{F}_\alpha
         \end{equation*}
-        \item Thus, in this case, the internal forces do no work (which in some sense makes sense for a rigid body).
-        \item Thus, the KE is just related to these external forces as shown above.
+        \item Thus, in this case, the internal forces do no work (which makes sense for a rigid body).
+        \item Thus, the KE is just related to the external forces, as shown above.
     \end{itemize}
     \item We'll talk about pivot points next time.
 \end{itemize}
 
 
 
-\section{Euler's Angles; Freely Rotating Symmetric Body}
+\section{Center of Mass Acceleration; Compound Pendulum}
 \begin{itemize}
     \item \marginnote{11/6:}Announcements.
     \begin{itemize}
@@ -304,21 +252,23 @@
     \begin{itemize}
         \item Last time, we found that there's a huge simplification we can make because all the particles in a rigid body are locked together.
         \begin{itemize}
-            \item The simplification is that $\vec{J}=\overleftrightarrow{I}\vec{\omega}$, where $\overleftrightarrow{I}$ is the moment of inertia tensor from last time.
-            \item Jerison writes out the matrix formula all over again.
-            \item Point to emphasize: $\overleftrightarrow{I}$ is an intrinsic property of the rigid body, and it plays the role of mass.
+            \item The simplification is that $\vec{J}=\overleftrightarrow{I}\vec{\omega}$, where $\overleftrightarrow{I}$ is the moment of inertia tensor.
+            \begin{itemize}
+                \item Jerison writes out the matrix formula all over again.
+            \end{itemize}
+            \item Key point: $\overleftrightarrow{I}$ is an \emph{intrinsic} property of the rigid body, playing the role of mass.
             \item If we have a continuous object, the sums over indices $\alpha$ turn into an integral! Recall this from prior courses.
-            \item Compare to $\vec{P}=M\dot{\vec{R}}$ to see that there is a similar structure in the above equation.
+            \item Compare $\vec{J}=\overleftrightarrow{I}\vec{\omega}$ to $\vec{P}=M\dot{\vec{R}}$; there is a similar structure in the equations.
         \end{itemize}
         \item Special case: Rotation about a fixed axis.
         \begin{itemize}
             \item We're headed toward the \textbf{compound pendulum}.
             \item For such a problem, we use cylindrical coordinates.
             \begin{itemize}
-                \item Jerison redefines the coordinate conversions.
+                \item Jerison rewrites the coordinate conversions.
             \end{itemize}
             \item We take $\vec{\omega}$ to lie in the $\khat$ direction via $\vec{\omega}=\omega\khat$.
-            \item The moment we're most concerned with is $I_{zz}$, defined as previously. Differentiating gets us to $J_z=I_{zz}\omega_z$ and $\dot{J}_z=I_{zz}\dot{\omega}$.
+            \item The moment with which we're most concerned is $I_{zz}$, defined as previously. Differentiating gets us to $J_z=I_{zz}\omega_z$ and $\dot{J}_z=I_{zz}\dot{\omega}$\footnote{Where did the subscript $z$ come from and why did it promptly disappear?? I don't think there's anything special going on here; notation is just wacky and confusing.}.
             \item From here, we can define the kinetic energy
             \begin{equation*}
                 T = \sum_\alpha\frac{1}{2}m_\alpha\dot{\vec{r}}_\alpha{}^2
@@ -336,20 +286,29 @@
             \dot{\vec{P}} = M\ddot{\vec{R}}
             = \vec{Q}+\sum_\alpha\vec{F}_\alpha
         \end{equation*}
-        \item To make calculations, it will additionally be useful to have the following expression. For a rotating body, $\dot{\vec{R}}$ is given via $\dot{\vec{R}}=\vec{\omega}\times\vec{R}$ and $\ddot{\vec{R}}=\dot{\vec{\omega}}\times\vec{R}+\vec{\omega}\times\dot{\vec{R}}=\dot{\vec{\omega}}\times\vec{R}+\vec{\omega}\times(\vec{\omega}\times\vec{R})$.
+        \begin{itemize}
+            \item $\vec{Q}$ is the force on the axis and $\sum_\alpha\vec{F}_\alpha$ denotes other forces.
+        \end{itemize}
     \end{itemize}
-    \item This is true in general; if we specialize to our case of rotation about an axis\dots
+    \item To make calculations, it will additionally be useful to have the following expression. For a rotating body, $\ddot{\vec{R}}$ can be found as follows: Since $\dot{\vec{R}}=\vec{\omega}\times\vec{R}$, we have that
+    \begin{equation*}
+        \ddot{\vec{R}} = \dot{\vec{\omega}}\times\vec{R}+\vec{\omega}\times\dot{\vec{R}}
+        = \dot{\vec{\omega}}\times\vec{R}+\vec{\omega}\times(\vec{\omega}\times\vec{R})
+    \end{equation*}
+    \item The above expression for $\ddot{\vec{R}}$ holds true in general.
+    \item If we specialize to the case of rotation about an axis, we can obtain a more tailored expression.
     \begin{itemize}
-        \item We first choose coordinates such that $z_\text{cm}=0$.
-        \item Since this is rotation about an axis, the above equation simplifies to
+        \item First, choose the origin so that $z_\text{cm}=0$.
+        \item Then the above expression simplifies to
         \begin{equation*}
-            \ddot{\vec{R}} = R\dot{\omega}\,\hat{\phi}-\omega^2R\,\hat{\phi}
+            \ddot{\vec{R}} = \dot{\omega}\,\hat{z}\times R\,\hat{\rho}+\omega\,\hat{z}\times(\omega\,\hat{z}\times R\,\hat{\rho})
+            = R\dot{\omega}\,\hat{\phi}-\omega^2R\,\hat{\rho}
             = R\ddot{\phi}\,\hat{\phi}-\dot{\phi}^2R\,\hat{\rho}
         \end{equation*}
-        \item In the right term above, the left term is tangential acceleration and the right term is centripetal acceleration.
+        \item The right term above is tangential acceleration minus centripetal acceleration.
     \end{itemize}
     \item Example: Compound pendulum.
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \begin{tikzpicture}
             \small
@@ -379,7 +338,8 @@
         \begin{equation*}
             L = T-V = \frac{1}{2}I_{zz}\dot{\phi}^2+MgR\cos\phi
         \end{equation*}
-        \item It follows that our EOM is
+        \item Going forward, we will denote $I_{zz}$ with $I$.
+        \item It follows from the E-L equation that our EOM is
         \begin{align*}
             I\ddot{\phi} &= -MgR\sin\phi\\
             \ddot{\phi} &= -\frac{MgR}{I}\sin\phi\\
@@ -398,7 +358,7 @@
             \item It follows that
             \begin{equation*}
                 \dot{\phi}^2 = \frac{E+MgR\cos\phi}{I/2}
-                = \frac{2E}{Mr\ell}+\frac{2g}{\ell}\cos\phi
+                = \frac{2E}{MR\ell}+\frac{2g}{\ell}\cos\phi
             \end{equation*}
             \item We want to solve for $\vec{Q}$ from $M\ddot{\vec{R}}=\vec{Q}+\sum_\alpha\vec{F}_\alpha$.
             \item Here, the only relevant external force is our gravitational force $Mg\cos\phi\,\hat{\rho}-Mg\sin\phi\,\hat{\phi}$.
@@ -412,7 +372,7 @@
                 Q_z &= 0&
                 Q_\phi &= MR\ddot{\phi}+Mg\sin\phi
             \end{align*}
-            \item Substituting from the conservation of energy, we obtain
+            \item Substituting from the conservation of energy and EOM, we obtain
             \begin{align*}
                 Q_\rho &= -\frac{2E}{\ell}-Mg\left( 1+\frac{2R}{\ell} \right)\cos\phi&
                 Q_z &= 0&
@@ -422,7 +382,7 @@
         \end{itemize}
     \end{itemize}
     \item \textbf{Equivalent simple pendulum}: The simple pendulum having the same equation of motion as our extended body.
-    \item What happens in a similar system when we have a "sudden blow" or impulse?
+    \item What happens in a similar system if it receives a "sudden blow" or impulse?
     \begin{figure}[h!]
         \centering
         \begin{tikzpicture}
@@ -539,7 +499,7 @@
             \dot{\vec{J}} &= \sum_\alpha\vec{r}_\alpha\times\vec{F}_\alpha
         \end{align*}
         \item Last time, we talked about rotation about a fixed axis.
-        \item We've also seen that more generally, if $\vec{\omega}=\omega_x\ihat+\omega_y\jhat+\omega_z\khat$, then the angular momentum is given by
+        \item We've also seen (more generally) that if $\vec{\omega}=\omega_x\ihat+\omega_y\jhat+\omega_z\khat$, then the angular momentum is given by
         \begin{equation*}
             \vec{J} = \overleftrightarrow{I}\vec{\omega}
         \end{equation*}
@@ -563,8 +523,8 @@
             I_{xx} &= \iiint\rho_m(\vec{r})(z^2+y^2)&
             I_{xy} &= -\iiint\rho_m(\vec{r})xy&
         \end{align*}
-        and the like where herein, $\rho_m$ is the density mass/volume, not the radial coordinate.
-        \item Change of basis rule: If you have a change of basis matrix $R$, then $\overleftrightarrow{I}$ in your new basis looks like $R^{-1}IR$.
+        and the like where herein, $\rho_m$ is the density (i.e., mass/volume), not the radial coordinate.
+        \item Change of basis rule: If you have a change-of-basis matrix $R$, then $\overleftrightarrow{I}$ in your new basis looks like $R^{-1}\overleftrightarrow{I}R$.
         \item Note that $\overleftrightarrow{I}$ is called a $\binom{1}{1}$ tensor since it has 1 \textbf{contravariant} and 1 \textbf{covariant} dimension, meaning that it is like a regular matrix with 1 dimension that transforms as row vectors and 1 dimension that transforms as column vectors.
         \item Other examples of tensors.
         \begin{itemize}
@@ -572,27 +532,31 @@
             \item Vectors: Rank 1 tensors (can be row or column vectors).
             \item Metrics: There are $\binom{0}{2}$ tensors which do \emph{not} transform as matrices, even though they are arrays of numbers.
         \end{itemize}
-        \item Note that since $I_{xy}=I_{yx}$, etc., $\overleftrightarrow{I}$ is \textbf{symmetric}.
-        \begin{itemize}
-            \item This implies that $\overleftrightarrow{I}$ has three real eigenvalues.
-            \item Moreover, the eigenvectors of $\overleftrightarrow{I}$ are orthogonal.
-            \item Thus, the eigenvectors of $\overleftrightarrow{I}$ are called the \textbf{principal axes} $\vec{e}_1,\vec{e}_2,\vec{e}_3$. Thus, in principle, we can find these for any object we choose, even though in any object we study, it will be obvious which axes are which.
-            \item In the special basis of the principal axes, $\overleftrightarrow{I}$ is diagonal, i.e., $\overleftrightarrow{I}=\diag(I_{xx},I_{yy},I_{zz})$. It follows that
-            \begin{equation*}
-                \vec{J} = I_1\omega_1\vec{e}_1+I_2\omega_2\vec{e}_2+I_3\omega_3\vec{e}_3
-            \end{equation*}
-        \end{itemize}
         \item We don't need to worry about any of this stuff if we don't want to.
     \end{itemize}
-    \item All these tensor machinations help with defining\dots
+    \item Note that since $I_{xy}=I_{yx}$, etc., $\overleftrightarrow{I}$ is \textbf{symmetric}. Thus, by the real spectral theorem, it is orthonormally diagonalizable.
     \begin{itemize}
-        \item The kinetic energy as:
+        \item This implies that $\overleftrightarrow{I}$ has three real eigenvalues.
+        \item Moreover, the eigenvectors of $\overleftrightarrow{I}$ are orthonormal.
+        \item Thus, we may use the eigenvectors of $\overleftrightarrow{I}$ to define an orthonormal basis of 3D space. We call these eigenvectors the \textbf{principal axes} $\vec{e}_1,\vec{e}_2,\vec{e}_3$. Thus, in principle, we can find these for any object we choose, even though in any object we study in this class, it will be obvious which axes are which.
+        \item In the special basis of the principal axes, $\overleftrightarrow{I}$ is diagonal, i.e., $\overleftrightarrow{I}=\diag(I_{xx},I_{yy},I_{zz})$. It follows that
+        \begin{equation*}
+            \vec{J} = I_1\omega_1\vec{e}_1+I_2\omega_2\vec{e}_2+I_3\omega_3\vec{e}_3
+        \end{equation*}
+    \end{itemize}
+    \item We now put some of these tensor machinations to good use.
+    \begin{itemize}
+        \item We begin with a couple of observations and a consequence. We then relate these back to principal axes.
+        \item Observe that we can express the kinetic energy as follows.
         \begin{equation*}
             T = \sum_\alpha\frac{1}{2}m_\alpha\dot{\vec{r}}_\alpha{}^2
             = \sum_\alpha\frac{1}{2}m_\alpha(\vec{\omega}\times\vec{r}_\alpha)^2
             = \sum_\alpha\frac{1}{2}m_\alpha[\omega^2r_\alpha^2-(\vec{\omega}\cdot\vec{r}_\alpha)^2]
         \end{equation*}
-        \item The angular momentum as:
+        \begin{itemize}
+            \item A derivation of the vector algebra identity $(\vec{u}\times\vec{v})^2=u^2v^2-(\vec{u}\cdot\vec{v})^2$ can be found in \textcite{bib:KibbleBerkshire}.
+        \end{itemize}
+        \item Observe that we can express the angular momentum as follows.
         \begin{equation*}
             \vec{J} = \sum_\alpha m_\alpha\vec{r}_\alpha\times\dot{\vec{r}}_\alpha
             = \sum_\alpha m_\alpha\vec{r}_\alpha\times(\vec{\omega}\times\vec{r}_\alpha)
@@ -606,13 +570,14 @@
         \begin{equation*}
             T = \frac{1}{2}I_1\omega_1^2+\frac{1}{2}I_2\omega_2^2+\frac{1}{2}I_3\omega_3^2
         \end{equation*}
-        \item We can use the above to get the Lagrangian for general rigid body motion.
+        \item We can use the above expression to get the Lagrangian for general rigid body motion.
         \item A few notes on this.
         \begin{itemize}
             \item $\vec{e}_1,\vec{e}_2,\vec{e}_3$ rotate with the body.
-            \item $\vec{J}=\overleftrightarrow{I}\vec{\omega}$ implies that in general, $\vec{J}$ is not parallel to $\vec{\omega}$. However, if $\vec{\omega}$ is along $\vec{e}_1,\vec{e}_2,\vec{e}_3$, then $\vec{J}$ is parallel to $\vec{\omega}$.
+            \item $\vec{J}=\overleftrightarrow{I}\vec{\omega}$ implies that in general, $\vec{J}$ is not parallel to $\vec{\omega}$. However, if $\vec{\omega}$ lies along one of $\vec{e}_1,\vec{e}_2,\vec{e}_3$, then $\vec{J}$ is parallel to $\vec{\omega}$.
         \end{itemize}
     \end{itemize}
+    \item We now consider rigid bodies with certain symmetries.
     \item \textbf{Symmetric body}: A rigid body for which two of the moments of inertia (usually taken to be $I_1,I_2$) are equal.
     \item \textbf{Totally symmetric body}: A rigid body for which all three of the moments of inertia are equal.
     \item Examples of (totally) symmetric bodies.
@@ -627,12 +592,12 @@
         \begin{equation*}
             \vec{J} = I_1(\omega_1\vec{e}_1+\omega_2\vec{e}_2)+I_3\omega_3\vec{e}_3
         \end{equation*}
-        \item Thus, any axis in place of $\vec{e}_1,\vec{e}_2$ is a principal axis; we can choose any pair of orthogonal vectors herein.
+        \item Thus, any orthonormal axes in the plane defined by $\vec{e}_1,\vec{e}_2$ can serve as principal axes.
     \end{itemize}
-    \item In the case of a totally symmetric object, any axis ais a principal axis and $\vec{J}$ is always parallel to $\vec{\omega}$.
+    \item In the case of a totally symmetric object, any axis acts a principal axis and $\vec{J}$ is always parallel to $\vec{\omega}$.
     \item Calculating $\overleftrightarrow{I}$.
     \begin{enumerate}
-        \item If we take $\vec{r}=\vec{R}+\vec{r}{\,}^*$, then
+        \item If we take $\vec{r}=\vec{R}+\vec{r}{\,}^*$, then since $\vec{R}^*=0$,
         \begin{equation*}
             \sum_\alpha m_\alpha x^* = \sum_\alpha m_\alpha y^* = \sum_\alpha m_\alpha z^* = 0
         \end{equation*}
@@ -640,21 +605,22 @@
             \item Let $\vec{R}=(X,Y,Z)$.
             \item The above identities imply that the cross terms work out as follows.
             \begin{equation*}
-                I_{xy} = \sum_\alpha m_\alpha(X+x^*)(Y+y^*)
+                I_{xy} = -\sum_\alpha m_\alpha(X+x^*)(Y+y^*)
                 = -MXY-\sum_\alpha m_\alpha x_\alpha^*y_\alpha^*
             \end{equation*}
             \item Similarly, for the moments of inertia,
             \begin{equation*}
                 I_{xx} = M(Y^2+Z^2)+I_{xx}^*
             \end{equation*}
+            \item The above equation merits additional comment.
             \begin{itemize}
-                \item This decomposes the moment of inertia into the sum of the moment of the CM about your origin and the moment of inertia relative to $\vec{R}$.
+                \item It decomposes the moment of inertia into the sum of the moment of the center of mass about the origin and the moment of inertia relative to the center of mass $\vec{R}$.
                 \item This is the \textbf{parallel axis theorem}.
             \end{itemize}
         \end{itemize}
         \item Objects with 3 perpendicular symmetry planes.
         \begin{itemize}
-            \item Picture a cylinder or an ellipsoid with uniform density and three axes $a,b,c$.
+            \item Picture a cylinder, ellipsoid, or parallelepiped with uniform density and three axes $a,b,c$.
             \item Then
             \begin{align*}
                 I_1^* &= M(\lambda_yb^2+\lambda_zc^2)&
@@ -664,12 +630,13 @@
             where\dots
             \begin{itemize}
                 \item $\lambda_x=\lambda_y=\lambda_z=1/5$ for an ellipsoid;
-                \item $\lambda_x=\lambda_y=\lambda_z=1/3$ for a parallelipiped;
+                \item $\lambda_x=\lambda_y=\lambda_z=1/3$ for a parallelepiped;
                 \item $\lambda_x=\lambda_y=1/4$ and $\lambda_z=1/3$ for a cylinder.
             \end{itemize}
             \item The derivation of the above results is on \textcite[209-11]{bib:KibbleBerkshire}.
             \begin{itemize}
                 \item We should look through this as we may be expected to do the integrals!
+                \item Known by the name, \textbf{Routh's rule}.
             \end{itemize}
             \item What are the $\lambda$'s?
             \begin{itemize}
@@ -691,8 +658,7 @@
         \item Now imagine we exert a small force $\vec{F}$ at a distance $\vec{r}$ up the axis from the CM/origin.
         \item It follows that $\dot{\vec{J}}=I_3\dot{\vec{\omega}}=\vec{r}\times\vec{F}$.
         \item Thus, $\dot{\vec{J}}$ is perpendicular to $\vec{\omega}$ and $\vec{\omega}$ changes direction, so the system turns.
-        \item Under gravity, the wheel turns right.
-        \item \emph{Mysterious picture}
+        \item For example, if the system is a rolling bicycle wheel under gravity, the wheel turns right.
     \end{itemize}
     \item At this point, we can analyze the motion of a top/gyroscope!
     \begin{figure}[h!]
@@ -754,9 +720,9 @@
         \end{itemize}
         \item Specific example: The rotating top.
         \begin{itemize}
-            \item We often want to use the pivot point at the origin (which may well not be the CM of the system).
+            \item We often want to use the pivot point as the origin (which may well not be the CM of the system).
             \item To find the moment of inertia for bodies like this, we usually use the parallel axis theorem.
-            \item Beware, though, that the principal axes at the CM and a pivot point need not be parallel. However, they are parallel (and thus can be taken to be identical) if the new origin is on a principal axis that passes through the COM.
+            \item Beware, though, that the principal axes at the CM and a pivot point need not be parallel. However, they are parallel (and thus can be taken to be identical) if the new origin is on a principal axis that passes through the center of mass.
         \end{itemize}
     \end{itemize}
     \item To start today, we generalize rotation.
@@ -838,24 +804,33 @@
             \frac{a_1}{a_2} &= \frac{-(I_3-I_2)\omega_3}{I_1p}&
             \frac{a_1}{a_2} &= \frac{I_2p}{-(I_1-I_3)\omega_3}
         \end{align*}
+        \begin{itemize}
+            \item The left equation above comes from dividing $I_1pa_1+(I_3-I_2)a_2\omega_3=0$ through by $a_2$ and rearranging.
+            \item The right equation above comes from dividing $I_2pa_2+(I_1-I_3)\omega_3a_1=0$ through by $a_2$ and rearranging.
+        \end{itemize}
         \item It follows by transitivity that
         \begin{align*}
             \frac{I_2p}{-(I_1-I_3)\omega_3} &= \frac{-(I_3-I_2)\omega_3}{I_1p}\\
             I_1I_2p^2 &= \omega_3^2(I_3-I_2)(I_1-I_3)
         \end{align*}
-        \item Thus, if $(I_3-I_2)(I_1-I_3)>0$, then $p>0$ and the rotation is unstable.
-        \item On the other hand, if the term is less than zero, then $p$ is imaginary, so the rotation is purely oscillatory and hence stable.
+        \item Thus, if
+        \begin{equation*}
+            (I_3-I_2)(I_1-I_3) > 0
+        \end{equation*}
+        then $p>0$ and the rotation is unstable.
+        \item On the other hand, if the above term is less than zero, then $p$ is imaginary, so the rotation is purely oscillatory and hence stable.
         \item Takeaway:
         \begin{itemize}
-            \item If $I_3$ is the smallest or largest of the moments, then the rotation is stable.
-            \item If $I_3$ is the middle moment, the the rotation is unstable.
+            \item If $I_3$ is the smallest or largest of the moments (i.e., if $I_3>I_1,I_2$ or $I_1,I_2>I_3$), then the rotation is stable.
+            \item If $I_3$ is the middle moment (i.e., if $I_1>I_3>I_2$ or $I_2>I_3>I_1$), the the rotation is unstable.
         \end{itemize}
+        \item This is called the \textbf{tennis racket theorem}.
     \end{itemize}
     \item Example of the above.
     \begin{itemize}
-        \item Consider a rectangular prism with longest axis $a$, second longest $b$, and third longest.
+        \item Consider a rectangular prism with longest axis $a$, second longest $b$, and third longest $c$.
         \item We can calculate that $\hat{e}_3\parallel c$, $\hat{e}_1\parallel a$, and $\hat{e}_2\parallel b$.
-        \item Now calculate $I_1,I_2,I_3$.
+        \item Now using Routh's rule, we have that
         \begin{align*}
             I_3 &= M\left( \frac{a^2}{3}+\frac{b^2}{3} \right)&
             I_2 &= M\left( \frac{a^2}{3}+\frac{c^2}{3} \right)&
@@ -866,8 +841,8 @@
             \item Note that the $1/3$ comes from integrating $x^2$.
         \end{itemize}
         \item Thus, if the prism is rotating around the smallest axis to begin with, it will remain stably spinning around that axis.
-        \item Rotating head over heels one is unstable.
-        \item And the frisbee one (rotating around the largest axis) is also stable.
+        \item If the prism is rotating head over heels, the rotation is unstable.
+        \item And if the prism is rotating like a frisbee (i.e., around the largest axis), the rotation is also stable.
     \end{itemize}
     \item Euler angles.
     \begin{figure}[h!]
@@ -897,7 +872,7 @@
         \end{enumerate}
         \item It follows based on these definitions (see reasoning in \textcite{bib:KibbleBerkshire}) that
         \begin{equation*}
-            \vec{\omega} = \dot{\phi}\khat+\dot{\theta}\hat{e}_2'+\dot{\psi}\hat{e}_3
+            \vec{\omega} = \dot{\phi}\,\khat+\dot{\theta}\,\hat{e}_2'+\dot{\psi}\,\hat{e}_3
         \end{equation*}
         \item But these bases are not ideal since these aren't our principal axis basis. Thus, we wish to define $\vec{\omega}$ in the principal axis basis.
         \item In the restrictive case of a symmetric body, $I_1=I_2$. Thus, we can choose $\hat{e}_1:=\hat{e}_1'$ and $\hat{e}_2:=\hat{e}_2'$ because we can choose \emph{any} vectors in this plane, as stated above.
@@ -907,7 +882,7 @@
             \vec{\omega} = \dot{\phi}(-\sin\theta\,\hat{e}_1'+\cos\theta\,\hat{e}_3)+\dot{\theta}\,\hat{e}_2'+\dot{\psi}\,\hat{e}_3
             = -\dot{\phi}\sin\theta\,\hat{e}_1'+\dot{\theta}\,\hat{e}_2'+(\dot{\psi}+\dot{\phi}\cos\theta)\,\hat{e}_3
         \end{equation*}
-        \item Therefore,
+        \item Therefore, we independently have based on the above that
         \begin{equation*}
             \vec{J} = -I_1\dot{\phi}\sin\theta\,\hat{e}_1'+I_1\dot{\theta}\,\hat{e}_2'+I_3(\dot{\psi}+\dot{\phi}\cos\theta)\,\hat{e}_3
         \end{equation*}
@@ -933,7 +908,7 @@
     \end{itemize}
     \item Last time.
     \begin{itemize}
-        \item We defined the Euler angles $\theta,\phi,\psi$ so that $\vec{\omega}=\dot{\phi}\khat+\dot{\theta}\hat{e}_2'+\dot{\psi}\hat{e}_3$.
+        \item We defined the Euler angles $\theta,\phi,\psi$ so that $\vec{\omega}=\dot{\phi}\,\khat+\dot{\theta}\,\hat{e}_2'+\dot{\psi}\,\hat{e}_3$.
         \item For a symmetric body, $I_1=I_2$. Thus, we had $\vec{\omega}=-\dot{\phi}\sin\theta\,\hat{e}_1'+\dot{\theta}\,\hat{e}_2'+(\dot{\psi}+\dot{\phi}\cos\theta)\,\hat{e}_3$
         \begin{itemize}
             \item $\hat{e}_1',\hat{e}_2',\hat{e}_3$ are the principal axes of the object.
@@ -967,92 +942,38 @@
         \end{align*}
         where all of the terms on the right above are constant.
         \item It follows that in this case, $\hat{e}_3$ is fixed at angle $\theta$ with respect to $\vec{J}$.
-        \item Moreover, $\vec{\omega}$ is at a fixed angle with respect to $\khat$, precessing around $\khat$ with rate $\dot{\phi}$.
+        \item Moreover, $\vec{\omega}$ (which depends on the three fixed quantities $\dot{\theta},\dot{\phi},\dot{\psi}$) is at a fixed angle with respect to $\khat$, precessing around $\khat$ with rate $\dot{\phi}$.
         \item It follows that
         \begin{align*}
-            \vec{\omega} &= -\dot{\phi}\sin\theta\hat{e}_1'+(\dot{\psi}+\dot{\phi}\cos\theta)\hat{e}_3\\
-            &= \frac{J\sin\theta}{I_1}\hat{e}_1'+\frac{J\cos\theta}{I_3}\hat{e}_3\\
-            &= \sin\beta\hat{e}_1+\cos\beta\hat{e}_3
+            \vec{\omega} &= -\dot{\phi}\sin\theta\,\hat{e}_1'+(\dot{\psi}+\dot{\phi}\cos\theta)\,\hat{e}_3\\
+            &= \frac{J\sin\theta}{I_1}\,\hat{e}_1'+\frac{J\cos\theta}{I_3}\,\hat{e}_3
         \end{align*}
-        \item It follows that
+        \item Separately, we may read from Figure \ref{fig:FreeRot1} that
         \begin{equation*}
-            \tan\beta = \frac{I_3}{I_1}\tan\theta
+            \vec{\omega} = \sin\beta\,\hat{e}_1'+\cos\beta\,\hat{e}_3
         \end{equation*}
-        \item The body cone "rolls around" the \textbf{space cone}; that is, we can check that $\dot{\psi}\sin\beta=\dot{\phi}\sin(\theta-\beta)$.
-        \item The net motion is that the body is rotating on its \textbf{body cone} and also rotating about the axis.
-    \end{itemize}
-    \item Case 2: Gravity as an external force.
-    \begin{itemize}
-        \item In this case, it's easier to write down a Lagrangian.
-        \item Luckily, we already have the kinetic energy, so
+        \item It follows by comparing the above two equations that
         \begin{equation*}
-            L = \frac{1}{2}I_1\dot{\phi}^2\sin^2\theta+\frac{1}{2}I_1\dot{\theta}^2+\frac{1}{2}I_3(\dot{\psi}+\dot{\phi}\cos\theta)^2-MgR\cos\theta
+            \tan\beta = \frac{\sin\beta}{\cos\beta}
+            = \frac{\frac{J\sin\theta}{I_1}}{\frac{J\cos\theta}{I_3}}
+            = \frac{I_3}{I_1}\tan\theta
         \end{equation*}
-        \item Thus, our Euler-Lagrange equations will be
-        \begin{align*}
-            \dv{t}(I_1\dot{\theta}) &= I_1\dot{\phi}^2\sin\theta\cos\theta-I_3(\dot{\psi}+\dot{\phi}\cos\theta)\dot{\phi}\sin\theta\tag{$\theta$}\\
-            \dv{t}[\underbrace{I_1\dot{\phi}\sin^2\theta+I_3(\dot{\psi}+\dot{\phi}\cos\theta)\cos\theta}_{P_\phi}] &= 0\tag{$\phi$}\\
-            \dv{t}[\underbrace{I_3(\dot{\psi}+\dot{\phi}\cos\theta)}_{P_\psi}] &= 0\tag{$\psi$}
-        \end{align*}
+        \item The \textbf{body cone} "rolls around" the \textbf{space cone}; that is, we can check that
+        \begin{equation*}
+            \dot{\psi}\sin\beta = \dot{\phi}\sin(\theta-\beta)
+        \end{equation*}
         \begin{itemize}
-            \item Note that $P_\phi,P_\psi$ are generalized momenta.
-        \end{itemize}
-        \item It follows that
-        \begin{equation*}
-            \omega_3 = \dot{\psi}+\dot{\phi}\cos\theta
-        \end{equation*}
-        which is constant from Equation ($\psi$) above.
-        \item What are the conditions for steady procession at fixed angle $\theta$?
-        \begin{itemize}
-            \item If $\theta$ is constant, $\dot{\psi},\dot{\phi}$ are constant.
-            \item Let $\Omega:=\dot{\phi}$ be the precession rate.
-            \item Then it follows by Equation ($\theta$) above that for $\dot{\theta}=0$, we must assume $\sin\theta\neq 0$.
-            \item Substituting the definition of $\Omega$ into Equation ($\theta$), we have
+            \item In particular, we have that
             \begin{align*}
-                0 &= I_1\Omega^2\cos\theta-I_3\omega_3\Omega+MgR\\
-                \Omega &= \frac{I_3\omega_3\pm\sqrt{I_3^2\omega_3^2-4I_1\cos\theta MgR}}{2I_1\cos\theta}
+                \dot{\psi}\sin\beta &= \dot{\psi}\cdot\frac{J\sin\theta}{I_1}\\
+                &= \left( \frac{J\cos\theta}{I_3}-\frac{J}{I_1}\cos\theta \right)\cdot\dot{\phi}\sin\theta\\
+                &= \dot{\phi}\left( \sin\theta\cdot\frac{J\cos\theta}{I_3}-\cos\theta\cdot\frac{J\sin\theta}{I_1} \right)\\
+                &= \dot{\phi}(\sin\theta\cdot\cos\beta-\cos\theta\cdot\sin\beta)\\
+                &= \dot{\phi}\sin(\theta-\beta)
             \end{align*}
-            \item Thus, for real $\Omega$, we need $I_3^2\omega_3^2-4I_1\cos\theta MgR>0$.
-            \item Thus, there is a minimum rotation speed $\omega_3$ to get steady precession for a given $\theta$ given by
-            \begin{equation*}
-                I_3^2\omega_3^2 = 4I_1\cos\theta MgR
-            \end{equation*}
-            \item Takeaway: The smaller the angle of inclination, the faster you have to be spinning to get steady procession at that rate.
-            \item Next time, we'll analyze some even more general cases using the Hamiltonian.
         \end{itemize}
+        \item The net motion is that the body is rotating on its body cone and also rotating about the axis.
     \end{itemize}
-    \item Problems with translation and rotation.
-    \begin{itemize}
-        \item Recall from our discussion of many-body systems that
-        \begin{equation*}
-            T = \frac{1}{2}M(\dot{X}^2+\dot{Y}^2+\dot{Z}^2)+T^*
-        \end{equation*}
-        where $\vec{R}=(X,Y,Z)$ is the center of mass and $T^*$ is the kinetic energy in the CM frame.
-        \item For any general system, this is equal to
-        \begin{equation*}
-            T^* = \sum_\alpha\frac{1}{2}m_\alpha(\dot{\vec{r}}_\alpha{}^*)^2
-        \end{equation*}
-        \item Additionally, for a rigid body,
-        \begin{equation*}
-            T^* = \frac{1}{2}I_1^*\omega_1^2+\frac{1}{2}I_2^*\omega_2^2+\frac{1}{2}I_3^*\omega_3^2
-        \end{equation*}
-        \begin{itemize}
-            \item Note that $I_1^*$ is the moment of inertia about principal axis 1 with CM at the origin.
-            \item Explicitly,
-            \begin{equation*}
-                I_1^* = \iiint\rho_m(\vec{r}{\,}^*)(z^2+y^2)
-            \end{equation*}
-        \end{itemize}
-    \end{itemize}
-    \item We now leap to Chapter 12 to talk about the Hamiltonian!
-\end{itemize}
-
-
-
-\section{Chapter 8: Many-Body Systems}
-\emph{From \textcite{bib:KibbleBerkshire}.}
-\begin{itemize}
-    \item \marginnote{11/3:}Wrapping up Section 8.4.
 \end{itemize}
 
 
@@ -1061,7 +982,121 @@
 \emph{From \textcite{bib:KibbleBerkshire}.}
 \begin{itemize}
     \item Covered a smattering of results from various sections.
-    \item \textbf{Couple}: 
+    \item \marginnote{12/4:}A necessary and sufficient condition for equilibrium: "The sum of the forces and the sum of their moments are both zero" \parencite[198]{bib:KibbleBerkshire}.
+    \begin{itemize}
+        \item We see this mathematically from the equations
+        \begin{align*}
+            \dot{\vec{P}} &= M\ddot{\vec{R}} = \sum\vec{F}&
+            \dot{\vec{J}} &= \sum\vec{r}\times\vec{F}
+        \end{align*}
+    \end{itemize}
+    \item \textbf{Lamina}: A plane, two-dimensional object.
+    \item Reconsider Figure \ref{fig:rectangularLamina} and the associated discussion.
+    \begin{itemize}
+        \item Letting $\vec{Q}$, once again, be the force on the pivot, we see that for equilibrium, we have
+        \begin{equation*}
+            \vec{Q} = (F,Mg,0)
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Compound pendulum}: A rigid body pivoted about a horizontal axis and moving under gravity.
+    \begin{itemize}
+        \item An alternate way to obtain the energy conservation equation
+        \begin{equation*}
+            E = \frac{1}{2}I\dot{\phi}^2-MgR\cos\phi
+        \end{equation*}
+        is by multiplying the equation of motion $I\ddot{\phi}=-MgR\sin\phi$ by $\dot{\phi}$ and integrating\footnote{This is very similar to the trick used in the 10/13 lecture in the Lagrange undetermined multiplier example.}.
+    \end{itemize}
+    \item A sudden blow.
+    \begin{itemize}
+        \item Integrating $I\ddot{\phi}=-MgR\sin\phi$ over a short time interval yields
+        \begin{equation*}
+            I\omega = dK
+        \end{equation*}
+        \item The velocity of the center of mass immediately after the blow is $\omega R$, so the integral of the EOM is
+        \begin{align*}
+            M\dot{R} &= \vec{Q}+\sum\vec{F}\\
+            M\omega R &= -S+k
+        \end{align*}
+        \item It follows by combining the above two equations that
+        \begin{equation*}
+            S = \left(1-\frac{MdR}{I} \right)K
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Couple}: ??
+    \item \textbf{Principal moment of inertia}: Any one of the eigenvalues of the moment of inertia tensor.
+    \item Shift of origin equations.
+    \begin{align*}
+        I_{xx} &= M(Y^2+Z^2)+I_{xx}^*&
+        I_{xy} &= -MXY+I_{xy}^*
+    \end{align*}
+    \item Derivation of Routh's rule.
+    \begin{itemize}
+        \item We know that
+        \begin{align*}
+            I_{xx} &= \iiint\rho(\vec{r})(y^2+z^2)\dd[3]{\vec{r}}&
+            I_{yy} &= \iiint\rho(\vec{r})(x^2+z^2)\dd[3]{\vec{r}}&
+            I_{zz} &= \iiint\rho(\vec{r})(x^2+y^2)\dd[3]{\vec{r}}
+        \end{align*}
+        \item Thus, letting
+        \begin{equation*}
+            K_i = \iiint_V\rho i^2\dv{x}\dv{y}\dv{z}
+        \end{equation*}
+        for $i=x,y,z$ and denoting $I_1^*:=I_{xx}$, $I_2^*:=I_{yy}$, and $I_3^*:=I_{zz}$, we have that
+        \begin{align*}
+            I_1^* &= K_y+K_z&
+            I_2^* &= K_x+K_z&
+            I_3^* &= K_x+K_y
+        \end{align*}
+        \item Note that the mass of the body in question is given by
+        \begin{equation*}
+            M = \iiint_V\rho\dd{x}\dd{y}\dd{z}
+        \end{equation*}
+        \item $M,K_i$ depend on the end-to-end lengths $2a,2b,2c$ of each class of symmetric rigid body (e.g., ellipsoids, parallelepipeds, etc.).
+        \item Change variables from $x,y,z$ to
+        \begin{align*}
+            x &= a\xi&
+            y &= b\eta&
+            z &= c\zeta
+        \end{align*}
+        \item Thus,
+        \begin{align*}
+            M = \rho abc\iiint_{V_0}\dd{\xi}\dd{\eta}\dd{\zeta}
+        \end{align*}
+        where $V_0$ is a standard symmetric rigid body of the given type (i.e., with $\rho=1$ and $a=b=c=1$).
+        \item It follows by a similar result for each $K_i$ that
+        \begin{align*}
+            M &\propto \rho abc&
+            K_x &\propto \rho a^3bc&
+            K_y &\propto \rho ab^3c&
+            K_z &\propto \rho abc^3
+        \end{align*}
+        \item Thus, each $K_i$ equals $\lambda_iMi^2$ for some scalar $\lambda_i$, the same for all bodies of the given type.
+        \item To summarize, we have Routh's rule as follows.
+        \begin{align*}
+            I_1^* &= M(\lambda_yb^2+\lambda_zc^2)&
+            I_2^* &= M(\lambda_xa^2+\lambda_zc^2)&
+            I_3^* &= M(\lambda_xa^2+\lambda_yb^2)
+        \end{align*}
+        \item Lastly, we compute the scalars using integrals.
+        \item Example: The standard body for an ellipsoid is a sphere of uniform density.
+        \begin{itemize}
+            \item We have
+            \begin{equation*}
+                K_z = \iiint_{V_0}\zeta^2\dd{\xi}\dd{\eta}\dd{\zeta}
+                = \int_{-1}^1\zeta^2\pi(1-\zeta^2)\dd{\zeta}
+                = \frac{4\pi}{15}
+            \end{equation*}
+            \item We also have
+            \begin{equation*}
+                M_0 = \frac{4\pi}{3}
+            \end{equation*}
+            \item Thus,
+            \begin{equation*}
+                \lambda_z = \frac{K_z}{M_01^2}
+                = \frac{1}{5}
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
 \end{itemize}
 
 

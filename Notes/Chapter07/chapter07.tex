@@ -41,14 +41,14 @@
     \end{itemize}
     \item Next, we'll write the Lagrangian of the system, $L=T-V$.
     \begin{itemize}
-        \item With respect to $T$, we can logically (albeit highly unintuitively) calculate that
+        \item For $T$, we can algebraically manipulate our typical expression into the following form.
         \begin{align*}
-            T &= \frac{1}{2}m_1\dot{\vec{r}}_1^2+\frac{1}{2}m_2\dot{\vec{r}}_2^2\\
-            &= \frac{1}{2}\left[ \frac{(m_1^2+m_1m_2)\dot{\vec{r}}_1^2+(m_2^2+m_1m_2)\dot{\vec{r}}_2^2}{m_1+m_2} \right]\\
+            T &= \left( \frac{1}{2}m_1\dot{\vec{r}}_1{}^2+\frac{1}{2}m_2\dot{\vec{r}}_2{}^2 \right)\cdot\frac{m_1+m_2}{m_1+m_2}\\
+            &= \frac{1}{2}\left[ \frac{(m_1^2+m_1m_2)\dot{\vec{r}}_1{}^2+(m_2^2+m_1m_2)\dot{\vec{r}}_2{}^2}{m_1+m_2} \right]\\
             &= \frac{1}{2}\frac{(m_1\vec{r}_1+m_2\vec{r}_2)^2}{m_1+m_2}+\frac{1}{2}\frac{m_1m_2}{m_1+m_2}(\dot{\vec{r}}_1-\dot{\vec{r}}_2)^2\\
             &= \frac{1}{2}M\dot{\vec{R}}^2+\frac{1}{2}\mu\dot{\vec{r}}{\,}^2
         \end{align*}
-        \item With respect to $V$, we have a uniform external force $m\vec{g}$ (e.g., $\vec{g}=-g\ihat$), so
+        \item For $V$, we have a uniform external force $m\vec{g}$ (e.g., $\vec{g}=-g\ihat$), so
         \begin{align*}
             V &= -m_1\vec{g}\cdot\vec{r}_1-m_2\vec{g}\cdot\vec{r}_2+V_\text{int}(\vec{r}_1-\vec{r}_2)\\
             &= -M\vec{g}\cdot\vec{R}+V_\text{int}(\vec{r})
@@ -81,31 +81,31 @@
     \end{itemize}
     \item Summary of the above: The general method for solving two-body problems.
     \begin{enumerate}
-        \item Solve the 1-body EOM here.
+        \item Solve the 1-body EOMs above.
         \item Transform back to $\vec{r}_1,\vec{r}_2$ coordinates, via
         \begin{align*}
             \vec{r}_1 &= \vec{R}+\frac{m_2}{M}\vec{r}&
             \vec{r}_2 &= \vec{R}-\frac{m_1}{M}\vec{r}
         \end{align*}
     \end{enumerate}
-    \item Descriptors of the system.
-    \begin{itemize}
-        \item When $L$ is separable, there are also 2 separately conserved energies.
+    \item Descriptors of the system when $L$ is separable.
+    \begin{enumerate}
+        \item Energy: There are 2 separately conserved energies, as follows.
         \begin{align*}
             \frac{1}{2}M\dot{\vec{R}}^2-M\vec{g}\cdot\vec{R} &= E_\text{cm}&
             \frac{1}{2}\mu\dot{\vec{r}}{\,}^2+V_\text{int}(\vec{r}) &= E_\text{int}
         \end{align*}
-        \item The total linear momentum of the system.
+        \item Momentum: The total linear momentum of the system is as follows.
         \begin{equation*}
-            \vec{P} = m\dot{\vec{r}}_1+m_2\dot{\vec{r}}_2 = M\vec{R}
+            \vec{P} = m\dot{\vec{r}}_1+m_2\dot{\vec{r}}_2 = M\dot{\vec{R}}
         \end{equation*}
-        \item The total angular momentum of the system.
+        \item Angular momentum: The total angular momentum of the system is as follows.
         \begin{align*}
             \vec{J} &= m_1\vec{r}_1\times\dot{\vec{r}}_1+m_2\vec{r}_2\times\dot{\vec{r}}_2\\
             &= m_1\left( \vec{R}+\frac{m_2}{M}\vec{r} \right)\times\left( \dot{\vec{R}}+\frac{m_2}{M}\dot{\vec{r}} \right)+m_2\left( \vec{R}-\frac{m_1}{M}\vec{r} \right)\times\left( \dot{\vec{R}}-\frac{m_1}{M}\dot{\vec{R}} \right)\\
             &= M\vec{R}\times\dot{\vec{R}}+\mu\vec{r}\times\dot{\vec{r}}
         \end{align*}
-    \end{itemize}
+    \end{enumerate}
     \item The center of mass frame.
     \begin{itemize}
         \item Vectors in this frame are denoted with a superscript $*$.
@@ -116,16 +116,19 @@
             \vec{r}_1{}^* &= \frac{m_2}{M}\vec{r}&
             \vec{r}_2{}^* &= -\frac{m_1}{M}\vec{r}
         \end{align*}
-        \item Additionally, the momenta of the two particle are equal and opposite:
+        \item Additionally, the momenta of the two particles are equal and opposite:
         \begin{equation*}
             m_1{\dot{\vec{r}}_1}^* = -m_2{\dot{\vec{r}}_2}^* = \mu\dot{\vec{r}} = \vec{p}{\,}^*
         \end{equation*}
-        \item It follows from the above that if the velocity of the center of mass is $\dot{\vec{R}}$, then we have
+        \begin{itemize}
+            \item Note that we convert from the second to the third equality above using by taking derivatives of both sides of the definition of $\vec{r}_i{}^*$ two lines above and substituting.
+        \end{itemize}
+        \item It follows, from the above and the fact that $\vec{r}_i=\vec{R}+\vec{r}_i{}^*$, that if the velocity of the center of mass is $\dot{\vec{R}}$, then we have
         \begin{align*}
             \vec{p}_1 &= m_1\dot{\vec{r}}_1 = m_1\dot{\vec{R}}+\vec{p}{\,}^*&
             \vec{p}_2 &= m_2\dot{\vec{r}}_2 = m_2\dot{\vec{R}}-\vec{p}{\,}^*
         \end{align*}
-        \item The total momentum, angular momentum, and kinetic energy in the CM frame are
+        \item It follows from the above definitions of the three descriptors of the system that the total momentum, angular momentum, and kinetic energy in the CM frame are
         \begin{align*}
             \vec{P}^* &= 0&
             \vec{J}^* &= \mu\vec{r}\times\dot{\vec{r}} = \vec{r}\times\vec{p}{\,}^*&
@@ -165,7 +168,7 @@
         \end{equation*}
         \item Thus, the period of the (assumed) elliptical orbit can be calculated using the same methods as before. Indeed, we obtain
         \begin{equation*}
-            \left( \frac{\tau}{2\pi} \right) = \frac{a^3}{GM}
+            \left( \frac{\tau}{2\pi} \right)^2 = \frac{a^3}{GM}
         \end{equation*}
         \begin{itemize}
             \item However, note that $a$ is the semimajor axis of the \emph{relative} orbit (i.e., is the median distance between the bodies) and that $M$ is the \emph{sum} of the masses rather than the mass of the heavier body.
@@ -173,8 +176,8 @@
         \end{itemize}
         \item To conclude, let's discuss the motion of the Earth and moon in the CM frame.
         \begin{itemize}
-            \item Herein, the Earth orbits the CM with a small radius, and the moon orbits the CM directly across from the Earth in a much larger orbit.
-            \item Mathematically,
+            \item Herein, the Earth orbits their center of mass with a small radius, and the moon orbits their center of mass directly across from the Earth in a much larger orbit.
+            \item Mathematically, let's call the Earth object 1 and the Moon object 2. Then
             \begin{align*}
                 \vec{r}_1{}^* &= \frac{m_2}{M}\vec{r}&
                 \vec{r}_2{}^* &= -\frac{m_1}{M}\vec{r}
@@ -224,7 +227,7 @@
             \item Here's what an elastic collision looks like in the CM frame: We have two particles coming in, one with momentum $\vec{p}{\,}^*$ and one with momentum $-\vec{p}{\,}^*$. After the collision, the particles separate with momenta $\vec{q}{\,}^*$ and $-\vec{q}{\,}^*$.
             \item Since energy is conserved,
             \begin{equation*}
-                T^* = \frac{(\vec{p}{\,}^*)^2}{2m} = \frac{(\vec{q}{\,}^*)^2}{2m}
+                T^* = \frac{(\vec{p}{\,}^*)^2}{2\mu} = \frac{(\vec{q}{\,}^*)^2}{2\mu}
             \end{equation*}
             \item Thus, the magnitudes of the momenta before and after the collision are the same, i.e.,
             \begin{equation*}
@@ -245,9 +248,9 @@
             \end{equation*}
             \item Substituting this into the left equation above yields
             \begin{equation*}
-                \vec{p}_1 = \frac{m_1}{m_2}\vec{p}{\,}^*+\vec{p}{\,}^* = \frac{M}{m_2}\vec{p}{\,}^*
+                \vec{p}_1 = \frac{m_1}{m_2}\vec{p}{\,}^*+\frac{m_2}{m_2}\vec{p}{\,}^* = \frac{M}{m_2}\vec{p}{\,}^*
             \end{equation*}
-            \item Therefore, employing the equations that shift you out of the CM frame and the above, we obtain
+            \item Therefore, employing the equations that convert from momentum in the CM frame to momentum outside the CM frame and the above, we obtain
             \begin{align*}
                 \vec{q}_1 &= m_1\dot{\vec{R}}+\vec{q}{\,}^*&
                     \vec{q}_2 &= m_2\dot{\vec{R}}-\vec{q}{\,}^*\\
@@ -261,16 +264,22 @@
             \begin{equation*}
                 T_2 = \frac{q_2^2}{2m_2}
             \end{equation*}
-            \item From Figure \ref{fig:CMelasticc}, we have that
+            \item From Figure \ref{fig:CMelasticc} and the fact that $p^*=q^*$, we have that
+            \begin{equation*}
+                \alpha = \frac{1}{2}(\pi-\theta^*)
+            \end{equation*}
+            \item From Figure \ref{fig:CMelasticc} and the law of sines, we have that
             \begin{align*}
-                \alpha &= \frac{1}{2}(\pi-\theta^*)&
-                q_2 &= 2p^*\sin\frac{1}{2}\theta^*
+                \frac{\sin\alpha}{p^*} &= \frac{\sin\theta^*}{q_2}\\
+                q_2 &= p^*\cdot\frac{\sin(\frac{1}{2}\theta^*+\frac{1}{2}\theta^*)}{\sin(\frac{1}{2}\pi-\frac{1}{2}\theta^*)}\\
+                &= p^*\cdot\frac{2\sin(\frac{1}{2}\theta^*)\cos(\frac{1}{2}\theta^*)}{\cos(\frac{1}{2}\theta^*)}\\
+                &= 2p^*\sin\frac{1}{2}\theta^*
             \end{align*}
-            \item Combining these two results into the $T_2$ formula yields
+            \item Substituting the above result into the $T_2$ formula yields
             \begin{align*}
                 T_2 &= \frac{2(p^*)^2}{m_2}\sin^2\frac{1}{2}\theta^*\\
                 \frac{T_2}{T} &= \frac{\frac{2(p^*)^2}{m_2}\sin^2\frac{1}{2}\theta^*}{\frac{p_1^2}{2m_1}}\\
-                &= \frac{\frac{2(p^*)^2}{m_2}\sin^2\frac{1}{2}\theta^*}{\frac{M^2(p_1^*)^2}{2m_1m_2^2}}\\
+                &= \frac{\frac{2(p^*)^2}{m_2}\sin^2\frac{1}{2}\theta^*}{\frac{M^2(p^*)^2}{2m_1m_2^2}}\\
                 &= \frac{4m_1m_2}{M^2}\sin^2\frac{1}{2}\theta^*
             \end{align*}
             \item The maximum occurs when $\theta^*=\pi$ and has value
@@ -284,18 +293,24 @@
             \tan\theta = \frac{\sin\theta^*}{m_1/m_2+\cos\theta^*}
         \end{equation*}
         \begin{itemize}
-            \item We read the above from Figure \ref{fig:CMelasticc} by dropping a perpendicular from the upper vertex.
-            \item If $m_1=m_2$:
+            \item We read the above from Figure \ref{fig:CMelasticc} by dropping a perpendicular from the upper vertex and cancelling out all instances of $p^*=q^*$.
+            \item If $m_1=m_2$, then
             \begin{align*}
-                \theta &= \frac{\theta^*}{2}&
-                \theta_\text{max} &= \frac{\pi}{2}
+                \tan\theta &= \frac{\sin\theta^*}{1+\cos\theta^*}\\
+                &= \tan\frac{1}{2}\theta^*\\
+                \theta &= \frac{\theta^*}{2}
             \end{align*}
-            \item If $m_1/m_2>1$:
+            so since $\theta^*_\text{max}=\pi$, we have
             \begin{equation*}
-                \sin\theta_\text{max} = \frac{m_2}{m_1}
+                \theta_\text{max} = \frac{\pi}{2}
             \end{equation*}
-            \item Example: An $\alpha$ particle can only be scattered by a proton by up to \ang{14.5}, and a proton can only be scattered by an electron by up to \ang{0.031}.
-            \item Note that $\theta_\text{max}$ can be visualized as in Figure \ref{fig:CMelasticd}.
+            \item If $m_1/m_2>1$, we need a bit more theory to determine the maximum scattering angle. Note that as $\theta^*$ varies from 0 to $\pi$, $\vec{q}{\,}^*$ (from Figure \ref{fig:CMelasticc}) sweeps out the semicircle shown in Figure \ref{fig:CMelasticd}. In particular, when $m_1/m_2>1$, the leftmost vertex of Figure \ref{fig:CMelasticc} lies outside this semicircle, as shown in Figure \ref{fig:CMelasticd}. $\theta_\text{max}$ occurs when $\vec{q}_1$, as shown in Figure \ref{fig:CMelasticd}, is tangent to the semicircle swept out by $\vec{q}{\,}^*$. When this happens, a right angle is formed between $\vec{q}_1$ and $\vec{q}{\,}^*$, and analyzing \emph{this right triangle} reveals that
+            \begin{equation*}
+                \sin\theta_\text{max} = \frac{q^*}{(m_1/m_2)p^*}
+                = \frac{p^*}{(m_1/m_2)p^*}
+                = \frac{m_2}{m_1}
+            \end{equation*}
+            \item Example: An $\alpha$ particle can only be scattered by a proton by up to \ang{14.5}, and a proton can only be scattered by an electron by up to \ang{0.031}. Notice that both of these angles are less than \ang{90} because an $\alpha$ particle is heavier than a proton and a proton is \emph{much} heavier than an electron.
         \end{itemize}
     \end{itemize}
 \end{itemize}
@@ -396,7 +411,9 @@
 \emph{From \textcite{bib:KibbleBerkshire}.}
 \begin{itemize}
     \item \marginnote{10/31:}Focus: Isolated system of two particles with an internal force.
-    \item We will also touch on the presence of a uniform gravitational field, as that does not make the problem any more difficult to solve.
+    \begin{itemize}
+        \item We will also touch on the presence of a uniform gravitational field, as that does not make the problem any more difficult to solve.
+    \end{itemize}
     \item Consider two particles of masses $m_1,m_2$ at positions $\vec{r}_1,\vec{r}_2$.
     \item Let $\vec{F}:=\vec{F}_{12}$.
     \item EOMs of the two particles in a uniform gravitational field.
@@ -423,14 +440,53 @@
     \begin{itemize}
         \item The reduced mass is named as such "because it is always less than either $m_1$ or $m_2$" \parencite[160]{bib:KibbleBerkshire}.
     \end{itemize}
-    \item From the EOMs above, we can derive (as in class) that
+    \item The EOMs in terms of $\vec{R},\vec{r}$ can be derived as in class via Lagrangian mechanics. Alternatively, they can be derived algebrically as follows
     \begin{align*}
+        m_1\ddot{\vec{r}}_1+m_2\ddot{\vec{r}}_2 &= m_1\vec{g}+m_2\vec{g}&
+            \ddot{\vec{r}}_1-\ddot{\vec{r}}_2 &= \left( \vec{g}+\frac{\vec{F}}{m_1} \right)-\left( \vec{g}-\frac{\vec{F}}{m_2} \right)\\
+        (m_1+m_2)\cdot\frac{m_1\ddot{\vec{r}}_1+m_2\ddot{\vec{r}}_2}{m_1+m_2} &= (m_1+m_2)\vec{g}&
+            \ddot{\vec{r}} &= \frac{\vec{F}}{m_1}+\frac{\vec{F}}{m_2}\\
         M\ddot{\vec{R}} &= M\vec{g}&
-        \mu\ddot{\vec{r}} &= \vec{F}
+            \ddot{\vec{r}} &= \frac{m_2\vec{F}+m_1\vec{F}}{m_1m_2}\\
+        &&
+            \ddot{\vec{r}} &= \frac{m_2+m_1}{m_1m_2}\cdot\vec{F}\\
+        &&
+            \frac{m_1m_2}{m_1+m_2}\cdot\ddot{\vec{r}} &= \vec{F}\\
+        &&
+            \mu\ddot{\vec{r}} &= \vec{F}
     \end{align*}
     \item General procedure and conservation laws.
+    \item Note that we can justify the conversions from $(\vec{R},\vec{r})$ to $(\vec{r}_1,\vec{r}_2)$ as follows, for example.
+    \begin{align*}
+        \vec{r}_1 &\stackrel{?}{=} \vec{R}+\frac{m_2}{M}\vec{r}\\
+        &= \frac{m_1\vec{r}_1+m_2\vec{r}_2}{M}+\frac{m_2}{M}(\vec{r}_1-\vec{r}_2)\\
+        &= \frac{m_1\vec{r}_1+m_2\vec{r}_2+m_2\vec{r}_1-m_2\vec{r}_2}{M}\\
+        &= \frac{(m_1+m_2)\vec{r}_1}{M}\\
+        \vec{r}_1 &\stackrel{\checkmark}{=} \vec{r}_1
+    \end{align*}
     \item Lagrangian approach.
-    \item \textbf{Center-of-mass frame}: Teh frame of reference in which the center of mass is at rest at the origin. \emph{Also known as} \textbf{CM frame}.
+    \begin{itemize}
+        \item Note that while the potential energy is always separable into $T=M\dot{\vec{R}}^2/2+\mu\dot{\vec{r}}{\,}^2/2$ via the algebra from class, the potential energy is only separable in the special case of a uniform external force field!
+    \end{itemize}
+    \item \textbf{Center-of-mass frame}: The frame of reference in which the center of mass is at rest at the origin. \emph{Also known as} \textbf{CM frame}.
+    \begin{itemize}
+        \item "In a gravitational field, this is an accelerated, non-inertial frame" \parencite[162]{bib:KibbleBerkshire}.
+    \end{itemize}
+    \item If $a$ is the median distance between two bodies orbiting their center of mass, then the semi-major axes of the individual orbits about the center of mass are given by
+    \begin{align*}
+        a_1 &= \frac{m_2}{M}a&
+        a_2 &= \frac{m_1}{M}a
+    \end{align*}
+    \begin{itemize}
+        \item Note the similarity to the definitions of $\vec{r}_1{}^*,\vec{r}_2{}^*$.
+    \end{itemize}
+    \item We define the angular amplitude $\alpha$ of the oscillation of one body as viewed from a distant secondary body as approximately equal (via the small angle approximation) to the amplitude of the oscillation $a_2$ over the distance between the bodies $A$.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\linewidth]{../ExtFiles/angularAmplitude.png}
+        \caption{Defining the angular amplitude.}
+        \label{fig:angularAmplitude}
+    \end{figure}
     \item Another section that we did not cover in class: CM and Lab Cross-Sections.
 \end{itemize}
 

@@ -1,0 +1,87 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{9}
+
+\begin{document}
+
+
+
+
+\chapter{Lagrangian Mechanics}
+\section{Free Rotation; Hamilton's Equations}
+\begin{itemize}
+    \item \marginnote{11/13:}Case 2: Gravity as an external force.
+    \begin{itemize}
+        \item The system we'll consider herein is the spinning top of Figure \ref{fig:topGyroscope}.
+        \item In this case, it's easier to write down a Lagrangian.
+        \item Luckily, we already have the kinetic energy, so
+        \begin{equation*}
+            L = \frac{1}{2}I_1\dot{\phi}^2\sin^2\theta+\frac{1}{2}I_1\dot{\theta}^2+\frac{1}{2}I_3(\dot{\psi}+\dot{\phi}\cos\theta)^2-MgR\cos\theta
+        \end{equation*}
+        \item Thus, our Euler-Lagrange equations will be
+        \begin{align*}
+            \dv{t}(I_1\dot{\theta}) &= I_1\dot{\phi}^2\sin\theta\cos\theta-I_3(\dot{\psi}+\dot{\phi}\cos\theta)\dot{\phi}\sin\theta+MgR\sin\theta\tag{$\theta$}\\
+            \dv{t}[\underbrace{I_1\dot{\phi}\sin^2\theta+I_3(\dot{\psi}+\dot{\phi}\cos\theta)\cos\theta}_{P_\phi}] &= 0\tag{$\phi$}\\
+            \dv{t}[\underbrace{I_3(\dot{\psi}+\dot{\phi}\cos\theta)}_{P_\psi}] &= 0\tag{$\psi$}
+        \end{align*}
+        \begin{itemize}
+            \item Note that $P_\phi,P_\psi$ are generalized momenta.
+        \end{itemize}
+        \item Recall that
+        \begin{equation*}
+            \omega_3 = \dot{\psi}+\dot{\phi}\cos\theta
+        \end{equation*}
+        \begin{itemize}
+            \item Equation ($\psi$) implies that this quantity is constant.
+        \end{itemize}
+        \item What are the conditions for steady procession at fixed angle $\theta$?
+        \begin{itemize}
+            \item If $\theta$ is constant, then Equations ($\phi$) and ($\psi$) imply that $\dot{\psi},\dot{\phi}$ are constant.
+            \item Let $\Omega:=\dot{\phi}$ be the precession rate.
+            \item Then it follows by Equation ($\theta$) above that for $\dot{\theta}=0$, we must assume $\sin\theta\neq 0$ to get a nontrivial solution.
+            \item Substituting the definition of $\Omega$ into Equation ($\theta$), we have
+            \begin{align*}
+                0 &= I_1\Omega^2\cos\theta-I_3\omega_3\Omega+MgR\\
+                \Omega &= \frac{I_3\omega_3\pm\sqrt{I_3^2\omega_3^2-4I_1\cos\theta MgR}}{2I_1\cos\theta}
+            \end{align*}
+            \item Thus, for real $\Omega$, we need $I_3^2\omega_3^2-4I_1\cos\theta MgR>0$.
+            \item Thus, there is a minimum rotation speed $\omega_3$ to get steady precession for a given $\theta$ given by
+            \begin{equation*}
+                I_3^2\omega_3^2 = 4I_1\cos\theta MgR
+            \end{equation*}
+            \item Takeaway: The smaller the angle of inclination, the faster you have to be spinning to get steady procession at that rate.
+            \item Next time, we'll analyze some even more general cases using the Hamiltonian.
+        \end{itemize}
+    \end{itemize}
+    \item Problems with translation and rotation.
+    \begin{itemize}
+        \item Recall from our discussion of many-body systems that
+        \begin{equation*}
+            T = \frac{1}{2}M(\dot{X}^2+\dot{Y}^2+\dot{Z}^2)+T^*
+        \end{equation*}
+        where $\vec{R}=(X,Y,Z)$ is the center of mass and $T^*$ is the kinetic energy in the CM frame.
+        \item For any general system, $T^*$ is given by
+        \begin{equation*}
+            T^* = \sum_\alpha\frac{1}{2}m_\alpha(\dot{\vec{r}}_\alpha{}^*)^2
+        \end{equation*}
+        \item Additionally, for a rigid body,
+        \begin{equation*}
+            T^* = \frac{1}{2}I_1^*\omega_1^2+\frac{1}{2}I_2^*\omega_2^2+\frac{1}{2}I_3^*\omega_3^2
+        \end{equation*}
+        \begin{itemize}
+            \item Note that $I_1^*$ is the moment of inertia about principal axis 1 with CM at the origin.
+            \item Explicitly,
+            \begin{equation*}
+                I_1^* = \iiint\rho_m(\vec{r}{\,}^*)(z^2+y^2)
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
+    \item We now leap to Chapter 12 to talk about the Hamiltonian!
+\end{itemize}
+
+
+
+
+\end{document}
