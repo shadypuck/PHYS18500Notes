@@ -12,9 +12,58 @@
 \section{Final Exam Review}
 \begin{enumerate}
     \item \marginnote{12/4:}\textcite{bib:KibbleBerkshire}, Q7.2. Where is the center of mass of the Sun-Jupiter system? (The mass ratio is $M_S/M_J=1047$. The semi-major axis of Jupiter's orbit is \SI{5.20}{\astronomicalunit}, where $\SI{1}{\astronomicalunit}=\SI{1.50e8}{\kilo\meter}$ is the semi-major axis of the Earth's orbit.) Through what angle does the Sun's position --- as seen from the Earth --- oscillate because of the gravitational attraction of Jupiter?
+    \begin{proof}
+        The center of mass of the Sun-Jupiter system is at the following distance from the center of the sun.
+        \begin{align*}
+            \vec{R} &= \frac{M_S\cdot 0+M_J\cdot\SI{5.20}{\astronomicalunit}}{M_S+M_J}\\
+            &= \frac{\SI{5.20}{\astronomicalunit}}{M_S/M_J+1}\\
+            &= \frac{1}{1047+1}\cdot\frac{\SI{5.20}{\astronomicalunit}}{1}\cdot\frac{\SI{1.50e8}{\kilo\meter}}{\SI{1}{\astronomicalunit}}\\
+            \Aboxed{\vec{R} &= \SI{7.44e5}{\kilo\meter}}
+        \end{align*}
+        Consider a triangle with vertices at the Earth and the two extrema of the Sun's position as viewed from the Earth. This triangle is nearly right, so it is a good approximation to say, if $\theta$ denotes the desired angle, that
+        \begin{align*}
+            \tan\theta &\approx \frac{\SI{7.44e5}{\kilo\meter}}{\SI{1.50e8}{\kilo\meter}}\\
+            \Aboxed{\theta &= \ang{0.28}}
+        \end{align*}
+    \end{proof}
     \item \textcite{bib:KibbleBerkshire}, Q9.6.
     \begin{enumerate}
         \item A simple pendulum supported by a light rigid rod of length $l$ is released from rest with the rod horizontal. Find the reaction at the pivot as a function of the angle of inclination.
+        \begin{proof}
+            % As in the case of the compound pendulum, we'll break up the force $m\ddot{\vec{r}}$ into the force on the pivot $\vec{Q}$ and other forces $\sum_\alpha\vec{F}_\alpha$ via
+            % \begin{equation*}
+                
+            % \end{equation*}
+
+
+            Let the pendulum bob have mass $M$. Since this is a simple pendulum, the reaction at the pivot will be purely in the radial $\hat{\rho}$ direction per our in-class analysis of an impulse on a compound pendulum (the simple pendulum is the "sweet spot"). Thus, we have that
+            \begin{equation*}
+                M\ddot{\rho} = \sum_\alpha F_\alpha
+            \end{equation*}
+            The two radial forces that need to be considered are (1) the desired force $Q$ on the pivot and (2) the radial component of gravity. We can insert these into the math as follows.
+            \begin{equation*}
+                M\ddot{\rho} = Q+Mg\cos\phi
+            \end{equation*}
+            Substituting in the centripetal acceleration for $\rho$, we obtain
+            \begin{equation*}
+                -Ml\dot{\phi}^2 = Q+Mg\cos\phi
+            \end{equation*}
+            To find an equation for $\dot{\phi}$ in terms of $\phi$ and fundamental constants, use the conservation of energy
+            \begin{equation*}
+                E = \frac{1}{2}ml^2\dot{\phi}^2-mgl\cos\phi
+            \end{equation*}
+            Substituting in the initial conditions $\phi=\ang{90}$ and $\dot{\phi}=0$ reveals that the total energy of the system is $E=0$. Thus,
+            \begin{align*}
+                0 &= \frac{1}{2}ml^2\dot{\phi}^2-mgl\cos\phi\\
+                \frac{2g}{l}\cos\phi &= \dot{\phi}^2
+            \end{align*}
+            Returning the substitution, we obtain
+            \begin{align*}
+                -Ml\cdot\frac{2g}{l}\cos\phi &= Q+Mg\cos\phi\\
+                -2Mg\cos\phi &= Q+Mg\cos\phi\\
+                \Aboxed{Q &= -3Mg\cos\phi\,\hat{\rho}}
+            \end{align*}
+        \end{proof}
         \item For the cube of Problem 9.1 (a uniform solid cube of edge length $2a$ suspended from a horizontal axis along one edge), find the horizontal and vertical components of the reaction on the axis as a function of its angular position. Compare your answer with the corresponding expressions for the equivalent simple pendulum.
     \end{enumerate}
     \item \textcite{bib:KibbleBerkshire}, Q9.16. A uniformly charged sphere is spinning freely with angular velocity $\vec{\omega}$ in a uniform magnetic field $\vec{B}$. Taking the $z$-axis in the direction of $\vec{\omega}$, and $\vec{B}$ in the $xz$-plane, write down the moment about the center of the magnetic force on a particle at $\vec{r}$. Evaluate the total moment of the magnetic force on the sphere, and show that it is equal to $(q/2M)\vec{J}\times\vec{B}$, where $q$ and $M$ are the total charge and mass, respectively. Hence show that the axis will precess around the direction of the magnetic field with precessional angular velocity equal to the Larmor frequency
