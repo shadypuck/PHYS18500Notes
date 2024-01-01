@@ -12,16 +12,122 @@
 \section{Rigid Body Motion}
 \begin{enumerate}
     \item \marginnote{11/17:}\textcite{bib:KibbleBerkshire}, Q9.15. A gyroscope consisting of a uniform circular disc of mass \SI{100}{\gram} and radius \SI{40}{\milli\meter} is pivoted so that its center of mass is fixed, and it's spinning about its axis at \SI{2400}{\rpm}. A \SI{5}{\gram} mass is attached to the axis at a distance of \SI{100}{\milli\meter} from the center. Find the angular velocity of precession of the axis.
+    \begin{proof}
+        The setup here is wholly analogous to that of the spinning top/gyroscope. Thus, we can find the angular velocity $\Omega$ of the precession using the equation
+        \begin{equation*}
+            \Omega = \frac{MgR}{I_3\omega}
+        \end{equation*}
+        The problem statement directly tells us that
+        \begin{align*}
+            M &= \SI{0.005}{\kilo\gram}&
+            g &= \SI[per-mode=symbol]{9.81}{\meter\per\second}&
+            R &= \SI{0.1}{\meter}
+        \end{align*}
+        \begin{align*}
+            \omega &= \frac{2400\,\text{revolutions}}{\SI{1}{\minute}}\times\frac{2\pi\,\text{radians}}{1\,\text{revolution}}\times\frac{\SI{1}{\minute}}{\SI{60}{\second}}\\
+            &= 80\pi\,\si{\per\second}
+        \end{align*}
+        For $I_3$, first define $m=\SI{0.1}{\kilo\gram}$ and $r=\SI{0.04}{\meter}$. Then, since the disc is circular and its density is uniform, we know that
+        \begin{equation*}
+            \rho_m(\vec{r}) = \frac{m}{A} = \frac{m}{\pi r^2}
+        \end{equation*}
+        Thus, we can calculate that
+        \begin{align*}
+            I_3 &= \iint_\text{disc}\rho_m(\vec{r})(x^2+y^2)\dd{x}\dd{y}\\
+            &= \frac{m}{\pi r^2}\iint_\text{disc}r^2\cdot r\dd{r}\dd{\theta}\\
+            &= \frac{m}{\pi r^2}\int_0^r\left( \int_0^{2\pi}r^3\dd{\theta} \right)\dd{r}\\
+            &= \frac{2m}{r^2}\int_0^rr^3\dd{r}\\
+            &= \frac{1}{2}mr^2\\
+            &= \SI{8e-5}{\kilo\gram\meter\squared}
+        \end{align*}
+        Therefore, plugging $M,g,R,I_3,\omega$ into the original equation, we obtain
+        \begin{equation*}
+            \boxed{\Omega = \SI{0.244}{\per\second}}
+        \end{equation*}
+    \end{proof}
+    \pagebreak
     \item \textcite{bib:KibbleBerkshire}, Q9.18. A solid rectangular box, of dimensions $\SI{100}{\milli\meter}\times\SI{60}{\milli\meter}\times\SI{20}{\milli\meter}$, is spinning freely with angular velocity \SI{240}{\rpm}. Determine the frequency of small oscillations of the axis, if the axis of rotation is\dots
     \begin{enumerate}
         \item The longest;
+        \begin{proof}
+            Let
+            \begin{align*}
+                2a &= \SI{0.1}{\meter}&
+                2b &= \SI{0.06}{\meter}&
+                2c &= \SI{0.02}{\meter}
+            \end{align*}
+            Additionally, let $\hat{e}_3$ be the principal axis parallel to the axis of rotation and hence along the longest axis. Let $\hat{e}_1,\hat{e}_2$ be the other two principal axes. Using these variables, the setup for this problem can be visualized as follows.
+            \begin{center}
+                \begin{tikzpicture}
+                    \footnotesize
+                    \fill circle (2pt) node[above left]{CM};
+                    \draw [-stealth] (0,0,0) -- (1,0,0) node[above]{$\hat{e}_1$};
+                    \draw [-stealth] (0,0,0) -- (0,1,0) node[right]{$\hat{e}_3$};
+                    \draw [-stealth] (0,0,0) -- (0,0,1) node[below left=-4pt]{$\hat{e}_2$};
+                    \draw [->] (-0.1,0.6) arc[start angle=120,end angle=420,x radius=2mm,y radius=1mm] node[right=1pt]{$\omega_3$};
+            
+                    \begin{scope}[scale=0.5]
+                        \draw [pux,thick]
+                            (-2,-3,1) rectangle (2,3,1)
+                            (-2,-3,-1) rectangle (2,3,-1)
+                            (-2,-3,1) -- (-2,-3,-1)
+                            (2,-3,1) -- (2,-3,-1)
+                            (-2,3,1) -- (-2,3,-1)
+                            (2,3,1) -- (2,3,-1)
+                        ;
+                        \draw [|-|] (-2.5,-3,1) -- node[left]{$2a$} (-2.5,3,1);
+                        \draw [|-|] (-2,-3.5,1) -- node[below]{$2b$} (2,-3.5,1);
+                        \draw
+                            (2.6,-3,1) -- node[right,yshift=-2pt]{$2c$} (2.6,-3,-1)
+                            (2.4,-3,1) -- (2.8,-3,1)
+                            (2.4,-3,-1) -- (2.8,-3,-1)
+                        ;
+                    \end{scope}
+                \end{tikzpicture}
+            \end{center}
+            Letting the mass of the box be $M$, Routh's Rule tells us that
+            \begin{align*}
+                I_1 &= M\left( \frac{a^2}{3}+\frac{c^2}{3} \right)&
+                I_2 &= M\left( \frac{a^2}{3}+\frac{b^2}{3} \right)&
+                I_3 &= M\left( \frac{b^2}{3}+\frac{c^2}{3} \right)
+            \end{align*}
+            Following the in-class analysis of a rigid body rotating freely about a principal axis, we learn that the frequency of small oscillations for stable rotation is given by
+            \begin{equation*}
+                \Omega = \frac{p}{i}
+                = \frac{1}{i}\sqrt{\frac{\omega_3^2(I_3-I_2)(I_1-I_3)}{I_1I_2}}
+            \end{equation*}
+            Then since
+            \begin{align*}
+                \frac{(I_3-I_2)(I_1-I_3)}{I_1I_2} &= \frac{\left[ M\left( \frac{b^2}{3}+\frac{c^2}{3} \right)-M\left( \frac{a^2}{3}+\frac{b^2}{3} \right) \right]\cdot\left[ M\left( \frac{a^2}{3}+\frac{c^2}{3} \right)-M\left( \frac{b^2}{3}+\frac{c^2}{3} \right) \right]}{M\left( \frac{a^2}{3}+\frac{c^2}{3} \right)\cdot M\left( \frac{a^2}{3}+\frac{b^2}{3} \right)}\\
+                &= \frac{[(b^2+c^2)-(a^2+b^2)]\cdot[(a^2+c^2)-(b^2+c^2)]}{(a^2+c^2)\cdot(a^2+b^2)}\\
+                &= \frac{(c^2-a^2)(a^2-b^2)}{(a^2+c^2)(a^2+b^2)}
+            \end{align*}
+            and
+            \begin{align*}
+                \omega_3 &= \frac{240\,\text{revolutions}}{\SI{1}{\minute}}\times\frac{2\pi\,\text{radians}}{1\,\text{revolution}}\times\frac{\SI{1}{\minute}}{\SI{60}{\second}}\\
+                &= 8\pi\,\si{\per\second}
+            \end{align*}
+            we may obtain the final result by numerical substitution as follows.
+            \begin{align*}
+                \Omega &= \frac{\omega_3}{i}\sqrt{\frac{(c^2-a^2)(a^2-b^2)}{(a^2+c^2)(a^2+b^2)}}\\
+                \Aboxed{\Omega &= \SI{16.6}{\per\second}}
+            \end{align*}
+        \end{proof}
         \item The shortest.
+        \begin{proof}
+            We follow the same general analysis as above, except this time we redefine $a,b,c$ so that $\hat{e}_3$ is the \emph{shortest} axis. In particular, this necessitates that we choose $2a=\SI{0.02}{\meter}$. However, we can choose $b,c$ to be either of the remaining values. (This is confirmed by the mathematical form of $\Omega$, which is clearly invariant under an interchange of $b,c$.) Thus, let's arbitrarily choose $2b=\SI{0.06}{\meter}$ and $2c=\SI{0.1}{\meter}$. $\omega_3$ remains the same. Altogether, plugging and chugging as above, we have that
+            \begin{align*}
+                \Omega &= \frac{\omega_3}{i}\sqrt{\frac{(c^2-a^2)(a^2-b^2)}{(a^2+c^2)(a^2+b^2)}}\\
+                \Aboxed{\Omega &= \SI{21.6}{\per\second}}
+            \end{align*}
+        \end{proof}
     \end{enumerate}
     \item \textcite{bib:KibbleBerkshire}, Q10.10. Show that the kinetic energy of the gyroscope described in Q9.21 is
     \begin{equation*}
         T = \frac{1}{2}I_1(\Omega\sin\lambda\cos\phi)^2+\frac{1}{2}I_1(\dot{\phi}+\Omega\cos\lambda)^2+\frac{1}{2}I_3(\dot{\phi}+\Omega\sin\lambda\sin\phi)^2
     \end{equation*}
     From Lagrange's equations, show that the angular velocity $\omega_3$ about the axis is constant, and obtain the equation for $\phi$ without neglecting $\Omega^2$. Show that motion with the axis pointing north becomes unstable for very small values of $\omega_3$, and find the smallest value for which it is stable. What are the stable positions when $\omega_3=0$? Interpret this result in terms of a non-rotating frame.\par
+    Notes: The gyroscope $\hat{e}_3$ axis is in the $xy$-plane --- i.e., it is a wheel oriented vertically (like a bicycle wheel). You will want to write down the total angular velocity, due to the sum of spinning gyroscope and the Earth's rotation. Express this vector in the basis of the principal axes of the gyroscope; this will allow you to find the kinetic energy. Note also that $\omega_3$ is the total component of $\omega$ in the $\hat{e}_3$ direction.\par
     A \textbf{gyrocompass} is a type of constrained gyroscope that points north due to the Earth's rotation. In this problem, we will see how this works. First, read Q9.21 for the setup (pasted below), but actually solve Q10.10, above. This is a great example of a problem where the Lagrangian approach is much more straightforward.\par
     The axis of a gyroscope is free to rotate within a smooth horizontal circle in colatitude $\lambda$. Due to the Coriolis force, there is a couple on the gyroscope. To find the effect of this couple, use the equation for the rate of change of angular momentum in a frame rotating with the Earth (e.g., that having basis vectors $\hat{r},\hat{n},\hat{e}$), which is $\dot{\vec{J}}+\vec{\Omega}\times\vec{J}=\vec{G}$, where $\vec{G}$ is the couple restraining the axis from leaving the horizontal plane, and $\vec{\Omega}$ is the Earth's angular velocity. (Neglect terms of order $\Omega^2$, in particular the contribution of $\vec{\Omega}$ to $\vec{J}$.) From the component along the axis, show that the angular velocity $\omega$ about the axis is constant; from the vertical component show that the angle $\phi$ between the axis and east obeys the equation
     \begin{equation*}

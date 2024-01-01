@@ -38,7 +38,7 @@
                 0 & 0 & \omega\\
                 \rho & 0 & z\\
             \end{pmatrix}
-            = \omega\rho\hat{\phi}
+            = \omega\rho\,\hat{\phi}
         \end{equation*}
         \item Expanding out our second cross product, we obtain
         \begin{equation*}
@@ -47,7 +47,7 @@
                 \rho & 0 & z\\
                 0 & \rho\omega & 0\\
             \end{pmatrix}
-            = -z\rho\omega\hat{\rho}+\rho^2\omega\hat{z}
+            = -z\rho\omega\,\hat{\rho}+\rho^2\omega\,\hat{z}
         \end{equation*}
         \item Thus, we have that
         \begin{align*}
@@ -78,14 +78,14 @@
         J_x &= I_{xz}\omega
     \end{align*}
     \begin{itemize}
-        \item Note that if $\vec{\omega}=\omega\hat{x}$, we have
+        \item Note that if $\vec{\omega}=\omega\,\hat{x}$, we have
     \end{itemize}
     \begin{align*}
         J_z &= I_{zx}\omega&
         J_y &= I_{yx}\omega&
         J_x &= I_{xx}\omega
     \end{align*}
-    \item If we have $\vec{\omega}=\omega_x\hat{x}+\omega_y\hat{y}+\omega_z\hat{z}$, then the contributions to angular momentum add as a linear combination via
+    \item If we have $\vec{\omega}=\omega_x\,\hat{x}+\omega_y\,\hat{y}+\omega_z\,\hat{z}$, then the contributions to angular momentum add as a linear combination via
     \begin{equation*}
         \begin{bmatrix}
             J_x\\
@@ -118,7 +118,7 @@
         \item It's like a matrix with a tiny bit more structure.
         \item For now, think of it as a $3\times 3$ matrix, and we'll talk more about it a little bit more next time.
     \end{itemize}
-    \item Consider again $\vec{\omega}=\omega\hat{z}$.
+    \item Consider again $\vec{\omega}=\omega\,\hat{z}$.
     \begin{itemize}
         \item We know that
         \begin{equation*}
@@ -129,27 +129,31 @@
         \begin{equation*}
             \dot{\vec{J}} = \sum_\alpha\vec{r}_\alpha\times\vec{F}_\alpha
         \end{equation*}
-        \item Computing the cross product in the above expression, we have
+        \item Computing one of the cross products in the above sum, we have
         \begin{equation*}
             \begin{pmatrix}
                 \hat{\rho} & \hat{\phi} & \hat{z}\\
                 \rho_\alpha & 0 & z_\alpha\\
                 F_\rho & F_\phi & F_z\\
             \end{pmatrix}
-            = -F_\phi z_\alpha\hat{\rho}+\rho_\alpha F_\phi\hat{z}\footnotemark
+            = -F_\phi z_\alpha\,\hat{\rho}+\rho_\alpha F_\phi\,\hat{z}\footnotemark
         \end{equation*}
         \footnotetext{Why is there not a $\hat{\phi}$ term in this cross product??}
-        \item Then
+        \item Then we have a second expression for $\dot{J}_z$, in addition to the one obtained by taking derivatives of both sides of the expression $J_z=I_{zz}\omega$:
         \begin{equation*}
             \dot{J}_z = I_{zz}\dot{\omega}
             = \sum_\alpha\rho_\alpha F_\phi
+            % = \sum_\alpha\rho_\alpha(m_\alpha a_\phi)
+            % = \sum_\alpha\rho_\alpha(m_\alpha\dot{v}_\phi)
+            % = \sum_\alpha\rho_\alpha(m_\alpha\rho_\alpha\dot{\omega})
+            % = \sum_\alpha m_\alpha\rho_\alpha^2\dot{\omega}
         \end{equation*}
         \begin{itemize}
             \item This equation determines the rate of change of angular velocity, and hence may be called the equation of motion of the rotating body.
             \item It gives $\omega(t)$ in terms of force $F_\phi$.
         \end{itemize}
     \end{itemize}
-    \item Example: Let the shape depicted in Figure \ref{fig:rectangularLamina} be in equilibrium, i.e., $\dot{\omega}=0$.
+    \item Example of using $\dot{J}_z=\sum_\alpha\rho_\alpha F_\phi$ analogously to Newton's second law.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.22\linewidth]{../ExtFiles/rectangularLamina.png}
@@ -157,10 +161,12 @@
         \label{fig:rectangularLamina}
     \end{figure}
     \begin{itemize}
+        \item Let the shape depicted in Figure \ref{fig:rectangularLamina} be in equilibrium, i.e., $\dot{\omega}=0$ so $\dot{J}_z=0$.
         \item This shape is called the \textbf{rectangular lamina}. It is of size $a\times b$, of negligible mass, pivoted at one quarter, carrying a weight $Mg$ at one corner, and supported by a horizontal force $\vec{F}$.
         \item We're pulling on two corners, and if it's in equilibrium, the thing is not rotating.
         \item This means that the force $F$ with which we have to pull on the top-left corner in order for the shape to stay in equilibrium is
         \begin{align*}
+            \sum_\alpha\rho_\alpha F_\phi &= 0\\
             bF-aMg &= 0\\
             F &= \frac{a}{b}Mg
         \end{align*}
@@ -179,8 +185,8 @@
             = \sum_\alpha(\rho\dot{\phi})F_\phi
             = \sum_\alpha\dot{\vec{r}}_\alpha\cdot\vec{F}_\alpha
         \end{equation*}
-        \item Thus, in this case, the internal forces do no work (which makes sense for a rigid body).
-        \item Thus, the KE is just related to the external forces, as shown above.
+        \item Since the internal forces do not appear in the above expression, we have proven that they cannot do any work on the rigid body (which also makes intuitive sense for a rigid body).
+        \item Indeed, the change in the kinetic energy is only related to the external forces, as shown above.
     \end{itemize}
     \item We'll talk about pivot points next time.
 \end{itemize}
@@ -267,28 +273,22 @@
             \begin{itemize}
                 \item Jerison rewrites the coordinate conversions.
             \end{itemize}
-            \item We take $\vec{\omega}$ to lie in the $\khat$ direction via $\vec{\omega}=\omega\khat$.
-            \item The moment with which we're most concerned is $I_{zz}$, defined as previously. Differentiating gets us to $J_z=I_{zz}\omega_z$ and $\dot{J}_z=I_{zz}\dot{\omega}$\footnote{Where did the subscript $z$ come from and why did it promptly disappear?? I don't think there's anything special going on here; notation is just wacky and confusing.}.
-            \item From here, we can define the kinetic energy
-            \begin{equation*}
-                T = \sum_\alpha\frac{1}{2}m_\alpha\dot{\vec{r}}_\alpha{}^2
-                = \sum_\alpha\frac{1}{2}m_\alpha(\rho_\alpha\omega)^2
-                = \frac{1}{2}I_{zz}\omega^2
-            \end{equation*}
-            where we recall that $\dot{\vec{r}}_\alpha=\vec{\omega}\times\vec{r}_\alpha=\rho_\alpha\omega\,\hat{\phi}$.
+            \item We take $\vec{\omega}$ to lie in the $\khat$ direction via $\vec{\omega}=\omega\,\khat$.
+            \item The moment with which we're most concerned is $I_{zz}$, defined as previously. Differentiating gets us from $J_z=I_{zz}\omega_z$ to $\dot{J}_z=I_{zz}\dot{\omega}$\footnote{Where did the subscript $z$ come from and why did it promptly disappear?? I don't think there's anything special going on here; notation is just wacky and confusing.}.
+            \item From here, we can determine the kinetic energy to be $T=I_{zz}\omega^2/2$ where we recall that $\dot{\vec{r}}_\alpha=\vec{\omega}\times\vec{r}_\alpha=\rho_\alpha\omega\,\hat{\phi}$.
+        \end{itemize}
+        \item The EOMs for this system are given by $\dot{\vec{J}}=\sum_\alpha\vec{r}_\alpha\times\vec{F}_\alpha$.
+        \begin{itemize}
+            \item We're mostly interested in the $z$ component, i.e., $\dot{J}_z=\sum_\alpha\rho_\alpha F_\phi$.
         \end{itemize}
     \end{itemize}
-    \item The EOMs for this system are given by $\dot{\vec{J}}=\sum_\alpha\vec{r}_\alpha\times\vec{F}_\alpha$.
+    \item Sometimes, it can be useful to separate out the forces into axial forces and other forces via
+    \begin{equation*}
+        \dot{\vec{P}} = M\ddot{\vec{R}}
+        = \vec{Q}+\sum_\alpha\vec{F}_\alpha
+    \end{equation*}
     \begin{itemize}
-        \item We're mostly interested in the $z$ component, i.e., $\dot{J}_z=\sum_\alpha\rho_\alpha F_\phi$.
-        \item Sometimes, it can be useful to separate out the forces into axial forces and other forces via
-        \begin{equation*}
-            \dot{\vec{P}} = M\ddot{\vec{R}}
-            = \vec{Q}+\sum_\alpha\vec{F}_\alpha
-        \end{equation*}
-        \begin{itemize}
-            \item $\vec{Q}$ is the force on the axis and $\sum_\alpha\vec{F}_\alpha$ denotes other forces.
-        \end{itemize}
+        \item $\vec{Q}$ is the force on the axis and $\sum_\alpha\vec{F}_\alpha$ denotes other forces.
     \end{itemize}
     \item To make calculations, it will additionally be useful to have the following expression. For a rotating body, $\ddot{\vec{R}}$ can be found as follows: Since $\dot{\vec{R}}=\vec{\omega}\times\vec{R}$, we have that
     \begin{equation*}
@@ -441,7 +441,7 @@
         \end{align*}
         \item Thus, $S$ vanishes if we choose $d=\ell=I/MR$.
         \item Takeaway: Regardless of the shape of our pendulum, if we hit it at the distance of the equivalent simple pendulum, we'll have no impulse on the pivot.
-        \item This is the "sweet spot" of our baseball bat or whatever.
+        \item This is the "sweet spot" of our baseball bat or whatever, the point at which we can swing the bat, hit the ball, and the maximum KE will be transferred to the ball and not to our hands (the pivot).
     \end{itemize}
 \end{itemize}
 
@@ -592,9 +592,9 @@
         \begin{equation*}
             \vec{J} = I_1(\omega_1\vec{e}_1+\omega_2\vec{e}_2)+I_3\omega_3\vec{e}_3
         \end{equation*}
-        \item Thus, any orthonormal axes in the plane defined by $\vec{e}_1,\vec{e}_2$ can serve as principal axes.
+        \item Thus, any orthonormal vectors in the plane defined by $\vec{e}_1,\vec{e}_2$ can serve as principal axes.
     \end{itemize}
-    \item In the case of a totally symmetric object, any axis acts a principal axis and $\vec{J}$ is always parallel to $\vec{\omega}$.
+    \item In the case of a totally symmetric object, any three orthonormal vectors serve as principal axes, and $\vec{J}$ is always parallel to $\vec{\omega}$.
     \item Calculating $\overleftrightarrow{I}$.
     \begin{enumerate}
         \item If we take $\vec{r}=\vec{R}+\vec{r}{\,}^*$, then since $\vec{R}^*=0$,
@@ -620,7 +620,7 @@
         \end{itemize}
         \item Objects with 3 perpendicular symmetry planes.
         \begin{itemize}
-            \item Picture a cylinder, ellipsoid, or parallelepiped with uniform density and three axes $a,b,c$.
+            \item Picture a cylinder, ellipsoid, or parallelepiped with uniform density and three axes of lengths $2a,2b,2c$.
             \item Then
             \begin{align*}
                 I_1^* &= M(\lambda_yb^2+\lambda_zc^2)&
@@ -658,29 +658,56 @@
         \item Now imagine we exert a small force $\vec{F}$ at a distance $\vec{r}$ up the axis from the CM/origin.
         \item It follows that $\dot{\vec{J}}=I_3\dot{\vec{\omega}}=\vec{r}\times\vec{F}$.
         \item Thus, $\dot{\vec{J}}$ is perpendicular to $\vec{\omega}$ and $\vec{\omega}$ changes direction, so the system turns.
-        \item For example, if the system is a rolling bicycle wheel under gravity, the wheel turns right.
     \end{itemize}
-    \item At this point, we can analyze the motion of a top/gyroscope!
+    \item For example, consider a system consisting of a rolling bicycle wheel under gravity.
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.2\linewidth]{../ExtFiles/topGyroscope.png}
+        \begin{tikzpicture}
+            \footnotesize
+            \begin{scope}[rotate=-30]
+                \draw [->] (0,0) -- (-1.2,0) node[below right=-2pt,yshift=-5pt]{$\vec{\omega}$};
+                \draw [->] (-1.2,0) -- ++(40:3mm) node[above]{$\dot{\vec{\omega}}$};
+    
+                \draw [white,line width=4pt] ellipse (7mm and 1cm);
+                \draw [pux,thick] ellipse (7mm and 1cm);
+    
+                \draw [->] (0,-1) -- node[above left=-1mm]{$\vec{r}$} (0,0);
+            \end{scope}
+            \draw [->] (0,0) -- node[right=-2pt]{$M\vec{g}$} (0,-0.5);
+        \end{tikzpicture}
+        \caption{Why a bicycle wheel turns.}
+        \label{fig:bicycleWheel}
+    \end{figure}
+    \begin{itemize}
+        \item In this case, the perpendicular force drives the wheel to turn to the right, instead of immediately falling over.
+        \item Keep in mind the precise placement of all the vectors in this image, especially $\vec{r}$ since the pivot point is at the bottom of the wheel (on the pavement).
+    \end{itemize}
+    \item At this point, we can analyze the motion of a top/gyroscope!
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\linewidth]{../ExtFiles/topGyroscope.png}
         \caption{A spinning top/gyroscope.}
         \label{fig:topGyroscope}
     \end{figure}
     \begin{itemize}
         \item We have that
         \begin{align*}
+            \dot{\vec{J}} &= \vec{r}\times\vec{F}\\
             I_3\dot{\vec{\omega}} &= R\vec{e}_3\times(-Mg\khat)\\
             I_3\omega\dot{\vec{e}}_3 &= MgR\khat\times\vec{e}_3\\
             \dot{\vec{e}}_3 &= \frac{MgR}{I_3\omega}\khat\times\vec{e}_3
         \end{align*}
-        \item Defining $\vec{\Omega}=\frac{MgR}{I_3\omega}\khat$, we have that
+        \item Define
+        \begin{equation*}
+            \vec{\Omega} = \frac{MgR}{I_3\omega}\khat
+        \end{equation*}
+        \item Then
         \begin{equation*}
             \dot{\vec{e}}_3 = \vec{\Omega}\times\vec{e}_3
         \end{equation*}
-        \item Thus, $\vec{e}_3$ rotates about the $\khat$ axis (direction of $\vec{\Omega}$) at rate $\Omega$. This is precession!
+        \item Thus, $\vec{e}_3$ rotates about the $\khat$ axis (which is the direction of $\vec{\Omega}$) at rate $\Omega$. This is precession!
         \item We make the approximation that the value for $\Omega\ll\omega$, or $I_3\omega^2/2\gg MgR$.
-        \item We are making the approximation that $\vec{J}$ points in the $\vec{\omega}$ direction ($\vec{e}_3$ direction), which is not quite true due to the $\Omega$ contribution.
+        \item We are also making the approximation that $\vec{J}$ points in the $\vec{\omega}$ direction ($\vec{e}_3$ direction), which is not quite true due to the $\Omega$ contribution.
     \end{itemize}
 \end{itemize}
 
@@ -748,7 +775,11 @@
         \begin{equation*}
             \dot{\vec{J}} = I_1\dot{\omega}_1\hat{e}_1+I_2\dot{\omega}_2\hat{e}_2+I_3\dot{\omega}_3\hat{e}_3
         \end{equation*}
-        \item It follows by combining the above two equations that the componentwise EOMs are
+        \item It follows by combining the above three equations that
+        \begin{equation*}
+            \vec{G} = \left( I_1\dot{\omega}_1\hat{e}_1+I_2\dot{\omega}_2\hat{e}_2+I_3\dot{\omega}_3\hat{e}_3 \right)+\left( \omega_1\hat{e}_1+\omega_2\hat{e}_2+\omega_3\hat{e}_3 \right)\times\left( I_1\omega_1\hat{e}_1+I_2\omega_2\hat{e}_2+I_3\omega_3\hat{e}_3 \right)
+        \end{equation*}
+        \item Thus, evaluating the cross product, the componentwise EOMs are
         \begin{align*}
             I_1\dot{\omega}_1+(I_3-I_2)\omega_2\omega_3 &= G_1\\
             I_2\dot{\omega}_2+(I_1-I_3)\omega_3\omega_1 &= G_2\\
@@ -769,7 +800,7 @@
     \end{itemize}
     \item When is rotation about a principal axis stable?
     \begin{itemize}
-        \item Suppose that $\vec{\omega}=\omega\hat{e}_3$, but this time, a small perturbtaion introduces angular momentum about one or more of the other axes.
+        \item Suppose that $\vec{\omega}=\omega\hat{e}_3$, but this time, a small perturbation introduces angular momentum about one or more of the other axes.
         \begin{itemize}
             \item Mathematically, we assume $\omega_1,\omega_2\ll\omega_3$.
             \item Thus, we neglect terms that contain a product of $\omega_1$ and $\omega_2$.
@@ -805,8 +836,8 @@
             \frac{a_1}{a_2} &= \frac{I_2p}{-(I_1-I_3)\omega_3}
         \end{align*}
         \begin{itemize}
-            \item The left equation above comes from dividing $I_1pa_1+(I_3-I_2)a_2\omega_3=0$ through by $a_2$ and rearranging.
-            \item The right equation above comes from dividing $I_2pa_2+(I_1-I_3)\omega_3a_1=0$ through by $a_2$ and rearranging.
+            \item The left equation comes from dividing $I_1pa_1+(I_3-I_2)a_2\omega_3=0$ through by $a_2$ and rearranging.
+            \item The right equation comes from dividing $I_2pa_2+(I_1-I_3)\omega_3a_1=0$ through by $a_2$ and rearranging.
         \end{itemize}
         \item It follows by transitivity that
         \begin{align*}
@@ -828,7 +859,7 @@
     \end{itemize}
     \item Example of the above.
     \begin{itemize}
-        \item Consider a rectangular prism with longest axis $a$, second longest $b$, and third longest $c$.
+        \item Consider a rectangular prism with longest axis $2a$, second longest $2b$, and third longest $2c$.
         \item We can calculate that $\hat{e}_3\parallel c$, $\hat{e}_1\parallel a$, and $\hat{e}_2\parallel b$.
         \item Now using Routh's rule, we have that
         \begin{align*}
@@ -1022,7 +1053,11 @@
             S = \left(1-\frac{MdR}{I} \right)K
         \end{equation*}
     \end{itemize}
-    \item \textbf{Couple}: ??
+    \item \textbf{Couple}: A system of forces with a resultant/net/sum torque but no resultant force.
+    \begin{itemize}
+        \item A couple imparts angular momentum but no linear momentum.
+        \item In rigid body dynamics, couples have an effect on a body that is independent of their point of application.
+    \end{itemize}
     \item \textbf{Principal moment of inertia}: Any one of the eigenvalues of the moment of inertia tensor.
     \item Shift of origin equations.
     \begin{align*}
@@ -1097,6 +1132,53 @@
             \end{equation*}
         \end{itemize}
     \end{itemize}
+    \item Precession and gyroscopic motion.
+    \item Up until now, we have considered rotation about a fixed axis. Now, we will consider the case in which only one point on the axis is fixed. (Later, we will consider the case in which no points on the axis are fixed.)
+    \item The effect of a small force on an axis (precession), visualized.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw (0,-1.3) -- (0,-0.7);
+    
+            \draw [pux,thick] ellipse (1cm and 4mm);
+            \draw [pux,thick,yshift=-3mm] (1,0) arc[start angle=0,end angle=-180,x radius=1cm,y radius=4mm];
+            \draw [pux,thick]
+                (1,0)  -- ++(0,-0.3)
+                (-1,0) -- ++(0,-0.3)
+            ;
+    
+            \draw [line width=4pt,white] (0,0) -- (0,1);
+            \draw [->] (0,0) -- (0,1) node[below right]{$\vec{r}$};
+            \draw [->] (0,1) -- (0,1.7) node[below right]{$\vec{\omega}$};
+            \draw [->] (0,1) -- ++(-0.8,0.3) node[above right]{$\vec{F}$};
+            \draw [->] (-0.8,1.3) -- ++(-1,-0.3) node[below right]{$\vec{r}\times\vec{F}$};
+        \end{tikzpicture}
+        \caption{The origin of precession.}
+        \label{fig:precession}
+    \end{figure}
+    \begin{itemize}
+        \item Pushing one way on a rotating body induces a perpendicular change!
+    \end{itemize}
+    \item On the spinning top.
+    \begin{itemize}
+        \item There are similarities between the precession of a spinning top ($\dot{\vec{e}}_3=\vec{\Omega}\times\vec{e}_3$\footnote{In what cases do we use $\vec{e}_i$ for a principal axis?? Should it not always be $\hat{e}_i$?}), the Larmor precession, and the precession of a satellite orbit.
+        \item $\vec{\Omega}$ is independent of the inclination of the axis!
+        \item We discuss what happens when $MgR\not\ll I_3\omega^2/2=T$ later (in Sections 10.3 and 12.4).
+        \item Since $\Omega\propto1/I_3\omega$, to minimize the effect of a force on the axis, we should use a fat and rapidly spinning body.
+    \end{itemize}
+    \item Precession of the equinoxes is covered.
+    \item A rigorous proof that an instantaneous angular velocity vector $\vec{\omega}$ always exists for a rotating rigid body.
+    \item On unstable motion.
+    \begin{itemize}
+        \item Recall that the ansatzs used are only valid as long as $\omega_1,\omega_2$ are small; thus, exponential blowup is not the \emph{actual} motion, but just tells us that the motion will not stay stable.
+    \end{itemize}
+    \item Reasoning for why $\vec{\omega}=\dot{\phi}\,\khat+\dot{\theta}\,\hat{e}_2'+\dot{\psi}\,\hat{e}_3$.
+    \begin{itemize}
+        \item A small change in any of $\phi,\theta,\psi$ --- independently --- corresponds to a small rotation about $\khat,\hat{e}_2',\hat{e}_3$, respectively.
+        \item Thus, a change in all three is a linear combination.
+    \end{itemize}
+    \item On the \textbf{Chandler wobble}.
 \end{itemize}
 
 
